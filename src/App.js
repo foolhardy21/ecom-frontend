@@ -1,10 +1,12 @@
+import Login from "./pages/Login";
 
 const App = () => {
-  return (
-    <>
-      
-    </>
-  );
+
+    return (
+        <>
+            <Login />
+        </>
+    );
 }
 
 export default App;
