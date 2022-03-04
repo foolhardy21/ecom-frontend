@@ -1,4 +1,9 @@
 import { useState } from "react"
+import Form from "../Reusable/Form"
+import Input from "../Reusable/Input"
+import Label from "../Reusable/Label"
+import Button from "../Reusable/Button"
+import Text from "../Reusable/Text"
 
 const LoginForm = () => {
     const [enteredEmail, setEnteredEmail] = useState('')
@@ -6,9 +11,22 @@ const LoginForm = () => {
     const [emailError, setEmailError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
 
+    function emailIsInvalid() {
+
+        const emailReg = new RegExp('^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$')
+
+        if (!emailReg.test(enteredEmail)) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     function logInUser(e) {
+
         e.preventDefault()
-        if (enteredEmail === '' || enteredEmail.indexOf('@') === -1) {
+
+        if (emailIsInvalid()) {
             setEmailError(true)
             setTimeout(() => {
                 setEmailError(false)
@@ -31,44 +49,37 @@ const LoginForm = () => {
     }
 
     return (
-        <form className='auth-form flx flx-column txt-primary mg-left-xlg mg-right-xlg'>
+        <Form>
 
+            <Input type='email' placeholder='enter email here' value={enteredEmail} onChange={(e) => setEnteredEmail(e.target.value)}
+                classes={`${emailError && 'input-err'} input input-lg txt-primary txt-md pd-xs mg-top-s`} />
             {
-                emailError && <span className="txt-md txt-err txt-cap mg-top-s">
-                    entered email is not valid.
-                </span>
+                emailError && <Text classes='txt-md txt-err txt-cap mg-left-xs mg-top-xs' text='entered email is not valid.' />
             }
 
-            <input type='email' id='email-input' placeholder="enter email here" value={enteredEmail} onChange={(e) => setEnteredEmail(e.target.value)}
-                className={`${emailError ? 'input input-err' : 'input mg-top-s'} input-lg txt-md pd-xs`} />
-
+            <Input type='password' placeholder='enter password here' value={enteredPassword} onChange={(e) => setEnteredPassword(e.target.value)}
+                classes={`${passwordError && 'input-err'} input input-lg txt-primary txt-md pd-xs mg-top-s`} />
             {
-                passwordError && <span className="txt-md txt-err txt-cap mg-top-s">
-                    entered password is not valid.
-                </span>
+                passwordError && <Text classes='txt-md txt-err txt-cap mg-left-xs mg-top-xs' text='entered password is not valid.' />
             }
-
-            <input type='password' id='pass-input' placeholder="enter password here" value={enteredPassword} onChange={(e) => setEnteredPassword(e.target.value)}
-                className={`${passwordError ? 'input input-err' : 'input mg-top-s'}  input-lg txt-md pd-xs`} />
 
             <div className='flx flx-maj-stretch flx-min-center mg-top-s mg-btm-s'>
 
-                <div className='flx-min-center'>
-                    <input type='radio' id='terms-check' />
-                    <label htmlFor='terms-check' className='txt-cap txt-md mg-left-xs'>remember me</label>
+                <div className='flx flx-min-center'>
+
+                    <Input type='radio' id='terms-check' />
+
+                    <Label for='terms-check' text='remember me' classes='txt-cap txt-primary txt-md mg-left-xs' />
+
                 </div>
 
-                <button onClick={forgotPassword} className='btn-txt txt-primary txt-md txt-cap pd-xs mg-left-xs bg-primary'>
-                    forgot your password?
-                </button>
+                <Button onClick={forgotPassword} text='forgot your password?' classes='btn-txt txt-primary txt-md txt-cap bg-primary pd-xs mg-left-xs' />
 
             </div>
 
-            <button onClick={logInUser} className='btn-solid txt-secondary bg-secondary txt-md txt-ucase pd-xs'>
-                log in
-            </button>
+            <Button onClick={logInUser} text='log in' classes='btn-solid txt-secondary bg-secondary txt-md txt-ucase pd-xs' />
 
-        </form>
+        </Form>
     )
 }
 

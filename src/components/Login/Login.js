@@ -1,17 +1,19 @@
-import PageHeader from "./PageHeader";
-import LoginSection from "./LoginSection"
+import Main from "../Reusable/Main"
+import LoginHeader from "./LoginHeader"
+import LoginCard from "./LoginCard"
 
 const Login = () => {
 
+
     return (
         <>
-            <PageHeader />
+            <LoginHeader />
 
-            <main className='flx flx-center'>
+            <Main>
 
-                <LoginSection />
+                <LoginCard />
 
-            </main>
+            </Main>
         </>
     );
 }
