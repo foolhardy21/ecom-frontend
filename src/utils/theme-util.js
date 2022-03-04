@@ -1,0 +1,5 @@
+export const getTextColor = (theme) => theme === 'light' ? 'txt-primary' : 'txt-secondary'
+export const getBgColor = (theme) => theme === 'light' ? 'bg-primary' : 'bg-secondary'
+export const getBorderColor = (theme) => theme === 'light' ? 'b-primary' : 'b-secondary'
+export const getSolidBtnTextColor = (theme) => theme === 'light' ? 'txt-secondary' : 'txt-primary'
+export const getSolidBtnBgColor = (theme) => theme === 'light' ? 'bg-secondary' : 'bg-primary'

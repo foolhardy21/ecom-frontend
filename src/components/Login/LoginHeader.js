@@ -2,23 +2,29 @@ import Header from "../Reusable/Header"
 import NavBar from "../Reusable/NavBar"
 import Icon from "../Reusable/Icon"
 import Text from "../Reusable/Text"
+import Button from "../Reusable/Button"
+import { useTheme } from "../../context/theme-context"
+import { getTextColor } from "../../utils/theme-util"
 
 const LoginHeader = () => {
+    const { theme, toggleTheme } = useTheme()
 
     return (
         <Header>
 
-            <Text classes='txt-ucase txt-primary txt-lg' text='sneakerstore' />
+            <Text classes={`txt-ucase ${getTextColor(theme)} txt-primary txt-lg`} text='sneakerstore' />
 
             <NavBar>
-                <Icon classes='icon-primary mg-right-s' iconName='person' />
+                <Icon classes={`${theme === 'light' ? 'icon-primary' : 'icon-secondary'} mg-right-s`} iconName='person' />
 
-                <Icon classes='icon-primary mg-right-s' iconName='favorite' />
+                <Icon classes={`${theme === 'light' ? 'icon-primary' : 'icon-secondary'} mg-right-s`} iconName='favorite' />
 
-                <Icon classes='icon-primary' iconName='shopping_cart' />
+                <Icon classes={`${theme === 'light' ? 'icon-primary' : 'icon-secondary'}`} iconName='shopping_cart' />
             </NavBar>
 
-            <Icon classes='icon-primary pos-absolute tr-1 pd-s' id='btn-theme' iconName='bedtime' />
+            <Button onClick={toggleTheme} classes='btn-txt'>
+                <Icon classes={`${theme === 'light' ? 'icon-primary' : 'icon-secondary'} pd-xs`} id='btn-theme' iconName={`${theme === 'light' ? 'bedtime' : 'light_mode'}`} />
+            </Button>
 
         </Header>
     )
