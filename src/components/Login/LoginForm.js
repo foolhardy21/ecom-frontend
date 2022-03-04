@@ -4,6 +4,7 @@ import Input from "../Reusable/Input"
 import Label from "../Reusable/Label"
 import Button from "../Reusable/Button"
 import Text from "../Reusable/Text"
+import { emailIsInvalid, passIsInvalid } from "../../utils/inputValidation"
 
 const LoginForm = () => {
     const [enteredEmail, setEnteredEmail] = useState('')
@@ -11,33 +12,26 @@ const LoginForm = () => {
     const [emailError, setEmailError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
 
-    function emailIsInvalid() {
-
-        const emailReg = new RegExp('^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$')
-
-        if (!emailReg.test(enteredEmail)) {
-            return true
-        } else {
-            return false
-        }
-    }
 
     function logInUser(e) {
 
         e.preventDefault()
 
-        if (emailIsInvalid()) {
+        if (emailIsInvalid(enteredEmail)) {
             setEmailError(true)
             setTimeout(() => {
                 setEmailError(false)
             }, 2000)
         }
-        if (enteredPassword === '') {
+
+        if (passIsInvalid(enteredPassword)) {
             setPasswordError(true)
             setTimeout(() => {
                 setPasswordError(false)
             }, 2000)
-        } else {
+        }
+
+        else {
             //redirect to profile page
         }
 
