@@ -1,4 +1,9 @@
 import { useState } from "react"
+import Form from "../Reusable/Form"
+import Input from "../Reusable/Input"
+import Label from "../Reusable/Label"
+import Text from "../Reusable/Text"
+import Button from "../Reusable/Button"
 
 const SignupForm = () => {
     const [enteredEmail, setEnteredEmail] = useState('')
@@ -101,61 +106,61 @@ const SignupForm = () => {
 
 
     return (
-        <form className='auth-form flx flx-column txt-primary mg-left-xlg mg-right-xlg'>
+        <Form classes='flx flx-column txt-primary mg-left-lg mg-right-lg'>
+            <Input type='email' placeholder="email" value={enteredEmail} onChange={(e) => setEnteredEmail(e.target.value)} classes={`${emailError && 'input-err'} input input-lg txt-md pd-xs mg-top-s`} />
             {
-                emailError && <span className="txt-md txt-err txt-cap mg-top-s">email is invalid</span>
+                emailError && <Text classes="txt-md txt-cap txt-err mg-top-xs mg-left-xs">email is invalid</Text>
             }
-            <input type='email' id='email-input' placeholder="email" value={enteredEmail} onChange={(e) => setEnteredEmail(e.target.value)} className={`${emailError ? 'input-err' : 'mg-top-s'} input input-lg txt-md pd-xs`} />
 
+            <Input type='text' placeholder="first name" value={enteredFName} onChange={(e) => setEnteredFName(e.target.value)}
+                classes={`${fNameError && 'input-err'} input input-lg txt-md pd-xs mg-top-s`} />
             {
-                fNameError && <span className="txt-md txt-err txt-cap mg-top-s">first name is invalid</span>
+                fNameError && <Text classes="txt-md txt-err txt-cap mg-top-xs mg-left-xs">first name is invalid</Text>
             }
-            <input type='text' id='fname-input' placeholder="first name" value={enteredFName} onChange={(e) => setEnteredFName(e.target.value)}
-                className={`${fNameError ? 'input-err' : 'mg-top-s'} input input-lg txt-md pd-xs`} />
 
+            <Input type='text' placeholder="last name" value={enteredLName} onChange={(e) => setEnteredLName(e.target.value)}
+                classes={`${lNameError && 'input-err'} input input-lg txt-md pd-xs mg-top-s`} />
             {
-                lNameError && <span className="txt-md txt-err txt-cap mg-top-s">last name is invalid</span>
+                lNameError && <span className="txt-md txt-err txt-cap mg-left-xs mg-top-xs">last name is invalid</span>
             }
-            <input type='text' id='lname-input' placeholder="last name" value={enteredLName} onChange={(e) => setEnteredLName(e.target.value)}
-                className={`${lNameError ? 'input-err' : 'mg-top-s'} input input-lg txt-md pd-xs`} />
 
+            <Input type={passInputType} placeholder="password" value={enteredPassword} onChange={(e) => setEnteredPassword(e.target.value)}
+                classes={`${passError && 'input-err'} input input-lg txt-md pd-xs mg-top-s`} />
             {
-                passError && <span className="txt-md txt-err txt-cap mg-top-s">enter password</span>
+                passError && <Text classes="txt-md txt-err txt-cap mg-left-xs mg-top-xs">enter password</Text>
             }
-            <input type={passInputType} id='pass-input' placeholder="password" value={enteredPassword} onChange={(e) => setEnteredPassword(e.target.value)}
-                className={`${passError ? 'input-err' : 'mg-top-s'} input input-lg txt-md pd-xs`} />
 
+            <Input type={passInputType} placeholder="confirm password" value={enteredConfPassword} onChange={(e) => setEnteredConfPassword(e.target.value)}
+                classes={`${confPassError && 'input-err'} input input-lg txt-md pd-xs mg-top-s`} />
             {
-                confPassError && <span className="txt-md txt-err txt-cap mg-top-s">password is not matching</span>
+                confPassError && <Text className="txt-md txt-err txt-cap mg-left-xs mg-top-xs">password is not matching</Text>
             }
-            <input type={passInputType} id='cpass-input' placeholder="confirm password" value={enteredConfPassword} onChange={(e) => setEnteredConfPassword(e.target.value)}
-                className={`${confPassError ? 'input-err' : 'mg-top-s'} input input-lg txt-md pd-xs`} />
 
             <div className='flx flx-maj-end flx-min-center mg-btm-xs'>
 
-                <input type='checkbox' id='toggle-pass' />
+                <Input type='checkbox' id='toggle-pass' />
 
-                <label htmlFor='toggle-pass' onClick={togglePassInputType} className='txt-cap mg-left-xs txt-md txt-primary'>
+                <Label for='toggle-pass' onClick={togglePassInputType} classes='txt-cap mg-left-xs txt-md txt-primary'>
                     show password
-                </label>
+                </Label>
 
             </div>
 
             <div className='flx flx-maj-start flx-min-center mg-btm-s'>
 
-                <input type='checkbox' id='terms-check' />
+                <Input type='checkbox' id='terms-check' />
 
-                <label htmlFor='terms-check' className='txt-md txt-cap mg-left-xs'>
+                <Label for='terms-check' classes='txt-md txt-cap mg-left-xs'>
                     i accept all terms & conditions
-                </label>
+                </Label>
 
             </div>
 
-            <button onClick={signUpUser} className='btn-solid txt-secondary bg-secondary txt-md txt-ucase pd-xs'>
+            <Button onClick={signUpUser} classes='btn-solid txt-secondary bg-secondary txt-md txt-ucase pd-xs'>
                 sign up
-            </button>
+            </Button>
 
-        </form>
+        </Form>
     )
 }
 

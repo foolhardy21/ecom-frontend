@@ -1,17 +1,22 @@
 import PageHeader from './PageHeader'
-import SignupSection from './SignupSection'
+import SignupCard from './SignupCard'
+import Main from '../Reusable/Main'
 
 const Signup = () => {
+
     return (
-        <>
+        <div style={{
+            minHeight: '100vh',
+        }}>
+
             <PageHeader />
 
-            <main className='flx flx-center'>
+            <Main classes='flx flx-maj-even'>
 
-                <SignupSection />
+                <SignupCard />
 
-            </main>
-        </>
+            </Main>
+        </div>
     )
 }
 

@@ -1,20 +1,43 @@
-import NavBar from "./NavBar"
+import NavBar from "../Reusable/NavBar"
+import Header from "../Reusable/Header"
+import Text from "../Reusable/Text"
+import Icon from "../Reusable/Icon"
+import Button from "../Reusable/Button"
 
 const PageHeader = () => {
+
     return (
-        <header id="pg-header" className='flx flx-maj-even flx-min-center pd-top-md pd-btm-md'>
+        <Header>
 
-            <span className="txt-ucase txt-primary txt-lg">
+            <Text classes='txt-ucase txt-primary txt-lg'>
                 sneakerstore
-            </span>
+            </Text>
 
-            <NavBar />
+            <NavBar>
 
-            <span id="btn-theme" className="material-icons pos-absolute tr-1 icon-primary pd-s">
-                bedtime
-            </span>
+                <Icon classes='icon-primary mg-right-s'>
+                    person
+                </Icon>
 
-        </header>
+                <Icon classes='icon-primary mg-right-s'>
+                    favorite
+                </Icon>
+
+                <Icon classes='icon-primary'>
+                    shopping_cart
+                </Icon>
+
+            </NavBar>
+
+            <Button classes='btn-txt'>
+
+                <Icon classes='icon-primary pd-xs'>
+                    bedtime
+                </Icon>
+
+            </Button>
+
+        </Header>
     )
 }
 
