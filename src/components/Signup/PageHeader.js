@@ -7,6 +7,7 @@ import Button from "../Reusable/Button"
 const PageHeader = () => {
 
     return (
+
         <Header>
 
             <Text classes='txt-ucase txt-primary txt-lg'>
@@ -38,6 +39,7 @@ const PageHeader = () => {
             </Button>
 
         </Header>
+
     )
 }
 

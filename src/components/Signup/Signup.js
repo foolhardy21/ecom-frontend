@@ -5,6 +5,7 @@ import Main from '../Reusable/Main'
 const Signup = () => {
 
     return (
+
         <div style={{
             minHeight: '100vh',
         }}>
@@ -16,6 +17,7 @@ const Signup = () => {
                 <SignupCard />
 
             </Main>
+
         </div>
     )
 }
