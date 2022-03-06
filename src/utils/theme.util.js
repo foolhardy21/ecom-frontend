@@ -1,3 +1,5 @@
 export const getBgColor = (theme) => theme === 'light' ? 'bg-primary' : 'bg-secondary'
 export const getTextColor = (theme) => theme === 'light' ? 'txt-primary' : 'txt-secondary'
 export const getIconColor = (theme) => theme === 'light' ? 'icon-primary' : 'icon-secondary'
+export const getBadgeBgColor = (theme) => theme === 'light' ? 'bg-secondary' : 'bg-primary'
+export const getBadgeTxtColor = (theme) => theme === 'light' ? 'txt-secondary' : 'txt-primary'
