@@ -36,7 +36,7 @@ const WishlistCard = (props) => {
                         </Text>
                     }
 
-                    <Text classes={`txt-md txt-ucase ${props.offer ? 'txt-cut txt-off-secondary' : 'txt-primary'}`}>
+                    <Text classes={`txt-md txt-cap ${props.offer ? 'txt-cut txt-off-secondary' : 'txt-primary'}`}>
                         Rs. 20k
                     </Text>
 

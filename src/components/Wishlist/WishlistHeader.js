@@ -1,6 +1,8 @@
+import { useTheme } from "../../contexts/theme.context";
 import { Header, NavBar, Text, Icon, Button } from "../Reusable/index";
 
 const WishlistHeader = () => {
+    const { toggleTheme } = useTheme()
 
     return (
 
@@ -26,7 +28,7 @@ const WishlistHeader = () => {
 
             </NavBar>
 
-            <Button classes='btn-txt bg-primary pd-xs'>
+            <Button onClick={() => toggleTheme()} classes='btn-txt bg-primary pd-xs'>
 
                 <Icon classes="icon-primary">
                     bedtime
