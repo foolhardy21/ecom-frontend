@@ -1,4 +1,4 @@
-import { Text, Button, Icon, Card, Image } from "../Reusable/index";
+import { Text, Button, Card, Image } from "../Reusable/index";
 import { sizes } from "../../data/wishlist.data";
 import { useWishlist } from "../../contexts/wishlist.context";
 
