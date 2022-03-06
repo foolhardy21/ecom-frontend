@@ -7,5 +7,5 @@ export {
     Wishlist,
     WishlistSection,
     WishlistHeader,
-    WishlistCard
+    WishlistCard,
 }
