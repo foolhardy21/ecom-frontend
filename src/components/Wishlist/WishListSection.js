@@ -1,18 +1,16 @@
 import { WishlistCard } from "./index";
+import { useWishlist } from '../../contexts/wishlist.context'
 
 const WishlistSection = () => {
+    const { wishlistState } = useWishlist()
 
     return (
 
         <section className='grid grid-maxcols-4'>
 
-            <WishlistCard offer={true} offerPrice={17} offerPercent={20} />
-
-            <WishlistCard />
-
-            <WishlistCard />
-
-            <WishlistCard offer={true} offerPrice={17} offerPercent={20} />
+            {
+                wishlistState.map(item => <WishlistCard key={item.id} item={item} />)
+            }
 
 
         </section>

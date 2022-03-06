@@ -4,6 +4,7 @@
     #pg-header {
         flex-direction: column;
     }
+
     #pg-header > nav {
         margin-top: 1rem;
     }

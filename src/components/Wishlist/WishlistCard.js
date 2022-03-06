@@ -1,49 +1,68 @@
 import { Text, Button, Icon, Card, Image } from "../Reusable/index";
-import { wishlistImgArr } from "../../data/index";
+import { sizes } from "../../data/wishlist.data";
+import { useWishlist } from "../../contexts/wishlist.context";
 
-const WishlistCard = (props) => {
+const WishlistCard = ({ item }) => {
+    const { wishlistDispatch } = useWishlist()
+
+    const {
+        id,
+        name,
+        company,
+        img: {
+            alt,
+            srcSet
+        },
+        price,
+        offerPrice,
+    } = item
+
 
     return (
 
         <Card classes='flx flx-column pos-relative'>
 
-            <Icon classes='pos-absolute tr-1 icon-primary'>
-                close
-            </Icon>
+            <Button onClick={() => wishlistDispatch({ type: 'REMOVE', payload: id })} classes='pos-absolute tr-1 btn-txt'>
+
+                <Icon classes='icon-primary'>
+                    close
+                </Icon>
+
+            </Button>
 
             {
-                props.offer && <div className="pos-absolute tl-0 bg-warn txt-primary txt-md pd-xs txt-ucase">offer</div>
+                offerPrice && <div className="pos-absolute tl-0 bg-warn txt-primary txt-md pd-xs txt-ucase">offer</div>
             }
 
-            <Image srcSet={wishlistImgArr[0].imgSet} alt={wishlistImgArr[0].alt} sizes={`(max-width: 768px) ${wishlistImgArr[0].sizeS}, ${wishlistImgArr[0].sizeM}`} />
+            <Image srcSet={srcSet} alt={alt} sizes={sizes} classes='img-fit-cover' />
 
-            <footer className='flx flx-column pd-left-s pd-right-s'>
+            <footer className='flx flx-column mg-top-xs pd-left-s pd-right-s'>
 
                 <Text classes='txt-md txt-ucase txt-primary mg-btm-xs'>
-                    nike
+                    {company}
                 </Text>
 
                 <Text classes='txt-md txt-cap txt-primary mg-btm-s'>
-                    air jordan 5
+                    {name}
                 </Text>
 
                 <div className="flx">
 
                     {
-                        props.offer &&
-                        <Text classes='txt-md txt-ucase txt-primary'>
-                            {`Rs. ${props.offerPrice}k`}
+                        offerPrice &&
+                        <Text classes='txt-md txt-cap txt-primary'>
+                            {`rs. ${offerPrice}k`}
                         </Text>
                     }
 
-                    <Text classes={`txt-md txt-cap ${props.offer ? 'txt-cut txt-off-secondary' : 'txt-primary'}`}>
-                        Rs. 20k
+                    <Text classes={`txt-md txt-cap ${offerPrice ? 'txt-cut txt-off-secondary' : 'txt-primary'}`}>
+                        rs. 20k
                     </Text>
 
                     {
-                        props.offer &&
+                        offerPrice &&
                         <Text classes='txt-md txt-ucase txt-success mg-left-xs'>
-                            {`${props.offerPercent}% off`}
+                            {`${Math.round(100 - (offerPrice / price) * 100, 2)}% off`}
                         </Text>
                     }
 
