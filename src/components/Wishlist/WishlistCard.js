@@ -1,9 +1,5 @@
-import Image from "../Reusable/Image";
-import Card from "../Reusable/Card";
-import Icon from "../Reusable/Icon";
-import Button from "../Reusable/Button";
-import Text from "../Reusable/Text";
-import { wishlistImgArr } from "../../data/wishlist.img";
+import { Text, Button, Icon, Card, Image } from "../Reusable/index";
+import { wishlistImgArr } from "../../data/index";
 
 const WishlistCard = (props) => {
 

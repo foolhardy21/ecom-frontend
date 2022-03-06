@@ -1,10 +1,10 @@
-import WishlistCard from "./WishlistCard";
+import { WishlistCard } from "./index";
 
-const WishListSection = () => {
+const WishlistSection = () => {
 
     return (
 
-        <section class='grid grid-maxcols-4'>
+        <section className='grid grid-maxcols-4'>
 
             <WishlistCard offer={true} offerPrice={17} offerPercent={20} />
 
@@ -20,4 +20,4 @@ const WishListSection = () => {
     );
 }
 
-export default WishListSection;
+export default WishlistSection;
