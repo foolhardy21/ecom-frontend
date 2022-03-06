@@ -1,7 +1,7 @@
-import Wishlist from './Wishlist'
-import WishlistHeader from './WishlistHeader'
-import WishlistSection from './WishlistSection'
-import WishlistCard from './WishlistCard'
+import Wishlist from '../Wishlist/Wishlist'
+import WishlistHeader from '../Wishlist/WishlistHeader'
+import WishlistSection from '../Wishlist/WishlistSection'
+import WishlistCard from '../Wishlist/WishlistCard'
 
 export {
     Wishlist,

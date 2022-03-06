@@ -1,12 +1,12 @@
-import Text from './Text'
-import Button from './Button'
-import Card from './Card'
-import Header from './Header'
-import Icon from './Icon'
-import Image from './Image'
-import Input from './Input'
-import Main from './Main'
-import NavBar from './NavBar'
+import Text from '../Reusable/Text'
+import Button from '../Reusable/Button'
+import Card from '../Reusable/Card'
+import Header from '../Reusable/Header'
+import Icon from '../Reusable/Icon'
+import Image from '../Reusable/Image'
+import Input from '../Reusable/Input'
+import Main from '../Reusable/Main'
+import NavBar from '../Reusable/NavBar'
 
 export {
     Text,
