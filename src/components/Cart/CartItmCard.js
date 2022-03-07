@@ -21,17 +21,19 @@ const CartItmCard = ({ item, sizes }) => {
 
             <div className="flx-grow-1 pd-s">
 
-                <div className="flx flx-maj-start mg-btm-s">
+                <div className="flx">
 
                     <Text classes='txt-md txt-ucase txt-primary mg-right-s'>{company}</Text>
 
-                    <Text classes='txt-md txt-cap txt-primary mg-right-s'>{name}</Text>
-
-                    <Text classes='txt-md txt-ucase txt-primary'>{`UK ${size}`}</Text>
+                    <Text classes='txt-md txt-cap txt-primary'>{name}</Text>
 
                 </div>
 
-                <div className="flx">
+                <Text classes='txt-md txt-ucase txt-primary mg-top-s'>{`UK ${size}`}</Text>
+
+
+
+                <div className="flx mg-top-s">
 
                     {
                         offerPrice && <Text classes='txt-md txt-cap txt-off-secondary txt-cut'>{`rs. ${offerPrice}`}</Text>
