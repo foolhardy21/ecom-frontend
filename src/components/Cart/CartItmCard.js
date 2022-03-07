@@ -1,6 +1,8 @@
+import { useCart } from "../../contexts/cart.context"
 import { Button, Card, Image, Input, Text } from "../Reusable"
 
-const CartItmCard = ({ item: { name, company, img: { srcSet, alt, sizes }, size, price, offerPrice } }) => {
+const CartItmCard = ({ item: { id, name, company, img: { srcSet, alt, sizes }, quantity, size, price, offerPrice } }) => {
+    const { cartDispatch } = useCart()
 
     return (
 
@@ -8,7 +10,7 @@ const CartItmCard = ({ item: { name, company, img: { srcSet, alt, sizes }, size,
 
             <Image srcSet={srcSet} alt={alt} sizes={sizes} />
 
-            <div className="flx-grow-1 pd-s">
+            <div className="flx-grow-1 pd-left-s pd-right-s pd-top-xs">
 
                 <div className="flx">
 
@@ -41,17 +43,17 @@ const CartItmCard = ({ item: { name, company, img: { srcSet, alt, sizes }, size,
 
                     <Text classes='txt-md txt-cap txt-primary mg-right-xs'>quantity:</Text>
 
-                    <Button classes='btn-outlined b-solid b-primary txt-md txt-primary bg-primary pd-left-xs pd-right-xs'>-</Button>
+                    <Button onClick={() => cartDispatch({ type: 'DECREASE', payload: id })} classes='btn-outlined b-solid b-primary txt-md txt-primary bg-primary pd-left-xs pd-right-xs'>-</Button>
 
-                    <Input type='number' classes='txt-md input-s bg-primary pd-left-xs' placeholder='1' />
+                    <Input type='number' classes='txt-md input-s bg-primary pd-left-xs' placeholder={quantity} />
 
-                    <Button classes='btn-outlined b-solid b-primary txt-md txt-primary bg-primary pd-left-xs pd-right-xs'>+</Button>
+                    <Button onClick={() => cartDispatch({ type: 'INCREASE', payload: id })} classes='btn-outlined b-solid b-primary txt-md txt-primary bg-primary pd-left-xs pd-right-xs'>+</Button>
 
                 </div>
 
                 <footer className="flx flx-column mg-top-md">
 
-                    <Button classes='btn-txt bg-primary txt-primary txt-cap txt-md pd-xs'>remove from cart</Button>
+                    <Button onClick={() => cartDispatch({ type: 'REMOVE', payload: id })} classes='btn-txt bg-primary txt-primary txt-cap txt-md pd-xs'>remove from cart</Button>
 
                     <Button classes='btn-txt bg-primary txt-primary txt-cap txt-md pd-xs'>move to wishlist</Button>
 

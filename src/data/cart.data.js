@@ -11,6 +11,7 @@ export const cartItmArr = [
             sizes: sizes
         },
         size: 9,
+        quantity: 1,
         price: 11789,
         offerPrice: 10000
     },
@@ -23,6 +24,7 @@ export const cartItmArr = [
             alt: cartImgArr[1].alt,
             sizes: sizes
         },
+        quantity: 1,
         size: 9,
         price: 14399,
     },
