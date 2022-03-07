@@ -1,4 +1,4 @@
-import { cartItmArr, sizes } from "../../data/index"
+import { cartItmArr } from "../../data/index"
 import { Section } from "../Reusable"
 import { CartItmCard } from "./"
 import CartReceiptCard from "./CartReceiptCard"
@@ -12,7 +12,7 @@ const CartSection = () => {
             <Section id="section-cartitm" classes="flx flx-column mg-right-s">
 
                 {
-                    cartItmArr.map(itm => <CartItmCard key={itm.id} item={itm} sizes={sizes} />)
+                    cartItmArr.map(itm => <CartItmCard key={itm.id} item={itm} />)
                 }
 
             </Section>
