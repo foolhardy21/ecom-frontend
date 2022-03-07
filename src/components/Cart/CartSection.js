@@ -1,22 +1,25 @@
+import { cartItmArr, sizes } from "../../data/index"
+import { Section } from "../Reusable"
 import { CartItmCard } from "./"
 import CartReceiptCard from "./CartReceiptCard"
 
 const CartSection = () => {
 
     return (
-        <section class='grid grid-maxcols-2'>
 
-            <section class="grid-itm1 flx flx-column">
+        <Section id="section-cart" classes='flx flx-row'>
 
-                <CartItmCard />
+            <Section id="section-cartitm" classes="flx flx-column mg-right-s">
 
-                <CartItmCard />
+                {
+                    cartItmArr.map(itm => <CartItmCard key={itm.id} item={itm} sizes={sizes} />)
+                }
 
-            </section>
+            </Section>
 
             <CartReceiptCard />
 
-        </section>
+        </Section>
     )
 }
 

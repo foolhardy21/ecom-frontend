@@ -1,37 +1,74 @@
+import { Button, Card, Image, Input, Text } from "../Reusable"
 
-const CartItmCard = () => {
+const CartItmCard = ({ item, sizes }) => {
+    const {
+        name,
+        company,
+        img: {
+            srcSet,
+            alt
+        },
+        size,
+        price,
+        offerPrice
+    } = item
 
     return (
-        <article class='flx flx-row cart-item card-shadow-xs mg-btm-s'>
-            <img srcset='../assets/1-m.jpg 200w,
-                    ../assets/1-s.jpg 150w' alt="shoe" sizes="(max-width: 768px) 150px, 200px" />
-            <div class="flx-grow-1 pd-xs">
-                <div class="flx flx-maj-start mg-btm-s">
-                    <p class='txt-md txt-ucase txt-primary mg-right-s'>nike</p>
-                    <p class='txt-md txt-cap txt-primary mg-right-s'>
-                        air jordan 5</p>
-                    <p class='txt-md txt-ucase txt-primary'>UK 9</p>
+
+        <Card classes='flx flx-row mg-btm-s'>
+
+            <Image srcSet={srcSet} alt={alt} sizes={sizes} />
+
+            <div className="flx-grow-1 pd-s">
+
+                <div className="flx flx-maj-start mg-btm-s">
+
+                    <Text classes='txt-md txt-ucase txt-primary mg-right-s'>{company}</Text>
+
+                    <Text classes='txt-md txt-cap txt-primary mg-right-s'>{name}</Text>
+
+                    <Text classes='txt-md txt-ucase txt-primary'>{`UK ${size}`}</Text>
+
                 </div>
-                <p class='txt-md txt-cap txt-primary'>Rs. 16000</p>
-                <p class='txt-md txt-cap txt-success'>50%
-                    off</p>
-                <div class='flx flx-maj-start flx-min-center'>
-                    <p class='txt-md txt-cap txt-primary'>
-                        quantity: </p>
-                    <button
-                        class='btn-outlined b-solid b-secondary pd-xs txt-md txt-primary bg-primary'>-</button>
-                    <input type='number' class='txt-md input input-s bg-primary' placeholder='1' />
-                    <button
-                        class='btn-outlined b-solid b-secondary pd-xs txt-md txt-primary bg-primary'>+</button>
+
+                <div className="flx">
+
+                    {
+                        offerPrice && <Text classes='txt-md txt-cap txt-off-secondary txt-cut'>{`rs. ${offerPrice}`}</Text>
+                    }
+
+                    <Text classes='txt-md txt-cap txt-primary'>{`rs. ${price}`}</Text>
+
                 </div>
-                <footer class="flx flx-column">
-                    <button class='btn-outlined b-solid b-secondary bg-primary txt-primary txt-cap pd-xs'>remove
-                        from cart</button>
-                    <button class='btn-outlined b-solid b-secondary bg-primary txt-primary txt-cap pd-xs'>move
-                        to wishlist</button>
+
+                {
+                    offerPrice && <Text classes='txt-md txt-cap txt-success'>{`${Math.round(100 - offerPrice / price * 100)}% off`}</Text>
+                }
+
+
+                <div className='flx flx-min-center mg-top-xs'>
+
+                    <Text classes='txt-md txt-cap txt-primary mg-right-xs'>quantity:</Text>
+
+                    <Button classes='btn-outlined b-solid b-primary txt-md txt-primary bg-primary pd-left-xs pd-right-xs'>-</Button>
+
+                    <Input type='number' classes='txt-md input-s bg-primary' placeholder='1' />
+
+                    <Button classes='btn-outlined b-solid b-primary txt-md txt-primary bg-primary pd-left-xs pd-right-xs'>+</Button>
+
+                </div>
+
+                <footer className="flx flx-column mg-top-md">
+
+                    <Button classes='btn-txt bg-primary txt-primary txt-cap txt-md pd-xs'>remove from cart</Button>
+
+                    <Button classes='btn-txt bg-primary txt-primary txt-cap txt-md pd-xs'>move to wishlist</Button>
+
                 </footer>
+
             </div>
-        </article>
+
+        </Card>
     )
 }
 

@@ -12,7 +12,7 @@ const CardHeader = () => {
 
             <NavBar>
 
-                <Icon classes='icon-primary mg-right-xs'>
+                <Icon classes='icon-primary mg-right-s'>
                     favorite
                 </Icon>
 

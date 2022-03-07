@@ -9,7 +9,10 @@ export const cartItmArr = [
             srcSet: cartImgArr[0].srcSet,
             alt: cartImgArr[0].alt,
             sizes: sizes
-        }
+        },
+        size: 9,
+        price: 11789,
+        offerPrice: 10000
     },
     {
         id: 2,
@@ -19,6 +22,8 @@ export const cartItmArr = [
             srcSet: cartImgArr[1].srcSet,
             alt: cartImgArr[1].alt,
             sizes: sizes
-        }
+        },
+        size: 9,
+        price: 14399,
     },
 ]
