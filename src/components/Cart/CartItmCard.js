@@ -1,17 +1,6 @@
 import { Button, Card, Image, Input, Text } from "../Reusable"
 
-const CartItmCard = ({ item, sizes }) => {
-    const {
-        name,
-        company,
-        img: {
-            srcSet,
-            alt
-        },
-        size,
-        price,
-        offerPrice
-    } = item
+const CartItmCard = ({ item: { name, company, img: { srcSet, alt, sizes }, size, price, offerPrice } }) => {
 
     return (
 
@@ -54,7 +43,7 @@ const CartItmCard = ({ item, sizes }) => {
 
                     <Button classes='btn-outlined b-solid b-primary txt-md txt-primary bg-primary pd-left-xs pd-right-xs'>-</Button>
 
-                    <Input type='number' classes='txt-md input-s bg-primary' placeholder='1' />
+                    <Input type='number' classes='txt-md input-s bg-primary pd-left-xs' placeholder='1' />
 
                     <Button classes='btn-outlined b-solid b-primary txt-md txt-primary bg-primary pd-left-xs pd-right-xs'>+</Button>
 
