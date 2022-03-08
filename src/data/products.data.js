@@ -13,6 +13,7 @@ export const productsArr = [
             alt: productsImgArr[0].alt,
             sizes: sizes
         },
+        rating: 4
     },
     {
         id: 2,
@@ -25,6 +26,7 @@ export const productsArr = [
             alt: productsImgArr[1].alt,
             sizes: sizes
         },
+        rating: 5
     },
     {
         id: 3,
@@ -37,6 +39,7 @@ export const productsArr = [
             alt: productsImgArr[2].alt,
             sizes: sizes
         },
+        rating: 3
     },
     {
         id: 4,
@@ -50,9 +53,10 @@ export const productsArr = [
             alt: productsImgArr[3].alt,
             sizes: sizes
         },
+        rating: 4
     },
     {
-        id: 4,
+        id: 5,
         name: 'air max 90 se',
         company: 'nike',
         size: 10,
@@ -62,5 +66,6 @@ export const productsArr = [
             alt: productsImgArr[4].alt,
             sizes: sizes
         },
+        rating: 5
     },
 ]
