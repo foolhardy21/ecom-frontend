@@ -1,27 +1,32 @@
-import ProductsFilter from "./ProductsFilter"
-import ProductsHeader from "./ProductsHeader"
-import ProductsSection from "./ProductsSection"
+import { Button, Icon, Text } from '../Reusable'
+import { ProductsHeader, ProductsFilter, ProductsSection } from './'
 
 const ProductsPg = () => {
 
     return (
-        <div>
+        <div
+            style={{
+                minHeight: '100vh'
+            }}
+        >
 
             <ProductsHeader />
 
-            <div class="flx flx-row">
+            <div className="flx flx-row">
 
                 <ProductsFilter />
 
-                <button id="btn-filters" class="btn-solid bg-secondary flx flx-center pd-xs pos-sticky t-0">
-                    <span class="material-icons icon-secondary">
+                <Button id="btn-filters" classes="btn-solid bg-secondary flx flx-center pd-xs pos-sticky t-0">
+
+                    <Icon classes="icon-secondary">
                         filter_alt
-                    </span>
-                </button>
+                    </Icon>
+
+                </Button>
 
                 <main id="main-prdlist" class="bg-primary flx flx-column flx-min-center">
 
-                    <p class="txt-lg txt-cap txt-primary pd-top-lg pd-btm-lg">sneakers</p>
+                    <Text classes="txt-lg txt-cap txt-primary pd-top-lg pd-btm-lg">sneakers</Text>
 
                     <ProductsSection />
 
