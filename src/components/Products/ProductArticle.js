@@ -1,49 +1,86 @@
 import { Card, Icon, Image, Text } from "../Reusable"
 
-const ProductArticle = () => {
+const ProductArticle = ({ prd }) => {
+    const {
+
+        name,
+        company,
+        size,
+        price,
+        offerPrice,
+        img: {
+            srcSet,
+            alt,
+            sizes
+        },
+        rating
+    } = prd
 
     return (
         <Card classes="pd-xs pos-relative">
+            {
+                offerPrice &&
+                <Text classes="pos-absolute tr-1 bg-warn txt-md txt-600 txt-primary txt-ucase pd-xs">offer</Text>
+            }
 
-            <Text classes="pos-absolute tr-1 bg-warn txt-s txt-600 txt-primary txt-ucase pd-xs">offer</Text>
+            <Image srcSet={srcSet} alt={alt} sizes={sizes} />
 
-            <Image srcSet='../assets/p1-m.jpg 200w,
-                    ../assets/p1-s.jpg 150w' alt='shoe' sizes="(max-width: 768px) 150px, 200px" />
+            <Text classes="txt-md txt-cap txt-primary">{company}</Text>
 
-            <Text classes="txt-md txt-cap txt-primary mg-btm-xs">air jordan</Text>
+            <Text classes="txt-md txt-cap txt-primary">{name}</Text>
 
-            <Text classes="txt-md txt-cap txt-primary">air jordan 5 racer blue</Text>
+            <Text classes="txt-md txt-ucase txt-primary mg-btm-xs">uk {size}</Text>
 
-            <Text classes="txt-md txt-cap txt-success mg-btm-xs">
+            <div className="flx">
+                {
+                    offerPrice ?
+                        <div className="flx flx-column">
 
-                <Text
-                    classes="txt-cut txt-off-secondary mg-right-xs">Rs.
-                    20000
-                </Text>
+                            <div className="flx">
 
-                18000
+                                <Text
+                                    classes="txt-cut txt-md txt-cap txt-off-secondary">rs.
+                                    {price}
+                                </Text>
 
-            </Text>
+                                <Text classes="txt-md txt-cap txt-primary mg-right-xs">
+                                    rs. {offerPrice}
+                                </Text>
+
+                            </div>
+
+                            <Text classes="txt-md txt-cap txt-success">
+                                {Math.round((price - offerPrice) / price * 100)}% off
+                            </Text>
+
+                        </div> :
+
+                        <Text classes="txt-md txt-cap txt-primary mg-btm-xs">
+                            rs. 18000
+                        </Text>
+                }
+
+            </div>
 
             <div className='dis-inblock'>
 
-                <Icon id='star-icon' classes='txt-off-secondary' data-value='1'>
+                <Icon id='star-icon' classes={`${rating >= 1 ? 'txt-warn' : 'txt-off-secondary'}`}>
                     star
                 </Icon>
 
-                <Icon id='star-icon' classes='txt-off-secondary' data-value='2'>
+                <Icon id='star-icon' classes={`${rating >= 2 ? 'txt-warn' : 'txt-off-secondary'}`}>
                     star
                 </Icon>
 
-                <Icon id='star-icon' classes='txt-off-secondary' data-value='3'>
+                <Icon id='star-icon' classes={`${rating >= 3 ? 'txt-warn' : 'txt-off-secondary'}`} >
                     star
                 </Icon>
 
-                <Icon id='star-icon' classes='txt-off-secondary' data-value='4'>
+                <Icon id='star-icon' classes={`${rating >= 4 ? 'txt-warn' : 'txt-off-secondary'}`} >
                     star
                 </Icon>
 
-                <Icon id='star-icon' classes='txt-off-secondary' data-value='5'>
+                <Icon id='star-icon' classes={`${rating >= 5 ? 'txt-warn' : 'txt-off-secondary'}`} >
                     star
                 </Icon>
 
