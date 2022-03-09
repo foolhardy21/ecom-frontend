@@ -1,3 +1,4 @@
+import { FilterProvider } from '../../contexts/filters.context'
 import { Button, Icon, Text } from '../Reusable'
 import { ProductsHeader, ProductsFilter, ProductsSection } from './'
 
@@ -14,7 +15,11 @@ const ProductsPg = () => {
 
             <div className="flx flx-row">
 
-                <ProductsFilter />
+                <FilterProvider>
+
+                    <ProductsFilter />
+
+                </FilterProvider>
 
                 <Button id="btn-filters" classes="btn-solid bg-secondary flx flx-center pd-xs pos-sticky t-0">
 
@@ -24,7 +29,7 @@ const ProductsPg = () => {
 
                 </Button>
 
-                <main id="main-prdlist" class="bg-primary flx flx-column flx-min-center">
+                <main id="main-prdlist" className="bg-primary flx flx-column flx-min-center">
 
                     <Text classes="txt-lg txt-cap txt-primary pd-top-lg pd-btm-lg">sneakers</Text>
 

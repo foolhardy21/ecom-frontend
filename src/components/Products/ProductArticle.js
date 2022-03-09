@@ -56,7 +56,7 @@ const ProductArticle = ({ prd }) => {
                         </div> :
 
                         <Text classes="txt-md txt-cap txt-primary mg-btm-xs">
-                            rs. 18000
+                            rs. {price}
                         </Text>
                 }
 
