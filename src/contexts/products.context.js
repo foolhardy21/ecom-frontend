@@ -9,13 +9,14 @@ export const ProductsProvider = ({ children }) => {
     function productsReducer(state, action) {
 
         switch (action.type) {
-            case 'INIT':
-            case 'SORT_ASC':
-            case 'SORT_DSC':
-            case 'FILTER_BRAND':
+            case 'INIT': console.log('init'); return state
+            case 'SORT_ASC': console.log('a'); return state
+            case 'SORT_DSC': console.log('d'); return state
+            case 'FILTER_BRAND': console.log('filter brand', action.payload); return state
             case 'FILTER_SIZE':
-            case 'FILTER_GENDER':
+            case 'FILTER_GENDER': console.log('filter gender', action.payload); return state
             case 'FILTER_RATING':
+            case 'FILTER_PRICE': console.log('filter price', action.payload); return state
             default: return state
         }
 
