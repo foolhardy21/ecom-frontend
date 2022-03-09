@@ -1,18 +1,7 @@
-@media only screen and (max-width: 1024px) {
-    .grid-itm2 {
-        grid-row: 1/2;
-    }
-    
-    .grid-itm1 {
-        grid-row: 2/3;
-    }
-}
-
 
 @media only screen and (max-width: 768px) {
     
     #pg-header {
-        border-bottom: none;
         flex-direction: column;
         padding-bottom: 0.5rem;
     }
@@ -23,15 +12,6 @@
     }
         
     #pg-header nav {
-        margin-top: 2rem;
-        padding-bottom: 1rem;
-        width: 100%;
-        justify-content: center;
-        border-bottom: solid thin var(--clr-off-primary);
-    }
-
-    .auth-form {
-        margin-left: 1rem;
-        margin-right: 1rem;
+        margin: 1rem 0;
     }
 }
