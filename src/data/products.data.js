@@ -13,7 +13,8 @@ export const productsArr = [
             alt: productsImgArr[0].alt,
             sizes: sizes
         },
-        rating: 4
+        rating: 4,
+        gender: 'male'
     },
     {
         id: 2,
@@ -26,7 +27,8 @@ export const productsArr = [
             alt: productsImgArr[1].alt,
             sizes: sizes
         },
-        rating: 5
+        rating: 5,
+        gender: 'male'
     },
     {
         id: 3,
@@ -39,7 +41,8 @@ export const productsArr = [
             alt: productsImgArr[2].alt,
             sizes: sizes
         },
-        rating: 3
+        rating: 3,
+        gender: 'male'
     },
     {
         id: 4,
@@ -53,7 +56,8 @@ export const productsArr = [
             alt: productsImgArr[3].alt,
             sizes: sizes
         },
-        rating: 4
+        rating: 4,
+        gender: 'female'
     },
     {
         id: 5,
@@ -66,6 +70,7 @@ export const productsArr = [
             alt: productsImgArr[4].alt,
             sizes: sizes
         },
-        rating: 5
+        rating: 5,
+        gender: 'female'
     },
 ]
