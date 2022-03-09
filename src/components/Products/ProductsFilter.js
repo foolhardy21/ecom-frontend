@@ -4,13 +4,46 @@ import { useEffect, useState } from "react"
 
 const ProductsFilter = () => {
     const [filterPrice, setFilterPrice] = useState(5000)
+    const [priceSortOrder, setPriceSortOrder] = useState('')
+    const [gender, setGender] = useState('')
+    const [brandChecks, setBrandChecks] = useState([])
     const { productsDispatch } = useProducts()
+
+    // 'nike','adidas', 'air jordan', 'yeezy', 'converse', 'new balance', 'vans'
+
+    // reset every filter on reset
+
+    function handleBrandCheck(e) {
+
+        (brandChecks.indexOf(e.target.value) !== -1)
+            ? setBrandChecks(brandChecks.filter(brand => brand !== e.target.value))
+            : setBrandChecks([...brandChecks, e.target.value])
+    }
 
     useEffect(() => {
         productsDispatch({
             type: 'FILTER_PRICE', payload: filterPrice
-        }, [filterPrice])
-    })
+        })
+    }, [filterPrice, productsDispatch])
+
+    useEffect(() => {
+        priceSortOrder === 'asc' ?
+            productsDispatch({ type: 'SORT_ASC' }) :
+            priceSortOrder === 'dsc' && productsDispatch({ type: 'SORT_DSC' })
+
+    }, [priceSortOrder, productsDispatch])
+
+    useEffect(() => {
+        gender === 'male' ?
+            productsDispatch({ type: 'FILTER_GENDER', payload: gender }) :
+            gender === 'female' && productsDispatch({ type: 'FILTER_GENDER', payload: gender })
+
+    }, [gender, productsDispatch])
+
+    useEffect(() => {
+        brandChecks.length > 0 && productsDispatch({ type: 'FILTER_BRAND', payload: brandChecks })
+
+    }, [brandChecks, productsDispatch])
 
 
     return (
@@ -46,7 +79,8 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='radio' id='price-asc' name="price-grp" className='mg-right-xs' />
+                    <input type='radio' name='price-grp' id='price-asc'
+                        onChange={(e) => setPriceSortOrder(e.target.value)} value='asc' className='mg-right-xs' />
 
                     <label htmlFor='price-asc' className='txt-cap'>low to high</label>
 
@@ -54,7 +88,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='radio' id='price-desc' name="price-grp" className='mg-right-xs' />
+                    <input type='radio' name='price-grp' id='price-desc' onChange={(e) => setPriceSortOrder(e.target.value)} value='dsc' className='mg-right-xs' />
 
                     <label htmlFor='price-desc' className='txt-cap'>high to low</label>
 
@@ -71,7 +105,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='radio' id='gender-m' name="gender-grp" className='mg-right-xs' />
+                    <input type='radio' id='gender-m' name="gender-grp" value='male' onChange={(e) => setGender(e.target.value)} className='mg-right-xs' />
 
                     <label htmlFor='gender-m' className='txt-cap'>men</label>
 
@@ -79,7 +113,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='radio' id='gender-f' name="gender-grp" className='mg-right-xs' />
+                    <input type='radio' id='gender-f' name="gender-grp" value='female' onChange={(e) => setGender(e.target.value)} className='mg-right-xs' />
 
                     <label htmlFor='gender-f' className='txt-cap'>women</label>
 
@@ -96,7 +130,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='nike-category' className='mg-right-xs' />
+                    <input type='checkbox' id='nike-category' value='nike' onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='nike-category' className='txt-cap'>nike</label>
 
@@ -104,7 +138,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='adidas-category' className='mg-right-xs' />
+                    <input type='checkbox' id='adidas-category' value='adidas' onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='adidas-category' className='txt-cap'>adidas</label>
 
@@ -112,7 +146,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='aj-category' className='mg-right-xs' />
+                    <input type='checkbox' id='aj-category' value='air jordan' onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='aj-category' className='txt-cap'>air jordan</label>
 
@@ -120,7 +154,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='yz-category' className='mg-right-xs' />
+                    <input type='checkbox' id='yz-category' value='yeezy' onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='yz-category' className='txt-cap'>yeezy</label>
 
@@ -128,7 +162,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='converse-category' className='mg-right-xs' />
+                    <input type='checkbox' id='converse-category' value='converse' onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='converse-category' className='txt-cap'>converse</label>
 
@@ -136,7 +170,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='nbalance-category' className='mg-right-xs' />
+                    <input type='checkbox' id='nbalance-category' value='new balance' onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='nbalance-category' className='txt-cap'>new balance</label>
 
@@ -144,7 +178,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='vans-category' className='mg-right-xs' />
+                    <input type='checkbox' id='vans-category' value='vans' onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='vans-category' className='txt-cap'>vans</label>
 
