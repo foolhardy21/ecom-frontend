@@ -1,17 +1,11 @@
 import { Button, Text } from "../Reusable"
 import { useProducts } from "../../contexts/products.context"
 import { useEffect } from "react"
+import { useFilters } from "../../contexts/filters.context"
 
 const ProductsFilter = () => {
-    // const [filterPrice, setFilterPrice] = useState(5000)
-    // const [priceSortOrder, setPriceSortOrder] = useState('')
-    // const [genderChecks, setGenderChecks] = useState([])
-    // const [brandChecks, setBrandChecks] = useState([])
-    // const [sizeChecks, setSizeChecks] = useState([])
-    // const [ratingChecks, setRatingChecks] = useState([])
-    const { filters, setFilters, productsDispatch } = useProducts()
-
-    // reset every filter on reset
+    const { productsDispatch } = useProducts()
+    const { filters, setFilters } = useFilters()
 
     function reset() {
         setFilters({
@@ -65,7 +59,7 @@ const ProductsFilter = () => {
     }
 
     useEffect(() => {
-        productsDispatch({ type: 'FILTER' })
+        productsDispatch({ type: 'FILTER', payload: { ...filters } })
     }, [filters, productsDispatch])
 
 
