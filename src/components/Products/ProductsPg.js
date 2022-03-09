@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { FilterProvider } from '../../contexts/filters.context'
 import { Button, Icon, Text } from '../Reusable'
 import { ProductsHeader, ProductsFilter, ProductsSection } from './'
 
 const ProductsPg = () => {
+    const [filterVisibility, setFilterVisibility] = useState(false)
 
     return (
         <div
@@ -16,12 +18,14 @@ const ProductsPg = () => {
             <div className="flx flx-row">
 
                 <FilterProvider>
-
-                    <ProductsFilter />
+                    {
+                        filterVisibility &&
+                        <ProductsFilter />
+                    }
 
                 </FilterProvider>
 
-                <Button id="btn-filters" classes="btn-solid bg-secondary flx flx-center pd-xs pos-sticky t-0">
+                <Button id="btn-filters" onClick={() => setFilterVisibility(!filterVisibility)} classes="btn-solid bg-secondary flx flx-center pd-xs pos-sticky t-0">
 
                     <Icon classes="icon-secondary">
                         filter_alt
