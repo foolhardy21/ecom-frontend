@@ -20,7 +20,7 @@ export const ProductsProvider = ({ children }) => {
             filteredProducts = filterProductsByBrand(filteredProducts, filterObj.brandChecks)
 
         if (filterObj.sizeChecks.length > 0)
-            filteredProducts = filterProductsBySize(filteredProducts, filterObj.sizeChecks)
+            filteredProducts = filterProductsBySize(filteredProducts, Math.max(...filterObj.sizeChecks))
 
         if (filterObj.ratingChecks.length > 0)
             filteredProducts = filterProductsByRating(filteredProducts, Math.min(...filterObj.ratingChecks))
