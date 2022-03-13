@@ -23,11 +23,7 @@ const SignupForm = () => {
 
     const { theme } = useTheme()
 
-
-    function signUpUser(e) {
-
-        e.preventDefault()
-
+    function validateEnteredInfo() {
         if (emailIsInvalid(enteredEmail)) {
             setEmailError(true)
             timer(() => setEmailError(false), 2000)
@@ -48,6 +44,17 @@ const SignupForm = () => {
             setConfPassError(true)
             timer(() => setConfPassError(false), 2000)
         }
+    }
+
+    function signUpUser(e) {
+
+        e.preventDefault()
+
+        validateEnteredInfo()
+
+        // if any of the error states is true dont do anything
+        // else register the user
+
 
     }
 
@@ -82,7 +89,7 @@ const SignupForm = () => {
             <Input type={passInputType} placeholder="password" value={enteredPassword} onChange={(e) => setEnteredPassword(e.target.value)}
                 classes={`${passError && 'input-err'} input input-lg txt-md pd-xs mg-top-s`} />
             {
-                passError && <Text classes="txt-md txt-err txt-cap mg-left-xs mg-top-xs">password must be alphanumeric </Text>
+                passError && <Text classes="txt-md txt-err txt-cap mg-left-xs mg-top-xs">password must be alphanumeric {<br />} with special characters</Text>
             }
 
             <Input type={passInputType} placeholder="confirm password" value={enteredConfPassword} onChange={(e) => setEnteredConfPassword(e.target.value)}
