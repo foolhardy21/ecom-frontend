@@ -1,8 +1,11 @@
 import { useState } from "react"
+import { useTheme } from "../../contexts/theme.context"
 import { Button, Header, Icon, Input, NavBar, Text } from "../Reusable"
+import { getIconColor } from '../../utils/theme.util'
 
 const ProductsHeader = () => {
     const [isSmallNavVisible, setSmallNavVisible] = useState(false)
+    const { theme, toggleTheme } = useTheme()
 
     return (
         <Header>
@@ -21,15 +24,15 @@ const ProductsHeader = () => {
 
             <NavBar id='nav-big' classes='flx flx-min-center'>
 
-                <Icon classes="icon-primary mg-right-s">
+                <Icon classes={`${getIconColor(theme)} mg-right-s`}>
                     person
                 </Icon>
 
-                <Icon classes="icon-primary mg-right-s">
+                <Icon classes={`${getIconColor(theme)} mg-right-s`}>
                     favorite
                 </Icon>
 
-                <Icon classes="icon-primary">
+                <Icon classes={`${getIconColor(theme)}`}>
                     shopping_cart
                 </Icon>
 
@@ -38,7 +41,7 @@ const ProductsHeader = () => {
             <div className="pos-relative mg-top-s mg-btm-s">
                 <Button onClick={() => setSmallNavVisible(true)} classes='btn-txt bg-primary'>
 
-                    <Icon id='btn-ham' classes='icon-primary'>
+                    <Icon id='btn-ham' classes={`${getIconColor(theme)}`}>
                         menu
                     </Icon>
 
@@ -50,21 +53,21 @@ const ProductsHeader = () => {
 
                     <Button onClick={() => setSmallNavVisible(false)} classes='btn-txt bg-primary'>
 
-                        <Icon id='btn-close-small' classes='icon-primary mg-btm-s'>
+                        <Icon id='btn-close-small' classes={`${getIconColor(theme)} mg-right-s`}>
                             close
                         </Icon>
 
                     </Button>
 
-                    <Icon classes="icon-primary mg-btm-s">
+                    <Icon classes={`${getIconColor(theme)} mg-btm-s`}>
                         person
                     </Icon>
 
-                    <Icon classes="icon-primary mg-btm-s">
+                    <Icon classes={`${getIconColor(theme)} mg-btm-s`}>
                         favorite
                     </Icon>
 
-                    <Icon classes="icon-primary mg-btm-s">
+                    <Icon classes={`${getIconColor(theme)} mg-btm-s`}>
                         shopping_cart
                     </Icon>
 
@@ -72,9 +75,13 @@ const ProductsHeader = () => {
 
             </div>
 
-            <Icon classes="icon-primary">
-                bedtime
-            </Icon>
+            <Button onClick={toggleTheme} classes='btn-txt bg-primary pd-xs'>
+
+                <Icon classes={`${getIconColor(theme)}`}>
+                    {`${theme === 'light' ? 'bedtime' : 'light_mode'} `}
+                </Icon>
+
+            </Button>
 
         </Header>
     )
