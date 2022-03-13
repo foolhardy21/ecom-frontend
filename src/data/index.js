@@ -1,5 +1,5 @@
-import { wishlistImgArr } from './wishlist.img'
+import { wishlistArr } from './wishlist.data'
 
 export {
-    wishlistImgArr
+    wishlistArr
 }
