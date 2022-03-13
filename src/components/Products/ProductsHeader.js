@@ -7,7 +7,7 @@ const ProductsHeader = () => {
 
             <Text classes="txt-lg txt-primary txt-ucase">sneakerstore</Text>
 
-            <div id="pg-searchbar" className="flx">
+            <div id="searchbar-pg" className="flx">
 
                 <Input id="input-search" type="text" placeholder="Search" classes="input-s bg-primary txt-md pd-xs" />
 
