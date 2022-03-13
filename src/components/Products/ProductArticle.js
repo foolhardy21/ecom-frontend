@@ -13,7 +13,8 @@ const ProductArticle = ({ prd }) => {
             alt,
             sizes
         },
-        rating
+        rating,
+        quantity
     } = prd
 
     return (
@@ -27,9 +28,14 @@ const ProductArticle = ({ prd }) => {
 
             <Text classes="txt-md txt-cap txt-primary">{company}</Text>
 
-            <Text classes="txt-md txt-cap txt-primary">{name}</Text>
+            <Text classes="txt-md txt-cap txt-primary mg-btm-xs">{name}</Text>
 
-            <Text classes="txt-md txt-ucase txt-primary mg-btm-xs">uk {size}</Text>
+            <div className="flx mg-btm-xs">
+                <Text classes='txt-md txt-primary txt-cap mg-right-s'>sizes</Text>
+                {
+                    size.map(size => <Text key={size} classes='txt-md txt-primary mg-right-xs'>{size}</Text>)
+                }
+            </div>
 
             <div className="flx">
                 {
@@ -61,6 +67,10 @@ const ProductArticle = ({ prd }) => {
                 }
 
             </div>
+
+            {
+                quantity < 15 && <Text classes='txt-cap pos-absolute tl-0 txt-err txt-md'>{`only ${quantity} left.`}</Text>
+            }
 
             <div className='dis-inblock'>
 
