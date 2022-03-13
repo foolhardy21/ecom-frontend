@@ -1,4 +1,4 @@
-import { getBgColor } from '../../utils/theme'
+import { getBgColor } from '../../utils'
 import { useTheme } from '../../contexts/theme.context'
 
 const Main = (props) => {

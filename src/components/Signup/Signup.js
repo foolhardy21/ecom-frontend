@@ -1,7 +1,6 @@
-import PageHeader from './PageHeader'
-import SignupCard from './SignupCard'
-import Main from '../Reusable/Main'
-import { getBgColor } from '../../utils/theme'
+import { SignupHeader, SignupCard } from './'
+import { Main } from '../Reusable'
+import { getBgColor } from '../../utils'
 import { useTheme } from '../../contexts/theme.context'
 
 const Signup = () => {
@@ -15,7 +14,7 @@ const Signup = () => {
             className={`${getBgColor(theme)}`}
         >
 
-            <PageHeader />
+            <SignupHeader />
 
             <Main classes='flx flx-maj-even'>
 

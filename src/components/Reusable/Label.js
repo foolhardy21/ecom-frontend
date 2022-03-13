@@ -1,9 +1,12 @@
+import { useTheme } from "../../contexts/theme.context"
+import { getTextColor } from "../../utils"
 
 const Label = (props) => {
+    const { theme } = useTheme()
 
     return (
 
-        <label htmlFor={props.for} onClick={props.onClick} className={props.classes}>
+        <label htmlFor={props.for} onClick={props.onClick} className={`${getTextColor(theme)} ${props.classes}`}>
 
             {props.children}
 
