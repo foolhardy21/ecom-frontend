@@ -6,7 +6,6 @@ const Main = (props) => {
 
     return (
         <main style={{
-            // minHeight: '80vh',
             minWidth: '100vw',
         }} className={`${getBgColor(theme)} ${props.classes}`}>
 

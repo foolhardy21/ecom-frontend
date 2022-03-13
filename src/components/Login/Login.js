@@ -1,8 +1,7 @@
-import Main from "../Reusable/Main"
-import LoginHeader from "./LoginHeader"
-import LoginCard from "./LoginCard"
+import { LoginHeader, LoginCard } from './'
+import { Main } from '../Reusable'
 import { useTheme } from "../../context/theme-context"
-import { getBgColor } from "../../utils/theme-util"
+import { getBgColor } from "../../utils"
 
 const Login = () => {
     const { theme } = useTheme()
