@@ -48,25 +48,25 @@ const WishlistCard = ({ item }) => {
 
                 <div className="flx">
 
-                    {
-                        offerPrice &&
-                        <Text classes='txt-md txt-cap txt-primary'>
-                            {`rs. ${offerPrice}k`}
-                        </Text>
-                    }
 
                     <Text classes={`txt-md txt-cap ${offerPrice ? 'txt-cut txt-off-secondary' : 'txt-primary'}`}>
-                        rs. 20k
+                        {`rs. ${price}`}
                     </Text>
 
                     {
                         offerPrice &&
-                        <Text classes='txt-md txt-ucase txt-success mg-left-xs'>
-                            {`${Math.round(100 - (offerPrice / price) * 100, 2)}% off`}
+                        <Text classes='txt-md txt-cap txt-primary'>
+                            {`rs. ${offerPrice}`}
                         </Text>
                     }
 
                 </div>
+                {
+                    offerPrice &&
+                    <Text classes='txt-md txt-ucase txt-success'>
+                        {`${Math.round(100 - (offerPrice / price) * 100, 2)}% off`}
+                    </Text>
+                }
 
             </footer>
 

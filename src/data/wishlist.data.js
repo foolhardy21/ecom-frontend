@@ -11,8 +11,8 @@ export const wishlistArr = [
             alt: 'air max 97',
             srcSet: `${am97M} 200w, ${am97S} 150w`,
         },
-        price: 19,
-        offerPrice: 16,
+        price: 19012,
+        offerPrice: 16012,
 
     },
     {
@@ -23,8 +23,8 @@ export const wishlistArr = [
             alt: 'japan s',
             srcSet: `${jpsM} 200w, ${jpsS} 150w`,
         },
-        price: 23,
-        offerPrice: 19,
+        price: 23100,
+        offerPrice: 19100,
     },
     {
         id: 3,
@@ -34,7 +34,7 @@ export const wishlistArr = [
             alt: 'forum luxe',
             srcSet: `${forumlM} 200w, ${forumlS} 150w`,
         },
-        price: 20
+        price: 20000
     },
     {
         id: 4,
@@ -44,6 +44,6 @@ export const wishlistArr = [
             alt: 'keith haring club c',
             srcSet: `${keithcM} 200w, ${keithcS} 150w`,
         },
-        price: 16
+        price: 16500
     },
 ]
