@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Text } from "../Reusable"
 import { useProducts } from "../../contexts/products.context"
 import { useEffect } from "react"
