@@ -1,8 +1,7 @@
-// import { cartItmArr } from "../../data/index"
 import { useCart } from "../../contexts/cart.context"
 import { Section } from "../Reusable"
 import { CartItmCard } from "./"
-import CartReceiptCard from "./CartReceiptCard"
+import { CartReceiptCard } from "./"
 
 const CartSection = () => {
     const { cartState } = useCart()

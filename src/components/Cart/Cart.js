@@ -1,5 +1,5 @@
-import { useTheme } from "../../contexts/theme.context"
-import { getBgColor } from "../../utils/theme.util"
+import { useTheme } from "../../contexts"
+import { getBgColor } from "../../utils"
 import { Main, Text } from "../Reusable"
 import { CartHeader, CartSection } from "./"
 

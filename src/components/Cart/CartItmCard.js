@@ -1,11 +1,32 @@
-import { useCart } from "../../contexts/cart.context"
-import { useTheme } from "../../contexts/theme.context"
-import { getBorderColor } from "../../utils/theme.util"
+import { useCart, useTheme } from "../../contexts"
+import { getBorderColor, getTextColor } from "../../utils"
 import { Button, Card, Image, Input, Text } from "../Reusable"
 
 const CartItmCard = ({ item: { id, name, company, img: { srcSet, alt, sizes }, quantity, size, price, offerPrice } }) => {
-    const { cartDispatch } = useCart()
+    const { cartState, cartDispatch } = useCart()
     const { theme } = useTheme()
+
+    function setQuantity(e) {
+        cartDispatch({
+            type: 'SET_QUANTITY', payload: {
+                id: id,
+                quantity: Number(e.target.value)
+            }
+        })
+
+    }
+
+    function increaseItemQuantity() {
+        cartDispatch({ type: 'INCREASE_QUANTITY', payload: id })
+    }
+
+    function decreaseItemQuantity() {
+        cartDispatch({ type: 'DECREASE_QUANTITY', payload: id })
+    }
+
+    function removeItemFromCart() {
+        cartDispatch({ type: 'REMOVE_ITEM', payload: id })
+    }
 
     return (
 
@@ -46,17 +67,17 @@ const CartItmCard = ({ item: { id, name, company, img: { srcSet, alt, sizes }, q
 
                     <Text classes='txt-md txt-cap mg-right-xs'>quantity:</Text>
 
-                    <Button onClick={() => cartDispatch({ type: 'DECREASE', payload: id })} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-md pd-left-xs pd-right-xs`}>-</Button>
+                    <Button onClick={decreaseItemQuantity} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-md pd-left-xs pd-right-xs`}>-</Button>
 
-                    <Input type='number' classes={`txt-md input-s pd-left-xs`} placeholder={quantity} />
+                    <Input type='number' value={cartState.quantity} onChange={(e) => setQuantity(e)} classes={`txt-md ${getTextColor(theme)} input-s pd-left-xs`} placeholder={quantity} />
 
-                    <Button onClick={() => cartDispatch({ type: 'INCREASE', payload: id })} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-md pd-left-xs pd-right-xs`}>+</Button>
+                    <Button onClick={increaseItemQuantity} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-md pd-left-xs pd-right-xs`}>+</Button>
 
                 </div>
 
                 <footer className="flx flx-column mg-top-md">
 
-                    <Button onClick={() => cartDispatch({ type: 'REMOVE', payload: id })} classes={`btn-txt ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-cap txt-md pd-xs`}>remove from cart</Button>
+                    <Button onClick={removeItemFromCart} classes={`btn-txt ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-cap txt-md pd-xs`}>remove from cart</Button>
 
                     <Button classes={`btn-txt ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-cap txt-md pd-xs`}>move to wishlist</Button>
 

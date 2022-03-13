@@ -5,7 +5,7 @@ const Input = (props) => {
     const { theme } = useTheme()
 
     return (
-        <input type={props.type} className={`input ${getBgColor(theme)} ${getTextColor(theme)} ${props.classes}`} placeholder={props.placeholder} />
+        <input type={props.type} value={props.value} onChange={props.onChange} className={`input ${getBgColor(theme)} ${getTextColor(theme)} ${props.classes}`} placeholder={props.placeholder} />
     )
 }
 

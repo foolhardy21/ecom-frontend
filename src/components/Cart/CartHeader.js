@@ -1,10 +1,9 @@
-import { useCart } from "../../contexts/cart.context"
-import { useTheme } from "../../contexts/theme.context"
-import { getBadgeBgColor, getBadgeTextColor } from "../../utils/theme.util"
+import { useCart, useTheme } from "../../contexts"
+import { getBadgeBgColor, getBadgeTextColor, getTotalItems } from "../../utils"
 import { Header, NavBar, Icon, Text, Button } from "../Reusable"
 
 const CardHeader = () => {
-    const { getTotalItems } = useCart()
+    const { cartState } = useCart()
     const { theme, toggleTheme } = useTheme()
 
     return (
@@ -20,7 +19,7 @@ const CardHeader = () => {
                 <div className="pos-relative mg-right-lg">
 
                     <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                        {getTotalItems()}
+                        {getTotalItems(cartState)}
                     </div>
 
                     <Icon classes='icon-primary'>

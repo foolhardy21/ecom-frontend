@@ -1,9 +1,9 @@
-import { useCart } from "../../contexts/cart.context"
-import { useTheme } from "../../contexts/theme.context"
+import { useCart, useTheme } from "../../contexts"
 import { Button, Card, Main, Text } from "../Reusable"
+import { getTotalDiscount, getTotalPrice, getCartTotal } from "../../utils"
 
 const CartReceiptCard = () => {
-    const { getTotalPrice, getCartTotal, getTotalDiscount } = useCart()
+    const { cartState } = useCart()
     const { theme } = useTheme()
 
     return (
@@ -21,7 +21,7 @@ const CartReceiptCard = () => {
                     <Text classes="txt-cap txt-md mg-right-md">order total</Text>
 
                     <Text class="txt-cap txt-md">{`
-                    rs. ${getTotalPrice()}
+                    rs. ${getTotalPrice(cartState)}
                     `}</Text>
 
                 </div>
@@ -31,7 +31,7 @@ const CartReceiptCard = () => {
                     <Text classes="txt-cap txt-md mg-right-md">order discount</Text>
 
                     <Text classes="txt-cap txt-success txt-md">{
-                        `-rs. ${getTotalDiscount()}`
+                        `-rs. ${getTotalDiscount(cartState)}`
                     }</Text>
 
                 </div>
@@ -48,16 +48,17 @@ const CartReceiptCard = () => {
 
                     <Text classes="txt-cap txt-md mg-right-md">total amount</Text>
 
-                    <Text classes="txt-cap txt-md">{`rs. ${getCartTotal()}`}</Text>
+                    <Text classes="txt-cap txt-md">{`rs. ${getCartTotal(cartState)}`}</Text>
 
                 </div>
 
             </Main>
 
             <footer className='mg-top-md flx flx-column'>
-
-                <Button classes={`btn-solid ${theme === 'light' ? 'txt-secondary bg-secondary' : 'txt-primary bg-primary'} txt-md txt-ucase pd-xs`}>place order</Button>
-
+                {
+                    cartState.length > 0 &&
+                    <Button classes={`btn-solid ${theme === 'light' ? 'txt-secondary bg-secondary' : 'txt-primary bg-primary'} txt-md txt-ucase pd-xs`}>place order</Button>
+                }
             </footer>
 
         </Card>
