@@ -53,7 +53,7 @@ const ProductsHeader = () => {
 
                     <Button onClick={() => setSmallNavVisible(false)} classes='btn-txt bg-primary'>
 
-                        <Icon id='btn-close-small' classes={`${getIconColor(theme)} mg-right-s`}>
+                        <Icon id='btn-close-small' classes={`${getIconColor(theme)} mg-btm-lg`}>
                             close
                         </Icon>
 
