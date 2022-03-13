@@ -2,65 +2,73 @@ import { Button, Text } from "../Reusable"
 import { useProducts } from "../../contexts/products.context"
 import { useEffect } from "react"
 import { useFilters } from "../../contexts/filters.context"
+import { isInputIncluded, isSortInputIncluded } from "../../utils/filterChecks.util"
 
 const ProductsFilter = () => {
-    const { productsDispatch } = useProducts()
-    const { filters, setFilters } = useFilters()
+    const { filterProducts } = useProducts()
+    const { filterState, filterDispatch } = useFilters()
 
-    function reset() {
-        setFilters({
-            filterPrice: 5000,
-            priceSortOrder: '',
-            genderChecks: [],
-            brandChecks: [],
-            sizeChecks: [],
-            ratingChecks: []
-        })
+    function resetFilters() {
+        filterDispatch({ type: 'RESET' })
     }
 
     function handleGenderChecks(e) {
         const checkedGender = e.target.value
 
-        if (filters.genderChecks.indexOf(checkedGender) !== -1) {
-            setFilters((f) => ({ ...f, genderChecks: f.genderChecks.filter(gender => gender !== checkedGender) }))
+
+        if (!e.target.checked) {
+            filterDispatch({ type: 'REMOVE_GENDER', payload: checkedGender })
         }
         else {
-            setFilters((f) => ({ ...f, genderChecks: [...f.genderChecks, checkedGender] }))
+            filterDispatch({ type: 'ADD_GENDER', payload: checkedGender })
         }
     }
 
     function handleRatingCheck(e) {
         const checkedRating = Number(e.target.value)
 
-        if (filters.ratingChecks.indexOf(checkedRating) !== -1) {
-            setFilters((f) => ({ ...f, ratingChecks: f.ratingChecks.filter(rate => rate !== checkedRating) }))
+        if (!e.target.checked) {
+            filterDispatch({ type: 'REMOVE_RATING', payload: checkedRating })
         }
         else {
-            setFilters((f) => ({ ...f, ratingChecks: [...f.ratingChecks, checkedRating] }))
+            filterDispatch({ type: 'ADD_RATING', payload: checkedRating })
         }
     }
 
     function handleSizeCheck(e) {
         const checkedSize = Number(e.target.value)
 
-        if (filters.sizeChecks.indexOf(checkedSize) !== -1) {
-            setFilters((f) => ({ ...f, sizeChecks: f.sizeChecks.filter(brand => brand !== checkedSize) }))
+        if (!e.target.checked) {
+            filterDispatch({ type: 'REMOVE_SIZE', payload: checkedSize })
         }
         else {
-            setFilters((f) => ({ ...f, sizeChecks: [...f.sizeChecks, checkedSize] }))
+            filterDispatch({ type: 'ADD_SIZE', payload: checkedSize })
         }
     }
 
     function handleBrandCheck(e) {
+        const checkedBrand = e.target.value
 
-        (filters.brandChecks.indexOf(e.target.value) !== -1)
-            ? setFilters((f) => ({ ...f, brandChecks: f.brandChecks.filter(brand => brand !== e.target.value) }))
-            : setFilters((f) => ({ ...filters, brandChecks: [...f.brandChecks, e.target.value] }))
+        if (!e.target.checked) {
+            filterDispatch({ type: 'REMOVE_BRAND', payload: checkedBrand })
+        }
+        else {
+            filterDispatch({ type: 'ADD_BRAND', payload: checkedBrand })
+        }
+    }
+
+    function handlePriceChange(e) {
+        filterDispatch({ type: 'UPDATE_PRICE', payload: Number(e.target.value) })
+    }
+
+    function handlePriceSortOrderChange(e) {
+        filterDispatch({ type: 'UPDATE_SORTORDER', payload: e.target.value })
     }
 
     useEffect(() => {
-        productsDispatch({ type: 'FILTER', payload: { ...filters } })
-    }, [filters, productsDispatch])
+        const filtersObj = { ...filterState }
+        filterProducts(filtersObj)
+    }, [filterState])
 
 
     return (
@@ -70,7 +78,7 @@ const ProductsFilter = () => {
 
             <div className='flx flx-maj-end'>
 
-                <Button onClick={() => reset()} classes='btn-txt txt-md txt-lcase txt-primary pd-xs'>
+                <Button onClick={resetFilters} classes='btn-txt txt-md txt-lcase txt-primary pd-xs'>
                     reset
                 </Button>
 
@@ -81,9 +89,9 @@ const ProductsFilter = () => {
 
                 <Text classes='txt txt-cap mg-btm-xs'>least price</Text>
 
-                <input id="filter-price" type='range' min='5000' max='50000' onChange={(e) => setFilters((f) => ({ ...f, filterPrice: Number(e.target.value) }))} />
+                <input id="filter-price" type='range' value={filterState.filterPrice} min='5000' max='50000' onChange={(e) => handlePriceChange(e)} />
 
-                <Text id="filter-priceval" className="txt-md txt-primary">{filters.filterPrice}</Text>
+                <Text id="filter-priceval" className="txt-md txt-primary">{filterState.filterPrice}</Text>
 
             </div>
 
@@ -97,7 +105,8 @@ const ProductsFilter = () => {
                 <div className='flx flx-min-center'>
 
                     <input type='radio' name='price-grp' id='price-asc'
-                        onChange={(e) => setFilters((f) => ({ ...f, priceSortOrder: e.target.value }))} value='asc' className='mg-right-xs' />
+                        onChange={(e) => handlePriceSortOrderChange(e)}
+                        value='asc' checked={isSortInputIncluded('asc', filterState.priceSortOrder)} className='mg-right-xs' />
 
                     <label htmlFor='price-asc' className='txt-cap'>low to high</label>
 
@@ -105,7 +114,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='radio' name='price-grp' id='price-desc' onChange={(e) => setFilters((f) => ({ ...f, priceSortOrder: e.target.value }))} value='dsc' className='mg-right-xs' />
+                    <input type='radio' name='price-grp' id='price-desc' onChange={(e) => handlePriceSortOrderChange(e)} value='dsc' checked={isSortInputIncluded('dsc', filterState.priceSortOrder)} className='mg-right-xs' />
 
                     <label htmlFor='price-desc' className='txt-cap'>high to low</label>
 
@@ -122,7 +131,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='gender-m' name="gender-grp" value='male' onChange={(e) => handleGenderChecks(e)} className='mg-right-xs' />
+                    <input type='checkbox' id='gender-m' value='male' checked={isInputIncluded('male', filterState.genderChecks)} onChange={(e) => handleGenderChecks(e)} className='mg-right-xs' />
 
                     <label htmlFor='gender-m' className='txt-cap'>men</label>
 
@@ -130,7 +139,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='gender-f' name="gender-grp" value='female' onChange={(e) => handleGenderChecks(e)} className='mg-right-xs' />
+                    <input type='checkbox' id='gender-f' value='female' checked={isInputIncluded('female', filterState.genderChecks)} onChange={(e) => handleGenderChecks(e)} className='mg-right-xs' />
 
                     <label htmlFor='gender-f' className='txt-cap'>women</label>
 
@@ -147,7 +156,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='nike-category' value='nike' onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
+                    <input type='checkbox' id='nike-category' value='nike' checked={isInputIncluded('nike', filterState.brandChecks)} onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='nike-category' className='txt-cap'>nike</label>
 
@@ -155,7 +164,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='adidas-category' value='adidas' onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
+                    <input type='checkbox' id='adidas-category' value='adidas' checked={isInputIncluded('adidas', filterState.brandChecks)} onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='adidas-category' className='txt-cap'>adidas</label>
 
@@ -163,7 +172,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='aj-category' value='air jordan' onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
+                    <input type='checkbox' id='aj-category' value='air jordan' checked={isInputIncluded('air jordan', filterState.brandChecks)} onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='aj-category' className='txt-cap'>air jordan</label>
 
@@ -171,7 +180,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='yz-category' value='yeezy' onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
+                    <input type='checkbox' id='yz-category' value='yeezy' checked={isInputIncluded('yeezy', filterState.brandChecks)} onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='yz-category' className='txt-cap'>yeezy</label>
 
@@ -179,7 +188,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='converse-category' value='converse' onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
+                    <input type='checkbox' id='converse-category' value='converse' checked={isInputIncluded('converse', filterState.brandChecks)} onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='converse-category' className='txt-cap'>converse</label>
 
@@ -187,7 +196,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='nbalance-category' value='new balance' onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
+                    <input type='checkbox' id='nbalance-category' value='new balance' checked={isInputIncluded('new balance', filterState.brandChecks)} onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='nbalance-category' className='txt-cap'>new balance</label>
 
@@ -195,7 +204,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='vans-category' value='vans' onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
+                    <input type='checkbox' id='vans-category' value='vans' checked={isInputIncluded('vans', filterState.brandChecks)} onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='vans-category' className='txt-cap'>vans</label>
 
@@ -212,7 +221,7 @@ const ProductsFilter = () => {
 
                     <div className='flx flx-min-center'>
 
-                        <input type='checkbox' id='size-14' name="size-group" value='14' onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
+                        <input type='checkbox' id='size-14' name="size-group" value='14' checked={isInputIncluded(14, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
 
                         <label htmlFor='size-14' className="txt-cap">14</label>
 
@@ -220,7 +229,7 @@ const ProductsFilter = () => {
 
                     <div className='flx flx-min-center'>
 
-                        <input type='checkbox' id='size-13' name="size-group" value='13' onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
+                        <input type='checkbox' id='size-13' name="size-group" value='13' checked={isInputIncluded(13, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
 
                         <label htmlFor='size-13' className="txt-cap">13</label>
 
@@ -228,7 +237,7 @@ const ProductsFilter = () => {
 
                     <div className='flx flx-min-center'>
 
-                        <input type='checkbox' id='size-12' name="size-group" value='12' onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
+                        <input type='checkbox' id='size-12' name="size-group" value='12' checked={isInputIncluded(12, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
 
                         <label htmlFor='size-12' className="txt-cap">12</label>
 
@@ -236,7 +245,7 @@ const ProductsFilter = () => {
 
                     <div className='flx flx-min-center'>
 
-                        <input type='checkbox' id='size-11' name="size-group" value='11' onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
+                        <input type='checkbox' id='size-11' name="size-group" value='11' checked={isInputIncluded(11, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
 
                         <label htmlFor='size-11' className="txt-cap">11</label>
 
@@ -244,7 +253,7 @@ const ProductsFilter = () => {
 
                     <div className='flx flx-min-center'>
 
-                        <input type='checkbox' id='size-10' name="size-group" value='10' onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
+                        <input type='checkbox' id='size-10' name="size-group" value='10' checked={isInputIncluded(10, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
 
                         <label htmlFor='size-10' className="txt-cap">10</label>
 
@@ -252,7 +261,7 @@ const ProductsFilter = () => {
 
                     <div className='flx flx-min-center'>
 
-                        <input type='checkbox' id='size-9' name="size-group" value='9' onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
+                        <input type='checkbox' id='size-9' name="size-group" value='9' checked={isInputIncluded(9, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
 
                         <label htmlFor='size-9' className="txt-cap">9</label>
 
@@ -260,7 +269,7 @@ const ProductsFilter = () => {
 
                     <div className='flx flx-min-center'>
 
-                        <input type='checkbox' id='size-8' name="size-group" value='8' onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
+                        <input type='checkbox' id='size-8' name="size-group" value='8' checked={isInputIncluded(8, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
 
                         <label htmlFor='size-8' className="txt-cap">8</label>
 
@@ -268,7 +277,7 @@ const ProductsFilter = () => {
 
                     <div className='flx flx-min-center'>
 
-                        <input type='checkbox' id='size-7' name="size-group" value='7' onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
+                        <input type='checkbox' id='size-7' name="size-group" value='7' checked={isInputIncluded(7, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
 
                         <label htmlFor='size-7' className="txt-cap">7</label>
 
@@ -285,7 +294,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='5-atleast' name="rating-group" value='5' onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
+                    <input type='checkbox' id='5-atleast' name="rating-group" value='5' checked={isInputIncluded(5, filterState.ratingChecks)} onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='5-atleast' className="txt-cap">5 stars</label>
 
@@ -293,7 +302,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='4-atleast' name="rating-group" value='4' onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
+                    <input type='checkbox' id='4-atleast' name="rating-group" value='4' checked={isInputIncluded(4, filterState.ratingChecks)} onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='4-atleast' className="txt-cap">4 stars</label>
 
@@ -301,7 +310,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='3-atleast' name="rating-group" value='3' onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
+                    <input type='checkbox' id='3-atleast' name="rating-group" value='3' checked={isInputIncluded(3, filterState.ratingChecks)} onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='3-atleast' className="txt-cap">3 stars</label>
 
@@ -309,7 +318,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='2-atleast' name="rating-group" value='2' onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
+                    <input type='checkbox' id='2-atleast' name="rating-group" value='2' checked={isInputIncluded(2, filterState.ratingChecks)} onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='2-atleast' className="txt-cap">2 stars</label>
 
@@ -317,7 +326,7 @@ const ProductsFilter = () => {
 
                 <div className='flx flx-min-center'>
 
-                    <input type='checkbox' id='1-atleast' name="rating-group" value='1' onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
+                    <input type='checkbox' id='1-atleast' name="rating-group" value='1' checked={isInputIncluded(1, filterState.ratingChecks)} onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
 
                     <label htmlFor='1-atleast' className="txt-cap">1 star</label>
 

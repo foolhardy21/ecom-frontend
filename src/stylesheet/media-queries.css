@@ -1,17 +1,17 @@
 
 @media only screen and (max-width: 768px) {
     
-    #pg-header {
+    #header-pg {
         flex-direction: column;
         padding-bottom: 0.5rem;
     }
     
-    #pg-searchbar {
+    #searchbar-pg {
         order: 2;
         margin-top: 1rem;
     }
         
-    #pg-header nav {
+    #header-pg nav {
         margin: 1rem 0;
     }
 }

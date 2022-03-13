@@ -1,4 +1,4 @@
-import { productsImgArr, sizes } from "./productsImg.data";
+import { productsImgArr } from "./productsImg.data";
 
 export const productsArr = [
     {
@@ -11,7 +11,7 @@ export const productsArr = [
         img: {
             srcSet: productsImgArr[0].srcSet,
             alt: productsImgArr[0].alt,
-            sizes: sizes
+            sizes: productsImgArr[0].sizes
         },
         rating: 4,
         gender: 'male'
@@ -25,7 +25,7 @@ export const productsArr = [
         img: {
             srcSet: productsImgArr[1].srcSet,
             alt: productsImgArr[1].alt,
-            sizes: sizes
+            sizes: productsImgArr[0].sizes
         },
         rating: 5,
         gender: 'male'
@@ -39,7 +39,7 @@ export const productsArr = [
         img: {
             srcSet: productsImgArr[2].srcSet,
             alt: productsImgArr[2].alt,
-            sizes: sizes
+            sizes: productsImgArr[0].sizes
         },
         rating: 3,
         gender: 'male'
@@ -54,7 +54,7 @@ export const productsArr = [
         img: {
             srcSet: productsImgArr[3].srcSet,
             alt: productsImgArr[3].alt,
-            sizes: sizes
+            sizes: productsImgArr[0].sizes
         },
         rating: 4,
         gender: 'female'
@@ -68,7 +68,7 @@ export const productsArr = [
         img: {
             srcSet: productsImgArr[4].srcSet,
             alt: productsImgArr[4].alt,
-            sizes: sizes
+            sizes: productsImgArr[0].sizes
         },
         rating: 5,
         gender: 'female'
