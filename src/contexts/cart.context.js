@@ -18,6 +18,8 @@ export const CartProvider = ({ children }) => {
 
             case 'SET_QUANTITY': return state.map(itm => itm.id === action.payload.id ? { ...itm, quantity: action.payload.quantity } : itm)
 
+            case 'SET_SIZE': return state.map(itm => itm.id === action.payload.id ? { ...itm, size: action.payload.size } : itm)
+
             default: return state
 
         }

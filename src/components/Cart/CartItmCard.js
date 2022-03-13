@@ -13,7 +13,15 @@ const CartItmCard = ({ item: { id, name, company, img: { srcSet, alt, sizes }, q
                 quantity: Number(e.target.value)
             }
         })
+    }
 
+    function setSize(e) {
+        cartDispatch({
+            type: 'SET_SIZE', payload: {
+                id: id,
+                size: Number(e.target.value)
+            }
+        })
     }
 
     function increaseItemQuantity() {
@@ -45,6 +53,13 @@ const CartItmCard = ({ item: { id, name, company, img: { srcSet, alt, sizes }, q
                 </div>
 
                 <Text classes='txt-md txt-ucase mg-top-s'>{`UK ${size}`}</Text>
+
+                {/* after merging run a map on productsData.size */}
+                <select onChange={(e) => setSize(e)}>
+                    <option value='9'>9</option>
+                    <option value='10'>10</option>
+                    <option value='11'>11</option>
+                </select>
 
 
 
