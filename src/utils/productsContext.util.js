@@ -4,7 +4,7 @@ export const filterProductsByGender = (products, genderArr) => products.filter(p
 
 export const filterProductsByBrand = (products, brandArr) => products.filter(prd => brandArr.indexOf(prd.company) !== -1)
 
-export const filterProductsBySize = (products, sizeArr) => products.filter(prd => sizeArr.indexOf(prd.size) !== -1)
+export const filterProductsBySize = (products, minSize) => products.filter(prd => prd.size.indexOf(minSize) !== -1)
 
 export const filterProductsByRating = (products, minRating) => products.filter(prd => prd.rating >= minRating)
 
