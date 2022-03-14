@@ -3,6 +3,7 @@ import { Login } from './components/Login';
 import { ProductsPg } from "./components/Products";
 import { Cart } from "./components/Cart";
 import { Wishlist } from "./components/Wishlist/index";
+import { Home } from "./components/Home";
 
 const App = () => {
 
@@ -13,6 +14,7 @@ const App = () => {
       <ProductsPg />
       <Cart />
       <Wishlist />
+      <Home />
     </>
   );
 
