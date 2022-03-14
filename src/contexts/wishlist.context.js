@@ -1,6 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { wishlistArr } from "../data/wishlist.data";
-
+import { wishlistArr } from "../data/index.js";
 
 const WishListContext = createContext()
 

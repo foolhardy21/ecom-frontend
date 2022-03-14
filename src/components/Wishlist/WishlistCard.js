@@ -1,5 +1,4 @@
 import { Text, Button, Card, Image } from "../Reusable/index";
-import { sizes } from "../../data/wishlist.data";
 import { useWishlist } from "../../contexts/wishlist.context";
 
 const WishlistCard = ({ item }) => {
@@ -11,7 +10,8 @@ const WishlistCard = ({ item }) => {
         company,
         img: {
             alt,
-            srcSet
+            srcSet,
+            sizes
         },
         price,
         offerPrice,

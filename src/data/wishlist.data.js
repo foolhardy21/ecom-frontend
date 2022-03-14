@@ -1,6 +1,4 @@
-import { am97M, am97S, jpsM, jpsS, forumlM, forumlS, keithcM, keithcS } from './wishlistImg.data'
-
-export const sizes = '(max-width: 768px) 150px, 200px'
+import { wishlistImgArr, sizes } from './wishlistImg.data'
 
 export const wishlistArr = [
     {
@@ -8,8 +6,9 @@ export const wishlistArr = [
         name: 'air max 97 se',
         company: 'nike',
         img: {
-            alt: 'air max 97',
-            srcSet: `${am97M} 200w, ${am97S} 150w`,
+            alt: wishlistImgArr[0].alt,
+            srcSet: wishlistImgArr[0].srcSet,
+            sizes: sizes
         },
         price: 19012,
         offerPrice: 16012,
@@ -20,8 +19,9 @@ export const wishlistArr = [
         name: 'japan s',
         company: 'asics',
         img: {
-            alt: 'japan s',
-            srcSet: `${jpsM} 200w, ${jpsS} 150w`,
+            alt: wishlistImgArr[1].alt,
+            srcSet: wishlistImgArr[1].srcSet,
+            sizes: sizes
         },
         price: 23100,
         offerPrice: 19100,
@@ -31,8 +31,9 @@ export const wishlistArr = [
         name: 'forum luxe md',
         company: 'adidas',
         img: {
-            alt: 'forum luxe',
-            srcSet: `${forumlM} 200w, ${forumlS} 150w`,
+            alt: wishlistImgArr[2].alt,
+            srcSet: wishlistImgArr[2].srcSet,
+            sizes: sizes
         },
         price: 20000
     },
@@ -41,8 +42,9 @@ export const wishlistArr = [
         name: 'keith haring club c',
         company: 'reebok',
         img: {
-            alt: 'keith haring club c',
-            srcSet: `${keithcM} 200w, ${keithcS} 150w`,
+            alt: wishlistImgArr[3].alt,
+            srcSet: wishlistImgArr[3].srcSet,
+            sizes: sizes
         },
         price: 16500
     },
