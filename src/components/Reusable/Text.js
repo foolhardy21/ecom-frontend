@@ -1,12 +1,12 @@
 import { useTheme } from "../../contexts/theme.context"
 import { getTextColor } from "../../utils/theme.util"
 
-const Text = (props) => {
+const Text = ({ id, classes, children }) => {
     const { theme } = useTheme()
 
     return (
-        <p id={props.id} className={`${getTextColor(theme)} ${props.classes}`}>
-            {props.children}
+        <p id={id} className={`${getTextColor(theme)} ${classes}`}>
+            {children}
         </p>
     )
 }

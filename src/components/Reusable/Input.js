@@ -1,11 +1,11 @@
 import { useTheme } from "../../contexts/theme.context"
 import { getBgColor, getTextColor } from "../../utils/theme.util"
 
-const Input = (props) => {
+const Input = ({ id, type, placeholder, classes }) => {
     const { theme } = useTheme()
 
     return (
-        <input id={props.id} type={props.type} placeholder={props.placeholder} className={`input ${getBgColor(theme)} ${getTextColor(theme)} ${props.classes}`} />
+        <input id={id} type={type} placeholder={placeholder} className={`input ${getBgColor(theme)} ${getTextColor(theme)} ${classes}`} />
     )
 }
 
