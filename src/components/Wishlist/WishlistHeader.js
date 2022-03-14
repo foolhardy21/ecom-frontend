@@ -1,6 +1,6 @@
 import { useTheme } from "../../contexts/theme.context";
 import { useWishlist } from "../../contexts/wishlist.context";
-import { getBadgeBgColor, getBadgeTxtColor } from "../../utils/theme.util";
+import { getBadgeBgColor, getBadgeTextColor } from "../../utils/theme.util";
 import { Header, NavBar, Text, Icon, Button } from "../Reusable/index";
 
 const WishlistHeader = () => {
@@ -22,7 +22,7 @@ const WishlistHeader = () => {
                     {
                         wishlistState.length > 0 &&
 
-                        <div className={`txt-md badge-size-md ${getBadgeTxtColor(theme)} ${getBadgeBgColor(theme)} flx flx-center brd-full pos-absolute bl-70`}>
+                        <div className={`txt-md badge-size-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} flx flx-center brd-full pos-absolute bl-70`}>
                             {wishlistState.length}
                         </div>
                     }
