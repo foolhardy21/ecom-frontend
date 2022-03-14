@@ -19,7 +19,7 @@ const HomeHeader = () => {
                     shopping_cart
                 </Icon>
 
-                <Button classes='btn-solid txt-ucase txt-secondary bg-secondary pd-xs txt-md mg-right-s'>
+                <Button classes='btn-txt txt-lcase txt-primary bg-primary pd-xs txt-md'>
                     login
                 </Button>
 
