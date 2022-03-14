@@ -24,9 +24,9 @@ const WishlistCard = ({ item }) => {
 
             <Button onClick={() => wishlistDispatch({ type: 'REMOVE', payload: id })} classes='pos-absolute tr-1 btn-txt'>
 
-                <Icon classes='icon-primary'>
+                <span className="material-icons icon-primary">
                     close
-                </Icon>
+                </span>
 
             </Button>
 

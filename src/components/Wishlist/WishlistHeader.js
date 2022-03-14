@@ -1,8 +1,11 @@
 import { useTheme } from "../../contexts/theme.context";
+import { useWishlist } from "../../contexts/wishlist.context";
+import { getBadgeBgColor, getBadgeTxtColor } from "../../utils/theme.util";
 import { Header, NavBar, Text, Icon, Button } from "../Reusable/index";
 
 const WishlistHeader = () => {
-    const { toggleTheme } = useTheme()
+    const { theme, toggleTheme } = useTheme()
+    const { wishlistState } = useWishlist()
 
     return (
 
@@ -14,9 +17,21 @@ const WishlistHeader = () => {
 
             <NavBar>
 
-                <Icon classes='icon-primary mg-right-s'>
-                    favorite
-                </Icon>
+                <div className="pos-relative mg-right-lg">
+
+                    {
+                        wishlistState.length > 0 &&
+
+                        <div className={`txt-md badge-size-md ${getBadgeTxtColor(theme)} ${getBadgeBgColor(theme)} flx flx-center brd-full pos-absolute bl-70`}>
+                            {wishlistState.length}
+                        </div>
+                    }
+
+                    <Icon classes='icon-primary'>
+                        favorite
+                    </Icon>
+                </div>
+
 
                 <Icon classes='icon-primary mg-right-s'>
                     shopping_cart
