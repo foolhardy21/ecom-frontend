@@ -7,6 +7,7 @@ import { CartProvider } from './contexts/cart.context';
 import { WishListProvider } from './contexts/wishlist.context';
 import './stylesheet/style.css'
 import './stylesheet/wishlist.css'
+import './stylesheet/home.css'
 
 ReactDOM.render(
   <ThemeProvider>
