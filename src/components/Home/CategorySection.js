@@ -3,9 +3,9 @@ import { BrandSection } from './'
 const CategorySection = () => {
 
     return (
-        <>
-            <BrandSection />
-        </>
+
+        <BrandSection />
+
     )
 }
 
