@@ -1,7 +1,7 @@
-import { useTheme } from "../../contexts"
-import { getBgColor } from "../../utils"
-import { Main, Text } from "../Reusable"
-import { CartHeader, CartSection } from "./"
+import { useTheme } from "../contexts"
+import { getBgColor } from "../utils"
+import { Main, Text } from "../components/Reusable"
+import { CartHeader, CartSection } from "../components/Cart"
 
 const Cart = () => {
     const { theme } = useTheme()

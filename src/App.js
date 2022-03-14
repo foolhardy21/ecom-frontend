@@ -1,9 +1,7 @@
 import { Signup } from './components/Signup';
 import { Login } from './components/Login';
 import { ProductsPg } from "./components/Products";
-import { Cart } from "./components/Cart";
-import { Wishlist } from "./components/Wishlist/index";
-import { Home } from "./components/Home";
+import { Cart, Home, Wishlist } from "./pages";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const App = () => {

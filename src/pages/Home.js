@@ -1,7 +1,7 @@
-import { HomeHeader, CategorySection } from "./"
-import { heroImgArr } from "../../data"
-import { Image, Text } from "../Reusable"
-import './home.css'
+import { HomeHeader, CategorySection } from "../components/Home"
+import { heroImgArr } from "../data"
+import { Image, Text } from "../components/Reusable"
+import '../components/Home/home.css'
 
 const Home = () => {
 
