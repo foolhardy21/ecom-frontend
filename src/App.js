@@ -1,5 +1,4 @@
-import { Signup } from './components/Signup';
-import { Cart, Home, Wishlist, Products } from "./pages";
+import { Signup, Cart, Home, Wishlist, Products } from "./pages";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const App = () => {
@@ -15,6 +14,9 @@ const App = () => {
         <Route path='/cart' element={<Cart />} />
 
         <Route path='/wishlist' element={<Wishlist />} />
+
+        <Route path='/signup' element={<Signup />} />
+
 
       </Routes>
     </BrowserRouter>
