@@ -7,6 +7,7 @@ import Icon from "../Reusable/Icon"
 const SignupCard = () => {
 
     return (
+
         <Card classes='flx flx-column flx-center pd-lg mg-top-lg'>
 
             <Text classes='txt-cap txt-lg'>
@@ -19,7 +20,9 @@ const SignupCard = () => {
                 already have an account
 
                 <Icon classes='icon-primary'>
+
                     chevron_right
+
                 </Icon>
 
             </Button>

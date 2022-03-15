@@ -4,6 +4,8 @@ import Input from "../Reusable/Input"
 import Label from "../Reusable/Label"
 import Text from "../Reusable/Text"
 import Button from "../Reusable/Button"
+import { emailIsInvalid, nameIsInvalid, passIsInvalid, passAndConfPassAreDiff } from "../../utils/inputValidation"
+import { timer } from "../../utils/timer"
 
 const SignupForm = () => {
     const [enteredEmail, setEnteredEmail] = useState('')
@@ -23,90 +25,45 @@ const SignupForm = () => {
 
     const [passInputType, setPassInputType] = useState('password')
 
-    function emailIsInvalid() {
-
-        const emailReg = new RegExp('^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$')
-
-        if (!emailReg.test(enteredEmail)) {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    function nameIsInvalid(nameStr) {
-
-        const nameReg = new RegExp(/\d/ig)
-
-        if (nameStr.length === 0 || nameReg.test(nameStr)) {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    function passIsInvalid() {
-        if (enteredPassword.length === 0) {
-            return true
-        } else {
-            return false
-        }
-    }
-    function passAndConfPassAreDiff() {
-        if (enteredPassword !== enteredConfPassword) {
-            return true
-        } else {
-            return false
-        }
-    }
 
     function signUpUser(e) {
+
         e.preventDefault()
 
-        if (emailIsInvalid()) {
+        if (emailIsInvalid(enteredEmail)) {
             setEmailError(true)
-            setTimeout(() => {
-                setEmailError(false)
-            }, 2000)
+            timer(() => setEmailError(false), 2000)
         }
         if (nameIsInvalid(enteredFName)) {
             setFNameError(true)
-            setTimeout(() => {
-                setFNameError(false)
-            }, 2000)
+            timer(() => setFNameError(false), 2000)
         }
         if (nameIsInvalid(enteredLName)) {
             setLNameError(true)
-            setTimeout(() => {
-                setLNameError(false)
-            }, 2000)
+            timer(() => setLNameError(false), 2000)
         }
-        if (passIsInvalid()) {
+        if (passIsInvalid(enteredPassword)) {
             setPassError(true)
-            setTimeout(() => {
-                setPassError(false)
-            }, 2000)
+            timer(() => setPassError(false), 2000)
         }
-        if (passAndConfPassAreDiff()) {
+        if (passAndConfPassAreDiff(enteredPassword, enteredConfPassword)) {
             setConfPassError(true)
-            setTimeout(() => {
-                setConfPassError(false)
-            }, 2000)
+            timer(() => setConfPassError(false), 2000)
         }
 
     }
 
     function togglePassInputType() {
-        if (passInputType === 'password') {
-            setPassInputType('text')
-        } else {
-            setPassInputType('password')
-        }
+
+        (passInputType === 'password') ? setPassInputType('text') : setPassInputType('password')
+
     }
 
 
     return (
+
         <Form classes='flx flx-column txt-primary mg-left-lg mg-right-lg'>
+
             <Input type='email' placeholder="email" value={enteredEmail} onChange={(e) => setEnteredEmail(e.target.value)} classes={`${emailError && 'input-err'} input input-lg txt-md pd-xs mg-top-s`} />
             {
                 emailError && <Text classes="txt-md txt-cap txt-err mg-top-xs mg-left-xs">email is invalid</Text>
@@ -127,20 +84,20 @@ const SignupForm = () => {
             <Input type={passInputType} placeholder="password" value={enteredPassword} onChange={(e) => setEnteredPassword(e.target.value)}
                 classes={`${passError && 'input-err'} input input-lg txt-md pd-xs mg-top-s`} />
             {
-                passError && <Text classes="txt-md txt-err txt-cap mg-left-xs mg-top-xs">enter password</Text>
+                passError && <Text classes="txt-md txt-err txt-cap mg-left-xs mg-top-xs">password must be alphanumeric </Text>
             }
 
             <Input type={passInputType} placeholder="confirm password" value={enteredConfPassword} onChange={(e) => setEnteredConfPassword(e.target.value)}
                 classes={`${confPassError && 'input-err'} input input-lg txt-md pd-xs mg-top-s`} />
             {
-                confPassError && <Text className="txt-md txt-err txt-cap mg-left-xs mg-top-xs">password is not matching</Text>
+                confPassError && <Text classes="txt-md txt-err txt-cap mg-left-xs mg-top-xs">password is not matching</Text>
             }
 
             <div className='flx flx-maj-end flx-min-center mg-btm-xs'>
 
                 <Input type='checkbox' id='toggle-pass' />
 
-                <Label for='toggle-pass' onClick={togglePassInputType} classes='txt-cap mg-left-xs txt-md txt-primary'>
+                <Label for='toggle-pass' onClick={togglePassInputType} classes='txt-cap mg-left-xs mg-top-xs txt-md txt-primary'>
                     show password
                 </Label>
 
@@ -151,7 +108,7 @@ const SignupForm = () => {
                 <Input type='checkbox' id='terms-check' />
 
                 <Label for='terms-check' classes='txt-md txt-cap mg-left-xs'>
-                    i accept all terms & conditions
+                    i accept all terms and conditions
                 </Label>
 
             </div>

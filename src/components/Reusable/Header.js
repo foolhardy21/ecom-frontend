@@ -7,6 +7,7 @@ const Header = (props) => {
     return (
         <header id="pg-header" className={`${getBgColor(theme)} flx flx-maj-even flx-min-center pd-top-md pd-btm-md`}>
             {props.children}
+
         </header>
     )
 }

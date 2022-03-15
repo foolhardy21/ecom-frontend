@@ -7,6 +7,7 @@ const Label = (props) => {
     return (
         <label htmlFor={props.for} onClick={props.onClick} className={`${getTextColor(theme)} ${props.classes}`} >
             {props.children}
+
         </label>
     )
 }
