@@ -1,3 +1,4 @@
+import '../../stylesheet/products-pg.css'
 import { useState } from 'react'
 import { FilterProvider } from '../../contexts/filters.context'
 import { Button, Icon, Text } from '../Reusable'

@@ -9,32 +9,35 @@ import p4S from '../assets/p4-s.jpg'
 import p5M from '../assets/p5-m.jpg'
 import p5S from '../assets/p5-s.jpg'
 
-export const sizes = '(max-width: 768px) 150px, 200px'
-
 export const productsImgArr = [
     {
         id: 1,
         alt: 'nike zoom',
-        srcSet: `${p1M} 200w, ${p1S} 150w`
+        srcSet: `${p1M} 200w, ${p1S} 150w`,
+        sizes: '(max-width: 768px) 150px, 200px'
     },
     {
         id: 2,
         alt: 'air jordan 36',
-        srcSet: `${p2M} 200w, ${p2S} 150w`
+        srcSet: `${p2M} 200w, ${p2S} 150w`,
+        sizes: '(max-width: 768px) 150px, 200px'
     },
     {
         id: 3,
         alt: 'air max 97',
-        srcSet: `${p3M} 200w, ${p3S} 150w`
+        srcSet: `${p3M} 200w, ${p3S} 150w`,
+        sizes: '(max-width: 768px) 150px, 200px'
     },
     {
         id: 4,
         alt: 'fontaka waffle',
-        srcSet: `${p4M} 200w, ${p4S} 150w`
+        srcSet: `${p4M} 200w, ${p4S} 150w`,
+        sizes: '(max-width: 768px) 150px, 200px'
     },
     {
         id: 5,
         alt: 'air max 90',
-        srcSet: `${p5M} 200w, ${p5S} 150w`
+        srcSet: `${p5M} 200w, ${p5S} 150w`,
+        sizes: '(max-width: 768px) 150px, 200px'
     },
 ]
