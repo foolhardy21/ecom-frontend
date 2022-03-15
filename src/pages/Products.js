@@ -1,12 +1,11 @@
-import '../../stylesheet/products-pg.css'
 import { useState } from 'react'
-import { FilterProvider } from '../../contexts/filters.context'
-import { Button, Icon, Text } from '../Reusable'
-import { ProductsHeader, ProductsFilter, ProductsSection } from './'
-import { getBgColor, getTextColor } from '../../utils/theme.util'
-import { useTheme } from '../../contexts/theme.context'
+import { Button, Icon, Text } from '../components/Reusable'
+import { ProductsHeader, ProductsFilter, ProductsSection } from '../components/Products'
+import { FilterProvider, useTheme } from '../contexts'
+import { getBgColor, getTextColor } from '../utils'
+import '../components/Products/products.css'
 
-const ProductsPg = () => {
+const Products = () => {
     const [filterVisibility, setFilterVisibility] = useState(false)
     const { theme } = useTheme()
 
@@ -52,4 +51,4 @@ const ProductsPg = () => {
     )
 }
 
-export default ProductsPg
+export default Products

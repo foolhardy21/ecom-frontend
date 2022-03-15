@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { useTheme } from "../../contexts/theme.context"
+import { useTheme } from "../../contexts"
 import { Button, Header, Icon, Input, NavBar, Text } from "../Reusable"
-import { getIconColor } from '../../utils/theme.util'
+import { getIconColor } from '../../utils'
 
 const ProductsHeader = () => {
     const [isSmallNavVisible, setSmallNavVisible] = useState(false)

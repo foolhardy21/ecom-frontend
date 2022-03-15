@@ -1,11 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Text } from "../Reusable"
-import { useProducts } from "../../contexts/products.context"
 import { useEffect } from "react"
-import { useFilters } from "../../contexts/filters.context"
-import { isInputIncluded, isSortInputIncluded } from "../../utils/filterChecks.util"
-import { getTextColor, getBgColor } from "../../utils/theme.util"
-import { useTheme } from "../../contexts/theme.context"
+import { Button, Text } from "../Reusable"
+import { useProducts, useTheme, useFilters } from "../../contexts"
+import { getTextColor, getBgColor, isInputIncluded, isSortInputIncluded } from "../../utils"
 
 const ProductsFilter = () => {
     const { filterProducts } = useProducts()

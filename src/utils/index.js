@@ -6,6 +6,10 @@ import { getTotalDiscount, getTotalPrice, getTotalItems, getCartTotal, getTotalO
 
 import { getTotalWishlistItems } from './wishlist.util'
 
+import { isInputIncluded, isSortInputIncluded } from './filterChecks.util'
+
+import { filterProductsByBrand, filterProductsByGender, filterProductsByPrice, filterProductsByRating, filterProductsBySize } from './productsContext.util'
+
 export {
     getTextColor,
     getBgColor,
@@ -23,5 +27,12 @@ export {
     getTotalItems,
     getTotalOfferPrice,
     getTotalPrice,
-    getTotalWishlistItems
+    getTotalWishlistItems,
+    isInputIncluded,
+    isSortInputIncluded,
+    filterProductsByBrand,
+    filterProductsByGender,
+    filterProductsByPrice,
+    filterProductsByRating,
+    filterProductsBySize
 }

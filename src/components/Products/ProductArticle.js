@@ -1,21 +1,19 @@
 import { Card, Icon, Image, Text } from "../Reusable"
 
-const ProductArticle = ({ prd }) => {
-    const {
-
-        name,
-        company,
-        size,
-        price,
-        offerPrice,
-        img: {
-            srcSet,
-            alt,
-            sizes
-        },
-        rating,
-        quantity
-    } = prd
+const ProductArticle = ({ prd: {
+    name,
+    company,
+    size,
+    price,
+    offerPrice,
+    img: {
+        srcSet,
+        alt,
+        sizes
+    },
+    rating,
+    quantity
+} }) => {
 
     return (
         <Card classes="pd-xs pos-relative">

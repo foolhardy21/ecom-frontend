@@ -1,5 +1,5 @@
-import { useProducts } from "../../contexts/products.context"
-import ProductArticle from "./ProductArticle"
+import { useProducts } from "../../contexts"
+import { ProductArticle } from "./"
 
 const ProductsSection = () => {
     const { products } = useProducts()
