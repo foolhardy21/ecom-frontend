@@ -1,9 +1,10 @@
-import { useCart, useTheme } from "../../contexts"
-import { getBadgeBgColor, getBadgeTextColor, getTotalItems } from "../../utils"
+import { useCart, useWishlist, useTheme } from "../../contexts"
+import { getBadgeBgColor, getBadgeTextColor, getTotalCartItems, getTotalWishlistItems } from "../../utils"
 import { Header, NavBar, Icon, Text, Button } from "../Reusable"
 import { Link } from 'react-router-dom'
 
 const CardHeader = () => {
+    const { wishlistState } = useWishlist()
     const { cartState } = useCart()
     const { theme, toggleTheme } = useTheme()
 
@@ -19,18 +20,29 @@ const CardHeader = () => {
 
             <NavBar>
 
-                <Link to='/wishlist'>
-                    <Icon classes='icon-primary mg-right-s'>
-                        favorite
-                    </Icon>
-                </Link>
+                <div className="pos-relative mg-right-lg">
+
+                    {
+                        wishlistState.length > 0 &&
+                        <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
+                            {getTotalWishlistItems(wishlistState)}
+                        </div>
+                    }
+
+                    <Link to='/wishlist'>
+                        <Icon classes='icon-primary mg-right-s'>
+                            favorite
+                        </Icon>
+                    </Link>
+
+                </div>
 
                 <div className="pos-relative mg-right-lg">
 
                     {
                         cartState.length > 0 &&
                         <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                            {getTotalItems(cartState)}
+                            {getTotalCartItems(cartState)}
                         </div>
                     }
 

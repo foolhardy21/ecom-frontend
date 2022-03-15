@@ -2,6 +2,10 @@ import { getTextColor, getBgColor, getSolidBtnBgColor, getSolidBtnTextColor, get
 import { emailIsInvalid, nameIsInvalid, passIsInvalid, passAndConfPassAreDiff } from "./inputValidation.util";
 import { timer } from "./timer.util";
 
+import { getTotalDiscount, getTotalPrice, getTotalItems, getCartTotal, getTotalOfferPrice } from './cart.util'
+
+import { getTotalWishlistItems } from './wishlist.util'
+
 export {
     getTextColor,
     getBgColor,
@@ -13,5 +17,11 @@ export {
     nameIsInvalid,
     passAndConfPassAreDiff,
     passIsInvalid,
-    timer
+    timer,
+    getTotalDiscount,
+    getCartTotal,
+    getTotalItems,
+    getTotalOfferPrice,
+    getTotalPrice,
+    getTotalWishlistItems
 }

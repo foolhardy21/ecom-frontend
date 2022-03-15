@@ -1,9 +1,10 @@
-import { useTheme, useWishlist } from "../../contexts";
-import { getBadgeBgColor, getBadgeTextColor } from "../../utils";
+import { useTheme, useWishlist, useCart } from "../../contexts";
+import { getBadgeBgColor, getBadgeTextColor, getTotalCartItems, getTotalWishlistItems } from "../../utils";
 import { Header, NavBar, Text, Icon, Button } from "../Reusable/index";
 import { Link } from 'react-router-dom'
 
 const WishlistHeader = () => {
+    const { cartState } = useCart()
     const { theme, toggleTheme } = useTheme()
     const { wishlistState } = useWishlist()
 
@@ -23,25 +24,35 @@ const WishlistHeader = () => {
 
                     {
                         wishlistState.length > 0 &&
-
-                        <div className={`txt-md badge-size-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} flx flx-center brd-full pos-absolute bl-70`}>
-                            {wishlistState.length}
+                        <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
+                            {getTotalWishlistItems(wishlistState)}
                         </div>
                     }
 
                     <Link to='/wishlist'>
-                        <Icon classes='icon-primary'>
+                        <Icon classes='icon-primary mg-right-s'>
                             favorite
                         </Icon>
                     </Link>
 
                 </div>
 
-                <Link to='/cart'>
-                    <Icon classes='icon-primary mg-right-s'>
-                        shopping_cart
-                    </Icon>
-                </Link>
+                <div className="pos-relative mg-right-lg">
+
+                    {
+                        cartState.length > 0 &&
+                        <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
+                            {getTotalCartItems(cartState)}
+                        </div>
+                    }
+
+                    <Link to='/cart'>
+                        <Icon classes='icon-primary mg-right-s'>
+                            shopping_cart
+                        </Icon>
+                    </Link>
+
+                </div>
 
                 <Button classes='btn-txt txt-lcase txt-primary bg-primary pd-xs txt-md'>
                     logout
