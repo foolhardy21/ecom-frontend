@@ -2,7 +2,7 @@ const { createContext, useContext, useState } = require("react");
 
 const ThemeContext = createContext()
 
-export const ThemeProvider = (props) => {
+export const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState('light')
 
     function toggleTheme() {
@@ -16,9 +16,7 @@ export const ThemeProvider = (props) => {
                 toggleTheme
             }}
         >
-            {
-                props.children
-            }
+            {children}
         </ThemeContext.Provider>
     )
 }

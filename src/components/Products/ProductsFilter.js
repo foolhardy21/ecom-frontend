@@ -4,10 +4,13 @@ import { useProducts } from "../../contexts/products.context"
 import { useEffect } from "react"
 import { useFilters } from "../../contexts/filters.context"
 import { isInputIncluded, isSortInputIncluded } from "../../utils/filterChecks.util"
+import { getTextColor, getBgColor } from "../../utils/theme.util"
+import { useTheme } from "../../contexts/theme.context"
 
 const ProductsFilter = () => {
     const { filterProducts } = useProducts()
     const { filterState, filterDispatch } = useFilters()
+    const { theme } = useTheme()
 
     function resetFilters() {
         filterDispatch({ type: 'RESET' })
@@ -74,7 +77,7 @@ const ProductsFilter = () => {
 
     return (
 
-        <aside className="aside-filters txt-primary pos-sticky t-0 z-5 pd-s">
+        <aside className={`aside-filters ${getTextColor(theme)} ${getBgColor(theme)} pos-sticky t-0 z-5 pd-s`}>
 
 
             <div className='flx flx-maj-end'>

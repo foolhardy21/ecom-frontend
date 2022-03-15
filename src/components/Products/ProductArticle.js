@@ -23,6 +23,9 @@ const ProductArticle = ({ prd }) => {
                 offerPrice &&
                 <Text classes="pos-absolute tr-1 bg-warn txt-md txt-600 txt-primary txt-ucase pd-xs">offer</Text>
             }
+            {
+                quantity < 15 && <Text classes='txt-cap pos-absolute tl-0 bg-err txt-md'>{`only ${quantity} left.`}</Text>
+            }
 
             <Image srcSet={srcSet} alt={alt} sizes={sizes} />
 
@@ -67,10 +70,6 @@ const ProductArticle = ({ prd }) => {
                 }
 
             </div>
-
-            {
-                quantity < 15 && <Text classes='txt-cap pos-absolute tl-0 txt-err txt-md'>{`only ${quantity} left.`}</Text>
-            }
 
             <div className='dis-inblock'>
 
