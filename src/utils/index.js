@@ -1,13 +1,17 @@
-import { emailIsInvalid, passIsInvalid } from "./inputValidation";
-import { getTextColor, getBgColor, getSolidBtnBgColor, getIconColor, getSolidBtnTextColor, getBorderColor } from "./theme-util";
+import { getTextColor, getBgColor, getSolidBtnBgColor, getSolidBtnTextColor, getBorderColor, getIconColor } from "./theme.util";
+import { emailIsInvalid, nameIsInvalid, passIsInvalid, passAndConfPassAreDiff } from "./inputValidation.util";
+import { timer } from "./timer.util";
 
 export {
-    emailIsInvalid,
-    passIsInvalid,
+    getTextColor,
     getBgColor,
-    getIconColor,
+    getBorderColor,
     getSolidBtnBgColor,
     getSolidBtnTextColor,
-    getTextColor,
-    getBorderColor,
+    getIconColor,
+    emailIsInvalid,
+    nameIsInvalid,
+    passAndConfPassAreDiff,
+    passIsInvalid,
+    timer
 }
