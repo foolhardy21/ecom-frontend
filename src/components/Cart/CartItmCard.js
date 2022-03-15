@@ -1,8 +1,11 @@
 import { useCart } from "../../contexts/cart.context"
+import { useTheme } from "../../contexts/theme.context"
+import { getBorderColor } from "../../utils/theme.util"
 import { Button, Card, Image, Input, Text } from "../Reusable"
 
 const CartItmCard = ({ item: { id, name, company, img: { srcSet, alt, sizes }, quantity, size, price, offerPrice } }) => {
     const { cartDispatch } = useCart()
+    const { theme } = useTheme()
 
     return (
 
@@ -14,13 +17,13 @@ const CartItmCard = ({ item: { id, name, company, img: { srcSet, alt, sizes }, q
 
                 <div className="flx">
 
-                    <Text classes='txt-md txt-ucase txt-primary mg-right-s'>{company}</Text>
+                    <Text classes='txt-md txt-ucase mg-right-s'>{company}</Text>
 
-                    <Text classes='txt-md txt-cap txt-primary'>{name}</Text>
+                    <Text classes='txt-md txt-cap'>{name}</Text>
 
                 </div>
 
-                <Text classes='txt-md txt-ucase txt-primary mg-top-s'>{`UK ${size}`}</Text>
+                <Text classes='txt-md txt-ucase mg-top-s'>{`UK ${size}`}</Text>
 
 
 
@@ -30,7 +33,7 @@ const CartItmCard = ({ item: { id, name, company, img: { srcSet, alt, sizes }, q
                         offerPrice && <Text classes='txt-md txt-cap txt-off-secondary txt-cut'>{`rs. ${offerPrice}`}</Text>
                     }
 
-                    <Text classes='txt-md txt-cap txt-primary'>{`rs. ${price}`}</Text>
+                    <Text classes='txt-md txt-cap'>{`rs. ${price}`}</Text>
 
                 </div>
 
@@ -41,21 +44,21 @@ const CartItmCard = ({ item: { id, name, company, img: { srcSet, alt, sizes }, q
 
                 <div className='flx flx-min-center mg-top-xs'>
 
-                    <Text classes='txt-md txt-cap txt-primary mg-right-xs'>quantity:</Text>
+                    <Text classes='txt-md txt-cap mg-right-xs'>quantity:</Text>
 
-                    <Button onClick={() => cartDispatch({ type: 'DECREASE', payload: id })} classes='btn-outlined b-solid b-primary txt-md txt-primary bg-primary pd-left-xs pd-right-xs'>-</Button>
+                    <Button onClick={() => cartDispatch({ type: 'DECREASE', payload: id })} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-md pd-left-xs pd-right-xs`}>-</Button>
 
-                    <Input type='number' classes='txt-md input-s bg-primary pd-left-xs' placeholder={quantity} />
+                    <Input type='number' classes={`txt-md input-s pd-left-xs`} placeholder={quantity} />
 
-                    <Button onClick={() => cartDispatch({ type: 'INCREASE', payload: id })} classes='btn-outlined b-solid b-primary txt-md txt-primary bg-primary pd-left-xs pd-right-xs'>+</Button>
+                    <Button onClick={() => cartDispatch({ type: 'INCREASE', payload: id })} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-md pd-left-xs pd-right-xs`}>+</Button>
 
                 </div>
 
                 <footer className="flx flx-column mg-top-md">
 
-                    <Button onClick={() => cartDispatch({ type: 'REMOVE', payload: id })} classes='btn-txt bg-primary txt-primary txt-cap txt-md pd-xs'>remove from cart</Button>
+                    <Button onClick={() => cartDispatch({ type: 'REMOVE', payload: id })} classes={`btn-txt ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-cap txt-md pd-xs`}>remove from cart</Button>
 
-                    <Button classes='btn-txt bg-primary txt-primary txt-cap txt-md pd-xs'>move to wishlist</Button>
+                    <Button classes={`btn-txt ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-cap txt-md pd-xs`}>move to wishlist</Button>
 
                 </footer>
 

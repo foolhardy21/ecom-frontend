@@ -4,3 +4,5 @@ export const getSolidBtnBgColor = theme => theme === 'dark' ? 'bg-primary' : 'bg
 export const getSolidBtnTextColor = theme => theme === 'dark' ? 'txt-primary' : 'txt-secondary'
 export const getBorderColor = theme => theme === 'light' ? 'b-primary' : 'b-secondary'
 export const getIconColor = theme => theme === 'light' ? 'icon-primary' : 'icon-secondary'
+export const getBadgeBgColor = (theme) => theme === 'light' ? 'bg-secondary' : 'bg-primary'
+export const getBadgeTextColor = (theme) => theme === 'light' ? 'txt-secondary' : 'txt-primary'

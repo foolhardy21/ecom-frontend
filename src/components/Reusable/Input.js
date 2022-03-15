@@ -8,5 +8,4 @@ const Input = ({ id, type, placeholder, classes }) => {
         <input id={id} type={type} placeholder={placeholder} className={`input ${getBgColor(theme)} ${getTextColor(theme)} ${classes}`} />
     )
 }
-
 export default Input

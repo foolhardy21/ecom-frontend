@@ -1,8 +1,11 @@
 import { useCart } from "../../contexts/cart.context"
+import { useTheme } from "../../contexts/theme.context"
+import { getBadgeBgColor, getBadgeTextColor } from "../../utils/theme.util"
 import { Header, NavBar, Icon, Text, Button } from "../Reusable"
 
 const CardHeader = () => {
     const { getTotalItems } = useCart()
+    const { theme, toggleTheme } = useTheme()
 
     return (
 
@@ -16,7 +19,7 @@ const CardHeader = () => {
 
                 <div className="pos-relative mg-right-lg">
 
-                    <div className="badge-size-md pos-absolute bl-70 txt-md txt-secondary bg-secondary brd-full flx flx-center">
+                    <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
                         {getTotalItems()}
                     </div>
 
@@ -30,15 +33,20 @@ const CardHeader = () => {
                     shopping_cart
                 </Icon>
 
-                <Button classes='btn-txt txt-primary bg-primary txt-lcase txt-md pd-xs'>
+                <Button classes={`btn-txt ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-lcase txt-md pd-xs`}>
                     logout
                 </Button>
 
             </NavBar>
 
-            <Icon>
-                bedtime
-            </Icon>
+            <Button onClick={toggleTheme} classes='btn-txt pd-xs'>
+
+                <Icon>
+                    {
+                        theme === 'light' ? 'bedtime' : 'light_mode'
+                    }
+                </Icon>
+            </Button>
 
         </Header>
 
