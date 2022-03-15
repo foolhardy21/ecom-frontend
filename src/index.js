@@ -1,18 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { CartProvider, WishlistProvider, ThemeProvider, ProductsProvider } from './contexts';
-import './stylesheet/style.css'
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import { makeServer } from "./server";
+
+// Call make Server
+makeServer();
 
 ReactDOM.render(
-  <ThemeProvider>
-    <ProductsProvider>
-      <CartProvider>
-        <WishlistProvider>
-          <App />
-        </WishlistProvider>
-      </CartProvider>
-    </ProductsProvider>
-  </ThemeProvider>,
-  document.getElementById('root')
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
 );

@@ -1,30 +1,17 @@
-import { Signup, Cart, Home, Wishlist, Products, Login } from "./pages";
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MockMan from "mockman-js";
 
-const App = () => {
-
+function App() {
   return (
+
     <BrowserRouter>
       <Routes>
-
-        <Route path='/' element={<Home />} />
-
-        <Route path='/products' element={<Products />} />
-
-        <Route path='/cart' element={<Cart />} />
-
-        <Route path='/wishlist' element={<Wishlist />} />
-
-        <Route path='/signup' element={<Signup />} />
-
-        <Route path='/login' element={<Login />} />
-
-
+        <Route path='/mock' element={<MockMan />} />
       </Routes>
     </BrowserRouter>
 
-  )
-
+  );
 }
 
 export default App;
