@@ -1,9 +1,8 @@
-
-const Section = (props) => {
+const Section = ({ id, classes, children }) => {
 
     return (
-        <section id={props.id} className={props.classes}>
-            {props.children}
+        <section id={id} className={classes}>
+            {children}
         </section>
     )
 }

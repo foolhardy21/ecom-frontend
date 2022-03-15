@@ -5,7 +5,7 @@ const Header = ({ children }) => {
     const { theme } = useTheme()
 
     return (
-        <header id="pg-header" className={`flx flx-maj-even flx-min-center pd-top-md pd-btm-md ${getBgColor(theme)}`}>
+        <header id="pg-header" className={`${getBgColor(theme)} flx flx-maj-even flx-min-center pd-top-md pd-btm-md`}>
             {children}
         </header>
     )

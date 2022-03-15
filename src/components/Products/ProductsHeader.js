@@ -1,18 +1,25 @@
 import { useState } from "react"
-import { useTheme } from "../../contexts"
+import { useCart, useTheme, useWishlist } from "../../contexts"
 import { Button, Header, Icon, Input, NavBar, Text } from "../Reusable"
-import { getIconColor } from '../../utils'
+import { getIconColor, getTotalCartItems, getTotalWishlistItems, getBadgeBgColor, getBadgeTextColor } from '../../utils'
+import { Link } from 'react-router-dom'
 
 const ProductsHeader = () => {
     const [isSmallNavVisible, setSmallNavVisible] = useState(false)
     const { theme, toggleTheme } = useTheme()
+    const { wishlistState } = useWishlist()
+    const { cartState } = useCart()
+
+    function toggleNavVisibility() {
+        setSmallNavVisible(!isSmallNavVisible)
+    }
 
     return (
         <Header>
 
             <Text classes="txt-lg txt-primary txt-ucase">sneakerstore</Text>
 
-            <div id="searchbar-pg" className="flx">
+            <div id="pg-searchbar" className="flx">
 
                 <Input id="input-search" type="text" placeholder="Search" classes="input-s bg-primary txt-md pd-xs" />
 
@@ -22,56 +29,125 @@ const ProductsHeader = () => {
 
             </div>
 
-            <NavBar id='nav-big' classes='flx flx-min-center'>
+            <NavBar id='nav-big'>
 
-                <Icon classes={`${getIconColor(theme)} mg-right-s`}>
-                    person
-                </Icon>
+                <Link to='/products'>
+                    <Button classes='btn-txt txt-primary txt-md txt-lcase mg-right-lg bg-primary'>
+                        browse
+                    </Button>
+                </Link>
 
-                <Icon classes={`${getIconColor(theme)} mg-right-s`}>
-                    favorite
-                </Icon>
+                <div className="pos-relative mg-right-lg">
 
-                <Icon classes={`${getIconColor(theme)}`}>
-                    shopping_cart
-                </Icon>
+                    {
+                        wishlistState.length > 0 &&
+                        <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
+                            {getTotalWishlistItems(wishlistState)}
+                        </div>
+                    }
+
+                    <Link to='/wishlist'>
+                        <Icon classes='icon-primary mg-right-s'>
+                            favorite
+                        </Icon>
+                    </Link>
+
+                </div>
+
+                <div className="pos-relative mg-right-lg">
+
+                    {
+                        cartState.length > 0 &&
+                        <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
+                            {getTotalCartItems(cartState)}
+                        </div>
+                    }
+
+                    <Link to='/cart'>
+                        <Icon classes='icon-primary mg-right-s'>
+                            shopping_cart
+                        </Icon>
+                    </Link>
+
+                </div>
+
+                <Button classes='btn-txt txt-lcase txt-primary bg-primary pd-xs txt-md'>
+                    logout
+                </Button>
 
             </NavBar>
 
-            <div className="pos-relative mg-top-s mg-btm-s">
-                <Button onClick={() => setSmallNavVisible(true)} classes='btn-txt bg-primary'>
+            <div className='pos-relative'>
 
-                    <Icon id='btn-ham' classes={`${getIconColor(theme)}`}>
+                <Button id='btn-ham' onClick={toggleNavVisibility} classes='btn-txt bg-primary'>
+
+                    <Icon classes='icon-primary'>
                         menu
                     </Icon>
 
                 </Button>
 
-                <NavBar id='nav-small' style={{
-                    display: isSmallNavVisible ? 'flex' : 'none'
-                }} classes='bg-primary flx flx-column flx-center pos-absolute tl-0 z-10 b-solid pd-s'>
+                {
+                    isSmallNavVisible &&
+                    <NavBar id='nav-small' classes='flx-column flx-center pd-lg bg-primary pos-absolute z-10 tl-0'>
 
-                    <Button onClick={() => setSmallNavVisible(false)} classes='btn-txt bg-primary'>
+                        <Button onClick={toggleNavVisibility} classes='btn-txt bg-primary'>
 
-                        <Icon id='btn-close-small' classes={`${getIconColor(theme)} mg-btm-lg`}>
-                            close
-                        </Icon>
+                            <Icon classes='icon-primary'>
+                                close
+                            </Icon>
 
-                    </Button>
+                        </Button>
 
-                    <Icon classes={`${getIconColor(theme)} mg-btm-s`}>
-                        person
-                    </Icon>
+                        <Link to='/products'>
 
-                    <Icon classes={`${getIconColor(theme)} mg-btm-s`}>
-                        favorite
-                    </Icon>
+                            <Button classes='btn-txt txt-primary txt-md txt-lcase bg-primary'>
+                                browse
+                            </Button>
 
-                    <Icon classes={`${getIconColor(theme)} mg-btm-s`}>
-                        shopping_cart
-                    </Icon>
+                        </Link>
 
-                </NavBar>
+                        <div className="pos-relative mg-top-md">
+
+                            {
+                                wishlistState.length > 0 &&
+                                <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
+                                    {getTotalWishlistItems(wishlistState)}
+                                </div>
+                            }
+
+                            <Link to='/wishlist'>
+                                <Icon classes='icon-primary'>
+                                    favorite
+                                </Icon>
+                            </Link>
+
+                        </div>
+
+                        <div className="pos-relative mg-top-md">
+
+                            {
+                                cartState.length > 0 &&
+                                <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
+                                    {getTotalCartItems(cartState)}
+                                </div>
+                            }
+
+                            <Link to='/cart'>
+                                <Icon classes='icon-primary'>
+                                    shopping_cart
+                                </Icon>
+                            </Link>
+
+                        </div>
+
+                        <Button classes='btn-txt txt-lcase txt-primary bg-primary txt-md mg-top-md'>
+                            logout
+                        </Button>
+
+                    </NavBar>
+
+                }
 
             </div>
 
