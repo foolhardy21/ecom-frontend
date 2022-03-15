@@ -20,7 +20,6 @@ const SignupCard = () => {
             <Link to='/login'>
                 <Button classes={`btn-outlined ${getBorderColor(theme)} ${getTextColor(theme)} b-solid txt-md flx flx-center txt-cap pd-xs mg-top-xs`}>
                     already have an account
-
                     <Icon>
                         chevron_right
                     </Icon>

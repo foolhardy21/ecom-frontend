@@ -138,7 +138,7 @@ const SignupHeader = () => {
                         </div>
 
                         <Link to='/login'>
-                            <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md mg-top-md`}>
+                            <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
                                 login
                             </Button>
                         </Link>
@@ -147,7 +147,7 @@ const SignupHeader = () => {
 
                 }
 
-            </div>
+            </div >
 
             <Button onClick={toggleTheme} classes='btn-txt pd-xs'>
 
@@ -158,7 +158,7 @@ const SignupHeader = () => {
                 </Icon>
             </Button>
 
-        </Header>
+        </Header >
     )
 }
 

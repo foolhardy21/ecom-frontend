@@ -1,11 +1,12 @@
 import { useState } from "react"
 import axios from "axios"
 import { Form, Input, Label, Button, Text } from "../Reusable"
-import { getSolidBtnTextColor, getSolidBtnBgColor, timer, emailIsInvalid, nameIsInvalid, passIsInvalid, passAndConfPassAreDiff } from "../../utils"
-import { useTheme } from '../../contexts'
+import { getSolidBtnTextColor, getSolidBtnBgColor, emailIsInvalid, nameIsInvalid, passIsInvalid, passAndConfPassAreDiff } from "../../utils"
+import { useNotification, useTheme } from '../../contexts'
 
 const SignupForm = () => {
     const { theme } = useTheme()
+    const { setNotification } = useNotification()
     const [enteredInfo, setEnteredInfo] = useState({
         email: '',
         firstName: '',
@@ -70,19 +71,34 @@ const SignupForm = () => {
     }
 
     async function signUpUser() {
-        const response = await axios.post('/api/auth/signup', {
-            email: enteredInfo.email,
-            password: enteredInfo.password,
-            firstName: enteredInfo.firstName,
-            lastName: enteredInfo.lastName,
-        })
-        console.log(response.data)
+        try {
+            const response = await axios.post('/api/auth/signup', {
+                email: enteredInfo.email,
+                password: enteredInfo.password,
+                firstName: enteredInfo.firstName,
+                lastName: enteredInfo.lastName,
+            })
+            setNotification('signed up successfully.')
+            setTimeout(() => setNotification(''), 3000)
+            console.log(response.data)
+        } catch (e) {
+            setNotification('user already exist. proceed to login.')
+            setTimeout(() => setNotification(''), 3000)
+            console.log(e)
+        }
     }
     function handleSignupSubmit(e) {
         e.preventDefault()
 
         if (!validateEnteredInfo()) {
             signUpUser()
+            setEnteredInfo({
+                email: '',
+                firstName: '',
+                lastName: '',
+                password: '',
+                confirmedPassword: ''
+            })
         }
 
     }

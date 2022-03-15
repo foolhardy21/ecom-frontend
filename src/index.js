@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
-import { ThemeProvider } from './contexts'
+import { ThemeProvider, NotificationProvider } from './contexts'
 
 // Call make Server
 makeServer();
@@ -11,7 +11,9 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider>
-      <App />
+      <NotificationProvider>
+        <App />
+      </NotificationProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
