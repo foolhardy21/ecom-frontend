@@ -1,9 +1,11 @@
-import { cartItmArr } from "../../data/index"
+// import { cartItmArr } from "../../data/index"
+import { useCart } from "../../contexts/cart.context"
 import { Section } from "../Reusable"
 import { CartItmCard } from "./"
 import CartReceiptCard from "./CartReceiptCard"
 
 const CartSection = () => {
+    const { cartState } = useCart()
 
     return (
 
@@ -12,7 +14,7 @@ const CartSection = () => {
             <Section id="section-cartitm" classes="flx flx-column mg-right-s">
 
                 {
-                    cartItmArr.map(itm => <CartItmCard key={itm.id} item={itm} />)
+                    cartState.map(itm => <CartItmCard key={itm.id} item={itm} />)
                 }
 
             </Section>

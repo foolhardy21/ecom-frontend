@@ -1,7 +1,8 @@
-import { cartItmArr } from "../../data"
+import { useCart } from "../../contexts/cart.context"
 import { Button, Card, Main, Text } from "../Reusable"
 
 const CartReceiptCard = () => {
+    const { getTotalPrice, getCartTotal, getTotalDiscount } = useCart()
 
     return (
 
@@ -18,7 +19,7 @@ const CartReceiptCard = () => {
                     <Text classes="txt-cap txt-primary txt-md mg-right-md">order total</Text>
 
                     <Text class="txt-cap txt-primary txt-md">{`
-                    rs. ${cartItmArr.reduce((prev, curr) => prev + curr.price, 0)}
+                    rs. ${getTotalPrice()}
                     `}</Text>
 
                 </div>
@@ -28,7 +29,7 @@ const CartReceiptCard = () => {
                     <Text classes="txt-cap txt-primary txt-md mg-right-md">order discount</Text>
 
                     <Text classes="txt-cap txt-success txt-md">{
-                        `-rs. ${cartItmArr.reduce((prev, curr) => curr.offerPrice ? prev + (curr.price - curr.offerPrice) : prev, 0)}`
+                        `-rs. ${getTotalDiscount()}`
                     }</Text>
 
                 </div>
@@ -45,7 +46,7 @@ const CartReceiptCard = () => {
 
                     <Text classes="txt-cap txt-primary txt-md mg-right-md">total amount</Text>
 
-                    <Text classes="txt-cap txt-primary txt-md">{`rs. ${cartItmArr.reduce((prev, curr) => curr.offerPrice ? prev + curr.offerPrice : prev + curr.price, 0)}`}</Text>
+                    <Text classes="txt-cap txt-primary txt-md">{`rs. ${getCartTotal()}`}</Text>
 
                 </div>
 
