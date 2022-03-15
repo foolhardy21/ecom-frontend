@@ -1,10 +1,18 @@
 import { WishlistHeader, WishlistSection } from './index'
 import { Main, Text } from '../Reusable/index'
+import { getBgColor } from '../../utils/theme.util'
+import { useTheme } from '../../contexts/theme.context'
 
 const Wishlist = () => {
+    const { theme } = useTheme()
 
     return (
-        <div>
+        <div
+            style={{
+                minHeight: '100vh'
+            }}
+            className={`${getBgColor(theme)}`}
+        >
 
             <WishlistHeader />
 
