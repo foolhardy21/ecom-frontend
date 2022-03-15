@@ -1,5 +1,7 @@
-import { Login } from "./components/Login";
-import Signup from './components/Signup/Signup';
+import { Signup } from './components/Signup';
+import { Login } from './components/Login';
+import { ProductsPg } from "./components/Products";
+import { Cart } from "./components/Cart";
 
 const App = () => {
 
@@ -7,8 +9,12 @@ const App = () => {
     <>
       <Login />
       <Signup />
+      <ProductsPg />
+      <Cart />
+
     </>
   );
+
 }
 
 export default App;
