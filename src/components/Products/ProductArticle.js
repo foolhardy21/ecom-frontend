@@ -73,23 +73,23 @@ const ProductArticle = ({ prd }) => {
 
             <div className='dis-inblock'>
 
-                <Icon id='star-icon' classes={`${rating >= 1 ? 'txt-warn' : 'txt-off-secondary'}`}>
+                <Icon classes={`${rating >= 1 ? 'txt-warn' : 'txt-off-secondary'}`}>
                     star
                 </Icon>
 
-                <Icon id='star-icon' classes={`${rating >= 2 ? 'txt-warn' : 'txt-off-secondary'}`}>
+                <Icon classes={`${rating >= 2 ? 'txt-warn' : 'txt-off-secondary'}`}>
                     star
                 </Icon>
 
-                <Icon id='star-icon' classes={`${rating >= 3 ? 'txt-warn' : 'txt-off-secondary'}`} >
+                <Icon classes={`${rating >= 3 ? 'txt-warn' : 'txt-off-secondary'}`} >
                     star
                 </Icon>
 
-                <Icon id='star-icon' classes={`${rating >= 4 ? 'txt-warn' : 'txt-off-secondary'}`} >
+                <Icon classes={`${rating >= 4 ? 'txt-warn' : 'txt-off-secondary'}`} >
                     star
                 </Icon>
 
-                <Icon id='star-icon' classes={`${rating >= 5 ? 'txt-warn' : 'txt-off-secondary'}`} >
+                <Icon classes={`${rating >= 5 ? 'txt-warn' : 'txt-off-secondary'}`} >
                     star
                 </Icon>
 

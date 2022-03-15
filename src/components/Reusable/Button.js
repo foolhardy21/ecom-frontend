@@ -1,12 +1,12 @@
 import { useTheme } from "../../contexts/theme.context"
 import { getTextColor } from "../../utils/theme.util"
 
-const Button = (props) => {
+const Button = ({ id, onClick, classes, children }) => {
     const { theme } = useTheme()
 
     return (
-        <button id={props.id} onClick={props.onClick} className={`${getTextColor(theme)} ${props.classes}`}>
-            {props.children}
+        <button id={id} onClick={onClick} className={`${getTextColor(theme)} ${classes}`}>
+            {children}
         </button>
     )
 }

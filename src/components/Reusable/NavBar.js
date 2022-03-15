@@ -1,8 +1,8 @@
-const NavBar = (props) => {
+const NavBar = ({ id, style, classes, children }) => {
 
     return (
-        <nav id={props.id} style={props.style} className={props.classes}>
-            {props.children}
+        <nav id={id} style={style} className={classes}>
+            {children}
         </nav>
     )
 }
