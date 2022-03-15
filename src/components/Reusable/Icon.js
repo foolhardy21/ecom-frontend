@@ -1,15 +1,8 @@
-import { useTheme } from "../../contexts/theme.context"
-import { getIconColor } from "../../utils"
-
 const Icon = (props) => {
-    const { theme } = useTheme()
 
     return (
-
-        <span className={`material-icons ${getIconColor(theme)} ${props.classes}`}>
-
+        <span id={props.id} className={`material-icons ${props.classes}`}>
             {props.children}
-
         </span>
     )
 }
