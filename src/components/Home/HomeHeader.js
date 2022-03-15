@@ -1,31 +1,38 @@
 import { Button, Header, Icon, NavBar, Text } from "../Reusable"
+import { Link } from 'react-router-dom'
 
 const HomeHeader = () => {
 
     return (
         <Header>
 
-            <Text classes="txt-ucase txt-primary txt-lg">
-                sneakerstore
-            </Text>
+            <Link to='/'>
+                <Text classes="txt-ucase txt-primary txt-lg">
+                    sneakerstore
+                </Text>
+            </Link>
 
             <NavBar>
 
-                <Icon classes='icon-primary mg-right-s'>
-                    favorite
-                </Icon>
+                <Link to='/wishlist'>
+                    <Icon classes='icon-primary mg-right-s'>
+                        favorite
+                    </Icon>
+                </Link>
 
-                <Icon classes='icon-primary mg-right-s'>
-                    shopping_cart
-                </Icon>
+                <Link to='/cart'>
+                    <Icon classes='icon-primary mg-right-s'>
+                        shopping_cart
+                    </Icon>
+                </Link>
 
                 <Button classes='btn-txt txt-lcase txt-primary bg-primary pd-xs txt-md'>
-                    login
+                    logout
                 </Button>
 
             </NavBar>
 
-            <Icon id="btn-theme" classes="icon-primary pd-s">
+            <Icon classes="icon-primary pd-xs">
                 bedtime
             </Icon>
 

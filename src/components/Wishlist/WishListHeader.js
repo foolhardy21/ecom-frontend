@@ -1,7 +1,7 @@
-import { useTheme } from "../../contexts/theme.context";
-import { useWishlist } from "../../contexts/wishlist.context";
-import { getBadgeBgColor, getBadgeTextColor } from "../../utils/theme.util";
+import { useTheme, useWishlist } from "../../contexts";
+import { getBadgeBgColor, getBadgeTextColor } from "../../utils";
 import { Header, NavBar, Text, Icon, Button } from "../Reusable/index";
+import { Link } from 'react-router-dom'
 
 const WishlistHeader = () => {
     const { theme, toggleTheme } = useTheme()
@@ -11,9 +11,11 @@ const WishlistHeader = () => {
 
         <Header>
 
-            <Text classes='txt-ucase txt-primary txt-lg'>
-                sneakerstore
-            </Text>
+            <Link to='/'>
+                <Text classes='txt-ucase txt-primary txt-lg'>
+                    sneakerstore
+                </Text>
+            </Link>
 
             <NavBar>
 
@@ -27,15 +29,19 @@ const WishlistHeader = () => {
                         </div>
                     }
 
-                    <Icon classes='icon-primary'>
-                        favorite
-                    </Icon>
+                    <Link to='/wishlist'>
+                        <Icon classes='icon-primary'>
+                            favorite
+                        </Icon>
+                    </Link>
+
                 </div>
 
-
-                <Icon classes='icon-primary mg-right-s'>
-                    shopping_cart
-                </Icon>
+                <Link to='/cart'>
+                    <Icon classes='icon-primary mg-right-s'>
+                        shopping_cart
+                    </Icon>
+                </Link>
 
                 <Button classes='btn-txt txt-lcase txt-primary bg-primary pd-xs txt-md'>
                     logout

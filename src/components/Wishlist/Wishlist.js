@@ -1,7 +1,8 @@
 import { WishlistHeader, WishlistSection } from './index'
 import { Main, Text } from '../Reusable/index'
-import { getBgColor } from '../../utils/theme.util'
-import { useTheme } from '../../contexts/theme.context'
+import { getBgColor } from '../../utils'
+import { useTheme } from '../../contexts'
+import './wishlist.css'
 
 const Wishlist = () => {
     const { theme } = useTheme()
