@@ -66,9 +66,11 @@ const WishlistHeader = () => {
 
                 </div>
 
-                <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
-                    logout
-                </Button>
+                <Link to='/login'>
+                    <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
+                        logout
+                    </Button>
+                </Link>
 
             </NavBar>
 
@@ -136,9 +138,11 @@ const WishlistHeader = () => {
 
                         </div>
 
-                        <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md mg-top-md`}>
-                            logout
-                        </Button>
+                        <Link to='/login'>
+                            <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md mg-top-md`}>
+                                logout
+                            </Button>
+                        </Link>
 
                     </NavBar>
 

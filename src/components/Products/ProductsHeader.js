@@ -74,10 +74,11 @@ const ProductsHeader = () => {
                     </Link>
 
                 </div>
-
-                <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
-                    login
-                </Button>
+                <Link to='/login'>
+                    <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
+                        login
+                    </Button>
+                </Link>
 
             </NavBar>
 
@@ -145,9 +146,11 @@ const ProductsHeader = () => {
 
                         </div>
 
-                        <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md mg-top-md`}>
-                            login
-                        </Button>
+                        <Link to='/login'>
+                            <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md mg-top-md`}>
+                                login
+                            </Button>
+                        </Link>
 
                     </NavBar>
 
