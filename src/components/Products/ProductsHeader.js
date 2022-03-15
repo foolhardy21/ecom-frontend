@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useCart, useTheme, useWishlist } from "../../contexts"
 import { Button, Header, Icon, Input, NavBar, Text } from "../Reusable"
-import { getIconColor, getTotalCartItems, getTotalWishlistItems, getBadgeBgColor, getBadgeTextColor } from '../../utils'
+import { getIconColor, getBgColor, getTextColor, getTotalCartItems, getTotalWishlistItems, getBadgeBgColor, getBadgeTextColor } from '../../utils'
 import { Link } from 'react-router-dom'
 
 const ProductsHeader = () => {
@@ -17,7 +17,11 @@ const ProductsHeader = () => {
     return (
         <Header>
 
-            <Text classes="txt-lg txt-primary txt-ucase">sneakerstore</Text>
+            <Link to='/'>
+                <Text classes='txt-lg txt-ucase'>
+                    sneakerstore
+                </Text>
+            </Link>
 
             <div id="pg-searchbar" className="flx">
 
@@ -32,7 +36,7 @@ const ProductsHeader = () => {
             <NavBar id='nav-big'>
 
                 <Link to='/products'>
-                    <Button classes='btn-txt txt-primary txt-md txt-lcase mg-right-lg bg-primary'>
+                    <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-lcase mg-right-lg bg-primary`}>
                         browse
                     </Button>
                 </Link>
@@ -47,7 +51,7 @@ const ProductsHeader = () => {
                     }
 
                     <Link to='/wishlist'>
-                        <Icon classes='icon-primary mg-right-s'>
+                        <Icon classes={`${getIconColor(theme)} mg-right-s`}>
                             favorite
                         </Icon>
                     </Link>
@@ -64,14 +68,14 @@ const ProductsHeader = () => {
                     }
 
                     <Link to='/cart'>
-                        <Icon classes='icon-primary mg-right-s'>
+                        <Icon classes={`${getIconColor(theme)} mg-right-s`}>
                             shopping_cart
                         </Icon>
                     </Link>
 
                 </div>
 
-                <Button classes='btn-txt txt-lcase txt-primary bg-primary pd-xs txt-md'>
+                <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
                     logout
                 </Button>
 
@@ -79,9 +83,9 @@ const ProductsHeader = () => {
 
             <div className='pos-relative'>
 
-                <Button id='btn-ham' onClick={toggleNavVisibility} classes='btn-txt bg-primary'>
+                <Button id='btn-ham' onClick={toggleNavVisibility} classes='btn-txt'>
 
-                    <Icon classes='icon-primary'>
+                    <Icon classes={getIconColor(theme)}>
                         menu
                     </Icon>
 
@@ -89,11 +93,11 @@ const ProductsHeader = () => {
 
                 {
                     isSmallNavVisible &&
-                    <NavBar id='nav-small' classes='flx-column flx-center pd-lg bg-primary pos-absolute z-10 tl-0'>
+                    <NavBar id='nav-small' classes={`flx-column flx-center pd-lg ${getBgColor(theme)} pos-absolute z-index tl-0`}>
 
-                        <Button onClick={toggleNavVisibility} classes='btn-txt bg-primary'>
+                        <Button onClick={toggleNavVisibility} classes='btn-txt'>
 
-                            <Icon classes='icon-primary'>
+                            <Icon classes={getIconColor(theme)}>
                                 close
                             </Icon>
 
@@ -101,7 +105,7 @@ const ProductsHeader = () => {
 
                         <Link to='/products'>
 
-                            <Button classes='btn-txt txt-primary txt-md txt-lcase bg-primary'>
+                            <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-lcase`}>
                                 browse
                             </Button>
 
@@ -117,7 +121,7 @@ const ProductsHeader = () => {
                             }
 
                             <Link to='/wishlist'>
-                                <Icon classes='icon-primary'>
+                                <Icon classes={getIconColor(theme)}>
                                     favorite
                                 </Icon>
                             </Link>
@@ -134,14 +138,14 @@ const ProductsHeader = () => {
                             }
 
                             <Link to='/cart'>
-                                <Icon classes='icon-primary'>
+                                <Icon classes={getIconColor(theme)}>
                                     shopping_cart
                                 </Icon>
                             </Link>
 
                         </div>
 
-                        <Button classes='btn-txt txt-lcase txt-primary bg-primary txt-md mg-top-md'>
+                        <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md mg-top-md`}>
                             logout
                         </Button>
 
@@ -151,12 +155,13 @@ const ProductsHeader = () => {
 
             </div>
 
-            <Button onClick={toggleTheme} classes='btn-txt bg-primary pd-xs'>
+            <Button onClick={toggleTheme} classes='btn-txt pd-xs'>
 
-                <Icon classes={`${getIconColor(theme)}`}>
-                    {`${theme === 'light' ? 'bedtime' : 'light_mode'} `}
+                <Icon classes={getIconColor(theme)}>
+                    {
+                        theme === 'light' ? 'bedtime' : 'light_mode'
+                    }
                 </Icon>
-
             </Button>
 
         </Header>

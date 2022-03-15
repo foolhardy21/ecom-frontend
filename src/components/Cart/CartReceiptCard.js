@@ -1,6 +1,6 @@
 import { useCart, useTheme } from "../../contexts"
 import { Button, Card, Main, Text } from "../Reusable"
-import { getTotalDiscount, getTotalPrice, getCartTotal } from "../../utils"
+import { getTotalDiscount, getTotalPrice, getCartTotal, getSolidBtnBgColor, getSolidBtnTextColor } from "../../utils"
 
 const CartReceiptCard = () => {
     const { cartState } = useCart()
@@ -57,7 +57,7 @@ const CartReceiptCard = () => {
             <footer className='mg-top-md flx flx-column'>
                 {
                     cartState.length > 0 &&
-                    <Button classes={`btn-solid ${theme === 'light' ? 'txt-secondary bg-secondary' : 'txt-primary bg-primary'} txt-md txt-ucase pd-xs`}>place order</Button>
+                    <Button classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-ucase pd-xs`}>place order</Button>
                 }
             </footer>
 

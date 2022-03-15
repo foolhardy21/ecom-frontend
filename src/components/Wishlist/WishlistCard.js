@@ -1,8 +1,10 @@
 import { Text, Button, Card, Image } from "../Reusable/index";
-import { useWishlist } from "../../contexts";
+import { useTheme, useWishlist } from "../../contexts";
+import { getSolidBtnBgColor, getSolidBtnTextColor } from "../../utils";
 
 const WishlistCard = ({ item }) => {
     const { wishlistDispatch } = useWishlist()
+    const { theme } = useTheme()
 
     const {
         id,
@@ -38,24 +40,24 @@ const WishlistCard = ({ item }) => {
 
             <footer className='flx flx-column mg-top-xs pd-left-s pd-right-s'>
 
-                <Text classes='txt-md txt-ucase txt-primary mg-btm-xs'>
+                <Text classes='txt-md txt-ucase mg-btm-xs'>
                     {company}
                 </Text>
 
-                <Text classes='txt-md txt-cap txt-primary mg-btm-s'>
+                <Text classes='txt-md txt-cap mg-btm-s'>
                     {name}
                 </Text>
 
                 <div className="flx">
 
 
-                    <Text classes={`txt-md txt-cap ${offerPrice ? 'txt-cut txt-off-secondary' : 'txt-primary'}`}>
+                    <Text classes={`txt-md txt-cap ${offerPrice && 'txt-cut txt-off-secondary'}`}>
                         {`rs. ${price}`}
                     </Text>
 
                     {
                         offerPrice &&
-                        <Text classes='txt-md txt-cap txt-primary'>
+                        <Text classes='txt-md txt-cap'>
                             {`rs. ${offerPrice}`}
                         </Text>
                     }
@@ -70,7 +72,7 @@ const WishlistCard = ({ item }) => {
 
             </footer>
 
-            <Button classes='btn-solid txt-secondary bg-secondary txt-md txt-cap pd-xs mg-top-s'>
+            <Button classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-cap pd-xs mg-top-s`}>
                 move to cart
             </Button>
 

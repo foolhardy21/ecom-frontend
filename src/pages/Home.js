@@ -1,12 +1,15 @@
 import { HomeHeader, CategorySection } from "../components/Home"
-import { heroImgArr } from "../data"
 import { Image, Text } from "../components/Reusable"
+import { heroImgArr } from "../data"
+import { useTheme } from "../contexts"
+import { getBgColor } from "../utils"
 import '../components/Home/home.css'
 
 const Home = () => {
+    const { theme } = useTheme()
 
     return (
-        <div>
+        <div className={getBgColor(theme)}>
             <HomeHeader />
 
             <Image srcSet={heroImgArr[2].srcSet} sizes={heroImgArr[2].sizes} alt={heroImgArr[2].alt}

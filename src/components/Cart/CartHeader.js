@@ -1,5 +1,5 @@
 import { useCart, useWishlist, useTheme } from "../../contexts"
-import { getBadgeBgColor, getBadgeTextColor, getTotalCartItems, getTotalWishlistItems } from "../../utils"
+import { getBadgeBgColor, getBadgeTextColor, getBgColor, getIconColor, getTextColor, getTotalCartItems, getTotalWishlistItems } from "../../utils"
 import { Header, NavBar, Icon, Text, Button } from "../Reusable"
 import { Link } from 'react-router-dom'
 import { useState } from "react"
@@ -19,7 +19,7 @@ const CardHeader = () => {
         <Header>
 
             <Link to='/'>
-                <Text classes='txt-lg txt-primary txt-ucase'>
+                <Text classes='txt-lg txt-ucase'>
                     sneakerstore
                 </Text>
             </Link>
@@ -27,7 +27,7 @@ const CardHeader = () => {
             <NavBar id='nav-big'>
 
                 <Link to='/products'>
-                    <Button classes='btn-txt txt-primary txt-md txt-lcase mg-right-lg bg-primary'>
+                    <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-lcase mg-right-lg bg-primary`}>
                         browse
                     </Button>
                 </Link>
@@ -42,7 +42,7 @@ const CardHeader = () => {
                     }
 
                     <Link to='/wishlist'>
-                        <Icon classes='icon-primary mg-right-s'>
+                        <Icon classes={`${getIconColor(theme)} mg-right-s`}>
                             favorite
                         </Icon>
                     </Link>
@@ -59,14 +59,14 @@ const CardHeader = () => {
                     }
 
                     <Link to='/cart'>
-                        <Icon classes='icon-primary mg-right-s'>
+                        <Icon classes={`${getIconColor(theme)} mg-right-s`}>
                             shopping_cart
                         </Icon>
                     </Link>
 
                 </div>
 
-                <Button classes='btn-txt txt-lcase txt-primary bg-primary pd-xs txt-md'>
+                <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
                     logout
                 </Button>
 
@@ -74,9 +74,9 @@ const CardHeader = () => {
 
             <div className='pos-relative'>
 
-                <Button id='btn-ham' onClick={toggleNavVisibility} classes='btn-txt bg-primary'>
+                <Button id='btn-ham' onClick={toggleNavVisibility} classes='btn-txt'>
 
-                    <Icon classes='icon-primary'>
+                    <Icon classes={getIconColor(theme)}>
                         menu
                     </Icon>
 
@@ -84,11 +84,11 @@ const CardHeader = () => {
 
                 {
                     isSmallNavVisible &&
-                    <NavBar id='nav-small' classes='flx-column flx-center pd-lg bg-primary pos-absolute z-10 tl-0'>
+                    <NavBar id='nav-small' classes={`flx-column flx-center pd-lg ${getBgColor(theme)} pos-absolute z-index tl-0`}>
 
-                        <Button onClick={toggleNavVisibility} classes='btn-txt bg-primary'>
+                        <Button onClick={toggleNavVisibility} classes='btn-txt'>
 
-                            <Icon classes='icon-primary'>
+                            <Icon classes={getIconColor(theme)}>
                                 close
                             </Icon>
 
@@ -96,7 +96,7 @@ const CardHeader = () => {
 
                         <Link to='/products'>
 
-                            <Button classes='btn-txt txt-primary txt-md txt-lcase bg-primary'>
+                            <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-lcase`}>
                                 browse
                             </Button>
 
@@ -112,7 +112,7 @@ const CardHeader = () => {
                             }
 
                             <Link to='/wishlist'>
-                                <Icon classes='icon-primary'>
+                                <Icon classes={getIconColor(theme)}>
                                     favorite
                                 </Icon>
                             </Link>
@@ -129,14 +129,14 @@ const CardHeader = () => {
                             }
 
                             <Link to='/cart'>
-                                <Icon classes='icon-primary'>
+                                <Icon classes={getIconColor(theme)}>
                                     shopping_cart
                                 </Icon>
                             </Link>
 
                         </div>
 
-                        <Button classes='btn-txt txt-lcase txt-primary bg-primary txt-md mg-top-md'>
+                        <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md mg-top-md`}>
                             logout
                         </Button>
 
@@ -148,7 +148,7 @@ const CardHeader = () => {
 
             <Button onClick={toggleTheme} classes='btn-txt pd-xs'>
 
-                <Icon>
+                <Icon classes={getIconColor(theme)}>
                     {
                         theme === 'light' ? 'bedtime' : 'light_mode'
                     }
