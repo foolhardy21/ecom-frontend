@@ -1,4 +1,4 @@
-import { useTheme } from "../../context/theme-context"
+import { useTheme } from "../../contexts"
 import { getTextColor } from "../../utils"
 
 const Label = (props) => {

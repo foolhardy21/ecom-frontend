@@ -1,4 +1,4 @@
-import { useTheme } from "../../context/theme-context"
+import { useTheme } from "../../contexts"
 import { getBgColor, getTextColor } from "../../utils"
 
 const Input = ({ id, type, placeholder, classes }) => {

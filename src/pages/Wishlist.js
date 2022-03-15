@@ -17,7 +17,7 @@ const Wishlist = () => {
 
             <WishlistHeader />
 
-            <Main classes='flx-column pd-md'>
+            <Main classes='flx flx-column flx-center pd-md'>
 
                 <Text classes='txt-lg txt-primary txt-cap mg-btm-md'>
                     your cabinet

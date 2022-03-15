@@ -1,4 +1,4 @@
-import { Signup, Cart, Home, Wishlist, Products } from "./pages";
+import { Signup, Cart, Home, Wishlist, Products, Login } from "./pages";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const App = () => {
@@ -16,6 +16,8 @@ const App = () => {
         <Route path='/wishlist' element={<Wishlist />} />
 
         <Route path='/signup' element={<Signup />} />
+
+        <Route path='/login' element={<Login />} />
 
 
       </Routes>

@@ -65,9 +65,11 @@ const HomeHeader = () => {
 
                 </div>
 
-                <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
-                    logout
-                </Button>
+                <Link to='/login'>
+                    <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
+                        login
+                    </Button>
+                </Link>
 
             </NavBar>
 
@@ -135,9 +137,11 @@ const HomeHeader = () => {
 
                         </div>
 
-                        <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md mg-top-md`}>
-                            logout
-                        </Button>
+                        <Link to='/login'>
+                            <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md mg-top-md`}>
+                                login
+                            </Button>
+                        </Link>
 
                     </NavBar>
 

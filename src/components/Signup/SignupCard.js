@@ -1,7 +1,8 @@
 import { SignupForm } from './'
 import { Card, Text, Button, Icon } from "../Reusable"
 import { getBorderColor, getTextColor } from "../../utils"
-import { useTheme } from "../../contexts/theme.context"
+import { useTheme } from "../../contexts"
+import { Link } from 'react-router-dom'
 
 const SignupCard = () => {
     const { theme } = useTheme()
@@ -16,16 +17,17 @@ const SignupCard = () => {
 
             <SignupForm />
 
-            <Button classes={`btn-outlined ${getBorderColor(theme)} ${getTextColor(theme)} b-solid txt-md flx flx-center txt-cap pd-xs mg-top-xs`}>
-                already have an account
+            <Link to='/login'>
+                <Button classes={`btn-outlined ${getBorderColor(theme)} ${getTextColor(theme)} b-solid txt-md flx flx-center txt-cap pd-xs mg-top-xs`}>
+                    already have an account
 
-                <Icon>
-                    chevron_right
-                </Icon>
+                    <Icon>
+                        chevron_right
+                    </Icon>
+                </Button>
+            </Link>
 
-            </Button>
-
-        </Card>
+        </Card >
     )
 }
 
