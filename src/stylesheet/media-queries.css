@@ -9,7 +9,6 @@
     }
 }
 
-
 @media only screen and (max-width: 768px) {
     
     #pg-header {
@@ -20,4 +19,13 @@
         margin-top: 1rem;
         margin-bottom: 1rem;
     }
+
+    #section-cart {
+        flex-direction: column;
+    }
+
+    #section-cart > article {
+        order: -1;
+    }
+    
 }

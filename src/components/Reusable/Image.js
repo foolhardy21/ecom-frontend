@@ -1,4 +1,3 @@
-
 const Image = ({ srcSet, alt, sizes }) => {
 
     return (
