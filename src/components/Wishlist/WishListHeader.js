@@ -1,11 +1,6 @@
-import Header from "../Reusable/Header";
-import NavBar from "../Reusable/NavBar";
-import Text from "../Reusable/Text";
-import Icon from "../Reusable/Icon";
-import Button from "../Reusable/Button";
+import { Header, NavBar, Text, Icon, Button } from "../Reusable/index";
 
-
-const WishListHeader = () => {
+const WishlistHeader = () => {
 
     return (
 
@@ -44,4 +39,4 @@ const WishListHeader = () => {
     );
 }
 
-export default WishListHeader;
+export default WishlistHeader;

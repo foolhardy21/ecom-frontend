@@ -1,15 +1,12 @@
-
-import Text from "../Reusable/Text";
-import Main from "../Reusable/Main";
-import WishListHeader from "./WishListHeader";
-import WishListSection from "./WishListSection";
+import { WishlistHeader, WishlistSection } from './index'
+import { Main, Text } from '../Reusable/index'
 
 const Wishlist = () => {
 
     return (
         <div>
 
-            <WishListHeader />
+            <WishlistHeader />
 
             <Main classes='flx-column pd-md'>
 
@@ -17,7 +14,7 @@ const Wishlist = () => {
                     your cabinet
                 </Text>
 
-                <WishListSection />
+                <WishlistSection />
 
             </Main>
 
