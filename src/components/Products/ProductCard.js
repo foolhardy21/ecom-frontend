@@ -1,4 +1,7 @@
-import { Card, Icon, Image, Text } from "../Reusable"
+import axios from "axios"
+import { Card, Icon, Image, Text, Button } from "../Reusable"
+import { useNotification, useTheme } from '../../contexts'
+import { getSolidBtnBgColor, getSolidBtnTextColor, getTextColor } from "../../utils"
 
 const ProductCard = ({ prd: {
     name,
@@ -14,6 +17,76 @@ const ProductCard = ({ prd: {
     rating,
     stock
 } }) => {
+    const { theme } = useTheme()
+    const { setNotification } = useNotification()
+
+    async function handleAddToCart() {
+        const userToken = window.localStorage.getItem('userToken')
+        try {
+            const response = await axios.post('/api/user/cart', {
+                product: {
+                    name,
+                    company,
+                    size,
+                    price,
+                    offerPrice,
+                    img: {
+                        srcSet,
+                        alt,
+                        sizes
+                    },
+                    rating,
+                    stock
+                }
+            }, {
+                headers: {
+                    authorization: userToken
+                }
+            })
+            console.log('frontend', response.data)
+            setNotification('added to cart.')
+            setTimeout(() => setNotification(''), 3000)
+            // add item to cart array context
+        } catch (e) {
+            console.log(e)
+            setNotification('could not add to cart.')
+            setTimeout(() => setNotification(''), 3000)
+        }
+    }
+
+    async function handleAddToWishlist() {
+        const userToken = window.localStorage.getItem('userToken')
+        try {
+            const response = await axios.post('/api/user/wishlist', {
+                product: {
+                    name,
+                    company,
+                    size,
+                    price,
+                    offerPrice,
+                    img: {
+                        srcSet,
+                        alt,
+                        sizes
+                    },
+                    rating,
+                    stock
+                }
+            }, {
+                headers: {
+                    authorization: userToken
+                }
+            })
+            console.log('frontend', response.data)
+            setNotification('added to wishlist.')
+            setTimeout(() => setNotification(''), 3000)
+            // add item to wishlist array context
+        } catch (e) {
+            console.log(e)
+            setNotification('could not add to wishlist.')
+            setTimeout(() => setNotification(''), 3000)
+        }
+    }
 
     return (
         <Card classes="pd-xs pos-relative">
@@ -90,6 +163,14 @@ const ProductCard = ({ prd: {
                 <Icon classes={`${rating >= 5 ? 'txt-warn' : 'txt-off-secondary'}`} >
                     star
                 </Icon>
+
+            </div>
+
+            <div className="flx flx-column mg-top-xs">
+
+                <Button onClick={handleAddToCart} classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-cap pd-xs`} >add to cart</Button>
+
+                <Button onClick={handleAddToWishlist} classes={`btn-txt ${getTextColor(theme)} txt-md txt-cap pd-xs`} >add to wishlist</Button>
 
             </div>
 

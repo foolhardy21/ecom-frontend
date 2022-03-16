@@ -1,6 +1,6 @@
 import { getTextColor, getBgColor, getSolidBtnBgColor, getSolidBtnTextColor, getBorderColor, getIconColor, getBadgeBgColor, getBadgeTextColor } from "./theme.util";
 import { emailIsInvalid, nameIsInvalid, passIsInvalid, passAndConfPassAreDiff } from "./inputValidation.util";
-import { isInputIncluded, isSortInputIncluded } from './filterChecks.util'
+import { isInputIncluded, isSortInputIncluded } from './filter.util'
 import {
     filterProductsByBrand, filterProductsByGender, filterProductsByPrice, filterProductsByRating,
     filterProductsBySize
