@@ -17,7 +17,7 @@ const LoginCard = () => {
             <LoginForm />
 
             <Link to='/signup'>
-                <Button text='create new account' classes={`${getTextColor(theme)} ${getBgColor(theme)} ${getBorderColor(theme)} btn-outlined txt-md txt-cap b-solid flx flx-center pd-xs mg-top-xs`}>
+                <Button text='create new account' classes={`${getTextColor(theme)} ${getBorderColor(theme)} btn-outlined txt-md txt-cap b-solid flx flx-center pd-xs mg-top-xs`}>
                     create a new account
                     <Icon>
                         chevron_right

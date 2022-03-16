@@ -56,13 +56,14 @@ const LoginForm = () => {
                 email: enteredInfo.email,
                 password: enteredInfo.password,
             })
+            window.localStorage.setItem('userToken', response.data.encodedToken)
             setNotification('logged in successfully.')
             setTimeout(() => setNotification(''), 3000)
-            window.localStorage.setItem('userToken', response.data.encodedToken)
+            // route to products page in above timeout function
         } catch (e) {
-            console.log(e)
             setNotification('email is not registered.')
             setTimeout(() => setNotification(''), 3000)
+            console.error(e)
         }
     }
 
@@ -115,10 +116,6 @@ const LoginForm = () => {
                     </Label>
 
                 </div>
-
-                {/* <Button onClick={forgotPassword} classes={`btn-txt ${getTextColor(theme)} ${getBgColor(theme)} txt-md txt-cap pd-xs mg-left-xs`}>
-                    forgot your password?
-                </Button> */}
 
             </div>
 

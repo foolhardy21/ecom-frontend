@@ -72,7 +72,7 @@ const SignupForm = () => {
 
     async function signUpUser() {
         try {
-            const response = await axios.post('/api/auth/signup', {
+            await axios.post('/api/auth/signup', {
                 email: enteredInfo.email,
                 password: enteredInfo.password,
                 firstName: enteredInfo.firstName,
@@ -80,11 +80,11 @@ const SignupForm = () => {
             })
             setNotification('signed up successfully.')
             setTimeout(() => setNotification(''), 3000)
-            window.localStorage.setItem('userToken', response.data.encodedToken)
+            // route to login page in the above timeout function
         } catch (e) {
             setNotification('user already exist. proceed to login.')
             setTimeout(() => setNotification(''), 3000)
-            console.log(e)
+            console.error(e)
         }
     }
     function handleSignupSubmit(e) {

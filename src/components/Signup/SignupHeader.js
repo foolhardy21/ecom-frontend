@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom'
 
 const SignupHeader = () => {
     const { theme, toggleTheme } = useTheme()
-    // const { wishlistState } = useWishlist()
-    // const { cartState } = useCart()
     const [isSmallNavVisible, setIsSmallNavVisible] = useState(false)
 
     function toggleNavVisibility() {
@@ -26,44 +24,22 @@ const SignupHeader = () => {
             <NavBar id='nav-big' classes='flx-min-center'>
 
                 <Link to='/products'>
-                    <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-lcase mg-right-lg bg-primary`}>
+                    <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-lcase mg-right-lg`}>
                         browse
                     </Button>
                 </Link>
 
-                <div className="pos-relative mg-right-lg">
+                <Link to='/wishlist'>
+                    <Icon classes={`${getIconColor(theme)} mg-right-lg`}>
+                        favorite
+                    </Icon>
+                </Link>
 
-                    {/* {
-                        wishlistState.length > 0 &&
-                        <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                            {getTotalWishlistItems(wishlistState)}
-                        </div>
-                    } */}
-
-                    <Link to='/wishlist'>
-                        <Icon classes={`${getIconColor(theme)} mg-right-s`}>
-                            favorite
-                        </Icon>
-                    </Link>
-
-                </div>
-
-                <div className="pos-relative mg-right-lg">
-
-                    {/* {
-                        cartState.length > 0 &&
-                        <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                            {getTotalCartItems(cartState)}
-                        </div>
-                    } */}
-
-                    <Link to='/cart'>
-                        <Icon classes={`${getIconColor(theme)} mg-right-s`}>
-                            shopping_cart
-                        </Icon>
-                    </Link>
-
-                </div>
+                <Link to='/cart'>
+                    <Icon classes={`${getIconColor(theme)} mg-right-lg`}>
+                        shopping_cart
+                    </Icon>
+                </Link>
 
                 <Link to='/login'>
                     <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
@@ -85,9 +61,9 @@ const SignupHeader = () => {
 
                 {
                     isSmallNavVisible &&
-                    <NavBar id='nav-small' classes={`flx-column flx-center pd-md ${getBgColor(theme)} pos-absolute z-index tl-0 b-solid`}>
+                    <NavBar id='nav-small' classes={`flx-column pd-md ${getBgColor(theme)} pos-absolute z-index tl-0 b-solid`}>
 
-                        <Button onClick={toggleNavVisibility} classes='btn-txt mg-left-xs mg-btm-s'>
+                        <Button onClick={toggleNavVisibility} classes='btn-txt mg-btm-s'>
 
                             <Icon classes={`${getIconColor(theme)}`}>
                                 close
@@ -97,48 +73,26 @@ const SignupHeader = () => {
 
                         <Link to='/products'>
 
-                            <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-lcase`}>
+                            <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-lcase mg-btm-xs`}>
                                 browse
                             </Button>
 
                         </Link>
 
-                        <div className="flx flx-center pos-relative mg-top-md">
+                        <Link to='/wishlist'>
+                            <Icon classes={`${getIconColor(theme)} mg-btm-xs`}>
+                                favorite
+                            </Icon>
+                        </Link>
 
-                            {/* {
-                                wishlistState.length > 0 &&
-                                <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                                    {getTotalWishlistItems(wishlistState)}
-                                </div>
-                            } */}
-
-                            <Link to='/wishlist'>
-                                <Icon classes={getIconColor(theme)}>
-                                    favorite
-                                </Icon>
-                            </Link>
-
-                        </div>
-
-                        <div className="flx flx-center pos-relative mg-top-md">
-
-                            {/* {
-                                cartState.length > 0 &&
-                                <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                                    {getTotalCartItems(cartState)}
-                                </div>
-                            } */}
-
-                            <Link to='/cart'>
-                                <Icon classes={getIconColor(theme)}>
-                                    shopping_cart
-                                </Icon>
-                            </Link>
-
-                        </div>
+                        <Link to='/cart'>
+                            <Icon classes={`flx ${getIconColor(theme)} mg-btm-xs`}>
+                                shopping_cart
+                            </Icon>
+                        </Link>
 
                         <Link to='/login'>
-                            <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
+                            <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md`}>
                                 login
                             </Button>
                         </Link>
