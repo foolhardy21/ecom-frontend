@@ -5,7 +5,7 @@ const Label = (props) => {
     const { theme } = useTheme()
 
     return (
-        <label htmlFor={props.for} onClick={props.onClick} className={`${getTextColor(theme)} ${props.classes}`} >
+        <label htmlFor={props.htmlFor} onClick={props.onClick} className={`${getTextColor(theme)} ${props.classes}`} >
             {props.children}
 
         </label>
