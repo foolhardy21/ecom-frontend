@@ -1,4 +1,3 @@
-import "./App.css";
 import { Signup, Login } from './pages'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MockMan from "mockman-js";

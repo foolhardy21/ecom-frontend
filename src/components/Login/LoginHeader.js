@@ -75,7 +75,7 @@ const LoginHeader = () => {
 
             <div className='pos-relative'>
 
-                <Button id='btn-ham' onClick={toggleNavVisibility} classes='btn-txt'>
+                <Button id='btn-ham' onClick={toggleNavVisibility} classes='btn-txt mg-top-xs'>
 
                     <Icon classes={getIconColor(theme)}>
                         menu
@@ -85,9 +85,9 @@ const LoginHeader = () => {
 
                 {
                     isSmallNavVisible &&
-                    <NavBar id='nav-small' classes={`flx-column flx-center pd-lg ${getBgColor(theme)} pos-absolute z-index tl-0`}>
+                    <NavBar id='nav-small' classes={`flx-column flx-center pd-md ${getBgColor(theme)} pos-absolute z-index tl-0 b-solid`}>
 
-                        <Button onClick={toggleNavVisibility} classes='btn-txt'>
+                        <Button onClick={toggleNavVisibility} classes='btn-txt mg-left-xs mg-btm-s'>
 
                             <Icon classes={getIconColor(theme)}>
                                 close
@@ -103,7 +103,7 @@ const LoginHeader = () => {
 
                         </Link>
 
-                        <div className="pos-relative mg-top-md">
+                        <div className="flx flx-center pos-relative mg-top-md">
 
                             {/* {
                                 wishlistState.length > 0 &&
@@ -120,7 +120,7 @@ const LoginHeader = () => {
 
                         </div>
 
-                        <div className="pos-relative mg-top-md">
+                        <div className="flx flx-center pos-relative mg-top-md">
 
                             {/* {
                                 cartState.length > 0 &&
