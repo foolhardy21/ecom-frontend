@@ -56,9 +56,9 @@ const LoginForm = () => {
                 email: enteredInfo.email,
                 password: enteredInfo.password,
             })
-            console.log(response.data)
             setNotification('logged in successfully.')
             setTimeout(() => setNotification(''), 3000)
+            window.localStorage.setItem('userToken', response.data.encodedToken)
         } catch (e) {
             console.log(e)
             setNotification('email is not registered.')

@@ -80,7 +80,7 @@ const SignupForm = () => {
             })
             setNotification('signed up successfully.')
             setTimeout(() => setNotification(''), 3000)
-            console.log(response.data)
+            window.localStorage.setItem('userToken', response.data.encodedToken)
         } catch (e) {
             setNotification('user already exist. proceed to login.')
             setTimeout(() => setNotification(''), 3000)
