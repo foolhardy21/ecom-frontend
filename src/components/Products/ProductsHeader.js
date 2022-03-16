@@ -1,14 +1,14 @@
 import { useState } from "react"
-import { useTheme } from "../../contexts"
+import { useTheme, useCart } from "../../contexts"
 import { Button, Header, Icon, Input, NavBar, Text } from "../Reusable"
-import { getIconColor, getBgColor, getTextColor, getTotalCartItems, getTotalWishlistItems, getBadgeBgColor, getBadgeTextColor } from '../../utils'
+import { getIconColor, getBgColor, getTextColor, getTotalCartItems, getBadgeBgColor, getBadgeTextColor } from '../../utils'
 import { Link } from 'react-router-dom'
 
 const ProductsHeader = () => {
     const [isSmallNavVisible, setSmallNavVisible] = useState(false)
     const { theme, toggleTheme } = useTheme()
     // const { wishlistState } = useWishlist()
-    // const { cartState } = useCart()
+    const { cartState } = useCart()
 
     function toggleNavVisibility() {
         setSmallNavVisible(!isSmallNavVisible)
@@ -60,12 +60,12 @@ const ProductsHeader = () => {
 
                 <div className="pos-relative mg-right-lg">
 
-                    {/* {
+                    {
                         cartState.length > 0 &&
                         <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
                             {getTotalCartItems(cartState)}
                         </div>
-                    } */}
+                    }
 
                     <Link to='/cart'>
                         <Icon classes={`${getIconColor(theme)} mg-right-s`}>
@@ -131,12 +131,12 @@ const ProductsHeader = () => {
 
                         <div className="pos-relative mg-top-md">
 
-                            {/* {
+                            {
                                 cartState.length > 0 &&
                                 <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
                                     {getTotalCartItems(cartState)}
                                 </div>
-                            } */}
+                            }
 
                             <Link to='/cart'>
                                 <Icon classes={getIconColor(theme)}>

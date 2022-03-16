@@ -1,9 +1,10 @@
 import axios from "axios"
 import { Card, Icon, Image, Text, Button } from "../Reusable"
-import { useNotification, useTheme } from '../../contexts'
+import { useCart, useNotification, useTheme } from '../../contexts'
 import { getSolidBtnBgColor, getSolidBtnTextColor, getTextColor } from "../../utils"
 
 const ProductCard = ({ prd: {
+    _id,
     name,
     company,
     size,
@@ -19,12 +20,14 @@ const ProductCard = ({ prd: {
 } }) => {
     const { theme } = useTheme()
     const { setNotification } = useNotification()
+    const { cartDispatch } = useCart()
 
     async function handleAddToCart() {
         const userToken = window.localStorage.getItem('userToken')
         try {
             const response = await axios.post('/api/user/cart', {
                 product: {
+                    _id,
                     name,
                     company,
                     size,
@@ -43,10 +46,10 @@ const ProductCard = ({ prd: {
                     authorization: userToken
                 }
             })
-            console.log('frontend', response.data)
+            const cartItems = response.data.cart
+            cartDispatch({ type: 'ADD_TO_CART', payload: cartItems[cartItems.length - 1] })
             setNotification('added to cart.')
             setTimeout(() => setNotification(''), 3000)
-            // add item to cart array context
         } catch (e) {
             console.log(e)
             setNotification('could not add to cart.')

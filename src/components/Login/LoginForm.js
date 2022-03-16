@@ -81,11 +81,6 @@ const LoginForm = () => {
 
     }
 
-    function forgotPassword(e) {
-        e.preventDefault()
-        // redirect to new page for forgot password
-    }
-
     return (
         <Form>
 

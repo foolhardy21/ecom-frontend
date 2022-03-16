@@ -2,6 +2,7 @@ import { useTheme, ThemeProvider } from "./theme.context";
 import { useNotification, NotificationProvider } from "./notification.context";
 import { FilterProvider, useFilters } from './filters.context'
 import { ProductsProvider, useProducts } from './products.context'
+import { CartProvider, useCart } from './cart.context'
 
 export {
     useTheme,
@@ -11,5 +12,7 @@ export {
     ProductsProvider,
     useProducts,
     FilterProvider,
-    useFilters
+    useFilters,
+    CartProvider,
+    useCart
 }

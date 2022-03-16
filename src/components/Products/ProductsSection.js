@@ -8,7 +8,7 @@ const ProductsSection = () => {
     return (
         <section id='grid-wishlist' className="grid grid-maxcols-4">
             {
-                productsState.map(product => <ProductCard key={product.id} prd={product} />)
+                productsState.map(product => <ProductCard key={product._id} prd={product} />)
                 // products.map(prd => <ProductArticle key={prd.id} prd={prd} />)
             }
         </section>
