@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useTheme, useCart } from "../../contexts"
+import { useTheme, useCart, useWishlist } from "../../contexts"
 import { Button, Header, Icon, Input, NavBar, Text } from "../Reusable"
 import { getIconColor, getBgColor, getTextColor, getTotalCartItems, getBadgeBgColor, getBadgeTextColor } from '../../utils'
 import { Link } from 'react-router-dom'
@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 const ProductsHeader = () => {
     const [isSmallNavVisible, setSmallNavVisible] = useState(false)
     const { theme, toggleTheme } = useTheme()
-    // const { wishlistState } = useWishlist()
+    const { wishlistState } = useWishlist()
     const { cartState } = useCart()
 
     function toggleNavVisibility() {
@@ -43,12 +43,12 @@ const ProductsHeader = () => {
 
                 <div className="pos-relative mg-right-lg">
 
-                    {/* {
+                    {
                         wishlistState.length > 0 &&
                         <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                            {getTotalWishlistItems(wishlistState)}
+                            {wishlistState.length}
                         </div>
-                    } */}
+                    }
 
                     <Link to='/wishlist'>
                         <Icon classes={`${getIconColor(theme)} mg-right-s`}>
@@ -114,12 +114,12 @@ const ProductsHeader = () => {
 
                         <div className="pos-relative mg-top-md">
 
-                            {/* {
+                            {
                                 wishlistState.length > 0 &&
                                 <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                                    {getTotalWishlistItems(wishlistState)}
+                                    {wishlistState.length}
                                 </div>
-                            } */}
+                            }
 
                             <Link to='/wishlist'>
                                 <Icon classes={getIconColor(theme)}>

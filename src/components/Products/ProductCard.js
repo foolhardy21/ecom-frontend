@@ -1,6 +1,6 @@
 import axios from "axios"
 import { Card, Icon, Image, Text, Button } from "../Reusable"
-import { useCart, useNotification, useTheme } from '../../contexts'
+import { useCart, useNotification, useTheme, useWishlist } from '../../contexts'
 import { getSolidBtnBgColor, getSolidBtnTextColor, getTextColor } from "../../utils"
 
 const ProductCard = ({ prd: {
@@ -21,6 +21,7 @@ const ProductCard = ({ prd: {
     const { theme } = useTheme()
     const { setNotification } = useNotification()
     const { cartDispatch } = useCart()
+    const { wishlistDispatch } = useWishlist()
 
     async function handleAddToCart() {
         const userToken = window.localStorage.getItem('userToken')
@@ -62,6 +63,7 @@ const ProductCard = ({ prd: {
         try {
             const response = await axios.post('/api/user/wishlist', {
                 product: {
+                    _id,
                     name,
                     company,
                     size,
@@ -80,10 +82,10 @@ const ProductCard = ({ prd: {
                     authorization: userToken
                 }
             })
-            console.log('frontend', response.data)
+            const wishlistItems = response.data.wishlist
+            wishlistDispatch({ type: 'ADD_TO_WISHLIST', payload: wishlistItems[wishlistItems.length - 1] })
             setNotification('added to wishlist.')
             setTimeout(() => setNotification(''), 3000)
-            // add item to wishlist array context
         } catch (e) {
             console.log(e)
             setNotification('could not add to wishlist.')
