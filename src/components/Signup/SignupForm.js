@@ -112,31 +112,31 @@ const SignupForm = () => {
 
         <Form classes='flx flx-column mg-left-lg mg-right-lg'>
 
-            <Input type='email' placeholder="email" value={enteredInfo.email} onChange={(e) => updateEmail(e)} classes={`${inputError.email && 'input-err'} input input-lg txt-md pd-xs mg-top-s`} />
+            <Input type='email' placeholder="email" value={enteredInfo.email} onChange={(e) => updateEmail(e)} classes={`${inputError.email && 'input-err'} input-lg txt-md pd-xs mg-top-s`} />
             {
                 inputError.email && <Text classes="txt-md txt-cap txt-err mg-top-xs mg-left-xs">email is invalid</Text>
             }
 
             <Input type='text' placeholder="first name" value={enteredInfo.firstName} onChange={(e) => updateFirstName(e)}
-                classes={`${inputError.firstName && 'input-err'} input input-lg txt-md pd-xs mg-top-s`} />
+                classes={`${inputError.firstName && 'input-err'} input-lg txt-md pd-xs mg-top-s`} />
             {
                 inputError.firstName && <Text classes="txt-md txt-err txt-cap mg-top-xs mg-left-xs">first name is invalid</Text>
             }
 
             <Input type='text' placeholder="last name" value={enteredInfo.lastName} onChange={(e) => updateLastName(e)}
-                classes={`${inputError.lastName && 'input-err'} input input-lg txt-md pd-xs mg-top-s`} />
+                classes={`${inputError.lastName && 'input-err'} input-lg txt-md pd-xs mg-top-s`} />
             {
                 inputError.lastName && <span className="txt-md txt-err txt-cap mg-left-xs mg-top-xs">last name is invalid</span>
             }
 
             <Input type={passInputType} placeholder="password" value={enteredInfo.password} onChange={(e) => updatePassword(e)}
-                classes={`${inputError.password && 'input-err'} input input-lg txt-md pd-xs mg-top-s`} />
+                classes={`${inputError.password && 'input-err'} input-lg txt-md pd-xs mg-top-s`} />
             {
                 inputError.password && <Text classes="txt-md txt-err txt-cap mg-left-xs mg-top-xs">password must be alphanumeric {<br />} with special characters</Text>
             }
 
             <Input type={passInputType} placeholder="confirm password" value={enteredInfo.confirmedPassword} onChange={(e) => updateConfirmedPassword(e)}
-                classes={`${inputError.confirmedPassword && 'input-err'} input input-lg txt-md pd-xs mg-top-s`} />
+                classes={`${inputError.confirmedPassword && 'input-err'} input-lg txt-md pd-xs mg-top-s`} />
             {
                 inputError.confirmedPassword && <Text classes="txt-md txt-err txt-cap mg-left-xs mg-top-xs">password is not matching</Text>
             }
