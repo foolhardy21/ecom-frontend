@@ -23,7 +23,7 @@ const SignupHeader = () => {
                 </Text>
             </Link>
 
-            <NavBar id='nav-big'>
+            <NavBar id='nav-big' classes='flx-min-center'>
 
                 <Link to='/products'>
                     <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-lcase mg-right-lg bg-primary`}>
