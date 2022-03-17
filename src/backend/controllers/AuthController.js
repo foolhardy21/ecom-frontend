@@ -18,6 +18,7 @@ export const signupHandler = function (schema, request) {
   try {
     // check if email already exists
     const foundUser = schema.users.findBy({ email });
+    console.log('foundUser', foundUser)
     if (foundUser) {
       return new Response(
         422,
@@ -39,7 +40,9 @@ export const signupHandler = function (schema, request) {
       wishlist: [],
     };
     const createdUser = schema.users.create(newUser);
+    console.log('createdUser', createdUser)
     const encodedToken = sign({ _id, email }, process.env.REACT_APP_JWT_SECRET);
+    console.log('encodedToken', encodedToken)
     return new Response(201, {}, { createdUser, encodedToken });
   } catch (error) {
     return new Response(
