@@ -1,7 +1,7 @@
 import { useTheme } from "../../context/theme-context"
 import { getTextColor } from "../../utils"
 
-const Label = (props) => {
+const Label = ({ props }) => {
     const { theme } = useTheme()
 
     return (
