@@ -8,6 +8,8 @@ export const WishlistProvider = ({ children }) => {
     function wishlistReducer(state, action) {
         switch (action.type) {
 
+            case 'INIT_WISHLIST': return [...action.payload]
+
             case 'ADD_TO_WISHLIST': return state.concat({ ...action.payload })
 
             case 'REMOVE_FROM_WISHLIST': return state.filter(wishlistItm => wishlistItm._id !== action.payload)

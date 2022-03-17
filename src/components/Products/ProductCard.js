@@ -1,4 +1,6 @@
 import axios from "axios"
+import { useState } from 'react'
+import { Link } from "react-router-dom"
 import { Card, Icon, Image, Text, Button } from "../Reusable"
 import { useCart, useNotification, useTheme, useWishlist } from '../../contexts'
 import { getSolidBtnBgColor, getSolidBtnTextColor, getTextColor } from "../../utils"
@@ -22,6 +24,8 @@ const ProductCard = ({ prd: {
     const { setNotification } = useNotification()
     const { cartDispatch } = useCart()
     const { wishlistDispatch } = useWishlist()
+    const [isProductAddedToCart, setIsProductAddedToCart] = useState(false)
+    const [isProductAddedToWishlist, setIsProductAddedToWishlist] = useState(false)
 
     async function handleAddToCart() {
         const userToken = window.localStorage.getItem('userToken')
@@ -49,6 +53,7 @@ const ProductCard = ({ prd: {
             })
             const cartItems = response.data.cart
             cartDispatch({ type: 'ADD_TO_CART', payload: cartItems[cartItems.length - 1] })
+            setIsProductAddedToCart(true)
             setNotification('added to cart.')
             setTimeout(() => setNotification(''), 3000)
         } catch (e) {
@@ -84,6 +89,7 @@ const ProductCard = ({ prd: {
             })
             const wishlistItems = response.data.wishlist
             wishlistDispatch({ type: 'ADD_TO_WISHLIST', payload: wishlistItems[wishlistItems.length - 1] })
+            setIsProductAddedToWishlist(true)
             setNotification('added to wishlist.')
             setTimeout(() => setNotification(''), 3000)
         } catch (e) {
@@ -173,9 +179,25 @@ const ProductCard = ({ prd: {
 
             <div className="flx flx-column mg-top-xs">
 
-                <Button onClick={handleAddToCart} classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-cap pd-xs`} >add to cart</Button>
+                {
+                    isProductAddedToCart
+                        ? <Link to='/cart'>
+                            <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-cap pd-xs`} >go to cart</Button>
+                        </Link>
+                        : <Button onClick={handleAddToCart} classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-cap pd-xs`} >add to cart</Button>
+                }
 
-                <Button onClick={handleAddToWishlist} classes={`btn-txt ${getTextColor(theme)} txt-md txt-cap pd-xs`} >add to wishlist</Button>
+                {
+                    isProductAddedToWishlist
+                        ? <Link to='/wishlist'>
+                            <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-cap pd-xs`} >go to wishlist</Button>
+                        </Link>
+                        : <Button onClick={handleAddToWishlist} classes={`btn-txt ${getTextColor(theme)} txt-md txt-cap pd-xs`} >add to wishlist</Button>
+                }
+
+
+
+
 
             </div>
 
