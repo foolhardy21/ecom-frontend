@@ -28,7 +28,7 @@ const Wishlist = () => {
             const wishlist = await getWishlist()
             wishlist && wishlistDispatch({ type: 'INIT_WISHLIST', payload: wishlist })
         })()
-    }, [])
+    }, [wishlistDispatch])
 
     return (
         <div

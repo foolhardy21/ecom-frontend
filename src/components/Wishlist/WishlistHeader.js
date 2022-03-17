@@ -1,5 +1,5 @@
 import { useTheme, useWishlist, useCart } from "../../contexts";
-import { getBadgeBgColor, getBadgeTextColor, getTextColor, getBgColor, getIconColor, getTotalCartItems, getTotalWishlistItems } from "../../utils";
+import { getBadgeBgColor, getBadgeTextColor, getTextColor, getBgColor, getIconColor, getTotalCartItems } from "../../utils";
 import { Header, NavBar, Text, Icon, Button } from "../Reusable/index";
 import { Link } from 'react-router-dom'
 import { useState } from "react";

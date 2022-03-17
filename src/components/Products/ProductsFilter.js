@@ -78,7 +78,7 @@ const ProductsFilter = () => {
             const allProducts = await getAllProducts()
             productsDispatch({ type: 'FILTER_PRODUCTS', payload: { allProducts, filterState } })
         })()
-    }, [filterState])
+    }, [filterState, productsDispatch])
 
 
     return (

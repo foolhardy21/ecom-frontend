@@ -1,7 +1,7 @@
 import { LoginForm } from './'
 import { Card, Text, Button, Icon } from '../Reusable'
 import { useTheme } from '../../contexts'
-import { getBorderColor, getBgColor, getTextColor } from '../../utils'
+import { getBorderColor, getTextColor } from '../../utils'
 import { Link } from 'react-router-dom'
 
 const LoginCard = () => {

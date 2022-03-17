@@ -25,7 +25,7 @@ const Products = () => {
             const allProducts = await getAllProducts()
             productsDispatch({ type: 'INIT_PRODUCTS', payload: allProducts })
         })()
-    }, [])
+    }, [productsDispatch])
 
     return (
         <div

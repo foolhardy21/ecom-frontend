@@ -27,7 +27,7 @@ const Cart = () => {
             const cart = await getCart()
             cart && cartDispatch({ type: 'INIT_CART', payload: cart })
         })()
-    }, [])
+    }, [cartDispatch])
 
     return (
 
