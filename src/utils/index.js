@@ -5,7 +5,7 @@ import {
     filterProductsByBrand, filterProductsByGender, filterProductsByPrice, filterProductsByRating,
     filterProductsBySize
 } from './products.util'
-import { getTotalCartItems } from './cart.util'
+import { getTotalCartItems, getFinalPrice, getTotalDiscount, getTotalPrice } from './cart.util'
 
 export {
     getTextColor,
@@ -28,4 +28,7 @@ export {
     filterProductsByRating,
     filterProductsBySize,
     getTotalCartItems,
+    getFinalPrice,
+    getTotalDiscount,
+    getTotalPrice
 }

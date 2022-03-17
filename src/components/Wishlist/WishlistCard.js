@@ -19,12 +19,15 @@ const WishlistCard = ({ item }) => {
         },
         price,
         offerPrice,
-        stock
+        stock,
+        rating,
+        size,
+        qty,
     } = item
 
     async function handleRemoveFromWishlist() {
         const userToken = window.localStorage.getItem('userToken')
-        const response = await axios.delete(`/api/user/wishlist/${_id}`, {
+        await axios.delete(`/api/user/wishlist/${_id}`, {
             headers: {
                 authorization: userToken
             }
@@ -53,7 +56,10 @@ const WishlistCard = ({ item }) => {
                 },
                 price,
                 offerPrice,
-                stock
+                stock,
+                rating,
+                size,
+                qty
             }
         }, {
             headers: {

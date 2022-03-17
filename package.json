@@ -25,12 +25,10 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "react-hooks"
+      "react-app/jest"
     ],
     "plugins": [
-      "react",
-      "react-hooks"
+      "react"
     ]
   },
   "browserslist": {
