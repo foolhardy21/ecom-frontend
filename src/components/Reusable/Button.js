@@ -1,11 +1,11 @@
 
-const Button = (props) => {
+const Button = ({ onClick, classes, children }) => {
 
     return (
 
-        <button onClick={props.onClick} className={props.classes}>
+        <button onClick={onClick} className={classes}>
 
-            {props.children}
+            {children}
 
         </button>
     )
