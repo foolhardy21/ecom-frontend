@@ -1,19 +1,8 @@
-import Text from './Text'
-import Button from './Button'
-import Card from './Card'
-import Header from './Header'
-import Icon from './Icon'
-import Image from './Image'
-import Main from './Main'
-import NavBar from './NavBar'
+export { default as Button } from "./Button";
+export { default as Card } from "./Card";
+export { default as Header } from "./Header";
+export { default as Icon } from "./Icon";
+export { default as Main } from "./Main";
+export { default as NavBar } from "./NavBar";
+export { default as Text } from "./Text";
 
-export {
-    Text,
-    Button,
-    Card,
-    Header,
-    Icon,
-    Image,
-    Main,
-    NavBar,
-}
