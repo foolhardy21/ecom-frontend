@@ -1,7 +1,7 @@
-const NavBar = ({ children }) => {
+const NavBar = ({ id, style, classes, children }) => {
 
     return (
-        <nav className="flx flx-min-center">
+        <nav id={id} style={style} className={classes}>
             {children}
         </nav>
     )
