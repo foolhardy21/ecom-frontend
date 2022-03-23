@@ -1,4 +1,4 @@
-import { useTheme } from "../../context/theme-context"
+import { useTheme } from "../../contexts/theme-context"
 import { getTextColor } from "../../utils"
 
 const Text = ({ classes, children }) => {

@@ -4,10 +4,12 @@ import { Login } from "./components/Login";
 const App = () => {
 
   return (
-
-    <Signup />
-//     <Login />
+    <>
+      <Signup />
+      <Login />
+    </>
 
   );
+}
 
 export default App;

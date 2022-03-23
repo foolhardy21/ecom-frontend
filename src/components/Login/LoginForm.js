@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Form, Text, Button, Input, Label } from "../Reusable"
 import { emailIsInvalid, passIsInvalid, getTextColor, getBgColor, getSolidBtnBgColor, getSolidBtnTextColor } from "../../utils"
-import { useTheme } from '../../context/theme-context'
+import { useTheme } from '../../contexts/theme-context'
 
 const LoginForm = () => {
     const [enteredEmail, setEnteredEmail] = useState('')

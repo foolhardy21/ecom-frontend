@@ -1,6 +1,6 @@
 import { LoginHeader, LoginCard } from './'
 import { Main } from '../Reusable'
-import { useTheme } from "../../context/theme-context"
+import { useTheme } from "../../contexts/theme.context"
 import { getBgColor } from "../../utils"
 
 const Login = () => {
@@ -9,7 +9,8 @@ const Login = () => {
     return (
         <div style={{
             minHeight: '100vh',
-        }} className={`${getBgColor(theme)}`}>
+        }} className={getBgColor(theme)}>
+
             <LoginHeader />
 
             <Main classes='flx flx-maj-even mg-top-xxlg'>

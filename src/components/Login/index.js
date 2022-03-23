@@ -1,11 +1,4 @@
-import Login from './Login'
-import LoginCard from './LoginCard'
-import LoginForm from './LoginForm'
-import LoginHeader from './LoginHeader'
-
-export {
-    Login,
-    LoginCard,
-    LoginForm,
-    LoginHeader
-}
+export { default as Login } from './Login'
+export { default as LoginCard } from './LoginCard'
+export { default as LoginForm } from './LoginForm'
+export { default as LoginHeader } from './LoginHeader'
