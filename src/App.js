@@ -8,8 +8,8 @@ const App = () => {
 
   return (
     <>
-//       <Signup />
-        <ProductsPg />
+      {/* <Signup /> */}
+      <ProductsPg />
       {/* <Login /> */}
       {/* <Wishlist /> */}
       {/* <Cart /> */}
