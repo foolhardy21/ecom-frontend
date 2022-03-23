@@ -39,7 +39,7 @@ const Cart = () => {
                 </Text>
 
                 {
-                    alert.type === 'error' && <Alert classes='bg-err'>{alert.message}</Alert>
+                    alert.type === 'error' && <Alert classes='bg-err mg-top-s mg-btm-s'>{alert.message}</Alert>
                 }
 
                 <CartSection />
