@@ -1,9 +1,24 @@
 import { createContext, useContext, useReducer } from "react";
+import axios from "axios";
 
 const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
     const [cartState, cartDispatch] = useReducer(cartReducer, [])
+
+    async function getCart() {
+        try {
+            const userToken = window.localStorage.getItem('userToken')
+            const response = await axios.get('/api/user/cart', {
+                headers: {
+                    authorization: userToken
+                }
+            })
+            return response.data.cart
+        } catch (e) {
+            return e.response.status
+        }
+    }
 
     function cartReducer(state, action) {
         switch (action.type) {
@@ -28,7 +43,8 @@ export const CartProvider = ({ children }) => {
         <CartContext.Provider
             value={{
                 cartState,
-                cartDispatch
+                cartDispatch,
+                getCart
             }}
         >
             {children}

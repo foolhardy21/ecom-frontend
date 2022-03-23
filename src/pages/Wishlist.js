@@ -1,32 +1,23 @@
 import { useEffect } from 'react'
-import { WishlistHeader, WishlistSection } from '../components/Wishlist/index'
-import { Main, Text } from '../components/Reusable/index'
+import { WishlistHeader, WishlistSection } from '../components/Wishlist'
+import { Main, Text, Alert } from '../components/Reusable'
+import { useAlert, useTheme, useWishlist } from '../contexts'
 import { getBgColor } from '../utils'
-import { useTheme, useWishlist } from '../contexts'
 import '../components/Wishlist/wishlist.css'
-import axios from 'axios'
 
 const Wishlist = () => {
     const { theme } = useTheme()
-    const { wishlistDispatch } = useWishlist()
+    const { alert, showAlert } = useAlert()
+    const { getWishlist, wishlistDispatch } = useWishlist()
 
     useEffect(() => {
-        async function getWishlist() {
-            const userToken = window.localStorage.getItem('userToken')
-            try {
-                const response = await axios.get('/api/user/wishlist', {
-                    headers: {
-                        authorization: userToken
-                    }
-                })
-                return response.data.wishlist
-            } catch (e) {
-                console.log(e)
-            }
-        }
         (async () => {
             const wishlist = await getWishlist()
-            wishlist && wishlistDispatch({ type: 'INIT_WISHLIST', payload: wishlist })
+            if (wishlist === 404 || wishlist === 500) {
+                showAlert('you are not logged in', 'error')
+            } else if (wishlist) {
+                wishlistDispatch({ type: 'INIT_WISHLIST', payload: wishlist })
+            }
         })()
     }, [wishlistDispatch])
 
@@ -45,6 +36,10 @@ const Wishlist = () => {
                 <Text classes='txt-lg txt-primary txt-cap mg-btm-md'>
                     your cabinet
                 </Text>
+
+                {
+                    alert.type === 'error' && <Alert classes='bg-err mg-top-s mg-btm-s'>{alert.message}</Alert>
+                }
 
                 <WishlistSection />
 

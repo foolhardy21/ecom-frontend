@@ -2,7 +2,7 @@ import { useState } from "react"
 import axios from "axios"
 import { Form, Text, Button, Input, Label } from "../Reusable"
 import { emailIsInvalid, passIsInvalid, getSolidBtnBgColor, getSolidBtnTextColor } from "../../utils"
-import { useNotification, useTheme } from '../../contexts'
+import { useTheme } from '../../contexts'
 
 const LoginForm = () => {
     const [enteredInfo, setEnteredInfo] = useState({
@@ -15,7 +15,7 @@ const LoginForm = () => {
     })
     const [passType, setPassType] = useState('password')
     const { theme } = useTheme()
-    const { setNotification } = useNotification()
+    // const { setNotification } = useNotification()
 
     function togglePassType() {
         passType === 'password' ? setPassType('text') : setPassType('password')
@@ -57,12 +57,12 @@ const LoginForm = () => {
                 password: enteredInfo.password,
             })
             window.localStorage.setItem('userToken', response.data.encodedToken)
-            setNotification('logged in successfully.')
-            setTimeout(() => setNotification(''), 3000)
+            // setNotification('logged in successfully.')
+            // setTimeout(() => setNotification(''), 3000)
             // route to products page in above timeout function
         } catch (e) {
-            setNotification('email is not registered.')
-            setTimeout(() => setNotification(''), 3000)
+            // setNotification('email is not registered.')
+            // setTimeout(() => setNotification(''), 3000)
             console.error(e)
         }
     }

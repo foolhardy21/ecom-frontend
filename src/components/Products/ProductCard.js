@@ -2,7 +2,7 @@ import axios from "axios"
 import { useState } from 'react'
 import { Link } from "react-router-dom"
 import { Card, Icon, Image, Text, Button } from "../Reusable"
-import { useCart, useNotification, useTheme, useWishlist } from '../../contexts'
+import { useCart, useTheme, useWishlist } from '../../contexts'
 import { getSolidBtnBgColor, getSolidBtnTextColor, getTextColor } from "../../utils"
 
 const ProductCard = ({ prd: {
@@ -21,7 +21,7 @@ const ProductCard = ({ prd: {
     stock
 } }) => {
     const { theme } = useTheme()
-    const { setNotification } = useNotification()
+    // const { setNotification } = useNotification()
     const { cartDispatch } = useCart()
     const { wishlistDispatch } = useWishlist()
     const [isProductAddedToCart, setIsProductAddedToCart] = useState(false)
@@ -54,12 +54,12 @@ const ProductCard = ({ prd: {
             const cartItems = response.data.cart
             cartDispatch({ type: 'ADD_TO_CART', payload: cartItems[cartItems.length - 1] })
             setIsProductAddedToCart(true)
-            setNotification('added to cart.')
-            setTimeout(() => setNotification(''), 3000)
+            // setNotification('added to cart.')
+            // setTimeout(() => setNotification(''), 3000)
         } catch (e) {
             console.log(e)
-            setNotification('could not add to cart.')
-            setTimeout(() => setNotification(''), 3000)
+            // setNotification('could not add to cart.')
+            // setTimeout(() => setNotification(''), 3000)
         }
     }
 
@@ -90,12 +90,12 @@ const ProductCard = ({ prd: {
             const wishlistItems = response.data.wishlist
             wishlistDispatch({ type: 'ADD_TO_WISHLIST', payload: wishlistItems[wishlistItems.length - 1] })
             setIsProductAddedToWishlist(true)
-            setNotification('added to wishlist.')
-            setTimeout(() => setNotification(''), 3000)
+            // setNotification('added to wishlist.')
+            // setTimeout(() => setNotification(''), 3000)
         } catch (e) {
             console.log(e)
-            setNotification('could not add to wishlist.')
-            setTimeout(() => setNotification(''), 3000)
+            // setNotification('could not add to wishlist.')
+            // setTimeout(() => setNotification(''), 3000)
         }
     }
 

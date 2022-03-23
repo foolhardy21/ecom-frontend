@@ -1,8 +1,8 @@
 import { useEffect } from "react"
-import { useAlert, useCart, useTheme } from "../contexts"
-import { getBgColor } from "../utils"
 import { Main, Text, Alert } from "../components/Reusable"
 import { CartHeader, CartSection } from "../components/Cart"
+import { useAlert, useCart, useTheme } from "../contexts"
+import { getBgColor } from "../utils"
 
 const Cart = () => {
     const { theme } = useTheme()

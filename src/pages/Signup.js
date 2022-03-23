@@ -1,11 +1,11 @@
 import { SignupHeader, SignupCard } from '../components/Signup'
-import { Icon, Main, Text } from '../components/Reusable'
+import { Main, Alert } from '../components/Reusable'
 import { getBgColor } from '../utils'
-import { useNotification, useTheme } from '../contexts'
+import { useAlert, useTheme } from '../contexts'
 
 const Signup = () => {
     const { theme } = useTheme()
-    const { notification } = useNotification()
+    const { alert } = useAlert()
 
     return (
 
@@ -17,28 +17,11 @@ const Signup = () => {
 
             <SignupHeader />
 
-            <div className='flx flx-center'>
-
-                {
-                    notification === 'signed up successfully.' &&
-                    <div className='flx flx-maj-start flx-min-center txt-md txt-primary bg-success alert-size-s pd-xs'>
-                        <Icon classes='icon-primary mg-right-s'>
-                            check_circle
-                        </Icon>
-                        <Text classes='txt-md txt-cap'>{notification}</Text>
-                    </div>
-                }
-
-                {
-                    notification === 'user already exist. proceed to login.' &&
-                    <div className='flx flx-maj-start flx-min-center txt-md txt-primary bg-err alert-size-s pd-xs'>
-                        <Icon classes='icon-primary mg-right-s'>
-                            error
-                        </Icon>
-                        <Text classes='txt-md txt-cap'>{notification}</Text>
-                    </div>
-                }
-            </div>
+            {
+                alert.type === 'error'
+                    ? <Alert classes='bg-err mg-top-s mg-btm-s'>{alert.message}</Alert>
+                    : alert.type === 'success' ? <Alert classes='bg-success mg-top-s mg-btm-s'>{alert.message}</Alert> : ''
+            }
 
             <Main classes='flx flx-maj-even'>
 

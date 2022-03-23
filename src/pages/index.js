@@ -1,15 +1,6 @@
-import Signup from './Signup'
-import Login from './Login'
-import Products from './Products'
-import Wishlist from './Wishlist'
-import Cart from './Cart'
-import Home from './Home'
-
-export {
-    Signup,
-    Login,
-    Products,
-    Wishlist,
-    Cart,
-    Home
-}
+export { default as Signup } from './Signup'
+export { default as Login } from './Login'
+export { default as Products } from './Products'
+export { default as Wishlist } from './Wishlist'
+export { default as Cart } from './Cart'
+export { default as Home } from './Home'

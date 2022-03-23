@@ -2,11 +2,11 @@ import { useState } from "react"
 import axios from "axios"
 import { Form, Input, Label, Button, Text } from "../Reusable"
 import { getSolidBtnTextColor, getSolidBtnBgColor, emailIsInvalid, nameIsInvalid, passIsInvalid, passAndConfPassAreDiff } from "../../utils"
-import { useNotification, useTheme } from '../../contexts'
+import { useTheme } from '../../contexts'
 
 const SignupForm = () => {
     const { theme } = useTheme()
-    const { setNotification } = useNotification()
+    // const { setNotification } = useNotification()
     const [enteredInfo, setEnteredInfo] = useState({
         email: '',
         firstName: '',
@@ -78,12 +78,12 @@ const SignupForm = () => {
                 firstName: enteredInfo.firstName,
                 lastName: enteredInfo.lastName,
             })
-            setNotification('signed up successfully.')
-            setTimeout(() => setNotification(''), 3000)
+            // setNotification('signed up successfully.')
+            // setTimeout(() => setNotification(''), 3000)
             // route to login page in the above timeout function
         } catch (e) {
-            setNotification('user already exist. proceed to login.')
-            setTimeout(() => setNotification(''), 3000)
+            // setNotification('user already exist. proceed to login.')
+            // setTimeout(() => setNotification(''), 3000)
             console.error(e)
         }
     }

@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { createContext, useContext, useReducer } from "react";
 import { filterProductsByBrand, filterProductsByGender, filterProductsByPrice, filterProductsByRating, filterProductsBySize, sortProductsByAscendingPrice, sortProductsByDescendingPrice } from '../utils/products.util'
 
@@ -5,6 +6,15 @@ const ProductsContext = createContext()
 
 export const ProductsProvider = ({ children }) => {
     const [productsState, productsDispatch] = useReducer(productsReducer, [])
+
+    async function getProducts() {
+        try {
+            const response = await axios.get('/api/products')
+            return response.data.products
+        } catch (e) {
+            return e.response.status
+        }
+    }
 
     function productsReducer(state, action) {
 
@@ -53,7 +63,8 @@ export const ProductsProvider = ({ children }) => {
         <ProductsContext.Provider
             value={{
                 productsState,
-                productsDispatch
+                productsDispatch,
+                getProducts
             }}
         >
             {children}
