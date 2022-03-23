@@ -5,7 +5,7 @@ const Main = ({ classes, children }) => {
     const { theme } = useTheme()
 
     return (
-        <main className={`flx flx-center ${getBgColor(theme)} ${classes}`}>
+        <main className={`flx ${getBgColor(theme)} ${classes}`}>
             {children}
         </main>
     )

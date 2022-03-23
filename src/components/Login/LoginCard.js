@@ -17,6 +17,7 @@ const LoginCard = () => {
 
             <Button classes={`${getTextColor(theme)} ${getBgColor(theme)} ${getBorderColor(theme)} btn-outlined txt-md txt-cap b-solid flx flx-center pd-xs mg-top-xs`}>
 
+                create a new account
                 <Icon>
                     chevron_right
                 </Icon>

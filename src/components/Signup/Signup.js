@@ -16,7 +16,7 @@ const Signup = () => {
 
             <SignupHeader />
 
-            <Main classes='flx flx-maj-even'>
+            <Main classes='flx-maj-even'>
 
                 <SignupCard />
 

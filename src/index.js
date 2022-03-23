@@ -4,7 +4,6 @@ import App from './App';
 import { ThemeProvider } from './contexts/theme.context';
 import { WishListProvider } from './contexts/wishlist.context';
 import './stylesheet/style.css'
-import './stylesheet/wishlist.css'
 
 ReactDOM.render(
   <ThemeProvider>

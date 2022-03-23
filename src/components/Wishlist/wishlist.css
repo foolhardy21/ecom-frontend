@@ -1,8 +1,8 @@
-.grid {
+#grid-wishlist {
     gap: 1rem;
     place-items: center;
 }
 
-article.card-dim  {
+#card-wishlist  {
     width: 15rem;
 }

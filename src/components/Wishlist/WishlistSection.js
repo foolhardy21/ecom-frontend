@@ -6,7 +6,7 @@ const WishlistSection = () => {
 
     return (
 
-        <section className='grid grid-maxcols-4'>
+        <section id='grid-wishlist' className='grid grid-maxcols-4'>
 
             {
                 wishlistState.map(item => <WishlistCard key={item.id} item={item} />)

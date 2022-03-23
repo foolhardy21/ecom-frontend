@@ -6,8 +6,8 @@ const App = () => {
 
   return (
     <>
-      <Signup />
-      <Login />
+      {/* <Signup /> */}
+      {/* <Login /> */}
       <Wishlist />
     </>
 

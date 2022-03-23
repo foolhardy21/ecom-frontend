@@ -22,13 +22,7 @@
     #pg-header nav {
         margin-top: 2rem;
         padding-bottom: 1rem;
-        width: 100%;
         justify-content: center;
-        border-bottom: solid thin var(--clr-off-primary);
     }
 
-    .auth-form {
-        margin-left: 1rem;
-        margin-right: 1rem;
-    }
 }

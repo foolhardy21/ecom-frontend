@@ -20,7 +20,7 @@ const WishlistCard = ({ item }) => {
 
     return (
 
-        <Card classes='flx flx-column pos-relative'>
+        <Card id='card-wishlist' classes='flx flx-column pos-relative'>
 
             <Button onClick={() => wishlistDispatch({ type: 'REMOVE', payload: id })} classes='pos-absolute tr-1 btn-txt'>
 
