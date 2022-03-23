@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { CartProvider } from './contexts/cart.context';
 import { ThemeProvider } from './contexts/theme.context';
+import { WishListProvider } from './contexts/wishlist.context';
 import './stylesheet/style.css'
 
 ReactDOM.render(
   <ThemeProvider>
     <CartProvider>
-      <App />
-    </CartProvider>
+    <WishListProvider>
+  <App />
+    </WishListProvider>
+  </CartProvider>
   </ThemeProvider>,
   document.getElementById('root')
 );

@@ -1,12 +1,12 @@
 import { useTheme } from "../../contexts/theme.context"
 import { getBgColor } from "../../utils/theme.util"
 
-const Main = (props) => {
+const Main = ({ classes, children }) => {
     const { theme } = useTheme()
 
     return (
-        <main className={`${props.classes} ${getBgColor(theme)}`}>
-            {props.children}
+        <main className={`flx ${getBgColor(theme)} ${classes}`}>
+            {children}
         </main>
     )
 }
