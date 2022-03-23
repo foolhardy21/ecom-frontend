@@ -1,31 +1,23 @@
 import { useEffect } from "react"
-import { useCart, useTheme } from "../contexts"
+import { useAlert, useCart, useTheme } from "../contexts"
 import { getBgColor } from "../utils"
-import { Main, Text } from "../components/Reusable"
+import { Main, Text, Alert } from "../components/Reusable"
 import { CartHeader, CartSection } from "../components/Cart"
-import axios from "axios"
 
 const Cart = () => {
     const { theme } = useTheme()
-    const { cartDispatch } = useCart()
+    const { cartDispatch, getCart } = useCart()
+    const { alert, showAlert } = useAlert()
 
     useEffect(() => {
-        async function getCart() {
-            try {
-                const userToken = window.localStorage.getItem('userToken')
-                const response = await axios.get('/api/user/cart', {
-                    headers: {
-                        authorization: userToken
-                    }
-                })
-                return response.data.cart
-            } catch (e) {
-                console.log(e)
-            }
-        }
         (async () => {
-            const cart = await getCart()
-            cart && cartDispatch({ type: 'INIT_CART', payload: cart })
+            const getCartResponse = await getCart()
+
+            if (getCartResponse === 500 || getCartResponse === 404) {
+                showAlert('you are not logged in', 'error')
+            } else if (getCartResponse) {
+                cartDispatch({ type: 'INIT_CART', payload: getCartResponse })
+            }
         })()
     }, [cartDispatch])
 
@@ -45,6 +37,10 @@ const Cart = () => {
                 <Text classes='txt-cap txt-lg mg-btm-md flx flx-center'>
                     your cart
                 </Text>
+
+                {
+                    alert.type === 'error' && <Alert classes='bg-err'>{alert.message}</Alert>
+                }
 
                 <CartSection />
 
