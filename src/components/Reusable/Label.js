@@ -1,15 +1,12 @@
-import { useTheme } from "../../contexts/theme.context"
+import { useTheme } from "../../context/theme-context"
 import { getTextColor } from "../../utils"
 
-const Label = (props) => {
+const Label = ({ for, classes, children }) => {
     const { theme } = useTheme()
 
     return (
-
-        <label htmlFor={props.for} onClick={props.onClick} className={`${getTextColor(theme)} ${props.classes}`}>
-
-            {props.children}
-
+        <label htmlFor={for} className={`${getTextColor(theme)} ${classes}`} >
+            {children}
         </label>
     )
 }

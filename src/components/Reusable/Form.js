@@ -1,12 +1,8 @@
-
-const Form = (props) => {
+const Form = ({ children }) => {
 
     return (
-
-        <form className={props.classes}>
-
-            {props.children}
-
+        <form className='flx flx-column mg-left-lg mg-right-lg'>
+            {children}
         </form>
     )
 }

@@ -1,14 +1,15 @@
-import { getBgColor } from '../../utils'
-import { useTheme } from '../../contexts/theme.context'
+import { useTheme } from "../../context/theme-context"
+import { getBgColor } from "../../utils/theme-util"
 
-const Main = (props) => {
+const Main = ({ classes, children }) => {
     const { theme } = useTheme()
 
     return (
+        <main style={{
+            minWidth: '100vw',
+        }} className={`${getBgColor(theme)} ${classes}`}>
 
-        <main className={`${props.classes} ${getBgColor(theme)}`}>
-
-            {props.children}
+            {children}
 
         </main>
     )
