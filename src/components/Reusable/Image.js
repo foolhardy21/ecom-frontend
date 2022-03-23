@@ -1,7 +1,7 @@
-const Image = props => {
+const Image = ({ srcSet, alt, sizes, classes }) => {
 
     return (
-        <img srcSet={props.srcSet} sizes={props.sizes} alt={props.alt} className={props.classes} />
+        <img srcSet={srcSet} alt={alt} sizes={sizes} className={classes} />
     )
 }
 

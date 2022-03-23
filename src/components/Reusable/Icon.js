@@ -1,8 +1,7 @@
-const Icon = (props) => {
-
+const Icon = ({ id, classes, children }) => {
     return (
-        <span className={`material-icons ${props.classes}`}>
-            {props.children}
+        <span id={id} className={`material-icons ${classes}`}>
+            {children}
         </span>
     )
 }
