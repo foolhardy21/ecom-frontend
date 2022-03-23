@@ -1,19 +1,12 @@
-import Header from "./Header";
-import Text from "./Text";
-import Input from "./Input";
-import Icon from "./Icon";
-import NavBar from './NavBar'
-import Button from "./Button";
-import Card from "./Card";
-import Image from "./Image";
-
-export {
-    Header,
-    Text,
-    Input,
-    Icon,
-    NavBar,
-    Button,
-    Card,
-    Image
-}
+export { default as Button } from "./Button";
+export { default as Card } from "./Card";
+export { default as Header } from "./Header";
+export { default as Icon } from "./Icon";
+export { default as Main } from "./Main";
+export { default as NavBar } from "./NavBar";
+export { default as Text } from "./Text";
+export { default as Image } from "./Image";
+export { default as Form } from "./Form";
+export { default as Input } from "./Input";
+export { default as Label } from "./Label";
+export { default as Section } from "./Section";

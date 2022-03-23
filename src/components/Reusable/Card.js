@@ -1,10 +1,10 @@
-import { useTheme } from "../../contexts/theme.context"
+import { useTheme } from "../../contexts"
 
-const Card = ({ classes, children }) => {
+const Card = ({ id, children, classes }) => {
     const { theme } = useTheme()
 
     return (
-        <article className={`card-dim card-shadow-xs ${theme === 'dark' && 'b-solid b-secondary'} ${classes}`}>
+        <article id={id} className={`card-dim card-shadow-xs ${theme === 'dark' && 'b-solid b-secondary'} ${classes}`}>
             {children}
         </article>
     )

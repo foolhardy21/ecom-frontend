@@ -1,0 +1,8 @@
+#grid-wishlist {
+    gap: 1rem;
+    place-items: center;
+}
+
+#card-wishlist  {
+    width: 15rem;
+}

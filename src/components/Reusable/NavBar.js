@@ -1,4 +1,3 @@
-
 const NavBar = ({ id, style, classes, children }) => {
 
     return (

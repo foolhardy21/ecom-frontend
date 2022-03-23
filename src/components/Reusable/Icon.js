@@ -1,4 +1,3 @@
-
 const Icon = ({ id, classes, children }) => {
     return (
         <span id={id} className={`material-icons ${classes}`}>
