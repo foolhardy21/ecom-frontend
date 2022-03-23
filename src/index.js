@@ -13,15 +13,15 @@ ReactDOM.render(
     <ThemeProvider>
       <NotificationProvider>
         <ProductsProvider>
-          <CartProvider>
-            <WishlistProvider>
-              <FilterProvider>
+          <FilterProvider>
+            <CartProvider>
+              <WishlistProvider>
 
                 <App />
 
-              </FilterProvider>
-            </WishlistProvider>
-          </CartProvider>
+              </WishlistProvider>
+            </CartProvider>
+          </FilterProvider>
         </ProductsProvider>
       </NotificationProvider>
     </ThemeProvider>

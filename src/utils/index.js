@@ -1,34 +1,12 @@
-import { getTextColor, getBgColor, getSolidBtnBgColor, getSolidBtnTextColor, getBorderColor, getIconColor, getBadgeBgColor, getBadgeTextColor } from "./theme.util";
-import { emailIsInvalid, nameIsInvalid, passIsInvalid, passAndConfPassAreDiff } from "./inputValidation.util";
-import { isInputIncluded, isSortInputIncluded } from './filter.util'
-import {
+export { getTextColor, getBgColor, getSolidBtnBgColor, getSolidBtnTextColor, getBorderColor, getIconColor, getBadgeBgColor, getBadgeTextColor } from "./theme.util";
+
+export { emailIsInvalid, nameIsInvalid, passIsInvalid, passAndConfPassAreDiff } from "./inputValidation.util";
+
+export { isInputIncluded, isSortInputIncluded } from './filter.util'
+
+export {
     filterProductsByBrand, filterProductsByGender, filterProductsByPrice, filterProductsByRating,
     filterProductsBySize
 } from './products.util'
-import { getTotalCartItems, getFinalPrice, getTotalDiscount, getTotalPrice } from './cart.util'
 
-export {
-    getTextColor,
-    getBgColor,
-    getBorderColor,
-    getSolidBtnBgColor,
-    getSolidBtnTextColor,
-    getIconColor,
-    getBadgeBgColor,
-    getBadgeTextColor,
-    emailIsInvalid,
-    nameIsInvalid,
-    passAndConfPassAreDiff,
-    passIsInvalid,
-    isInputIncluded,
-    isSortInputIncluded,
-    filterProductsByBrand,
-    filterProductsByGender,
-    filterProductsByPrice,
-    filterProductsByRating,
-    filterProductsBySize,
-    getTotalCartItems,
-    getFinalPrice,
-    getTotalDiscount,
-    getTotalPrice
-}
+export { getTotalCartItems, getFinalPrice, getTotalDiscount, getTotalPrice } from './cart.util'
