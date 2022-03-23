@@ -7,37 +7,15 @@ const BrandSection = () => {
 
         <section className="grid grid-maxcols-4">
 
-            <article className="card-dim pos-relative">
+            {
+                heroImgArr.map((brand, index) => index !== 2 && <article key={brand.id} className="card-dim pos-relative">
 
-                <Image srcSet={heroImgArr[0].srcSet} sizes={heroImgArr[0].sizes} alt={heroImgArr[0].alt} />
+                    <Image srcSet={brand.srcSet} sizes={brand.sizes} alt={brand.alt} />
 
-                <Text classes="pos-absolute tr-1 txt-primary bg-primary txt-md">adidas</Text>
+                    <Text classes="pos-absolute tr-1 txt-primary bg-primary txt-md">adidas</Text>
 
-            </article>
-
-            <article className="card-dim pos-relative">
-
-                <Image srcSet={heroImgArr[1].srcSet} sizes={heroImgArr[1].sizes} alt={heroImgArr[1].alt} />
-
-                <Text classes="pos-absolute tr-1 txt-primary bg-primary txt-md">air jordan</Text>
-
-            </article>
-
-            <article className="card-dim pos-relative">
-
-                <Image srcSet={heroImgArr[3].srcSet} sizes={heroImgArr[3].sizes} alt={heroImgArr[3].alt} />
-
-                <Text classes="pos-absolute tr-1 txt-primary bg-primary txt-md">new balance</Text>
-
-            </article>
-
-            <article className="card-dim pos-relative">
-
-                <Image srcSet={heroImgArr[4].srcSet} sizes={heroImgArr[4].sizes} alt={heroImgArr[4].alt} />
-
-                <Text classes="pos-absolute tr-1 txt-primary bg-primary txt-md">puma</Text>
-
-            </article>
+                </article>)
+            }
 
         </section>
     )
