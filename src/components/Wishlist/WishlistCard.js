@@ -1,4 +1,4 @@
-import { Text, Button, Card, Image } from "../Reusable/index";
+import { Text, Button, Card, Image } from "../Reusable";
 import { useWishlist } from "../../contexts/wishlist.context";
 
 const WishlistCard = ({ item }) => {

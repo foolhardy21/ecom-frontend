@@ -1,4 +1,4 @@
-import { Wishlist } from "./components/Wishlist/index";
+import { Wishlist } from "./components/Wishlist";
 import { Signup } from './components/Signup';
 import { Login } from "./components/Login";
 
@@ -8,7 +8,7 @@ const App = () => {
     <>
       <Signup />
       <Login />
-    <Wishlist />
+      <Wishlist />
     </>
 
   );
