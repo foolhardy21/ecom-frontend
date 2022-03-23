@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import './stylesheet/style.css'
-import { ThemeProvider } from './context/theme-context'
+import App from './App';
+import { ThemeProvider } from './contexts/theme.context'
+import './stylesheet/style.css'
 
 ReactDOM.render(
   <ThemeProvider>

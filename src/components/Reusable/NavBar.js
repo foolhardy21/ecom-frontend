@@ -1,4 +1,3 @@
-
 const NavBar = ({ children }) => {
 
     return (
