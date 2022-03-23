@@ -1,9 +1,8 @@
-
-const NavBar = (props) => {
+const NavBar = ({ children }) => {
 
     return (
-        <nav className='flx flx-min-center'>
-            {props.children}
+        <nav className="flx flx-min-center">
+            {children}
         </nav>
     )
 }

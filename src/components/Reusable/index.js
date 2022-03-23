@@ -6,4 +6,6 @@ export { default as Main } from "./Main";
 export { default as NavBar } from "./NavBar";
 export { default as Text } from "./Text";
 export { default as Image } from "./Image";
-
+export { default as Form } from "./Form";
+export { default as Input } from "./Input";
+export { default as Label } from "./Label";
