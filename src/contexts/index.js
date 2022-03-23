@@ -1,7 +1,3 @@
-import { useCart } from "./cart.context";
-import { useTheme } from "./theme.context";
-
-export {
-    useCart,
-    useTheme
-}
+export { useCart, CartProvider } from "./cart.context";
+export { useTheme, ThemeProvider } from "./theme.context";
+export { useWishlist, WishlistProvider } from "./wishlist.context";

@@ -1,18 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { CartProvider } from './contexts/cart.context';
-import { ThemeProvider } from './contexts/theme.context';
-import { WishListProvider } from './contexts/wishlist.context';
+import { ThemeProvider, CartProvider, WishlistProvider } from './contexts';
 import './stylesheet/style.css'
 
 ReactDOM.render(
   <ThemeProvider>
     <CartProvider>
-    <WishListProvider>
-  <App />
-    </WishListProvider>
-  </CartProvider>
+      <WishlistProvider>
+        <App />
+      </WishlistProvider>
+    </CartProvider>
   </ThemeProvider>,
   document.getElementById('root')
 );

@@ -1,7 +1,7 @@
-import { WishlistHeader, WishlistSection } from './index'
-import { Main, Text } from '../Reusable/index'
-import { getBgColor } from '../../utils/theme.util'
-import { useTheme } from '../../contexts/theme.context'
+import { WishlistHeader, WishlistSection } from './'
+import { Main, Text } from '../Reusable'
+import { getBgColor } from '../../utils'
+import { useTheme } from '../../contexts'
 import './wishlist.css'
 
 const Wishlist = () => {

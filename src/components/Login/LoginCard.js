@@ -1,6 +1,6 @@
 import { LoginForm } from './'
 import { Card, Text, Button, Icon } from '../Reusable'
-import { useTheme } from '../../contexts/theme.context'
+import { useTheme } from '../../contexts'
 import { getBorderColor, getBgColor, getTextColor } from '../../utils'
 
 const LoginCard = () => {

@@ -1,7 +1,7 @@
 import { SignupForm } from './'
 import { Card, Text, Button, Icon } from "../Reusable"
 import { getBorderColor, getTextColor } from "../../utils"
-import { useTheme } from "../../contexts/theme.context"
+import { useTheme } from "../../contexts"
 
 const SignupCard = () => {
     const { theme } = useTheme()

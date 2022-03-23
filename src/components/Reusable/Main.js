@@ -1,5 +1,5 @@
-import { useTheme } from "../../contexts/theme.context"
-import { getBgColor } from "../../utils/theme.util"
+import { useTheme } from "../../contexts"
+import { getBgColor } from "../../utils"
 
 const Main = ({ classes, children }) => {
     const { theme } = useTheme()

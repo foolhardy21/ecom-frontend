@@ -1,6 +1,6 @@
 import { LoginHeader, LoginCard } from './'
 import { Main } from '../Reusable'
-import { useTheme } from '../../contexts/theme.context'
+import { useTheme } from '../../contexts'
 import { getBgColor } from "../../utils"
 
 const Login = () => {

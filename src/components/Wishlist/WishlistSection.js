@@ -1,5 +1,5 @@
 import { WishlistCard } from "./index";
-import { useWishlist } from '../../contexts/wishlist.context'
+import { useWishlist } from '../../contexts'
 
 const WishlistSection = () => {
     const { wishlistState } = useWishlist()

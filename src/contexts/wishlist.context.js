@@ -1,9 +1,9 @@
 import { createContext, useContext, useReducer } from "react";
 import { wishlistArr } from "../data/index.js";
 
-const WishListContext = createContext()
+const WishlistContext = createContext()
 
-export const WishListProvider = (props) => {
+export const WishlistProvider = (props) => {
     const [wishlistState, wishlistDispatch] = useReducer(wishListReducer, wishlistArr)
 
     function wishListReducer(state, action) {
@@ -18,14 +18,14 @@ export const WishListProvider = (props) => {
     }
 
     return (
-        <WishListContext.Provider
+        <WishlistContext.Provider
             value={{
                 wishlistState,
                 wishlistDispatch
             }}>
             {props.children}
-        </WishListContext.Provider>
+        </WishlistContext.Provider>
     )
 }
 
-export const useWishlist = () => useContext(WishListContext)
+export const useWishlist = () => useContext(WishlistContext)

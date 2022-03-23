@@ -1,5 +1,5 @@
-import { useTheme } from "../../contexts/theme.context"
-import { getTextColor } from "../../utils/theme.util"
+import { useTheme } from "../../contexts"
+import { getTextColor } from "../../utils"
 
 const Text = ({ classes, children }) => {
     const { theme } = useTheme()

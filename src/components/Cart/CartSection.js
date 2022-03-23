@@ -1,4 +1,4 @@
-import { useCart } from "../../contexts/cart.context"
+import { useCart } from "../../contexts"
 import { Section } from "../Reusable"
 import { CartItmCard } from "./"
 import { CartReceiptCard } from "./"

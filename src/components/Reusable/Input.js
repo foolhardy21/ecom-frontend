@@ -1,4 +1,4 @@
-import { useTheme } from "../../contexts/theme.context"
+import { useTheme } from "../../contexts"
 import { getBgColor, getTextColor } from "../../utils"
 
 const Input = ({ type, placeholder, value, onChange, classes }) => {
@@ -6,7 +6,7 @@ const Input = ({ type, placeholder, value, onChange, classes }) => {
 
     return (
         <input type={type} placeholder={placeholder} value={value} onChange={onChange}
-            className={`${getBgColor(theme)} ${getTextColor(theme)} ${classes}`} />
+            className={`input ${getBgColor(theme)} ${getTextColor(theme)} ${classes}`} />
     )
 }
 

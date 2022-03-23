@@ -9,3 +9,4 @@ export { default as Image } from "./Image";
 export { default as Form } from "./Form";
 export { default as Input } from "./Input";
 export { default as Label } from "./Label";
+export { default as Section } from "./Section";

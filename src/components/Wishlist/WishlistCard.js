@@ -1,5 +1,5 @@
 import { Text, Button, Card, Image } from "../Reusable";
-import { useWishlist } from "../../contexts/wishlist.context";
+import { useWishlist } from "../../contexts";
 
 const WishlistCard = ({ item }) => {
     const { wishlistDispatch } = useWishlist()

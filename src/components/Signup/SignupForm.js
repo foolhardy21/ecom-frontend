@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Form, Input, Label, Button, Text } from "../Reusable"
 import { getSolidBtnTextColor, getSolidBtnBgColor, timer, emailIsInvalid, nameIsInvalid, passIsInvalid, passAndConfPassAreDiff } from "../../utils"
-import { useTheme } from '../../contexts/theme.context'
+import { useTheme } from '../../contexts'
 
 const SignupForm = () => {
     const [enteredEmail, setEnteredEmail] = useState('')

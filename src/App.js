@@ -7,10 +7,10 @@ const App = () => {
 
   return (
     <>
-      {/* <Signup /> */}
+      <Signup />
       {/* <Login /> */}
-      <Wishlist />
-            <Cart />
+      {/* <Wishlist /> */}
+      {/* <Cart /> */}
     </>
   );
 

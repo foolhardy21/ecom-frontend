@@ -1,5 +1,5 @@
 import { Header, Text, NavBar, Icon, Button } from '../Reusable'
-import { useTheme } from '../../contexts/theme.context'
+import { useTheme } from '../../contexts'
 
 const SignupHeader = () => {
     const { theme, toggleTheme } = useTheme()

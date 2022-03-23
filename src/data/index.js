@@ -1,9 +1,3 @@
-import { cartItmArr } from "./cart.data";
-import { cartImgArr } from "./cartImg.data";
-import { wishlistArr } from './wishlist.data'
-
-export {
-    cartItmArr,
-    cartImgArr,
-    wishlistArr
-}
+export { cartItmArr } from "./cart.data";
+export { cartImgArr } from "./cartImg.data";
+export { wishlistArr } from './wishlist.data'
