@@ -1,4 +1,4 @@
-import { useTheme } from '../../contexts/theme-context'
+import { useTheme } from "../../contexts/theme.context"
 
 const Card = ({ children, classes }) => {
     const { theme } = useTheme()

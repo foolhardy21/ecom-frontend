@@ -8,15 +8,12 @@
     }
 }
 
-
 @media only screen and (max-width: 768px) {
     
     #pg-header {
-        border-bottom: none;
         flex-direction: column;
-        padding-bottom: 0.5rem;
     }
-    
+  
     #pg-searchbar {
         order: 2;
         margin-top: 1rem;

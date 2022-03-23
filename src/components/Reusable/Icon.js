@@ -1,5 +1,5 @@
-import { useTheme } from "../../contexts/theme-context"
-import { getIconColor } from '../../utils'
+import { useTheme } from "../../contexts/theme.context"
+import { getIconColor } from "../../utils/theme.util"
 
 const Icon = ({ id, classes, children }) => {
     const { theme } = useTheme()

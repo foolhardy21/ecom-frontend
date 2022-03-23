@@ -1,3 +1,4 @@
+import { Wishlist } from "./components/Wishlist/index";
 import { Signup } from './components/Signup';
 import { Login } from "./components/Login";
 
@@ -7,6 +8,7 @@ const App = () => {
     <>
       <Signup />
       <Login />
+    <Wishlist />
     </>
 
   );
