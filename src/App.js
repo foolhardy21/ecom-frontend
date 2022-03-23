@@ -1,3 +1,4 @@
+import { Home } from "./components/Home";
 import { ProductsPg } from "./components/Products";
 import { Cart } from "./components/Cart";
 import { Wishlist } from "./components/Wishlist";
@@ -7,7 +8,9 @@ import { Login } from "./components/Login";
 const App = () => {
 
   return (
+
     <>
+        <Home />
       {/* <Signup /> */}
       <ProductsPg />
       {/* <Login /> */}
