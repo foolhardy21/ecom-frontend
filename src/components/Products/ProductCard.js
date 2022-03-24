@@ -1,101 +1,44 @@
-import axios from "axios"
-import { useState } from 'react'
 import { Link } from "react-router-dom"
 import { Card, Icon, Image, Text, Button } from "../Reusable"
-import { useCart, useTheme, useWishlist } from '../../contexts'
+import { useCart, useProducts, useTheme, useWishlist } from '../../contexts'
 import { getSolidBtnBgColor, getSolidBtnTextColor, getTextColor } from "../../utils"
 
-const ProductCard = ({ prd: {
-    _id,
-    name,
-    company,
-    size,
-    price,
-    offerPrice,
-    img: {
-        srcSet,
-        alt,
-        sizes
-    },
-    rating,
-    stock
-} }) => {
+const ProductCard = ({ prd }) => {
+    const { _id,
+        name,
+        company,
+        size,
+        price,
+        offerPrice,
+        img: {
+            srcSet,
+            alt,
+            sizes
+        },
+        rating,
+        stock } = prd
     const { theme } = useTheme()
-    // const { setNotification } = useNotification()
-    const { cartDispatch } = useCart()
-    const { wishlistDispatch } = useWishlist()
-    const [isProductAddedToCart, setIsProductAddedToCart] = useState(false)
-    const [isProductAddedToWishlist, setIsProductAddedToWishlist] = useState(false)
+    const { showProductsAlert } = useProducts()
+    const { cartDispatch, addProductToCart, isProductInCart } = useCart()
+    const { wishlistDispatch, addProductToWishlist, isProductInWishlist } = useWishlist()
 
     async function handleAddToCart() {
-        const userToken = window.localStorage.getItem('userToken')
-        try {
-            const response = await axios.post('/api/user/cart', {
-                product: {
-                    _id,
-                    name,
-                    company,
-                    size,
-                    price,
-                    offerPrice,
-                    img: {
-                        srcSet,
-                        alt,
-                        sizes
-                    },
-                    rating,
-                    stock
-                }
-            }, {
-                headers: {
-                    authorization: userToken
-                }
-            })
-            const cartItems = response.data.cart
-            cartDispatch({ type: 'ADD_TO_CART', payload: cartItems[cartItems.length - 1] })
-            setIsProductAddedToCart(true)
-            // setNotification('added to cart.')
-            // setTimeout(() => setNotification(''), 3000)
-        } catch (e) {
-            console.log(e)
-            // setNotification('could not add to cart.')
-            // setTimeout(() => setNotification(''), 3000)
+        const addItemResponse = await addProductToCart(prd)
+        if (addItemResponse === 404 || addItemResponse === 500) {
+            showProductsAlert('could not add to cart', 'error')
+        } else if (addItemResponse) {
+            showProductsAlert('added to cart', 'success')
+            cartDispatch({ type: 'ADD_TO_CART', payload: addItemResponse[addItemResponse.length - 1] })
         }
     }
 
     async function handleAddToWishlist() {
-        const userToken = window.localStorage.getItem('userToken')
-        try {
-            const response = await axios.post('/api/user/wishlist', {
-                product: {
-                    _id,
-                    name,
-                    company,
-                    size,
-                    price,
-                    offerPrice,
-                    img: {
-                        srcSet,
-                        alt,
-                        sizes
-                    },
-                    rating,
-                    stock
-                }
-            }, {
-                headers: {
-                    authorization: userToken
-                }
-            })
-            const wishlistItems = response.data.wishlist
-            wishlistDispatch({ type: 'ADD_TO_WISHLIST', payload: wishlistItems[wishlistItems.length - 1] })
-            setIsProductAddedToWishlist(true)
-            // setNotification('added to wishlist.')
-            // setTimeout(() => setNotification(''), 3000)
-        } catch (e) {
-            console.log(e)
-            // setNotification('could not add to wishlist.')
-            // setTimeout(() => setNotification(''), 3000)
+        const addItemResponse = await addProductToWishlist(prd)
+        if (addItemResponse === 404 || addItemResponse === 500) {
+            showProductsAlert('could not add to wishlist', 'error')
+        } else if (addItemResponse) {
+            showProductsAlert('added to wishlist', 'success')
+            wishlistDispatch({ type: 'ADD_TO_WISHLIST', payload: addItemResponse[addItemResponse.length - 1] })
         }
     }
 
@@ -180,7 +123,7 @@ const ProductCard = ({ prd: {
             <div className="flx flx-column mg-top-xs">
 
                 {
-                    isProductAddedToCart
+                    isProductInCart(_id)
                         ? <Link to='/cart'>
                             <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-cap pd-xs`} >go to cart</Button>
                         </Link>
@@ -188,16 +131,12 @@ const ProductCard = ({ prd: {
                 }
 
                 {
-                    isProductAddedToWishlist
+                    isProductInWishlist(_id)
                         ? <Link to='/wishlist'>
                             <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-cap pd-xs`} >go to wishlist</Button>
                         </Link>
                         : <Button onClick={handleAddToWishlist} classes={`btn-txt ${getTextColor(theme)} txt-md txt-cap pd-xs`} >add to wishlist</Button>
                 }
-
-
-
-
 
             </div>
 

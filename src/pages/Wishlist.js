@@ -1,20 +1,20 @@
 import { useEffect } from 'react'
 import { WishlistHeader, WishlistSection } from '../components/Wishlist'
 import { Main, Text, Alert } from '../components/Reusable'
-import { useAlert, useTheme, useWishlist } from '../contexts'
+import { useTheme, useWishlist } from '../contexts'
 import { getBgColor } from '../utils'
 import '../components/Wishlist/wishlist.css'
 
 const Wishlist = () => {
     const { theme } = useTheme()
-    const { alert, showAlert } = useAlert()
+    // const { alert, showAlert } = useAlert()
     const { getWishlist, wishlistDispatch } = useWishlist()
 
     useEffect(() => {
         (async () => {
             const wishlist = await getWishlist()
             if (wishlist === 404 || wishlist === 500) {
-                showAlert('you are not logged in', 'error')
+                // showAlert('you are not logged in', 'error')
             } else if (wishlist) {
                 wishlistDispatch({ type: 'INIT_WISHLIST', payload: wishlist })
             }

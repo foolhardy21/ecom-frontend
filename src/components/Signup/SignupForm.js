@@ -1,18 +1,19 @@
 import { useNavigate } from "react-router-dom"
 import { Form, Input, Label, Button, Text } from "../Reusable"
 import { getSolidBtnTextColor, getSolidBtnBgColor } from "../../utils"
-import { useSignup, useTheme } from '../../contexts'
+import { useSignup, useTheme, useAuth } from '../../contexts'
 
 const SignupForm = () => {
     const navigate = useNavigate()
     const { theme } = useTheme()
-    const { signupFormState, signupFormDispatch, isFormInvalid, showSignupAlert, signupUser } = useSignup()
+    const { signupFormState, signupFormDispatch, isFormInvalid, showSignupAlert } = useSignup()
+    const { signupUser } = useAuth()
 
     async function handleSignupSubmit(e) {
         e.preventDefault()
 
         if (!isFormInvalid()) {
-            const signupUserResponse = await signupUser()
+            const signupUserResponse = await signupUser(signupFormState.email.value, signupFormState.password.value, signupFormState.firstName.value, signupFormState.lastName.value)
             if (signupUserResponse === 201) {
                 showSignupAlert('account created', 'success')
                 signupFormDispatch({ type: 'INIT_FORM' })

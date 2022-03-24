@@ -1,18 +1,19 @@
 import { useNavigate } from "react-router-dom"
 import { Form, Text, Button, Input, Label } from "../Reusable"
 import { getSolidBtnBgColor, getSolidBtnTextColor } from "../../utils"
-import { useLogin, useTheme } from '../../contexts'
+import { useLogin, useTheme, useAuth } from '../../contexts'
 
 const LoginForm = () => {
     const navigate = useNavigate()
     const { theme } = useTheme()
-    const { loginFormState, isFormInvalid, loginUser, loginFormDispatch, showLoginAlert } = useLogin()
+    const { loginFormState, isFormInvalid, loginFormDispatch, showLoginAlert } = useLogin()
+    const { loginUser } = useAuth()
 
     async function handleLoginSubmit(e) {
         e.preventDefault()
 
         if (!isFormInvalid()) {
-            const loginUserResponse = await loginUser()
+            const loginUserResponse = await loginUser(loginFormState.email.value, loginFormState.password.value)
             if (loginUserResponse === 404) {
                 showLoginAlert('account not found', 'error')
             } else if (loginUserResponse === 200) {

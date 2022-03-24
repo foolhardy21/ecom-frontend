@@ -1,10 +1,19 @@
 import axios from 'axios'
 import { createContext, useReducer, useContext } from 'react'
+import { useAuth } from './auth.context'
 
 const WishlistContext = createContext()
 
 export const WishlistProvider = ({ children }) => {
-    const [wishlistState, wishlistDispatch] = useReducer(wishlistReducer, [])
+    const [wishlistState, wishlistDispatch] = useReducer(wishlistReducer, {
+        wishlist: [],
+        alert: {
+            message: '',
+            type: ''
+        },
+        loading: false
+    })
+    const { getUserToken } = useAuth()
 
     async function getWishlist() {
         const userToken = window.localStorage.getItem('userToken')
@@ -20,14 +29,31 @@ export const WishlistProvider = ({ children }) => {
         }
     }
 
+    async function addProductToWishlist(product) {
+        try {
+            const response = await axios.post('/api/user/wishlist', {
+                product
+            }, {
+                headers: {
+                    authorization: getUserToken()
+                }
+            })
+            return response.data.wishlist
+        } catch (e) {
+            return e.response.status
+        }
+    }
+
+    const isProductInWishlist = productId => wishlistState.wishlist.some(item => item._id === productId)
+
     function wishlistReducer(state, action) {
         switch (action.type) {
 
-            case 'INIT_WISHLIST': return [...action.payload]
+            case 'INIT_WISHLIST': return { ...state, wishlist: [...action.payload] }
 
-            case 'ADD_TO_WISHLIST': return state.concat({ ...action.payload })
+            case 'ADD_TO_WISHLIST': return { ...state, wishlist: state.wishlist.concat({ ...action.payload }) }
 
-            case 'REMOVE_FROM_WISHLIST': return state.filter(wishlistItm => wishlistItm._id !== action.payload)
+            case 'REMOVE_FROM_WISHLIST': return { ...state, wishlist: state.wishlist.filter(cartItm => cartItm._id !== action.payload) }
 
             default: return state
         }
@@ -38,7 +64,9 @@ export const WishlistProvider = ({ children }) => {
             value={{
                 wishlistState,
                 wishlistDispatch,
-                getWishlist
+                getWishlist,
+                addProductToWishlist,
+                isProductInWishlist,
             }}
         >
             {children}

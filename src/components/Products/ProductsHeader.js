@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useTheme, useCart, useWishlist } from "../../contexts"
+import { useTheme, useCart, useWishlist, useAuth } from "../../contexts"
 import { Button, Header, Icon, Input, NavBar, Text } from "../Reusable"
 import { getIconColor, getBgColor, getTextColor, getTotalCartItems, getBadgeBgColor, getBadgeTextColor } from '../../utils'
 import { Link } from 'react-router-dom'
@@ -9,6 +9,7 @@ const ProductsHeader = () => {
     const { theme, toggleTheme } = useTheme()
     const { wishlistState } = useWishlist()
     const { cartState } = useCart()
+    const { isUserLoggedIn, logoutUser } = useAuth()
 
     function toggleNavVisibility() {
         setSmallNavVisible(!isSmallNavVisible)
@@ -74,11 +75,21 @@ const ProductsHeader = () => {
                     </Link>
 
                 </div>
-                <Link to='/login'>
-                    <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
-                        login
-                    </Button>
-                </Link>
+
+                {
+                    isUserLoggedIn
+                        ? <Link to='/'>
+                            <Button onClick={logoutUser} classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
+                                logout
+                            </Button>
+                        </Link>
+                        :
+                        <Link to='/login'>
+                            <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
+                                login
+                            </Button>
+                        </Link>
+                }
 
             </NavBar>
 
@@ -146,11 +157,20 @@ const ProductsHeader = () => {
 
                         </div>
 
-                        <Link to='/login'>
-                            <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md mg-top-md`}>
-                                login
-                            </Button>
-                        </Link>
+                        {
+                            isUserLoggedIn
+                                ? <Link to='/'>
+                                    <Button onClick={logoutUser} classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
+                                        logout
+                                    </Button>
+                                </Link>
+                                :
+                                <Link to='/login'>
+                                    <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
+                                        login
+                                    </Button>
+                                </Link>
+                        }
 
                     </NavBar>
 

@@ -1,82 +1,21 @@
 import { useEffect } from "react"
-import axios from "axios"
 import { Button, Label, Text } from "../Reusable"
 import { useProducts, useTheme, useFilters } from "../../contexts"
 import { getTextColor, getBgColor, isInputIncluded, isSortInputIncluded } from "../../utils"
 
 const ProductsFilter = () => {
-    const { productsDispatch } = useProducts()
-    const { filterState, filterDispatch } = useFilters()
+    const { productsDispatch, getProducts, showProductsAlert } = useProducts()
+    const { filterState, handleBrandCheck, handleGenderChecks, handlePriceChange, handlePriceSortOrderChange, handleRatingCheck, handleSizeCheck, resetFilters } = useFilters()
     const { theme } = useTheme()
 
-    function resetFilters() {
-        filterDispatch({ type: 'RESET' })
-    }
-
-    function handleGenderChecks(e) {
-        const checkedGender = e.target.value
-
-        if (!e.target.checked) {
-            filterDispatch({ type: 'REMOVE_GENDER', payload: checkedGender })
-        }
-        else {
-            filterDispatch({ type: 'ADD_GENDER', payload: checkedGender })
-        }
-    }
-
-    function handleRatingCheck(e) {
-        const checkedRating = Number(e.target.value)
-
-        if (!e.target.checked) {
-            filterDispatch({ type: 'REMOVE_RATING', payload: checkedRating })
-        }
-        else {
-            filterDispatch({ type: 'ADD_RATING', payload: checkedRating })
-        }
-    }
-
-    function handleSizeCheck(e) {
-        const checkedSize = Number(e.target.value)
-
-        if (!e.target.checked) {
-            filterDispatch({ type: 'REMOVE_SIZE', payload: checkedSize })
-        }
-        else {
-            filterDispatch({ type: 'ADD_SIZE', payload: checkedSize })
-        }
-    }
-
-    function handleBrandCheck(e) {
-        const checkedBrand = e.target.value
-
-        if (!e.target.checked) {
-            filterDispatch({ type: 'REMOVE_BRAND', payload: checkedBrand })
-        }
-        else {
-            filterDispatch({ type: 'ADD_BRAND', payload: checkedBrand })
-        }
-    }
-
-    function handlePriceChange(e) {
-        filterDispatch({ type: 'UPDATE_PRICE', payload: Number(e.target.value) })
-    }
-
-    function handlePriceSortOrderChange(e) {
-        filterDispatch({ type: 'UPDATE_SORTORDER', payload: e.target.value })
-    }
-
     useEffect(() => {
-        async function getAllProducts() {
-            try {
-                const response = await axios.get('/api/products')
-                return response.data.products
-            } catch (e) {
-                console.log(e)
-            }
-        }
         (async () => {
-            const allProducts = await getAllProducts()
-            productsDispatch({ type: 'FILTER_PRODUCTS', payload: { allProducts, filterState } })
+            const getProductsResponse = await getProducts()
+            if (getProductsResponse === 500) {
+                showProductsAlert('could not get products', 'error')
+            } else if (getProductsResponse) {
+                productsDispatch({ type: 'FILTER_PRODUCTS', payload: { allProducts: getProductsResponse, filterState } })
+            }
         })()
     }, [filterState, productsDispatch])
 

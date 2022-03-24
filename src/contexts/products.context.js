@@ -14,6 +14,18 @@ export const ProductsProvider = ({ children }) => {
         loading: false
     })
 
+    function showProductsAlert(message, type) {
+        productsDispatch({
+            type: 'SET_ALERT', payload: {
+                message,
+                type
+            }
+        })
+
+        setTimeout(() => productsDispatch({ type: 'REMOVE_ALERT' }), 3000)
+
+    }
+
     async function getProducts() {
         try {
             const response = await axios.get('/api/products')
@@ -36,7 +48,21 @@ export const ProductsProvider = ({ children }) => {
 
             case 'REMOVE_LOADING': return { ...state, loading: false }
 
-            case 'FILTER_PRODUCTS': return filterProducts(action.payload.allProducts, action.payload.filterState)
+            case 'SET_ALERT': return {
+                ...state, alert: {
+                    message: action.payload.message,
+                    type: action.payload.type
+                }
+            }
+
+            case 'REMOVE_ALERT': return {
+                ...state, alert: {
+                    message: '',
+                    type: ''
+                }
+            }
+
+            case 'FILTER_PRODUCTS': return { ...state, products: filterProducts(action.payload.allProducts, action.payload.filterState) }
             default: return state
 
         }
@@ -79,7 +105,8 @@ export const ProductsProvider = ({ children }) => {
             value={{
                 productsState,
                 productsDispatch,
-                getProducts
+                getProducts,
+                showProductsAlert
             }}
         >
             {children}

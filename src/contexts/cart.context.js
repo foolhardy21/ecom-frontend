@@ -1,17 +1,42 @@
-import { createContext, useContext, useReducer } from "react";
 import axios from "axios";
+import { createContext, useContext, useReducer } from "react";
+import { useAuth } from "./auth.context";
 
 const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
-    const [cartState, cartDispatch] = useReducer(cartReducer, [])
+    const [cartState, cartDispatch] = useReducer(cartReducer, {
+        cart: [],
+        alert: {
+            message: '',
+            type: ''
+        },
+        loading: false
+    })
+    const { getUserToken } = useAuth()
+
+    const isProductInCart = productId => cartState.cart.some(item => item._id === productId)
+
+    async function addProductToCart(product) {
+        try {
+            const response = await axios.post('/api/user/cart', {
+                product
+            }, {
+                headers: {
+                    authorization: getUserToken()
+                }
+            })
+            return response.data.cart
+        } catch (e) {
+            return e.response.status
+        }
+    }
 
     async function getCart() {
         try {
-            const userToken = window.localStorage.getItem('userToken')
             const response = await axios.get('/api/user/cart', {
                 headers: {
-                    authorization: userToken
+                    authorization: getUserToken()
                 }
             })
             return response.data.cart
@@ -23,15 +48,15 @@ export const CartProvider = ({ children }) => {
     function cartReducer(state, action) {
         switch (action.type) {
 
-            case 'INIT_CART': return [...action.payload]
+            case 'INIT_CART': return { ...state, cart: [...action.payload] }
 
-            case 'ADD_TO_CART': return state.concat({ ...action.payload })
+            case 'ADD_TO_CART': return { ...state, cart: state.cart.concat({ ...action.payload }) }
 
-            case 'REMOVE_FROM_CART': return state.filter(cartItm => cartItm._id !== action.payload)
+            case 'REMOVE_FROM_CART': return { ...state, cart: state.cart.filter(cartItm => cartItm._id !== action.payload) }
 
-            case 'INCREMENT_CART_ITEM': return state.map(cartItm => cartItm._id === action.payload ? ({ ...cartItm, qty: cartItm.qty + 1 }) : cartItm)
+            case 'INCREMENT_CART_ITEM': return { ...state, cart: state.cart.map(cartItm => cartItm._id === action.payload ? ({ ...cartItm, qty: cartItm.qty + 1 }) : cartItm) }
 
-            case 'DECREMENT_CART_ITEM': return state.map(cartItm => cartItm._id === action.payload ? ({ ...cartItm, qty: cartItm.qty - 1 }) : cartItm)
+            case 'DECREMENT_CART_ITEM': return { ...state, cart: state.cart.map(cartItm => cartItm._id === action.payload ? ({ ...cartItm, qty: cartItm.qty - 1 }) : cartItm) }
 
             default: return state
 
@@ -44,7 +69,9 @@ export const CartProvider = ({ children }) => {
             value={{
                 cartState,
                 cartDispatch,
-                getCart
+                getCart,
+                addProductToCart,
+                isProductInCart
             }}
         >
             {children}

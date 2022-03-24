@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
                 email,
                 password,
             })
+            window.localStorage.setItem('userToken', response.data.encodedToken)
             setIsUserLoggedIn(true)
             return response.status
         } catch (e) {

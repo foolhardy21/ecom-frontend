@@ -1,24 +1,24 @@
 import { useState, useEffect } from 'react'
 import { Button, Icon, Text, Alert, Main } from '../components/Reusable'
 import { ProductsHeader, ProductsFilter, ProductsSection } from '../components/Products'
-import { useAlert, useProducts, useTheme } from '../contexts'
+import { useProducts, useTheme } from '../contexts'
 import { getBgColor, getTextColor } from '../utils'
 import '../components/Products/products.css'
 
 const Products = () => {
     const [filterVisibility, setFilterVisibility] = useState(false)
-    const { getProducts, productsDispatch } = useProducts()
+    const { getProducts, productsDispatch, productsState, showProductsAlert } = useProducts()
     const { theme } = useTheme()
-    const { alert, showAlert } = useAlert()
 
     useEffect(() => {
         (async () => {
+            productsDispatch({ type: 'SET_LOADING' })
             const getProductsResponse = await getProducts()
             if (getProductsResponse === 500) {
-                showAlert('could not fetch products')
+                showProductsAlert('could not fetch products', 'error')
             } else if (getProductsResponse) {
+                productsDispatch({ type: 'REMOVE_LOADING' })
                 productsDispatch({ type: 'INIT_PRODUCTS', payload: getProductsResponse })
-
             }
         })()
     }, [productsDispatch])
@@ -52,14 +52,18 @@ const Products = () => {
                 <Main id="main-prdlist" classes={`${getBgColor(theme)} flx flx-column flx-min-center`}>
 
                     {
-                        alert.type === 'error'
-                            ? <Alert classes='bg-err mg-top-s mg-btm-s'>{alert.message}</Alert>
-                            : alert.type === 'success' ? <Alert classes='bg-success mg-top-s mg-btm-s'>{alert.message}</Alert> : ''
+                        productsState.alert.type === 'error'
+                            ? <Alert classes='bg-err'>{productsState.alert.message}</Alert>
+                            : productsState.alert.type === 'success'
+                                ? <Alert classes='bg-success'>{productsState.alert.message}</Alert>
+                                : ''
                     }
 
                     <Text classes={`txt-lg txt-cap ${getTextColor(theme)} pd-top-lg pd-btm-lg`}>sneakers</Text>
 
-                    <ProductsSection />
+                    {
+                        productsState.loading ? <Text classes='txt-xlg txt-600 txt-success txt-cap'>loading...</Text> : <ProductsSection />
+                    }
 
                 </Main>
 

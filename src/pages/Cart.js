@@ -1,20 +1,20 @@
 import { useEffect } from "react"
 import { Main, Text, Alert } from "../components/Reusable"
 import { CartHeader, CartSection } from "../components/Cart"
-import { useAlert, useCart, useTheme } from "../contexts"
+import { useCart, useTheme } from "../contexts"
 import { getBgColor } from "../utils"
 
 const Cart = () => {
     const { theme } = useTheme()
     const { cartDispatch, getCart } = useCart()
-    const { alert, showAlert } = useAlert()
+    // const { alert, showAlert } = useAlert()
 
     useEffect(() => {
         (async () => {
             const getCartResponse = await getCart()
 
             if (getCartResponse === 500 || getCartResponse === 404) {
-                showAlert('you are not logged in', 'error')
+                // showAlert('you are not logged in', 'error')
             } else if (getCartResponse) {
                 cartDispatch({ type: 'INIT_CART', payload: getCartResponse })
             }
