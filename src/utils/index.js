@@ -1,6 +1,6 @@
 export { getTextColor, getBgColor, getSolidBtnBgColor, getSolidBtnTextColor, getBorderColor, getIconColor, getBadgeBgColor, getBadgeTextColor } from "./theme.util";
 
-export { emailIsInvalid, nameIsInvalid, passIsInvalid, passAndConfPassAreDiff } from "./inputValidation.util";
+export { isEmailInvalid, isNameInvalid, isPasswordInvalid, arePasswordAndConfirmedPasswordDiff } from "./inputValidation.util";
 
 export { isInputIncluded, isSortInputIncluded } from './filter.util'
 

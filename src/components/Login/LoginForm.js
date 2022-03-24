@@ -1,7 +1,7 @@
 import { useState } from "react"
 import axios from "axios"
 import { Form, Text, Button, Input, Label } from "../Reusable"
-import { emailIsInvalid, passIsInvalid, getSolidBtnBgColor, getSolidBtnTextColor } from "../../utils"
+import { getSolidBtnBgColor, getSolidBtnTextColor } from "../../utils"
 import { useTheme } from '../../contexts'
 
 const LoginForm = () => {
@@ -31,21 +31,21 @@ const LoginForm = () => {
     function validateEnteredInfo() {
         let validationError = false
 
-        if (emailIsInvalid(enteredInfo.email)) {
-            validationError = true
-            setInputError((e) => ({ ...e, email: true }))
-            setTimeout(() => {
-                setInputError((e) => ({ ...e, email: false }))
-            }, 3000)
-        }
+        // if (emailIsInvalid(enteredInfo.email)) {
+        //     validationError = true
+        //     setInputError((e) => ({ ...e, email: true }))
+        //     setTimeout(() => {
+        //         setInputError((e) => ({ ...e, email: false }))
+        //     }, 3000)
+        // }
 
-        if (passIsInvalid(enteredInfo.password)) {
-            validationError = true
-            setInputError((e) => ({ ...e, password: true }))
-            setTimeout(() => {
-                setInputError((e) => ({ ...e, password: false }))
-            }, 3000)
-        }
+        // if (passIsInvalid(enteredInfo.password)) {
+        //     validationError = true
+        //     setInputError((e) => ({ ...e, password: true }))
+        //     setTimeout(() => {
+        //         setInputError((e) => ({ ...e, password: false }))
+        //     }, 3000)
+        // }
 
         return validationError
     }

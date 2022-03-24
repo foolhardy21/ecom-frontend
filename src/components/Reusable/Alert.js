@@ -3,7 +3,7 @@ import { Icon, Text } from './'
 const Alert = ({ classes, children }) => {
 
     return (
-        <div className={`flx flx-maj-start flx-min-center ${classes} alert-size-s pd-xs`}>
+        <div className={`flx flx-maj-start flx-min-center ${classes} alert-size-s pd-xs mg-top-s`}>
 
             <Icon classes='icon-secondary mg-right-s'>
                 check_circle

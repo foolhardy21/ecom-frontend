@@ -7,10 +7,10 @@ const nameReg = new RegExp(/\d/ig)
 
 // helper functions for input validation
 
-export const emailIsInvalid = (inputStr) => (!emailReg.test(inputStr))
+export const isEmailInvalid = inputStr => !emailReg.test(inputStr)
 
-export const nameIsInvalid = (inputStr) => (inputStr === '' || nameReg.test(inputStr))
+export const isNameInvalid = inputStr => (inputStr === '' || nameReg.test(inputStr))
 
-export const passIsInvalid = (inputStr) => (inputStr === '' || passReg.test(inputStr))
+export const isPasswordInvalid = inputStr => (inputStr === '' || passReg.test(inputStr))
 
-export const passAndConfPassAreDiff = (passStr, confPassStr) => (passStr !== confPassStr) 
+export const arePasswordAndConfirmedPasswordDiff = (passStr, confPassStr) => (passStr !== confPassStr) 

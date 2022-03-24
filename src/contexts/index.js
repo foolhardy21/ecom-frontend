@@ -1,21 +1,7 @@
-import { useTheme, ThemeProvider } from "./theme.context";
-import { useAlert, AlertProvider } from "./alert.context";
-import { FilterProvider, useFilters } from './filters.context'
-import { ProductsProvider, useProducts } from './products.context'
-import { CartProvider, useCart } from './cart.context'
-import { WishlistProvider, useWishlist } from './wishlist.context'
-
-export {
-    useTheme,
-    ThemeProvider,
-    useAlert,
-    AlertProvider,
-    ProductsProvider,
-    useProducts,
-    FilterProvider,
-    useFilters,
-    CartProvider,
-    useCart,
-    WishlistProvider,
-    useWishlist,
-}
+export { useTheme, ThemeProvider } from "./theme.context";
+export { useAlert, AlertProvider } from "./alert.context";
+export { FilterProvider, useFilters } from './filters.context'
+export { ProductsProvider, useProducts } from './products.context'
+export { CartProvider, useCart } from './cart.context'
+export { WishlistProvider, useWishlist } from './wishlist.context'
+export { useSignup, SignupProvider } from './signup.context'
