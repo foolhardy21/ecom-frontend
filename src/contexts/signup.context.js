@@ -1,4 +1,3 @@
-import axios from "axios"
 import { createContext, useContext, useState, useReducer } from "react";
 import { arePasswordAndConfirmedPasswordDiff, isEmailInvalid, isNameInvalid, isPasswordInvalid } from "../utils";
 
@@ -78,20 +77,7 @@ export const SignupProvider = ({ children }) => {
         }), 3000)
     }
 
-    async function signupUser() {
-        try {
-            const response = await axios.post('/api/auth/signup', {
-                email: signupFormState.email.value,
-                password: signupFormState.password.value,
-                firstName: signupFormState.firstName.value,
-                lastName: signupFormState.lastName.value,
-            })
-            return response.status
-            // route to login page in the above timeout function
-        } catch (e) {
-            return e.response.status
-        }
-    }
+
 
     function signupFormReducer(state, action) {
 
@@ -224,7 +210,6 @@ export const SignupProvider = ({ children }) => {
                 signupFormState,
                 signupFormDispatch,
                 isFormInvalid,
-                signupUser,
                 signupAlert,
                 showSignupAlert,
             }}

@@ -1,4 +1,3 @@
-import axios from "axios"
 import { createContext, useContext, useState, useReducer } from "react";
 import { isEmailInvalid, isPasswordInvalid } from "../utils";
 
@@ -49,18 +48,7 @@ export const LoginProvider = ({ children }) => {
         }), 3000)
     }
 
-    async function loginUser() {
-        try {
-            const response = await axios.post('/api/auth/login', {
-                email: loginFormState.email.value,
-                password: loginFormState.password.value,
-            })
-            return response.status
-            // route to previous page
-        } catch (e) {
-            return e.response.status
-        }
-    }
+
 
     function loginFormReducer(state, action) {
 
@@ -121,13 +109,13 @@ export const LoginProvider = ({ children }) => {
         }
     }
 
+
     return (
         <LoginContext.Provider
             value={{
                 loginFormState,
                 loginFormDispatch,
                 isFormInvalid,
-                loginUser,
                 loginAlert,
                 showLoginAlert,
             }}

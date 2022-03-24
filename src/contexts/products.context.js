@@ -5,7 +5,14 @@ import { filterProductsByBrand, filterProductsByGender, filterProductsByPrice, f
 const ProductsContext = createContext()
 
 export const ProductsProvider = ({ children }) => {
-    const [productsState, productsDispatch] = useReducer(productsReducer, [])
+    const [productsState, productsDispatch] = useReducer(productsReducer, {
+        products: [],
+        alert: {
+            message: '',
+            type: ''
+        },
+        loading: false
+    })
 
     async function getProducts() {
         try {
@@ -20,7 +27,15 @@ export const ProductsProvider = ({ children }) => {
 
         switch (action.type) {
 
-            case 'INIT_PRODUCTS': return [...action.payload]
+            case 'INIT_PRODUCTS': return {
+                ...state,
+                products: [...action.payload]
+            }
+
+            case 'SET_LOADING': return { ...state, loading: true }
+
+            case 'REMOVE_LOADING': return { ...state, loading: false }
+
             case 'FILTER_PRODUCTS': return filterProducts(action.payload.allProducts, action.payload.filterState)
             default: return state
 
