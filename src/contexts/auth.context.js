@@ -1,10 +1,16 @@
 import axios from "axios"
 import { createContext, useState, useContext } from "react"
+import { Navigate, useLocation } from "react-router-dom"
 
 const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
+
+    const RequireAuth = ({ children }) => {
+        const location = useLocation()
+        return isUserLoggedIn ? children : <Navigate to='/login' state={{ from: location }} replace />
+    }
 
     async function loginUser(email, password) {
         try {
@@ -50,6 +56,7 @@ export const AuthProvider = ({ children }) => {
                 signupUser,
                 logoutUser,
                 getUserToken,
+                RequireAuth,
             }}
         >
             {children}

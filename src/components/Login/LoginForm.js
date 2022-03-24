@@ -1,13 +1,15 @@
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { Form, Text, Button, Input, Label } from "../Reusable"
 import { getSolidBtnBgColor, getSolidBtnTextColor } from "../../utils"
 import { useLogin, useTheme, useAuth } from '../../contexts'
 
 const LoginForm = () => {
     const navigate = useNavigate()
+    const location = useLocation()
     const { theme } = useTheme()
     const { loginFormState, isFormInvalid, loginFormDispatch, showLoginAlert } = useLogin()
     const { loginUser } = useAuth()
+    const from = location.state?.from?.pathname || '/products'
 
     async function handleLoginSubmit(e) {
         e.preventDefault()
@@ -18,7 +20,7 @@ const LoginForm = () => {
                 showLoginAlert('account not found', 'error')
             } else if (loginUserResponse === 200) {
                 showLoginAlert('logged in', 'success')
-                setTimeout(() => navigate('/products'), 3500)
+                setTimeout(() => navigate(from, { replace: true }), 3200)
             }
         }
 

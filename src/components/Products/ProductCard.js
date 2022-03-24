@@ -125,7 +125,7 @@ const ProductCard = ({ prd }) => {
                 {
                     isProductInCart(_id)
                         ? <Link to='/cart'>
-                            <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-cap pd-xs`} >go to cart</Button>
+                            <Button classes={`btn-solid ${getSolidBtnTextColor(theme)} ${getSolidBtnBgColor(theme)} txt-md txt-cap pd-xs`} >go to cart</Button>
                         </Link>
                         : <Button onClick={handleAddToCart} classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-cap pd-xs`} >add to cart</Button>
                 }

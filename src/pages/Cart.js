@@ -7,7 +7,7 @@ import { getBgColor } from "../utils"
 const Cart = () => {
     const { theme } = useTheme()
     const { cartDispatch, getCart } = useCart()
-    // const { alert, showAlert } = useAlert()
+    // const { alert, showAlert } = useAlert()  
 
     useEffect(() => {
         (async () => {
