@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom"
 import { Form, Input, Label, Button, Text } from "../Reusable"
 import { getSolidBtnTextColor, getSolidBtnBgColor } from "../../utils"
 import { useSignup, useTheme } from '../../contexts'
 
 const SignupForm = () => {
+    const navigate = useNavigate()
     const { theme } = useTheme()
     const { signupFormState, signupFormDispatch, isFormInvalid, showSignupAlert, signupUser } = useSignup()
 
@@ -14,6 +16,7 @@ const SignupForm = () => {
             if (signupUserResponse === 201) {
                 showSignupAlert('account created', 'success')
                 signupFormDispatch({ type: 'INIT_FORM' })
+                setTimeout(() => navigate('/login'), 3500)
             } else if (signupUserResponse === 422) {
                 showSignupAlert('account already exists', 'error')
             }
@@ -56,9 +59,8 @@ const SignupForm = () => {
 
             <div className='flx flx-maj-end flx-min-center mg-top-xs mg-btm-md'>
 
-                <Input type='checkbox' id='toggle-pass' />
-
-                <Label htmlFor='toggle-pass' onClick={() => signupFormDispatch({ type: 'TOGGLE_PASSWORD_TYPE' })} classes='txt-cap mg-left-xs txt-md'>
+                <Label htmlFor='toggle-pass' classes='txt-cap txt-md'>
+                    <Input type='checkbox' id='toggle-pass' onChange={() => signupFormDispatch({ type: 'TOGGLE_PASSWORD_TYPE' })} classes='mg-right-xs' />
                     show password
                 </Label>
 

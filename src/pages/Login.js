@@ -1,11 +1,11 @@
 import { LoginHeader, LoginCard } from '../components/Login'
 import { Main, Alert } from '../components/Reusable'
-import { useAlert, useTheme } from "../contexts"
+import { useLogin, useTheme } from "../contexts"
 import { getBgColor } from "../utils"
 
 const Login = () => {
     const { theme } = useTheme()
-    const { alert } = useAlert()
+    const { loginAlert } = useLogin()
 
     return (
         <div style={{
@@ -14,9 +14,14 @@ const Login = () => {
 
             <LoginHeader />
 
-            {
-                alert.type === 'error' && <Alert classes='bg-err mg-top-s mg-btm-s'>{alert.message}</Alert>
-            }
+            <div className='flx flx-center'>
+                {
+                    loginAlert.type === 'error'
+                        ? <Alert classes='bg-err'>{loginAlert.message}</Alert>
+                        : loginAlert.type === 'success' ? <Alert classes='bg-success'>{loginAlert.message}</Alert>
+                            : ''
+                }
+            </div>
 
             <Main classes='flx flx-maj-even mg-top-xxlg'>
 

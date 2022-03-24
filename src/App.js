@@ -1,7 +1,7 @@
-import { Signup, Login, Products, Wishlist, Cart, Home } from './pages'
+import { Signup, Login, Products, Wishlist, Cart, Home, NotFound } from './pages'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MockMan from "mockman-js";
-import { SignupProvider } from './contexts';
+import { LoginProvider, SignupProvider } from './contexts';
 
 function App() {
   return (
@@ -9,17 +9,21 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
-
         <Route path='/signup' element={
           <SignupProvider>
             <Signup />
           </SignupProvider>
         } />
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={
+          <LoginProvider>
+            <Login />
+          </LoginProvider>
+        } />
         <Route path='/products' element={<Products />} />
         <Route path='/wishlist' element={<Wishlist />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/mock' element={<MockMan />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
 
