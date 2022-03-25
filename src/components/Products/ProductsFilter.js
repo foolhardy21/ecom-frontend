@@ -1,12 +1,22 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Button, Label, Text } from "../Reusable"
 import { useProducts, useTheme, useFilters } from "../../contexts"
 import { getTextColor, getBgColor, isInputIncluded, isSortInputIncluded } from "../../utils"
 
 const ProductsFilter = () => {
-    const { productsDispatch, getProducts, showProductsAlert } = useProducts()
+    const { productsDispatch, getProducts, showProductsAlert, getCategories } = useProducts()
     const { filterState, handleBrandCheck, handleGenderChecks, handlePriceChange, handlePriceSortOrderChange, handleRatingCheck, handleSizeCheck, resetFilters } = useFilters()
     const { theme } = useTheme()
+    const [categories, setCategories] = useState([])
+    let sizeArr = []
+    let ratingArr = []
+
+    for (let i = 9; i <= 12; i++) {
+        sizeArr.push(i)
+    }
+    for (let i = 1; i < 6; i++) {
+        ratingArr.push(i)
+    }
 
     useEffect(() => {
         (async () => {
@@ -18,6 +28,17 @@ const ProductsFilter = () => {
             }
         })()
     }, [filterState, productsDispatch])
+
+    useEffect(() => {
+        (async () => {
+            const categories = await getCategories()
+            if (categories === 404 || categories === 500) {
+                showProductsAlert('could not get categories', 'error')
+            } else {
+                setCategories(categories)
+            }
+        })()
+    }, [])
 
 
     return (
@@ -102,61 +123,15 @@ const ProductsFilter = () => {
                     brands
                 </Text>
 
-                <div className='flx flx-min-center'>
+                {
+                    categories.map(({ categoryName, id }) => <div key={id} className='flx flx-min-center'>
 
-                    <input type='checkbox' id='nike-category' value='nike' checked={isInputIncluded('nike', filterState.brandChecks)} onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
+                        <input type='checkbox' id={`${categoryName}-category`} value={categoryName} checked={isInputIncluded(categoryName, filterState.brandChecks)} onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
 
-                    <label htmlFor='nike-category' className='txt-cap'>nike</label>
+                        <label htmlFor={`${categoryName}-category`} className='txt-cap'>{categoryName}</label>
 
-                </div>
-
-                <div className='flx flx-min-center'>
-
-                    <input type='checkbox' id='adidas-category' value='adidas' checked={isInputIncluded('adidas', filterState.brandChecks)} onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
-
-                    <label htmlFor='adidas-category' className='txt-cap'>adidas</label>
-
-                </div>
-
-                <div className='flx flx-min-center'>
-
-                    <input type='checkbox' id='aj-category' value='air jordan' checked={isInputIncluded('air jordan', filterState.brandChecks)} onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
-
-                    <label htmlFor='aj-category' className='txt-cap'>air jordan</label>
-
-                </div>
-
-                <div className='flx flx-min-center'>
-
-                    <input type='checkbox' id='yz-category' value='yeezy' checked={isInputIncluded('yeezy', filterState.brandChecks)} onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
-
-                    <label htmlFor='yz-category' className='txt-cap'>yeezy</label>
-
-                </div>
-
-                <div className='flx flx-min-center'>
-
-                    <input type='checkbox' id='converse-category' value='converse' checked={isInputIncluded('converse', filterState.brandChecks)} onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
-
-                    <label htmlFor='converse-category' className='txt-cap'>converse</label>
-
-                </div>
-
-                <div className='flx flx-min-center'>
-
-                    <input type='checkbox' id='nbalance-category' value='new balance' checked={isInputIncluded('new balance', filterState.brandChecks)} onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
-
-                    <label htmlFor='nbalance-category' className='txt-cap'>new balance</label>
-
-                </div>
-
-                <div className='flx flx-min-center'>
-
-                    <input type='checkbox' id='vans-category' value='vans' checked={isInputIncluded('vans', filterState.brandChecks)} onChange={(e) => handleBrandCheck(e)} className='mg-right-xs' />
-
-                    <label htmlFor='vans-category' className='txt-cap'>vans</label>
-
-                </div>
+                    </div>)
+                }
 
             </div>
 
@@ -167,69 +142,15 @@ const ProductsFilter = () => {
 
                 <div className="grid grid-maxcols-3">
 
-                    <div className='flx flx-min-center'>
+                    {
+                        sizeArr.map(size => <div key={size} className='flx flx-min-center'>
 
-                        <input type='checkbox' id='size-14' name="size-group" value='14' checked={isInputIncluded(14, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
+                            <input type='checkbox' id={`size-${size}`} name="size-group" value={size} checked={isInputIncluded(size, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
 
-                        <label htmlFor='size-14' className="txt-cap">14</label>
+                            <label htmlFor={`size-${size}`} className="txt-cap">{size}</label>
 
-                    </div>
-
-                    <div className='flx flx-min-center'>
-
-                        <input type='checkbox' id='size-13' name="size-group" value='13' checked={isInputIncluded(13, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
-
-                        <label htmlFor='size-13' className="txt-cap">13</label>
-
-                    </div>
-
-                    <div className='flx flx-min-center'>
-
-                        <input type='checkbox' id='size-12' name="size-group" value='12' checked={isInputIncluded(12, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
-
-                        <label htmlFor='size-12' className="txt-cap">12</label>
-
-                    </div>
-
-                    <div className='flx flx-min-center'>
-
-                        <input type='checkbox' id='size-11' name="size-group" value='11' checked={isInputIncluded(11, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
-
-                        <label htmlFor='size-11' className="txt-cap">11</label>
-
-                    </div>
-
-                    <div className='flx flx-min-center'>
-
-                        <input type='checkbox' id='size-10' name="size-group" value='10' checked={isInputIncluded(10, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
-
-                        <label htmlFor='size-10' className="txt-cap">10</label>
-
-                    </div>
-
-                    <div className='flx flx-min-center'>
-
-                        <input type='checkbox' id='size-9' name="size-group" value='9' checked={isInputIncluded(9, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
-
-                        <label htmlFor='size-9' className="txt-cap">9</label>
-
-                    </div>
-
-                    <div className='flx flx-min-center'>
-
-                        <input type='checkbox' id='size-8' name="size-group" value='8' checked={isInputIncluded(8, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
-
-                        <label htmlFor='size-8' className="txt-cap">8</label>
-
-                    </div>
-
-                    <div className='flx flx-min-center'>
-
-                        <input type='checkbox' id='size-7' name="size-group" value='7' checked={isInputIncluded(7, filterState.sizeChecks)} onChange={(e) => handleSizeCheck(e)} className='mg-right-xs' />
-
-                        <label htmlFor='size-7' className="txt-cap">7</label>
-
-                    </div>
+                        </div>)
+                    }
 
                 </div>
 
@@ -240,45 +161,15 @@ const ProductsFilter = () => {
 
                 <Text classes='txt-md txt-cap mg-btm-xs'>rating</Text>
 
-                <div className='flx flx-min-center'>
+                {
+                    ratingArr.map(rating => <div key={rating} className='flx flx-min-center'>
 
-                    <input type='checkbox' id='5-atleast' name="rating-group" value='5' checked={isInputIncluded(5, filterState.ratingChecks)} onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
+                        <input type='checkbox' id={`${rating}-atleast`} name="rating-group" value={rating} checked={isInputIncluded(rating, filterState.ratingChecks)} onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
 
-                    <label htmlFor='5-atleast' className="txt-cap">5 stars</label>
+                        <label htmlFor={`${rating}-atleast`} className="txt-cap">{`${rating} stars`}</label>
 
-                </div>
-
-                <div className='flx flx-min-center'>
-
-                    <input type='checkbox' id='4-atleast' name="rating-group" value='4' checked={isInputIncluded(4, filterState.ratingChecks)} onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
-
-                    <label htmlFor='4-atleast' className="txt-cap">4 stars</label>
-
-                </div>
-
-                <div className='flx flx-min-center'>
-
-                    <input type='checkbox' id='3-atleast' name="rating-group" value='3' checked={isInputIncluded(3, filterState.ratingChecks)} onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
-
-                    <label htmlFor='3-atleast' className="txt-cap">3 stars</label>
-
-                </div>
-
-                <div className='flx flx-min-center'>
-
-                    <input type='checkbox' id='2-atleast' name="rating-group" value='2' checked={isInputIncluded(2, filterState.ratingChecks)} onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
-
-                    <label htmlFor='2-atleast' className="txt-cap">2 stars</label>
-
-                </div>
-
-                <div className='flx flx-min-center'>
-
-                    <input type='checkbox' id='1-atleast' name="rating-group" value='1' checked={isInputIncluded(1, filterState.ratingChecks)} onChange={(e) => handleRatingCheck(e)} className='mg-right-xs' />
-
-                    <label htmlFor='1-atleast' className="txt-cap">1 star</label>
-
-                </div>
+                    </div>)
+                }
 
             </div>
 

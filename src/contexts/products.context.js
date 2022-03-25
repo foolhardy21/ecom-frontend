@@ -38,6 +38,15 @@ export const ProductsProvider = ({ children }) => {
         }
     }
 
+    async function getCategories() {
+        try {
+            const response = await axios.get('/api/categories')
+            return response.data.categories
+        } catch (e) {
+            return e.response.status
+        }
+    }
+
 
 
     return (
@@ -46,7 +55,8 @@ export const ProductsProvider = ({ children }) => {
                 productsState,
                 productsDispatch,
                 getProducts,
-                showProductsAlert
+                showProductsAlert,
+                getCategories,
             }}
         >
             {children}

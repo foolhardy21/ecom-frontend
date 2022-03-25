@@ -1,27 +1,22 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { useTheme, useFilters } from "../../contexts"
+import { useTheme, useFilters, useProducts } from "../../contexts"
 import { getBgColor } from "../../utils"
 import { Card, Image, Section, Text } from "../Reusable"
 
 const CategorySection = () => {
+    const [categories, setCategories] = useState([])
+    const { getCategories } = useProducts()
     const { theme } = useTheme()
     const { filterDispatch } = useFilters()
-    const [categories, setCategories] = useState([])
 
     useEffect(() => {
-        async function getCategories() {
-            try {
-                const response = await axios.get('/api/categories')
-                return response.data.categories
-            } catch (e) {
-                console.log(e)
-            }
-        }
         (async () => {
             const categories = await getCategories()
-            setCategories(categories)
+            if (!(categories === 404 || categories === 500)) {
+                setCategories(categories)
+            }
         })()
     }, [])
 

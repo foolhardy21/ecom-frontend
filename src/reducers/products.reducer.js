@@ -45,7 +45,7 @@ function filterProducts(filteredProducts, filterObj) {
         filteredProducts = filterProductsByBrand(filteredProducts, filterObj.brandChecks)
 
     if (filterObj.sizeChecks.length > 0)
-        filteredProducts = filterProductsBySize(filteredProducts, Math.max(...filterObj.sizeChecks))
+        filteredProducts = filterProductsBySize(filteredProducts, Math.min(...filterObj.sizeChecks))
 
     if (filterObj.ratingChecks.length > 0)
         filteredProducts = filterProductsByRating(filteredProducts, Math.min(...filterObj.ratingChecks))

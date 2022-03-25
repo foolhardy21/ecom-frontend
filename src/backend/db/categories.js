@@ -26,7 +26,7 @@ export const categories = [
   },
   {
     _id: uuid(),
-    categoryName: "air jordan",
+    categoryName: "nike",
     categoryImg: {
       alt: 'air jordan logo',
       srcSet: `${airjM} 250w, ${airjS} 150w`,
