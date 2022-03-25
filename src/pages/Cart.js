@@ -2,19 +2,17 @@ import { useEffect } from "react"
 import { Main, Text, Alert } from "../components/Reusable"
 import { CartHeader, CartSection } from "../components/Cart"
 import { useCart, useTheme } from "../contexts"
-import { getBgColor } from "../utils"
+import { getBgColor, getTextColor } from "../utils"
 
 const Cart = () => {
     const { theme } = useTheme()
-    const { cartDispatch, getCart } = useCart()
-    // const { alert, showAlert } = useAlert()  
+    const { cartDispatch, getCart, showCartAlert, cartState } = useCart()
 
     useEffect(() => {
         (async () => {
             const getCartResponse = await getCart()
-
             if (getCartResponse === 500 || getCartResponse === 404) {
-                // showAlert('you are not logged in', 'error')
+                showCartAlert('could not load the cart', 'error')
             } else if (getCartResponse) {
                 cartDispatch({ type: 'INIT_CART', payload: getCartResponse })
             }
@@ -39,10 +37,14 @@ const Cart = () => {
                 </Text>
 
                 {
-                    alert.type === 'error' && <Alert classes='bg-err mg-top-s mg-btm-s'>{alert.message}</Alert>
+                    cartState.alert.type === 'error' && <Alert classes='bg-err'>{cartState.alert.message}</Alert>
                 }
 
-                <CartSection />
+                {
+                    cartState.loading
+                        ? <Text classes={`txt-xlg txt-600 ${getTextColor(theme)} txt-cap`}>loading...</Text>
+                        : <CartSection />
+                }
 
             </Main>
 

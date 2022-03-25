@@ -15,17 +15,49 @@ export const WishlistProvider = ({ children }) => {
     })
     const { getUserToken } = useAuth()
 
+    function showWishlistAlert(message, type) {
+        wishlistDispatch({
+            type: 'SET_ALERT', payload: {
+                message,
+                type
+            }
+        })
+        setTimeout(() => {
+            wishlistDispatch({
+                type: 'REMOVE_ALERT', payload: {
+                    message: '',
+                    type: '',
+                }
+            })
+        }, 3000)
+    }
+
+    async function removeProductFromWishlist(productId) {
+        try {
+            const response = await axios.delete(`/api/user/wishlist/${productId}`, {
+                headers: {
+                    authorization: getUserToken()
+                }
+            })
+            return response.data.cart
+        } catch (e) {
+            return e.response.status
+        }
+    }
+
     async function getWishlist() {
-        const userToken = window.localStorage.getItem('userToken')
+        wishlistDispatch({ type: 'SET_LOADING' })
         try {
             const response = await axios.get('/api/user/wishlist', {
                 headers: {
-                    authorization: userToken
+                    authorization: getUserToken()
                 }
             })
             return response.data.wishlist
         } catch (e) {
             return e.response.status
+        } finally {
+            wishlistDispatch({ type: 'REMOVE_LOADING' })
         }
     }
 
@@ -51,6 +83,23 @@ export const WishlistProvider = ({ children }) => {
 
             case 'INIT_WISHLIST': return { ...state, wishlist: [...action.payload] }
 
+            case 'SET_LOADING': return { ...state, loading: true }
+
+            case 'SET_ALERT': return {
+                ...state, alert: {
+                    message: action.payload.message,
+                    type: action.payload.type
+                }
+            }
+
+            case 'REMOVE_ALERT': return {
+                ...state,
+                message: '',
+                type: ''
+            }
+
+            case 'REMOVE_LOADING': return { ...state, loading: false }
+
             case 'ADD_TO_WISHLIST': return { ...state, wishlist: state.wishlist.concat({ ...action.payload }) }
 
             case 'REMOVE_FROM_WISHLIST': return { ...state, wishlist: state.wishlist.filter(cartItm => cartItm._id !== action.payload) }
@@ -67,6 +116,8 @@ export const WishlistProvider = ({ children }) => {
                 getWishlist,
                 addProductToWishlist,
                 isProductInWishlist,
+                removeProductFromWishlist,
+                showWishlistAlert,
             }}
         >
             {children}

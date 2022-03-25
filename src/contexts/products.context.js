@@ -28,10 +28,13 @@ export const ProductsProvider = ({ children }) => {
 
     async function getProducts() {
         try {
+            productsDispatch({ type: 'SET_LOADING' })
             const response = await axios.get('/api/products')
             return response.data.products
         } catch (e) {
             return e.response.status
+        } finally {
+            productsDispatch({ type: 'REMOVE_LOADING' })
         }
     }
 

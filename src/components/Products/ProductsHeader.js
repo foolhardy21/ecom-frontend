@@ -44,12 +44,12 @@ const ProductsHeader = () => {
 
                 <div className="pos-relative mg-right-lg">
 
-                    {
+                    {/* {
                         wishlistState.length > 0 &&
                         <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
                             {wishlistState.length}
                         </div>
-                    }
+                    } */}
 
                     <Link to='/wishlist'>
                         <Icon classes={`${getIconColor(theme)} mg-right-s`}>
@@ -62,9 +62,9 @@ const ProductsHeader = () => {
                 <div className="pos-relative mg-right-lg">
 
                     {
-                        cartState.length > 0 &&
+                        cartState.cart.length > 0 &&
                         <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                            {getTotalCartItems(cartState)}
+                            {getTotalCartItems(cartState.cart)}
                         </div>
                     }
 
@@ -125,12 +125,12 @@ const ProductsHeader = () => {
 
                         <div className="pos-relative mg-top-md">
 
-                            {
+                            {/* {
                                 wishlistState.length > 0 &&
                                 <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
                                     {wishlistState.length}
                                 </div>
-                            }
+                            } */}
 
                             <Link to='/wishlist'>
                                 <Icon classes={getIconColor(theme)}>
@@ -143,9 +143,9 @@ const ProductsHeader = () => {
                         <div className="pos-relative mg-top-md">
 
                             {
-                                cartState.length > 0 &&
+                                cartState.cart.length > 0 &&
                                 <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                                    {getTotalCartItems(cartState)}
+                                    {getTotalCartItems(cartState.cart)}
                                 </div>
                             }
 

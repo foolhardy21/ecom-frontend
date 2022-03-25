@@ -12,7 +12,7 @@ const CartSection = () => {
             <Section id="section-cartitm" classes="flx flx-column mg-right-s">
 
                 {
-                    cartState.map(itm => <CartItmCard key={itm._id} item={itm} />)
+                    cartState.cart.map(itm => <CartItmCard key={itm._id} item={itm} />)
                 }
 
             </Section>

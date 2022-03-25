@@ -21,7 +21,7 @@ const CartReceiptCard = () => {
                     <Text classes="txt-cap txt-md mg-right-md">order total</Text>
 
                     <Text class="txt-cap txt-md">{`
-                    rs. ${getTotalPrice(cartState)}
+                    rs. ${getTotalPrice(cartState.cart)}
                     `}</Text>
 
                 </div>
@@ -31,7 +31,7 @@ const CartReceiptCard = () => {
                     <Text classes="txt-cap txt-md mg-right-md">order discount</Text>
 
                     <Text classes="txt-cap txt-success txt-md">{
-                        `-rs. ${getTotalDiscount(cartState)}`
+                        `-rs. ${getTotalDiscount(cartState.cart)}`
                     }</Text>
 
                 </div>
@@ -48,7 +48,7 @@ const CartReceiptCard = () => {
 
                     <Text classes="txt-cap txt-md mg-right-md">total amount</Text>
 
-                    <Text classes="txt-cap txt-md">{`rs. ${getFinalPrice(cartState)}`}</Text>
+                    <Text classes="txt-cap txt-md">{`rs. ${getFinalPrice(cartState.cart)}`}</Text>
 
                 </div>
 

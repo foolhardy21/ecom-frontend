@@ -3,9 +3,8 @@ import { useCart, useTheme, useWishlist } from "../../contexts"
 import { getBorderColor, getTextColor } from "../../utils"
 import { Button, Card, Image, Text } from "../Reusable"
 
-const CartItmCard = ({
-    item: {
-        _id,
+const CartItmCard = ({ item }) => {
+    const { _id,
         name,
         company,
         img: {
@@ -18,55 +17,34 @@ const CartItmCard = ({
         price,
         offerPrice,
         stock,
-        rating
-    }
-}) => {
-    const { cartDispatch } = useCart()
-    const { wishlistDispatch } = useWishlist()
+        rating } = item
+    const { cartDispatch, removeProductFromCart, showCartAlert } = useCart()
+    const { wishlistDispatch, addProductToWishlist, showWishlistAlert } = useWishlist()
     const { theme } = useTheme()
 
     async function handleRemoveFromCart() {
-        const userToken = window.localStorage.getItem('userToken')
-        await axios.delete(`/api/user/cart/${_id}`, {
-            headers: {
-                authorization: userToken
-            }
-        })
-        cartDispatch({ type: 'REMOVE_FROM_CART', payload: _id })
+        const removeFromCartResponse = await removeProductFromCart(_id)
+        if (removeFromCartResponse === 404 || removeFromCartResponse === 500) {
+            showCartAlert('could not remove the product', 'error')
+        } else if (removeFromCartResponse) {
+            cartDispatch({ type: 'REMOVE_FROM_CART', payload: _id })
+        }
     }
+
     async function handleMoveToWishlist() {
-        const userToken = window.localStorage.getItem('userToken')
+        const removeFromCartResponse = await removeProductFromCart(_id)
+        if (removeFromCartResponse === 404 || removeFromCartResponse === 500) {
+            showCartAlert('could not remove the product', 'error')
+        } else if (removeFromCartResponse) {
+            cartDispatch({ type: 'REMOVE_FROM_CART', payload: _id })
+        }
 
-        await axios.delete(`/api/user/cart/${_id}`, {
-            headers: {
-                authorization: userToken
-            }
-        })
-        cartDispatch({ type: 'REMOVE_FROM_CART', payload: _id })
-
-        const wishlistResponse = await axios.post('/api/user/wishlist', {
-            product: {
-                _id,
-                name,
-                company,
-                size,
-                price,
-                offerPrice,
-                img: {
-                    srcSet,
-                    alt,
-                    sizes
-                },
-                rating,
-                stock
-            }
-        }, {
-            headers: {
-                authorization: userToken
-            }
-        })
-        const wishlistItems = wishlistResponse.data.wishlist
-        wishlistDispatch({ type: 'ADD_TO_WISHLIST', payload: wishlistItems[wishlistItems.length - 1] })
+        const addToWishlistResponse = await addProductToWishlist(item)
+        if (addToWishlistResponse === 404 || addToWishlistResponse === 500) {
+            showWishlistAlert('could not remove the product', 'error')
+        } else if (addToWishlistResponse) {
+            wishlistDispatch({ type: 'ADD_TO_WISHLIST', payload: addToWishlistResponse[addToWishlistResponse.length - 1] })
+        }
     }
 
     async function increaseItemQuantity() {
@@ -125,8 +103,6 @@ const CartItmCard = ({
                         )
                     }
                 </select>
-
-
 
                 <div className="flx mg-top-s">
 

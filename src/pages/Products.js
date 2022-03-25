@@ -12,12 +12,10 @@ const Products = () => {
 
     useEffect(() => {
         (async () => {
-            productsDispatch({ type: 'SET_LOADING' })
             const getProductsResponse = await getProducts()
             if (getProductsResponse === 500) {
                 showProductsAlert('could not fetch products', 'error')
             } else if (getProductsResponse) {
-                productsDispatch({ type: 'REMOVE_LOADING' })
                 productsDispatch({ type: 'INIT_PRODUCTS', payload: getProductsResponse })
             }
         })()
@@ -62,7 +60,9 @@ const Products = () => {
                     <Text classes={`txt-lg txt-cap ${getTextColor(theme)} pd-top-lg pd-btm-lg`}>sneakers</Text>
 
                     {
-                        productsState.loading ? <Text classes='txt-xlg txt-600 txt-success txt-cap'>loading...</Text> : <ProductsSection />
+                        productsState.loading
+                            ? <Text classes={`txt-xlg txt-600 ${getTextColor(theme)} txt-cap`}>loading...</Text>
+                            : <ProductsSection />
                     }
 
                 </Main>

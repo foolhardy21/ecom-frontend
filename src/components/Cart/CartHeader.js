@@ -1,14 +1,15 @@
-import { useCart, useWishlist, useTheme } from "../../contexts"
+import { useCart, useWishlist, useTheme, useAuth } from "../../contexts"
 import { getBadgeBgColor, getBadgeTextColor, getBgColor, getIconColor, getTextColor, getTotalCartItems } from "../../utils"
 import { Header, NavBar, Icon, Text, Button } from "../Reusable"
 import { Link } from 'react-router-dom'
 import { useState } from "react"
 
 const CardHeader = () => {
-    const { wishlistState } = useWishlist()
-    const { cartState } = useCart()
-    const { theme, toggleTheme } = useTheme()
     const [isSmallNavVisible, setIsSmallNavVisible] = useState(false)
+    const { theme, toggleTheme } = useTheme()
+    const { cartState } = useCart()
+    const { wishlistState } = useWishlist()
+    const { logoutUser } = useAuth()
 
     function toggleNavVisibility() {
         setIsSmallNavVisible(!isSmallNavVisible)
@@ -34,12 +35,12 @@ const CardHeader = () => {
 
                 <div className="pos-relative mg-right-lg">
 
-                    {
+                    {/* {
                         wishlistState.length > 0 &&
                         <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
                             {wishlistState.length}
                         </div>
-                    }
+                    } */}
 
                     <Link to='/wishlist'>
                         <Icon classes={`${getIconColor(theme)} mg-right-s`}>
@@ -52,9 +53,9 @@ const CardHeader = () => {
                 <div className="pos-relative mg-right-lg">
 
                     {
-                        cartState.length > 0 &&
+                        cartState.cart.length > 0 &&
                         <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                            {getTotalCartItems(cartState)}
+                            {getTotalCartItems(cartState.cart)}
                         </div>
                     }
 
@@ -66,9 +67,9 @@ const CardHeader = () => {
 
                 </div>
 
-                <Link to='/login'>
-                    <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
-                        login
+                <Link to='/'>
+                    <Button onClick={logoutUser} classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
+                        logout
                     </Button>
                 </Link>
 
@@ -106,12 +107,12 @@ const CardHeader = () => {
 
                         <div className="pos-relative mg-top-md">
 
-                            {
+                            {/* {
                                 wishlistState.length > 0 &&
                                 <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
                                     {wishlistState.length}
                                 </div>
-                            }
+                            } */}
 
                             <Link to='/wishlist'>
                                 <Icon classes={getIconColor(theme)}>
@@ -124,9 +125,9 @@ const CardHeader = () => {
                         <div className="pos-relative mg-top-md">
 
                             {
-                                cartState.length > 0 &&
+                                cartState.cart.length > 0 &&
                                 <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                                    {getTotalCartItems(cartState)}
+                                    {getTotalCartItems(cartState.cart)}
                                 </div>
                             }
 
@@ -138,9 +139,9 @@ const CardHeader = () => {
 
                         </div>
 
-                        <Link to='/login'>
-                            <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md mg-top-md`}>
-                                login
+                        <Link to='/'>
+                            <Button onClick={logoutUser} classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md mg-top-md`}>
+                                logout
                             </Button>
                         </Link>
 
