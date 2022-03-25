@@ -17,7 +17,6 @@ export const CartProvider = ({ children }) => {
 
     useEffect(() => {
         !isUserLoggedIn && cartDispatch({ type: 'INIT_CART', payload: [] })
-        console.log('ran')
     }, [isUserLoggedIn])
 
     function showCartAlert(message, type) {
