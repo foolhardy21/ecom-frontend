@@ -20,7 +20,7 @@ const LoginForm = () => {
                 showLoginAlert('account not found', 'error')
             } else if (loginUserResponse === 200) {
                 showLoginAlert('logged in', 'success')
-                setTimeout(() => navigate(from, { replace: true }), 3200)
+                setTimeout(() => navigate(from, { replace: true }), 1600)
             }
         }
 

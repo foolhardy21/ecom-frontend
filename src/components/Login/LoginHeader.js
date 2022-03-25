@@ -5,8 +5,8 @@ import { getBgColor, getTextColor, getIconColor } from '../../utils'
 import { Link } from 'react-router-dom'
 
 const LoginHeader = () => {
-    const { theme, toggleTheme } = useTheme()
     const [isSmallNavVisible, setIsSmallNavVisible] = useState(false)
+    const { theme, toggleTheme } = useTheme()
 
     function toggleNavVisibility() {
         setIsSmallNavVisible(!isSmallNavVisible)

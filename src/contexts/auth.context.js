@@ -43,7 +43,6 @@ export const AuthProvider = ({ children }) => {
     function logoutUser() {
         window.localStorage.removeItem('userToken')
         setIsUserLoggedIn(false)
-
     }
 
     const getUserToken = () => window.localStorage.getItem('userToken')

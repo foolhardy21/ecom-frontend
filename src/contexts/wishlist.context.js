@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { createContext, useReducer, useContext } from 'react'
+import { useEffect, createContext, useReducer, useContext } from 'react'
 import { useAuth } from './auth.context'
 
 const WishlistContext = createContext()
@@ -13,7 +13,11 @@ export const WishlistProvider = ({ children }) => {
         },
         loading: false
     })
-    const { getUserToken } = useAuth()
+    const { getUserToken, isUserLoggedIn } = useAuth()
+
+    useEffect(() => {
+        !isUserLoggedIn && wishlistDispatch({ type: 'INIT_WISHLIST', payload: [] })
+    }, [isUserLoggedIn])
 
     function showWishlistAlert(message, type) {
         wishlistDispatch({
@@ -23,12 +27,7 @@ export const WishlistProvider = ({ children }) => {
             }
         })
         setTimeout(() => {
-            wishlistDispatch({
-                type: 'REMOVE_ALERT', payload: {
-                    message: '',
-                    type: '',
-                }
-            })
+            wishlistDispatch({ type: 'REMOVE_ALERT' })
         }, 3000)
     }
 
@@ -81,7 +80,7 @@ export const WishlistProvider = ({ children }) => {
     function wishlistReducer(state, action) {
         switch (action.type) {
 
-            case 'INIT_WISHLIST': return { ...state, wishlist: [...action.payload] }
+            case 'INIT_WISHLIST': return { ...state, wishlist: action.payload }
 
             case 'SET_LOADING': return { ...state, loading: true }
 
@@ -94,8 +93,10 @@ export const WishlistProvider = ({ children }) => {
 
             case 'REMOVE_ALERT': return {
                 ...state,
-                message: '',
-                type: ''
+                alert: {
+                    message: '',
+                    type: ''
+                }
             }
 
             case 'REMOVE_LOADING': return { ...state, loading: false }

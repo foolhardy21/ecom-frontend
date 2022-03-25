@@ -17,7 +17,7 @@ const SignupForm = () => {
             if (signupUserResponse === 201) {
                 showSignupAlert('account created', 'success')
                 signupFormDispatch({ type: 'INIT_FORM' })
-                setTimeout(() => navigate('/login'), 3200)
+                setTimeout(() => navigate('/login'), 1600)
             } else if (signupUserResponse === 422) {
                 showSignupAlert('account already exists', 'error')
             }

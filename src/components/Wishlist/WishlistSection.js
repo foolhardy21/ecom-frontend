@@ -10,7 +10,7 @@ const WishlistSection = () => {
         <Section id='grid-wishlist' classes='grid grid-maxcols-4'>
 
             {
-                wishlistState.map(item => <WishlistCard key={item._id} item={item} />)
+                wishlistState.wishlist.map(item => <WishlistCard key={item._id} item={item} />)
             }
 
 

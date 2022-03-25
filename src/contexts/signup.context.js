@@ -74,7 +74,7 @@ export const SignupProvider = ({ children }) => {
         setTimeout(() => setSignupAlert({
             message: '',
             type: ''
-        }), 3000)
+        }), 1500)
     }
 
 

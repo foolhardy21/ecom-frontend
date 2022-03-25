@@ -35,12 +35,12 @@ const CardHeader = () => {
 
                 <div className="pos-relative mg-right-lg">
 
-                    {/* {
-                        wishlistState.length > 0 &&
+                    {
+                        wishlistState.wishlist.length > 0 &&
                         <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                            {wishlistState.length}
+                            {wishlistState.wishlist.length}
                         </div>
-                    } */}
+                    }
 
                     <Link to='/wishlist'>
                         <Icon classes={`${getIconColor(theme)} mg-right-s`}>
@@ -107,12 +107,12 @@ const CardHeader = () => {
 
                         <div className="pos-relative mg-top-md">
 
-                            {/* {
-                                wishlistState.length > 0 &&
+                            {
+                                wishlistState.wishlist.length > 0 &&
                                 <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                                    {wishlistState.length}
+                                    {wishlistState.wishlist.length}
                                 </div>
-                            } */}
+                            }
 
                             <Link to='/wishlist'>
                                 <Icon classes={getIconColor(theme)}>

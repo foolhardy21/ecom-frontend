@@ -45,7 +45,7 @@ export const LoginProvider = ({ children }) => {
         setTimeout(() => setLoginAlert({
             message: '',
             type: ''
-        }), 3000)
+        }), 1500)
     }
 
 

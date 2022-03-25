@@ -13,7 +13,7 @@ const Cart = () => {
             const getCartResponse = await getCart()
             if (getCartResponse === 500 || getCartResponse === 404) {
                 showCartAlert('could not load the cart', 'error')
-            } else if (getCartResponse) {
+            } else {
                 cartDispatch({ type: 'INIT_CART', payload: getCartResponse })
             }
         })()

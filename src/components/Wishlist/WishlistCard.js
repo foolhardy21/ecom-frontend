@@ -1,13 +1,8 @@
-import { Text, Button, Card, Image } from "../Reusable/index";
+import { Text, Button, Card, Image } from "../Reusable";
 import { useCart, useTheme, useWishlist } from "../../contexts";
 import { getSolidBtnBgColor, getSolidBtnTextColor } from "../../utils";
-import axios from "axios";
 
 const WishlistCard = ({ item }) => {
-    const { wishlistDispatch } = useWishlist()
-    const { cartDispatch } = useCart()
-    const { theme } = useTheme()
-
     const {
         _id,
         name,
@@ -24,50 +19,37 @@ const WishlistCard = ({ item }) => {
         size,
         qty,
     } = item
+    const { wishlistDispatch, removeProductFromWishlist, showWishlistAlert } = useWishlist()
+    const { cartDispatch, addProductToCart, isProductInCart } = useCart()
+    const { theme } = useTheme()
+
 
     async function handleRemoveFromWishlist() {
-        const userToken = window.localStorage.getItem('userToken')
-        await axios.delete(`/api/user/wishlist/${_id}`, {
-            headers: {
-                authorization: userToken
-            }
-        })
-        wishlistDispatch({ type: 'REMOVE_FROM_WISHLIST', payload: _id })
+        const removeFromWishlistResponse = await removeProductFromWishlist(_id)
+        if (removeFromWishlistResponse === 404 || removeFromWishlistResponse === 500) {
+            showWishlistAlert('could not remove from wishlist', 'error')
+        } else {
+            wishlistDispatch({ type: 'REMOVE_FROM_WISHLIST', payload: _id })
+        }
     }
+
     async function handleMoveToCart() {
-        const userToken = window.localStorage.getItem('userToken')
-
-        await axios.delete(`/api/user/wishlist/${_id}`, {
-            headers: {
-                authorization: userToken
+        const removeFromWishlistResponse = await removeProductFromWishlist(_id)
+        if (removeFromWishlistResponse === 404 || removeFromWishlistResponse === 500) {
+            showWishlistAlert('could not remove from wishlist', 'error')
+        } else {
+            wishlistDispatch({ type: 'REMOVE_FROM_WISHLIST', payload: _id })
+            if (!isProductInCart(_id)) {
+                const addToCartReponse = await addProductToCart(item)
+                if (addToCartReponse === 404 || addToCartReponse === 500) {
+                    showWishlistAlert('could not add to cart', 'error')
+                } else if (addToCartReponse) {
+                    cartDispatch({ type: 'ADD_TO_CART', payload: addToCartReponse[addToCartReponse.length - 1] })
+                }
+            } else {
+                showWishlistAlert('product is already in cart', 'error')
             }
-        })
-        wishlistDispatch({ type: 'REMOVE_FROM_WISHLIST', payload: _id })
-
-        const cartResponse = await axios.post('/api/user/cart/', {
-            product: {
-                _id,
-                name,
-                company,
-                img: {
-                    alt,
-                    srcSet,
-                    sizes
-                },
-                price,
-                offerPrice,
-                stock,
-                rating,
-                size,
-                qty
-            }
-        }, {
-            headers: {
-                authorization: userToken
-            }
-        })
-        const cartItems = cartResponse.data.cart
-        cartDispatch({ type: 'ADD_TO_CART', payload: cartItems[cartItems.length - 1] })
+        }
     }
 
 

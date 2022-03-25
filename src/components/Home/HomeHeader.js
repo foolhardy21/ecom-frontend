@@ -1,14 +1,15 @@
 import { useState } from 'react'
-import { useWishlist, useCart, useTheme } from '../../contexts'
+import { useWishlist, useCart, useTheme, useAuth } from '../../contexts'
 import { getBadgeBgColor, getTextColor, getBgColor, getIconColor, getBadgeTextColor, getTotalCartItems } from '../../utils'
 import { Button, Header, Icon, NavBar, Text } from "../Reusable"
 import { Link } from 'react-router-dom'
 
 const HomeHeader = () => {
+    const [isSmallNavVisible, setIsSmallNavVisible] = useState(false)
     const { theme, toggleTheme } = useTheme()
     const { wishlistState } = useWishlist()
     const { cartState } = useCart()
-    const [isSmallNavVisible, setIsSmallNavVisible] = useState(false)
+    const { isUserLoggedIn, logoutUser } = useAuth()
 
     function toggleNavVisibility() {
         setIsSmallNavVisible(!isSmallNavVisible)
@@ -34,9 +35,9 @@ const HomeHeader = () => {
                 <div className="pos-relative mg-right-lg">
 
                     {
-                        wishlistState.length > 0 &&
+                        wishlistState.wishlist.length > 0 &&
                         <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                            {wishlistState.length}
+                            {wishlistState.wishlist.length}
                         </div>
                     }
 
@@ -51,9 +52,9 @@ const HomeHeader = () => {
                 <div className="pos-relative mg-right-lg">
 
                     {
-                        cartState.length > 0 &&
+                        cartState.cart.length > 0 &&
                         <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                            {getTotalCartItems(cartState)}
+                            {getTotalCartItems(cartState.cart)}
                         </div>
                     }
 
@@ -65,11 +66,20 @@ const HomeHeader = () => {
 
                 </div>
 
-                <Link to='/login'>
-                    <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
-                        login
-                    </Button>
-                </Link>
+                {
+                    isUserLoggedIn
+                        ? <Link to='/'>
+                            <Button onClick={logoutUser} classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
+                                logout
+                            </Button>
+                        </Link>
+                        :
+                        <Link to='/login'>
+                            <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
+                                login
+                            </Button>
+                        </Link>
+                }
 
             </NavBar>
 
@@ -106,9 +116,9 @@ const HomeHeader = () => {
                         <div className="pos-relative mg-top-md">
 
                             {
-                                wishlistState.length > 0 &&
+                                wishlistState.wishlist.length > 0 &&
                                 <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                                    {wishlistState.length}
+                                    {wishlistState.wishlist.length}
                                 </div>
                             }
 
@@ -123,9 +133,9 @@ const HomeHeader = () => {
                         <div className="pos-relative mg-top-md">
 
                             {
-                                cartState.length > 0 &&
+                                cartState.cart.length > 0 &&
                                 <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                                    {getTotalCartItems(cartState)}
+                                    {getTotalCartItems(cartState.cart)}
                                 </div>
                             }
 
@@ -137,11 +147,20 @@ const HomeHeader = () => {
 
                         </div>
 
-                        <Link to='/login'>
-                            <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md mg-top-md`}>
-                                login
-                            </Button>
-                        </Link>
+                        {
+                            isUserLoggedIn
+                                ? <Link to='/'>
+                                    <Button onClick={logoutUser} classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
+                                        logout
+                                    </Button>
+                                </Link>
+                                :
+                                <Link to='/login'>
+                                    <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
+                                        login
+                                    </Button>
+                                </Link>
+                        }
 
                     </NavBar>
 

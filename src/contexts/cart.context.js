@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
 import { useAuth } from "./auth.context";
 
 const CartContext = createContext()
@@ -13,7 +13,12 @@ export const CartProvider = ({ children }) => {
         },
         loading: false
     })
-    const { getUserToken } = useAuth()
+    const { getUserToken, isUserLoggedIn } = useAuth()
+
+    useEffect(() => {
+        !isUserLoggedIn && cartDispatch({ type: 'INIT_CART', payload: [] })
+        console.log('ran')
+    }, [isUserLoggedIn])
 
     function showCartAlert(message, type) {
         cartDispatch({
@@ -33,6 +38,34 @@ export const CartProvider = ({ children }) => {
     }
 
     const isProductInCart = productId => cartState.cart.some(item => item._id === productId)
+
+    async function decreaseProductQuantity(qty, _id) {
+        if (qty > 0) {
+            await axios.post(`/api/user/cart/${_id}`, {
+                action: {
+                    type: 'decrement'
+                }
+            }, {
+                headers: {
+                    authorization: getUserToken()
+                }
+            })
+            cartDispatch({ type: 'DECREMENT_CART_PRODUCT', payload: _id })
+        }
+    }
+
+    async function increaseProductQuantity(_id) {
+        await axios.post(`/api/user/cart/${_id}`, {
+            action: {
+                type: 'increment'
+            }
+        }, {
+            headers: {
+                authorization: getUserToken()
+            }
+        })
+        cartDispatch({ type: 'INCREMENT_CART_PRODUCT', payload: _id })
+    }
 
     async function removeProductFromCart(productId) {
         try {
@@ -82,7 +115,7 @@ export const CartProvider = ({ children }) => {
     function cartReducer(state, action) {
         switch (action.type) {
 
-            case 'INIT_CART': return { ...state, cart: [...action.payload] }
+            case 'INIT_CART': return { ...state, cart: action.payload }
 
             case 'SET_LOADING': return { ...state, loading: true }
 
@@ -106,9 +139,9 @@ export const CartProvider = ({ children }) => {
 
             case 'REMOVE_FROM_CART': return { ...state, cart: state.cart.filter(cartItm => cartItm._id !== action.payload) }
 
-            case 'INCREMENT_CART_ITEM': return { ...state, cart: state.cart.map(cartItm => cartItm._id === action.payload ? ({ ...cartItm, qty: cartItm.qty + 1 }) : cartItm) }
+            case 'INCREMENT_CART_PRODUCT': return { ...state, cart: state.cart.map(cartItm => cartItm._id === action.payload ? ({ ...cartItm, qty: cartItm.qty + 1 }) : cartItm) }
 
-            case 'DECREMENT_CART_ITEM': return { ...state, cart: state.cart.map(cartItm => cartItm._id === action.payload ? ({ ...cartItm, qty: cartItm.qty > 0 ? cartItm.qty - 1 : 0 }) : cartItm) }
+            case 'DECREMENT_CART_PRODUCT': return { ...state, cart: state.cart.map(cartItm => cartItm._id === action.payload ? ({ ...cartItm, qty: cartItm.qty - 1 }) : cartItm) }
 
             default: return state
 
@@ -126,6 +159,8 @@ export const CartProvider = ({ children }) => {
                 isProductInCart,
                 removeProductFromCart,
                 showCartAlert,
+                decreaseProductQuantity,
+                increaseProductQuantity,
             }}
         >
             {children}
