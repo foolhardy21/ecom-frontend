@@ -1,1 +1,0 @@
-export const timer = (cb, ms) => setTimeout(() => cb(), ms)
