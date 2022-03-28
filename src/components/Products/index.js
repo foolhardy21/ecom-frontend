@@ -1,11 +1,5 @@
-import ProductCard from "./ProductCard";
-import ProductsFilter from "./ProductsFilter";
-import ProductsHeader from "./ProductsHeader";
-import ProductsSection from "./ProductsSection";
+export { default as ProductCard } from "./ProductCard";
+export { default as ProductsFilter } from "./ProductsFilter";
+export { default as ProductsHeader } from "./ProductsHeader";
+export { default as ProductsSection } from "./ProductsSection";
 
-export {
-    ProductCard,
-    ProductsFilter,
-    ProductsHeader,
-    ProductsSection
-}

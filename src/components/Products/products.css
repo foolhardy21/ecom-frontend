@@ -1,0 +1,24 @@
+.aside-filters {
+  width: 20rem;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: solid thin var(--clr-off-primary);
+}
+
+#grid-wishlist {
+  place-items: center;
+  gap: 1rem;
+}
+
+#btn-filters {
+  width: max-content;
+  height: max-content;
+}
+
+#main-prdlist {
+  width: 100vw;
+}
+
+.card-dim:hover {
+  cursor: pointer;
+}
