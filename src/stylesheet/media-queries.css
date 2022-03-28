@@ -1,0 +1,30 @@
+@media only screen and (max-width: 768px) {
+
+    #pg-header {
+        flex-direction: column;
+    }
+    
+    #pg-searchbar {
+        order: 2;
+        margin-top: 1rem;
+    }
+    
+    #nav-small {
+        display: block;
+    }
+
+    #section-cart {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #section-cart > article {
+        order: -1;
+        margin-bottom: 1rem;
+    }    
+
+    .input-s {
+        width: 6rem;
+    }
+        
+}
