@@ -3,6 +3,7 @@ import { getBadgeBgColor, getBadgeTextColor, getBgColor, getIconColor, getTextCo
 import { Header, NavBar, Icon, Text, Button } from "../Reusable"
 import { Link } from 'react-router-dom'
 import { useState } from "react"
+import { THEME_LIGHT } from "../../utils/constants.util"
 
 const CardHeader = () => {
     const [isSmallNavVisible, setIsSmallNavVisible] = useState(false)
@@ -155,7 +156,7 @@ const CardHeader = () => {
 
                 <Icon classes={getIconColor(theme)}>
                     {
-                        theme === 'light' ? 'bedtime' : 'light_mode'
+                        theme === THEME_LIGHT ? 'bedtime' : 'light_mode'
                     }
                 </Icon>
             </Button>

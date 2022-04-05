@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { Form, Text, Button, Input, Label } from "../Reusable"
 import { getSolidBtnBgColor, getSolidBtnTextColor } from "../../utils"
 import { useLogin, useTheme, useAuth } from '../../contexts'
+import { ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS, ALERT_DISPLAY_TIME } from '../../utils/constants.util'
 
 const LoginForm = () => {
     const navigate = useNavigate()
@@ -17,10 +18,10 @@ const LoginForm = () => {
         if (!isFormInvalid()) {
             const loginUserResponse = await loginUser(loginFormState.email.value, loginFormState.password.value)
             if (loginUserResponse === 404) {
-                showLoginAlert('account not found', 'error')
+                showLoginAlert('account not found', ALERT_TYPE_ERROR)
             } else if (loginUserResponse === 200) {
-                showLoginAlert('logged in', 'success')
-                setTimeout(() => navigate(from, { replace: true }), 1600)
+                showLoginAlert('logged in', ALERT_TYPE_SUCCESS)
+                setTimeout(() => navigate(from, { replace: true }), ALERT_DISPLAY_TIME + 100)
             }
         }
 

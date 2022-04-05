@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useTheme, useFilters, useProducts } from "../../contexts"
 import { getBgColor } from "../../utils"
+import { ACTION_ADD_BRAND } from "../../utils/constants.util"
 import { Card, Image, Section, Text } from "../Reusable"
 
 const CategorySection = () => {
@@ -21,7 +22,7 @@ const CategorySection = () => {
     }, [])
 
     function handleCategoryClick(categoryName) {
-        filterDispatch({ type: 'ADD_BRAND', payload: categoryName })
+        filterDispatch({ type: ACTION_ADD_BRAND, payload: categoryName })
     }
 
     return (

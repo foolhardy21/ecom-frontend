@@ -4,6 +4,7 @@ import { ProductsHeader, ProductsFilter, ProductsSection } from '../components/P
 import { useProducts, useTheme } from '../contexts'
 import { getBgColor, getTextColor } from '../utils'
 import '../components/Products/products.css'
+import { ACTION_INIT_PRODUCTS, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from '../utils/constants.util'
 
 const Products = () => {
     const [filterVisibility, setFilterVisibility] = useState(false)
@@ -14,9 +15,9 @@ const Products = () => {
         (async () => {
             const getProductsResponse = await getProducts()
             if (getProductsResponse === 500) {
-                showProductsAlert('could not fetch products', 'error')
+                showProductsAlert('could not fetch products', ALERT_TYPE_ERROR)
             } else if (getProductsResponse) {
-                productsDispatch({ type: 'INIT_PRODUCTS', payload: getProductsResponse })
+                productsDispatch({ type: ACTION_INIT_PRODUCTS, payload: getProductsResponse })
             }
         })()
     }, [productsDispatch])
@@ -50,9 +51,9 @@ const Products = () => {
                 <Main id="main-prdlist" classes={`${getBgColor(theme)} flx flx-column flx-min-center`}>
 
                     {
-                        productsState.alert.type === 'error'
+                        productsState.alert.type === ALERT_TYPE_ERROR
                             ? <Alert classes='bg-err'>{productsState.alert.message}</Alert>
-                            : productsState.alert.type === 'success'
+                            : productsState.alert.type === ALERT_TYPE_SUCCESS
                                 ? <Alert classes='bg-success'>{productsState.alert.message}</Alert>
                                 : ''
                     }

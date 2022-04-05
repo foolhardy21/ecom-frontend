@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Button, Label, Text } from "../Reusable"
 import { useProducts, useTheme, useFilters } from "../../contexts"
 import { getTextColor, getBgColor, isInputIncluded, isSortInputIncluded } from "../../utils"
+import { ACTION_FILTER_PRODUCTS, ALERT_TYPE_ERROR } from "../../utils/constants.util"
 
 const ProductsFilter = () => {
     const { productsDispatch, getProducts, showProductsAlert, getCategories } = useProducts()
@@ -22,9 +23,9 @@ const ProductsFilter = () => {
         (async () => {
             const getProductsResponse = await getProducts()
             if (getProductsResponse === 500) {
-                showProductsAlert('could not get products', 'error')
+                showProductsAlert('could not get products', ALERT_TYPE_ERROR)
             } else if (getProductsResponse) {
-                productsDispatch({ type: 'FILTER_PRODUCTS', payload: { allProducts: getProductsResponse, filterState } })
+                productsDispatch({ type: ACTION_FILTER_PRODUCTS, payload: { allProducts: getProductsResponse, filterState } })
             }
         })()
     }, [filterState, productsDispatch])
@@ -33,7 +34,7 @@ const ProductsFilter = () => {
         (async () => {
             const categories = await getCategories()
             if (categories === 404 || categories === 500) {
-                showProductsAlert('could not get categories', 'error')
+                showProductsAlert('could not get categories', ALERT_TYPE_ERROR)
             } else {
                 setCategories(categories)
             }
@@ -45,7 +46,6 @@ const ProductsFilter = () => {
 
         <aside className={`aside-filters ${getTextColor(theme)} ${getBgColor(theme)} pos-sticky t-0 z-5 pd-s`}>
 
-
             <div className='flx flx-maj-end'>
 
                 <Button onClick={resetFilters} classes='btn-txt txt-md txt-lcase txt-primary pd-xs'>
@@ -53,7 +53,6 @@ const ProductsFilter = () => {
                 </Button>
 
             </div>
-
 
             <div className='mg-btm-lg'>
 
@@ -64,7 +63,6 @@ const ProductsFilter = () => {
                 <Text classes="txt-md txt-primary">{filterState.filterPrice}</Text>
 
             </div>
-
 
             <div className='mg-btm-lg'>
 
@@ -91,7 +89,6 @@ const ProductsFilter = () => {
 
             </div>
 
-
             <div className='mg-btm-lg flx flx-column'>
 
                 <Text classes='txt-md txt-cap mg-btm-xs'>
@@ -116,7 +113,6 @@ const ProductsFilter = () => {
 
             </div>
 
-
             <div className='mg-btm-lg'>
 
                 <Text classes='txt-md txt-cap mg-btm-xs'>
@@ -134,7 +130,6 @@ const ProductsFilter = () => {
                 }
 
             </div>
-
 
             <div className='mg-btm-lg'>
 
@@ -155,7 +150,6 @@ const ProductsFilter = () => {
                 </div>
 
             </div>
-
 
             <div className='mg-btm-lg'>
 

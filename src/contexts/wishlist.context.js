@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useEffect, createContext, useReducer, useContext } from 'react'
 import { useAuth } from './auth.context'
 import { wishlistReducer } from '../reducers'
+import { ACTION_INIT_WISHLIST, ACTION_REMOVE_ALERT, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING, ALERT_DISPLAY_TIME, API_WISHLIST } from '../utils/constants.util'
 
 const WishlistContext = createContext()
 
@@ -17,24 +18,24 @@ export const WishlistProvider = ({ children }) => {
     const { getUserToken, isUserLoggedIn } = useAuth()
 
     useEffect(() => {
-        !isUserLoggedIn && wishlistDispatch({ type: 'INIT_WISHLIST', payload: [] })
+        !isUserLoggedIn && wishlistDispatch({ type: ACTION_INIT_WISHLIST, payload: [] })
     }, [isUserLoggedIn])
 
     function showWishlistAlert(message, type) {
         wishlistDispatch({
-            type: 'SET_ALERT', payload: {
+            type: ACTION_SET_ALERT, payload: {
                 message,
                 type
             }
         })
         setTimeout(() => {
-            wishlistDispatch({ type: 'REMOVE_ALERT' })
-        }, 3000)
+            wishlistDispatch({ type: ACTION_REMOVE_ALERT })
+        }, ALERT_DISPLAY_TIME)
     }
 
     async function removeProductFromWishlist(productId) {
         try {
-            const response = await axios.delete(`/api/user/wishlist/${productId}`, {
+            const response = await axios.delete(`${API_WISHLIST}/${productId}`, {
                 headers: {
                     authorization: getUserToken()
                 }
@@ -46,9 +47,9 @@ export const WishlistProvider = ({ children }) => {
     }
 
     async function getWishlist() {
-        wishlistDispatch({ type: 'SET_LOADING' })
+        wishlistDispatch({ type: ACTION_SET_LOADING })
         try {
-            const response = await axios.get('/api/user/wishlist', {
+            const response = await axios.get(API_WISHLIST, {
                 headers: {
                     authorization: getUserToken()
                 }
@@ -57,13 +58,13 @@ export const WishlistProvider = ({ children }) => {
         } catch (e) {
             return e.response.status
         } finally {
-            wishlistDispatch({ type: 'REMOVE_LOADING' })
+            wishlistDispatch({ type: ACTION_REMOVE_LOADING })
         }
     }
 
     async function addProductToWishlist(product) {
         try {
-            const response = await axios.post('/api/user/wishlist', {
+            const response = await axios.post(API_WISHLIST, {
                 product
             }, {
                 headers: {

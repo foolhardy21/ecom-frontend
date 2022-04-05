@@ -2,6 +2,7 @@ import axios from "axios";
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { useAuth } from "./auth.context";
 import { cartReducer } from '../reducers'
+import { ACTION_DECREMENT_CART_PRODUCT, ACTION_INCREMENT_CART_PRODUCT, ACTION_INIT_CART, ACTION_REMOVE_ALERT, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING, API_CART } from "../utils/constants.util";
 
 const CartContext = createContext()
 
@@ -17,19 +18,19 @@ export const CartProvider = ({ children }) => {
     const { getUserToken, isUserLoggedIn } = useAuth()
 
     useEffect(() => {
-        !isUserLoggedIn && cartDispatch({ type: 'INIT_CART', payload: [] })
+        !isUserLoggedIn && cartDispatch({ type: ACTION_INIT_CART, payload: [] })
     }, [isUserLoggedIn])
 
     function showCartAlert(message, type) {
         cartDispatch({
-            type: 'SET_ALERT', payload: {
+            type: ACTION_SET_ALERT, payload: {
                 message,
                 type
             }
         })
         setTimeout(() => {
             cartDispatch({
-                type: 'REMOVE_ALERT', payload: {
+                type: ACTION_REMOVE_ALERT, payload: {
                     message: '',
                     type: '',
                 }
@@ -41,7 +42,7 @@ export const CartProvider = ({ children }) => {
 
     async function decreaseProductQuantity(qty, _id) {
         if (qty > 0) {
-            await axios.post(`/api/user/cart/${_id}`, {
+            await axios.post(`${API_CART}/${_id}`, {
                 action: {
                     type: 'decrement'
                 }
@@ -50,12 +51,12 @@ export const CartProvider = ({ children }) => {
                     authorization: getUserToken()
                 }
             })
-            cartDispatch({ type: 'DECREMENT_CART_PRODUCT', payload: _id })
+            cartDispatch({ type: ACTION_DECREMENT_CART_PRODUCT, payload: _id })
         }
     }
 
     async function increaseProductQuantity(_id) {
-        await axios.post(`/api/user/cart/${_id}`, {
+        await axios.post(`${API_CART}/${_id}`, {
             action: {
                 type: 'increment'
             }
@@ -64,12 +65,12 @@ export const CartProvider = ({ children }) => {
                 authorization: getUserToken()
             }
         })
-        cartDispatch({ type: 'INCREMENT_CART_PRODUCT', payload: _id })
+        cartDispatch({ type: ACTION_INCREMENT_CART_PRODUCT, payload: _id })
     }
 
     async function removeProductFromCart(productId) {
         try {
-            const response = await axios.delete(`/api/user/cart/${productId}`, {
+            const response = await axios.delete(`${API_CART}/${productId}`, {
                 headers: {
                     authorization: getUserToken()
                 }
@@ -82,7 +83,7 @@ export const CartProvider = ({ children }) => {
 
     async function addProductToCart(product) {
         try {
-            const response = await axios.post('/api/user/cart', {
+            const response = await axios.post(API_CART, {
                 product
             }, {
                 headers: {
@@ -97,8 +98,8 @@ export const CartProvider = ({ children }) => {
 
     async function getCart() {
         try {
-            cartDispatch({ type: 'SET_LOADING' })
-            const response = await axios.get('/api/user/cart', {
+            cartDispatch({ type: ACTION_SET_LOADING })
+            const response = await axios.get(API_CART, {
                 headers: {
                     authorization: getUserToken()
                 }
@@ -107,7 +108,7 @@ export const CartProvider = ({ children }) => {
         } catch (e) {
             return e.response.status
         } finally {
-            cartDispatch({ type: 'REMOVE_LOADING' })
+            cartDispatch({ type: ACTION_REMOVE_LOADING })
         }
     }
 

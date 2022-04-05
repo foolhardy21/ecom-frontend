@@ -3,6 +3,7 @@ import { Header, Text, NavBar, Icon, Button } from '../Reusable'
 import { getTextColor, getBgColor, getIconColor } from '../../utils'
 import { useTheme } from '../../contexts'
 import { Link } from 'react-router-dom'
+import { THEME_LIGHT } from '../../utils/constants.util'
 
 const SignupHeader = () => {
     const { theme, toggleTheme } = useTheme()
@@ -107,7 +108,7 @@ const SignupHeader = () => {
 
                 <Icon classes={getIconColor(theme)}>
                     {
-                        theme === 'light' ? 'bedtime' : 'light_mode'
+                        theme === THEME_LIGHT ? 'bedtime' : 'light_mode'
                     }
                 </Icon>
             </Button>

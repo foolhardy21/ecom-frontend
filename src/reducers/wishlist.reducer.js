@@ -1,18 +1,20 @@
+import { ACTION_ADD_TO_WISHLIST, ACTION_INIT_WISHLIST, ACTION_REMOVE_ALERT, ACTION_REMOVE_FROM_WISHLIST, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING } from "../utils/constants.util"
+
 export function wishlistReducer(state, action) {
     switch (action.type) {
 
-        case 'INIT_WISHLIST': return { ...state, wishlist: action.payload }
+        case ACTION_INIT_WISHLIST: return { ...state, wishlist: action.payload }
 
-        case 'SET_LOADING': return { ...state, loading: true }
+        case ACTION_SET_LOADING: return { ...state, loading: true }
 
-        case 'SET_ALERT': return {
+        case ACTION_SET_ALERT: return {
             ...state, alert: {
                 message: action.payload.message,
                 type: action.payload.type
             }
         }
 
-        case 'REMOVE_ALERT': return {
+        case ACTION_REMOVE_ALERT: return {
             ...state,
             alert: {
                 message: '',
@@ -20,11 +22,11 @@ export function wishlistReducer(state, action) {
             }
         }
 
-        case 'REMOVE_LOADING': return { ...state, loading: false }
+        case ACTION_REMOVE_LOADING: return { ...state, loading: false }
 
-        case 'ADD_TO_WISHLIST': return { ...state, wishlist: state.wishlist.concat({ ...action.payload }) }
+        case ACTION_ADD_TO_WISHLIST: return { ...state, wishlist: state.wishlist.concat({ ...action.payload }) }
 
-        case 'REMOVE_FROM_WISHLIST': return { ...state, wishlist: state.wishlist.filter(cartItm => cartItm._id !== action.payload) }
+        case ACTION_REMOVE_FROM_WISHLIST: return { ...state, wishlist: state.wishlist.filter(cartItm => cartItm._id !== action.payload) }
 
         default: return state
     }

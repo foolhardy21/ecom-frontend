@@ -3,6 +3,7 @@ import { useWishlist, useCart, useTheme, useAuth } from '../../contexts'
 import { getBadgeBgColor, getTextColor, getBgColor, getIconColor, getBadgeTextColor, getTotalCartItems } from '../../utils'
 import { Button, Header, Icon, NavBar, Text } from "../Reusable"
 import { Link } from 'react-router-dom'
+import { THEME_LIGHT } from '../../utils/constants.util'
 
 const HomeHeader = () => {
     const [isSmallNavVisible, setIsSmallNavVisible] = useState(false)
@@ -172,7 +173,7 @@ const HomeHeader = () => {
 
                 <Icon classes={getIconColor(theme)}>
                     {
-                        theme === 'light' ? 'bedtime' : 'light_mode'
+                        theme === THEME_LIGHT ? 'bedtime' : 'light_mode'
                     }
                 </Icon>
             </Button>

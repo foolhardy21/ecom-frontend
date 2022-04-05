@@ -3,6 +3,7 @@ import { Main, Text, Alert } from "../components/Reusable"
 import { CartHeader, CartSection } from "../components/Cart"
 import { useCart, useTheme } from "../contexts"
 import { getBgColor, getTextColor } from "../utils"
+import { ACTION_INIT_CART, ALERT_TYPE_ERROR } from "../utils/constants.util"
 
 const Cart = () => {
     const { theme } = useTheme()
@@ -12,9 +13,9 @@ const Cart = () => {
         (async () => {
             const getCartResponse = await getCart()
             if (getCartResponse === 500 || getCartResponse === 404) {
-                showCartAlert('could not load the cart', 'error')
+                showCartAlert('could not load the cart', ALERT_TYPE_ERROR)
             } else {
-                cartDispatch({ type: 'INIT_CART', payload: getCartResponse })
+                cartDispatch({ type: ACTION_INIT_CART, payload: getCartResponse })
             }
         })()
     }, [cartDispatch])
@@ -37,7 +38,7 @@ const Cart = () => {
                 </Text>
 
                 {
-                    cartState.alert.type === 'error' && <Alert classes='bg-err'>{cartState.alert.message}</Alert>
+                    cartState.alert.type === ALERT_TYPE_ERROR && <Alert classes='bg-err'>{cartState.alert.message}</Alert>
                 }
 
                 {

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { Card, Icon, Image, Text, Button } from "../Reusable"
 import { useCart, useProducts, useTheme, useWishlist } from '../../contexts'
 import { getSolidBtnBgColor, getSolidBtnTextColor, getTextColor } from "../../utils"
+import { ACTION_ADD_TO_CART, ACTION_ADD_TO_WISHLIST, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "../../utils/constants.util"
 
 const ProductCard = ({ prd }) => {
     const { _id,
@@ -25,20 +26,20 @@ const ProductCard = ({ prd }) => {
     async function handleAddToCart() {
         const addItemResponse = await addProductToCart(prd)
         if (addItemResponse === 404 || addItemResponse === 500) {
-            showProductsAlert('could not add to cart', 'error')
+            showProductsAlert('could not add to cart', ALERT_TYPE_ERROR)
         } else if (addItemResponse) {
-            showProductsAlert('added to cart', 'success')
-            cartDispatch({ type: 'ADD_TO_CART', payload: addItemResponse[addItemResponse.length - 1] })
+            showProductsAlert('added to cart', ALERT_TYPE_SUCCESS)
+            cartDispatch({ type: ACTION_ADD_TO_CART, payload: addItemResponse[addItemResponse.length - 1] })
         }
     }
 
     async function handleAddToWishlist() {
         const addItemResponse = await addProductToWishlist(prd)
         if (addItemResponse === 404 || addItemResponse === 500) {
-            showProductsAlert('could not add to wishlist', 'error')
+            showProductsAlert('could not add to wishlist', ALERT_TYPE_ERROR)
         } else if (addItemResponse) {
-            showProductsAlert('added to wishlist', 'success')
-            wishlistDispatch({ type: 'ADD_TO_WISHLIST', payload: addItemResponse[addItemResponse.length - 1] })
+            showProductsAlert('added to wishlist', ALERT_TYPE_SUCCESS)
+            wishlistDispatch({ type: ACTION_ADD_TO_WISHLIST, payload: addItemResponse[addItemResponse.length - 1] })
         }
     }
 

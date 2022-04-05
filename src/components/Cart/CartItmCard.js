@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useCart, useTheme, useWishlist } from "../../contexts"
 import { getBorderColor, getTextColor } from "../../utils"
+import { ACTION_ADD_TO_WISHLIST, ACTION_REMOVE_FROM_CART, ALERT_TYPE_ERROR } from "../../utils/constants.util"
 import { Button, Card, Image, Text } from "../Reusable"
 
 const CartItmCard = ({ item }) => {
@@ -25,34 +26,30 @@ const CartItmCard = ({ item }) => {
     async function handleRemoveFromCart() {
         const removeFromCartResponse = await removeProductFromCart(_id)
         if (removeFromCartResponse === 404 || removeFromCartResponse === 500) {
-            showCartAlert('could not remove the product', 'error')
+            showCartAlert('could not remove the product', ALERT_TYPE_ERROR)
         } else {
-            cartDispatch({ type: 'REMOVE_FROM_CART', payload: _id })
+            cartDispatch({ type: ACTION_REMOVE_FROM_CART, payload: _id })
         }
     }
 
     async function handleMoveToWishlist() {
         const removeFromCartResponse = await removeProductFromCart(_id)
         if (removeFromCartResponse === 404 || removeFromCartResponse === 500) {
-            showCartAlert('could not remove the product', 'error')
+            showCartAlert('could not remove the product', ALERT_TYPE_ERROR)
         } else {
-            cartDispatch({ type: 'REMOVE_FROM_CART', payload: _id })
+            cartDispatch({ type: ACTION_REMOVE_FROM_CART, payload: _id })
             if (!isProductInWishlist(_id)) {
                 const addToWishlistResponse = await addProductToWishlist(item)
                 if (addToWishlistResponse === 404 || addToWishlistResponse === 500) {
-                    showWishlistAlert('could not remove the product', 'error')
+                    showWishlistAlert('could not remove the product', ALERT_TYPE_ERROR)
                 } else if (addToWishlistResponse) {
-                    wishlistDispatch({ type: 'ADD_TO_WISHLIST', payload: addToWishlistResponse[addToWishlistResponse.length - 1] })
+                    wishlistDispatch({ type: ACTION_ADD_TO_WISHLIST, payload: addToWishlistResponse[addToWishlistResponse.length - 1] })
                 }
             } else {
-                showCartAlert('product is already in wishlist', 'error')
+                showCartAlert('product is already in wishlist', ALERT_TYPE_ERROR)
             }
         }
     }
-
-
-
-
 
     return (
 

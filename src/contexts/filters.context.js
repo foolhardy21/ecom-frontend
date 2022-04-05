@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 import { filterReducer } from '../reducers'
+import { ACTION_ADD_BRAND, ACTION_ADD_GENDER, ACTION_ADD_RATING, ACTION_ADD_SIZE, ACTION_REMOVE_BRAND, ACTION_REMOVE_GENDER, ACTION_REMOVE_RATING, ACTION_REMOVE_SIZE, ACTION_RESET_FILTER, ACTION_UPDATE_PRICE, ACTION_UPDATE_SORTORDER } from "../utils/constants.util";
 
 const FilterContext = createContext()
 
@@ -14,17 +15,17 @@ export const FilterProvider = ({ children }) => {
     })
 
     function resetFilters() {
-        filterDispatch({ type: 'RESET' })
+        filterDispatch({ type: ACTION_RESET_FILTER })
     }
 
     function handleGenderChecks(e) {
         const checkedGender = e.target.value
 
         if (!e.target.checked) {
-            filterDispatch({ type: 'REMOVE_GENDER', payload: checkedGender })
+            filterDispatch({ type: ACTION_REMOVE_GENDER, payload: checkedGender })
         }
         else {
-            filterDispatch({ type: 'ADD_GENDER', payload: checkedGender })
+            filterDispatch({ type: ACTION_ADD_GENDER, payload: checkedGender })
         }
     }
 
@@ -32,10 +33,10 @@ export const FilterProvider = ({ children }) => {
         const checkedRating = Number(e.target.value)
 
         if (!e.target.checked) {
-            filterDispatch({ type: 'REMOVE_RATING', payload: checkedRating })
+            filterDispatch({ type: ACTION_REMOVE_RATING, payload: checkedRating })
         }
         else {
-            filterDispatch({ type: 'ADD_RATING', payload: checkedRating })
+            filterDispatch({ type: ACTION_ADD_RATING, payload: checkedRating })
         }
     }
 
@@ -43,10 +44,10 @@ export const FilterProvider = ({ children }) => {
         const checkedSize = Number(e.target.value)
 
         if (!e.target.checked) {
-            filterDispatch({ type: 'REMOVE_SIZE', payload: checkedSize })
+            filterDispatch({ type: ACTION_REMOVE_SIZE, payload: checkedSize })
         }
         else {
-            filterDispatch({ type: 'ADD_SIZE', payload: checkedSize })
+            filterDispatch({ type: ACTION_ADD_SIZE, payload: checkedSize })
         }
     }
 
@@ -54,23 +55,20 @@ export const FilterProvider = ({ children }) => {
         const checkedBrand = e.target.value
 
         if (!e.target.checked) {
-            filterDispatch({ type: 'REMOVE_BRAND', payload: checkedBrand })
+            filterDispatch({ type: ACTION_REMOVE_BRAND, payload: checkedBrand })
         }
         else {
-            filterDispatch({ type: 'ADD_BRAND', payload: checkedBrand })
+            filterDispatch({ type: ACTION_ADD_BRAND, payload: checkedBrand })
         }
     }
 
     function handlePriceChange(e) {
-        filterDispatch({ type: 'UPDATE_PRICE', payload: Number(e.target.value) })
+        filterDispatch({ type: ACTION_UPDATE_PRICE, payload: Number(e.target.value) })
     }
 
     function handlePriceSortOrderChange(e) {
-        filterDispatch({ type: 'UPDATE_SORTORDER', payload: e.target.value })
+        filterDispatch({ type: ACTION_UPDATE_SORTORDER, payload: e.target.value })
     }
-
-
-
 
     return (
         <FilterContext.Provider
