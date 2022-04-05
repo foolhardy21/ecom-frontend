@@ -3,7 +3,7 @@ import BarLoader from 'react-spinners/BarLoader'
 import { Main, Text, Alert } from "../components/Reusable"
 import { CartHeader, CartSection } from "../components/Cart"
 import { useCart, useTheme } from "../contexts"
-import { getBgColor, getTextColor } from "../utils"
+import { getBgColor } from "../utils"
 import { ACTION_INIT_CART, ALERT_TYPE_ERROR } from "../utils/constants.util"
 
 const Cart = () => {
