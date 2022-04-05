@@ -8,6 +8,8 @@ function App() {
 
   return (
 
+    /* page routes */
+
     <BrowserRouter>
       <Routes>
 

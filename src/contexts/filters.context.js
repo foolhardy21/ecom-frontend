@@ -14,10 +14,17 @@ export const FilterProvider = ({ children }) => {
         ratingChecks: []
     })
 
+    /* 
+     * this function resets the filters to initial values
+    */
     function resetFilters() {
         filterDispatch({ type: ACTION_RESET_FILTER })
     }
 
+    /* 
+     * this function checks or unchecks the gender checkbox in the filter component
+     @params {Object.prototype} e - triggering event in dom
+    */
     function handleGenderChecks(e) {
         const checkedGender = e.target.value
 
@@ -29,6 +36,10 @@ export const FilterProvider = ({ children }) => {
         }
     }
 
+    /* 
+     * this function checks or unchecks the rating checkbox in the filter component
+     @params {Object.prototype} e - triggering event in dom
+    */
     function handleRatingCheck(e) {
         const checkedRating = Number(e.target.value)
 
@@ -40,6 +51,10 @@ export const FilterProvider = ({ children }) => {
         }
     }
 
+    /* 
+    * this function checks or unchecks the size checkbox in the filter component
+    @params {Object.prototype} e - triggering event in dom
+   */
     function handleSizeCheck(e) {
         const checkedSize = Number(e.target.value)
 
@@ -51,6 +66,10 @@ export const FilterProvider = ({ children }) => {
         }
     }
 
+    /* 
+    * this function checks or unchecks the brand checkbox in the filter component
+    @params {Object.prototype} e - triggering event in dom
+    */
     function handleBrandCheck(e) {
         const checkedBrand = e.target.value
 
@@ -62,10 +81,18 @@ export const FilterProvider = ({ children }) => {
         }
     }
 
+    /* 
+    * this function updates the price value in the filter component
+     @params {Object.prototype} e - triggering event in dom
+    */
     function handlePriceChange(e) {
         filterDispatch({ type: ACTION_UPDATE_PRICE, payload: Number(e.target.value) })
     }
 
+    /* 
+    * this function updates the sort order in the filter component
+    @params {Object.prototype} e - triggering event in dom
+    */
     function handlePriceSortOrderChange(e) {
         filterDispatch({ type: ACTION_UPDATE_SORTORDER, payload: e.target.value })
     }

@@ -15,6 +15,11 @@ export const ProductsProvider = ({ children }) => {
         loading: false
     })
 
+    /* 
+     * this function displays the alert on products page
+     @params {string} message - message to be displayed
+     @params {string} type - type of alert 
+    */
     function showProductsAlert(message, type) {
         productsDispatch({
             type: ACTION_SET_ALERT, payload: {
@@ -27,6 +32,11 @@ export const ProductsProvider = ({ children }) => {
 
     }
 
+    /* 
+     * this function fetches the products
+     @return {Array.prototype} response.data.products - products array
+     @return {Number} e.response.status - error status code
+    */
     async function getProducts() {
         try {
             productsDispatch({ type: ACTION_SET_LOADING })
@@ -39,6 +49,11 @@ export const ProductsProvider = ({ children }) => {
         }
     }
 
+    /* 
+     * this function fetches the categories
+     @return {Array.prototype} response.data.categories - categories array
+     @return {Number} e.response.status - error status code
+    */
     async function getCategories() {
         try {
             const response = await axios.get(API_CATEGORIES)
@@ -47,8 +62,6 @@ export const ProductsProvider = ({ children }) => {
             return e.response.status
         }
     }
-
-
 
     return (
         <ProductsContext.Provider

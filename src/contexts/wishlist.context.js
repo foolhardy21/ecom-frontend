@@ -21,6 +21,11 @@ export const WishlistProvider = ({ children }) => {
         !isUserLoggedIn && wishlistDispatch({ type: ACTION_INIT_WISHLIST, payload: [] })
     }, [isUserLoggedIn])
 
+    /* 
+     * this function displays the alert on wishlist page
+     @params {string} message - message to be displayed
+     @params {string} type - type of alert 
+    */
     function showWishlistAlert(message, type) {
         wishlistDispatch({
             type: ACTION_SET_ALERT, payload: {
@@ -33,6 +38,12 @@ export const WishlistProvider = ({ children }) => {
         }, ALERT_DISPLAY_TIME)
     }
 
+    /* 
+     * this function removes the product from the wishlist
+     @params {string} productId - _id of the product to be removed
+     @return {Array.prototype} response.data.wishlist - updated wishlist
+     @return {Number} e.response.status - error status code
+    */
     async function removeProductFromWishlist(productId) {
         try {
             const response = await axios.delete(`${API_WISHLIST}/${productId}`, {
@@ -40,12 +51,17 @@ export const WishlistProvider = ({ children }) => {
                     authorization: getUserToken()
                 }
             })
-            return response.data.cart
+            return response.data.wishlist
         } catch (e) {
             return e.response.status
         }
     }
 
+    /* 
+     * this function fetches the wishlist
+     @return {Array.prototype} response.data.wishlist - wishlist
+     @return {Number} e.response.status - error status code
+    */
     async function getWishlist() {
         wishlistDispatch({ type: ACTION_SET_LOADING })
         try {
@@ -62,6 +78,12 @@ export const WishlistProvider = ({ children }) => {
         }
     }
 
+    /* 
+     * this functions adds the product to the wishlist
+     @params {Object.prototype} product - product to be added
+     @return {Array.prototype} response.data.wishlist - updated wishlist
+     @return {Number} e.response.status - error status code
+    */
     async function addProductToWishlist(product) {
         try {
             const response = await axios.post(API_WISHLIST, {
@@ -77,6 +99,11 @@ export const WishlistProvider = ({ children }) => {
         }
     }
 
+    /* 
+     * this function checks if the product is in wishlist or not
+     @params {string} productId - _id of the product to be checked
+     @return {boolean}
+    */
     const isProductInWishlist = productId => wishlistState.wishlist.some(item => item._id === productId)
 
     return (
