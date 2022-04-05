@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import BarLoader from 'react-spinners/BarLoader'
 import { Main, Text, Alert } from "../components/Reusable"
 import { CartHeader, CartSection } from "../components/Cart"
 import { useCart, useTheme } from "../contexts"
@@ -43,7 +44,7 @@ const Cart = () => {
 
                 {
                     cartState.loading
-                        ? <Text classes={`txt-xlg txt-600 ${getTextColor(theme)} txt-cap`}>loading...</Text>
+                        ? <BarLoader width={300} height={4} />
                         : <CartSection />
                 }
 

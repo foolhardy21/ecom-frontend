@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import BarLoader from 'react-spinners/BarLoader'
 import { Button, Icon, Text, Alert, Main } from '../components/Reusable'
 import { ProductsHeader, ProductsFilter, ProductsSection } from '../components/Products'
 import { useProducts, useTheme } from '../contexts'
@@ -62,7 +63,7 @@ const Products = () => {
 
                     {
                         productsState.loading
-                            ? <Text classes={`txt-xlg txt-600 ${getTextColor(theme)} txt-cap`}>loading...</Text>
+                            ? <BarLoader width={300} height={4} />
                             : <ProductsSection />
                     }
 

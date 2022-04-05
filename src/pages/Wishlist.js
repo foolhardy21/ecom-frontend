@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import BarLoader from 'react-spinners/BarLoader'
 import { WishlistHeader, WishlistSection } from '../components/Wishlist'
 import { Main, Text, Alert } from '../components/Reusable'
 import { useTheme, useWishlist } from '../contexts'
@@ -42,7 +43,7 @@ const Wishlist = () => {
                 }
 
                 {
-                    wishlistState.loading ? <Text classes={`${getTextColor(theme)} txt-xlg txt-600 txt-cap`}>loading...</Text> : <WishlistSection />
+                    wishlistState.loading ? <BarLoader width={300} height={4} /> : <WishlistSection />
                 }
 
             </Main>
