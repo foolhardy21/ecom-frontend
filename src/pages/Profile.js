@@ -5,8 +5,6 @@ import { getBgColor, getTextColor } from "utils"
 
 const Profile = () => {
     const { theme } = useTheme()
-    // before adding address to the list, if address with same id exists then replace it else append it in the list.
-    // on edit click, set the form input state to that particular address object
 
     return (
         <div

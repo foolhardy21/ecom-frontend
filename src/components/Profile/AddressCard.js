@@ -1,19 +1,33 @@
 import { Button, Card, Icon, Text } from "components/Reusable"
 import { useAddress, useTheme } from "contexts"
-import { getIconColor, getTextColor } from "utils"
+import { getBorderColor, getIconColor, getTextColor } from "utils"
 
 const AddressCard = ({ address: { _id, name, building, street, city, state, country, pincode, phoneNumber } }) => {
     const { theme } = useTheme()
-    const { addressDispatch } = useAddress()
+    const { setAddressForm, addressDispatch, setAddressToBeUpdated } = useAddress()
 
-    function handleAddressDelete(_id) {
+    function handleAddressDelete() {
         addressDispatch({ type: 'REMOVE_ADDRESS', payload: _id })
+    }
+
+    function handleEditAddress() {
+        setAddressForm({
+            name,
+            building,
+            street,
+            city,
+            state,
+            country,
+            pincode,
+            phoneNumber
+        })
+        setAddressToBeUpdated(_id)
     }
 
     return (
         <Card classes='pos-relative pd-xs'>
 
-            <Button onClick={() => handleAddressDelete(_id)} classes='btn-txt pos-absolute tr-1'>
+            <Button onClick={handleAddressDelete} classes='btn-txt pos-absolute tr-1'>
                 <Icon classes={getIconColor(theme)}>
                     delete
                 </Icon>
@@ -21,15 +35,29 @@ const AddressCard = ({ address: { _id, name, building, street, city, state, coun
 
             <Text classes={`${getTextColor(theme)} txt-md mg-btm-xs`}>{name}</Text>
 
-            <Text classes={`${getTextColor(theme)} txt-md mg-btm-xs`}>{building} {street}</Text>
+            <div className="flx mg-btm-xs">
 
-            <Text classes={`${getTextColor(theme)} txt-md mg-btm-xs`}>{city} {state}</Text>
+                <Text classes={`${getTextColor(theme)} txt-md mg-right-xs`}>{building}</Text>
 
-            <Text classes={`${getTextColor(theme)} txt-md mg-btm-xs`}>{country}</Text>
+                <Text classes={`${getTextColor(theme)} txt-md`}>{street}</Text>
 
-            <Text classes={`${getTextColor(theme)} txt-md mg-btm-xs`}>PIN{' '}{pincode}</Text>
+            </div>
 
-            <Text classes={`${getTextColor(theme)} txt-md`}>Phone{' '}{phoneNumber}</Text>
+            <div className="flx mg-btm-xs">
+
+                <Text classes={`${getTextColor(theme)} txt-md mg-right-xs`}>{city}</Text>
+
+                <Text classes={`${getTextColor(theme)} txt-md mg-right-xs`}>{state}</Text>
+
+                <Text classes={`${getTextColor(theme)} txt-md mg-right-xs`}>{country}</Text>
+
+                <Text classes={`${getTextColor(theme)} txt-md`}>{pincode}</Text>
+
+            </div>
+
+            <Text classes={`${getTextColor(theme)} txt-md mg-btm-xs`}>{phoneNumber}</Text>
+
+            <Button onClick={handleEditAddress} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${getTextColor(theme)} txt-md pd-xs`}>edit</Button>
 
         </Card>
     )

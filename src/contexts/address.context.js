@@ -21,6 +21,7 @@ export const AddressProvider = ({ children }) => {
         pincode: '',
         phoneNumber: ''
     })
+    const [addressToBeUpdated, setAddressToBeUpdated] = useState('')
 
     function addressReducer(state, { type, payload }) {
 
@@ -28,7 +29,7 @@ export const AddressProvider = ({ children }) => {
 
             case 'ADD_ADDRESS': return { ...state, addresses: state.addresses.concat(payload) }
 
-            case 'UPDATE_ADDRESS': return { ...state, addresses: state.address.map(address => address._id === payload._id ? ({ ...payload }) : address) }
+            case 'UPDATE_ADDRESS': return { ...state, addresses: state.addresses.map(address => address._id === payload._id ? ({ _id: address._id, ...payload.address }) : address) }
 
             case 'REMOVE_ADDRESS': return { ...state, addresses: state.addresses.filter(address => address._id !== payload) }
 
@@ -42,7 +43,9 @@ export const AddressProvider = ({ children }) => {
                 addressState,
                 addressDispatch,
                 addressForm,
-                setAddressForm
+                setAddressForm,
+                addressToBeUpdated,
+                setAddressToBeUpdated,
             }}
         >
             {children}
