@@ -68,6 +68,12 @@ const CardHeader = () => {
 
                 </div>
 
+                <Link to='/profile'>
+                    <Icon classes={`${getIconColor(theme)} mg-right-md`}>
+                        person
+                    </Icon>
+                </Link>
+
                 <Link to='/'>
                     <Button onClick={logoutUser} classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
                         logout
@@ -139,6 +145,12 @@ const CardHeader = () => {
                             </Link>
 
                         </div>
+
+                        <Link to='/profile'>
+                            <Icon classes={`${getIconColor(theme)}`}>
+                                person
+                            </Icon>
+                        </Link>
 
                         <Link to='/'>
                             <Button onClick={logoutUser} classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md mg-top-md`}>

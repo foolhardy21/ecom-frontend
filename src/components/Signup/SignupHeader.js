@@ -42,6 +42,12 @@ const SignupHeader = () => {
                     </Icon>
                 </Link>
 
+                <Link to='/profile'>
+                    <Icon classes={`${getIconColor(theme)} mg-right-md`}>
+                        person
+                    </Icon>
+                </Link>
+
                 <Link to='/login'>
                     <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
                         login
@@ -89,6 +95,12 @@ const SignupHeader = () => {
                         <Link to='/cart'>
                             <Icon classes={`flx ${getIconColor(theme)} mg-btm-xs`}>
                                 shopping_cart
+                            </Icon>
+                        </Link>
+
+                        <Link to='/profile'>
+                            <Icon classes={`${getIconColor(theme)} mg-btm-xs`}>
+                                person
                             </Icon>
                         </Link>
 

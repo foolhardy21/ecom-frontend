@@ -42,6 +42,11 @@ const LoginHeader = () => {
                     </Icon>
                 </Link>
 
+                <Link to='/profile'>
+                    <Icon classes={`${getIconColor(theme)} mg-right-md`}>
+                        person
+                    </Icon>
+                </Link>
 
                 <Link to='/signup'>
                     <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} pd-xs txt-md`}>
@@ -90,6 +95,12 @@ const LoginHeader = () => {
                         <Link to='/cart'>
                             <Icon classes={`flx ${getIconColor(theme)} mg-btm-xs`}>
                                 shopping_cart
+                            </Icon>
+                        </Link>
+
+                        <Link to='/profile'>
+                            <Icon classes={`${getIconColor(theme)} mg-btm-xs`}>
+                                person
                             </Icon>
                         </Link>
 

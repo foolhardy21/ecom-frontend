@@ -87,6 +87,12 @@ const ProductsHeader = () => {
 
                 </div>
 
+                <Link to='/profile'>
+                    <Icon classes={`${getIconColor(theme)} mg-right-md`}>
+                        person
+                    </Icon>
+                </Link>
+
                 {
                     isUserLoggedIn
                         ? <Link to='/'>
@@ -167,6 +173,12 @@ const ProductsHeader = () => {
                             </Link>
 
                         </div>
+
+                        <Link to='/profile'>
+                            <Icon classes={`${getIconColor(theme)}`}>
+                                person
+                            </Icon>
+                        </Link>
 
                         {
                             isUserLoggedIn
