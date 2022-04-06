@@ -1,19 +1,27 @@
 import { useState } from "react"
-import { useTheme, useCart, useWishlist, useAuth } from "../../contexts"
-import { Button, Header, Icon, Input, NavBar, Text } from "../Reusable"
-import { getIconColor, getBgColor, getTextColor, getTotalCartItems, getBadgeBgColor, getBadgeTextColor } from '../../utils'
 import { Link } from 'react-router-dom'
-import { THEME_LIGHT } from "../../utils/constants.util"
+import { useTheme, useCart, useWishlist, useAuth, useProducts } from "contexts"
+import { Button, Header, Icon, Input, NavBar, Text } from "components/Reusable"
+import { getIconColor, getBgColor, getTextColor, getTotalCartItems, getBadgeBgColor, getBadgeTextColor } from 'utils'
+import { THEME_LIGHT, ACTION_INIT_PRODUCTS } from "utils/constants.util"
 
 const ProductsHeader = () => {
     const [isSmallNavVisible, setSmallNavVisible] = useState(false)
+    const [searchQuery, setSearchQuery] = useState('')
     const { theme, toggleTheme } = useTheme()
     const { wishlistState } = useWishlist()
     const { cartState } = useCart()
+    const { getProducts, productsDispatch } = useProducts()
     const { isUserLoggedIn, logoutUser } = useAuth()
 
     function toggleNavVisibility() {
         setSmallNavVisible(!isSmallNavVisible)
+    }
+
+    async function handleSearchSubmit() {
+        const getProductsResponse = await getProducts()
+        const filteredProducts = getProductsResponse.filter(prd => prd.name.toLowerCase().includes(searchQuery.toLowerCase()) || prd.company.toLowerCase().includes(searchQuery.toLowerCase()))
+        productsDispatch({ type: ACTION_INIT_PRODUCTS, payload: filteredProducts })
     }
 
     return (
@@ -27,11 +35,13 @@ const ProductsHeader = () => {
 
             <div id="pg-searchbar" className="flx">
 
-                <Input id="input-search" type="text" placeholder="Search" classes="input-s bg-primary txt-md pd-xs" />
+                <Input id="input-search" type="text" placeholder="search..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} classes={`input-s ${getTextColor(theme)} txt-md`} />
 
-                <Icon id="btn-search" classes="icon-primary pd-xs">
-                    search
-                </Icon>
+                <Button onClick={handleSearchSubmit} classes='btn-txt'>
+                    <Icon classes={`${getIconColor(theme)} pd-xs`}>
+                        search
+                    </Icon>
+                </Button>
 
             </div>
 
