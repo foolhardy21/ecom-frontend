@@ -1,10 +1,11 @@
 import { Button, Card, Icon, Text } from "components/Reusable"
-import { useAddress, useTheme } from "contexts"
+import { useAddress, useCheckout, useTheme } from "contexts"
 import { getBorderColor, getIconColor, getTextColor } from "utils"
 
-const AddressCard = ({ address: { _id, name, building, street, city, state, country, pincode, phoneNumber } }) => {
+const AddressCard = ({ address: { _id, name, building, street, city, state, country, pincode, phoneNumber }, checkoutPage = false }) => {
     const { theme } = useTheme()
     const { setAddressForm, addressDispatch, setAddressToBeUpdated } = useAddress()
+    const { setSelectedAddress } = useCheckout()
 
     function handleAddressDelete() {
         addressDispatch({ type: 'REMOVE_ADDRESS', payload: _id })
@@ -24,14 +25,21 @@ const AddressCard = ({ address: { _id, name, building, street, city, state, coun
         setAddressToBeUpdated(_id)
     }
 
+    function handleAddressSelect() {
+        setSelectedAddress({ _id, name, building, street, city, state, country, pincode, phoneNumber })
+    }
+
     return (
         <Card classes='pos-relative pd-xs'>
 
-            <Button onClick={handleAddressDelete} classes='btn-txt pos-absolute tr-1'>
-                <Icon classes={getIconColor(theme)}>
-                    delete
-                </Icon>
-            </Button>
+            {
+                !checkoutPage &&
+                <Button onClick={handleAddressDelete} classes='btn-txt pos-absolute tr-1'>
+                    <Icon classes={getIconColor(theme)}>
+                        delete
+                    </Icon>
+                </Button>
+            }
 
             <Text classes={`${getTextColor(theme)} txt-md mg-btm-xs`}>{name}</Text>
 
@@ -57,7 +65,14 @@ const AddressCard = ({ address: { _id, name, building, street, city, state, coun
 
             <Text classes={`${getTextColor(theme)} txt-md mg-btm-xs`}>{phoneNumber}</Text>
 
-            <Button onClick={handleEditAddress} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${getTextColor(theme)} txt-md pd-xs`}>edit</Button>
+            {
+                !checkoutPage &&
+                <Button onClick={handleEditAddress} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${getTextColor(theme)} txt-md pd-xs`}>edit</Button>
+            }
+
+            {
+                checkoutPage && <Button onClick={handleAddressSelect} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${getTextColor(theme)} txt-md pd-xs`}>select</Button>
+            }
 
         </Card>
     )

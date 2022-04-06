@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { useCart, useTheme } from "contexts"
 import { Button, Card, Main, Text } from "components/Reusable"
 import { getTotalDiscount, getTotalPrice, getFinalPrice, getSolidBtnBgColor, getSolidBtnTextColor } from "utils"
@@ -56,8 +57,10 @@ const CartReceiptCard = () => {
 
             <footer className='mg-top-md flx flx-column'>
                 {
-                    cartState.length > 0 &&
-                    <Button classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-ucase pd-xs`}>place order</Button>
+                    cartState.cart.length > 0 &&
+                    <Link to='/checkout'>
+                        <Button classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-ucase pd-xs`}>checkout</Button>
+                    </Link>
                 }
             </footer>
 

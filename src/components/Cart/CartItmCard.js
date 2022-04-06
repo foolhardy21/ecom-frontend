@@ -3,7 +3,7 @@ import { useCart, useTheme, useWishlist } from "contexts"
 import { getBorderColor, getTextColor } from "utils"
 import { ACTION_ADD_TO_WISHLIST, ACTION_DECREMENT_CART_PRODUCT, ACTION_INCREMENT_CART_PRODUCT, ACTION_REMOVE_FROM_CART, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "utils/constants.util"
 
-const CartItmCard = ({ item }) => {
+const CartItmCard = ({ item, checkoutPage = false }) => {
     const { _id,
         name,
         company,
@@ -117,23 +117,32 @@ const CartItmCard = ({ item }) => {
 
                     <Text classes='txt-md txt-cap mg-right-xs'>quantity:</Text>
 
-                    <Button onClick={handleDecreaseQty} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-md pd-left-xs pd-right-xs`}>-</Button>
+                    {
+                        !checkoutPage &&
+                        <Button onClick={handleDecreaseQty} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-md pd-left-xs pd-right-xs`}>-</Button>
+                    }
 
                     <Text classes={`txt-md ${getTextColor(theme)} mg-left-xlg mg-right-xlg`}>
                         {qty}
                     </Text>
 
-                    <Button onClick={handleIncreaseQty} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-md pd-left-xs pd-right-xs`}>+</Button>
+                    {
+                        !checkoutPage &&
+                        <Button onClick={handleIncreaseQty} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-md pd-left-xs pd-right-xs`}>+</Button>
+                    }
 
                 </div>
 
-                <footer className="flx flx-column mg-top-md">
+                {
+                    !checkoutPage &&
+                    <footer className="flx flx-column mg-top-md">
 
-                    <Button onClick={handleRemoveFromCart} classes={`btn-txt ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-cap txt-md pd-xs`}>remove from cart</Button>
+                        <Button onClick={handleRemoveFromCart} classes={`btn-txt ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-cap txt-md pd-xs`}>remove from cart</Button>
 
-                    <Button onClick={handleMoveToWishlist} classes={`btn-txt ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-cap txt-md pd-xs`}>move to wishlist</Button>
+                        <Button onClick={handleMoveToWishlist} classes={`btn-txt ${theme === 'light' ? 'txt-primary' : 'txt-secondary'} txt-cap txt-md pd-xs`}>move to wishlist</Button>
 
-                </footer>
+                    </footer>
+                }
 
             </div>
 
