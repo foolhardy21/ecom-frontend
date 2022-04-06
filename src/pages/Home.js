@@ -4,8 +4,10 @@ import { heroImg } from "assets.data"
 import { useTheme } from "contexts"
 import { getBgColor } from "utils"
 import styles from 'components/Home/home.module.css'
+import useTitle from "hooks/useTitle"
 
 const Home = () => {
+    useTitle('Home')
     const { theme } = useTheme()
 
     return (

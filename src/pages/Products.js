@@ -6,8 +6,10 @@ import { useProducts, useTheme } from 'contexts'
 import { getBgColor, getTextColor } from 'utils'
 import { ACTION_INIT_PRODUCTS, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from 'utils/constants.util'
 import styles from 'components/Products/products.module.css'
+import useTitle from 'hooks/useTitle'
 
 const Products = () => {
+    useTitle('Products')
     const [filterVisibility, setFilterVisibility] = useState(false)
     const { getProducts, productsDispatch, productsState, showProductsAlert } = useProducts()
     const { theme } = useTheme()

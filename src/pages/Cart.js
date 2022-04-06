@@ -5,8 +5,10 @@ import { CartHeader, CartSection } from "components/Cart"
 import { useCart, useTheme } from "contexts"
 import { getBgColor } from "utils"
 import { ACTION_INIT_CART, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "utils/constants.util"
+import useTitle from "hooks/useTitle"
 
 const Cart = () => {
+    useTitle('Cart')
     const { theme } = useTheme()
     const { cartDispatch, getCart, showCartAlert, cartState } = useCart()
 

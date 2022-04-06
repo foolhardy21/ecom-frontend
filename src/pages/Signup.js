@@ -3,8 +3,10 @@ import { Main, Alert } from 'components/Reusable'
 import { getBgColor } from 'utils'
 import { ALERT_TYPE_SUCCESS } from 'utils/constants.util'
 import { useSignup, useTheme } from 'contexts'
+import useTitle from 'hooks/useTitle'
 
 const Signup = () => {
+    useTitle('Signup')
     const { theme } = useTheme()
     const { signupAlert } = useSignup()
 
