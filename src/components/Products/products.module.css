@@ -1,24 +1,24 @@
-.aside-filters {
+.asideFilters {
   width: 20rem;
   height: 100vh;
   overflow-y: auto;
   border-right: solid thin var(--clr-off-primary);
 }
 
-#grid-wishlist {
+.gridProducts {
   place-items: center;
   gap: 1rem;
 }
 
-#btn-filters {
+.btnFilters {
   width: max-content;
   height: max-content;
 }
 
-#main-prdlist {
+.mainPrdlist {
   width: 100vw;
 }
 
-.card-dim:hover {
+/* .card-dim:hover {
   cursor: pointer;
-}
+} */

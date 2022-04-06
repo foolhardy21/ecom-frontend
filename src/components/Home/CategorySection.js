@@ -1,10 +1,10 @@
-import axios from "axios"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useTheme, useFilters, useProducts } from "../../contexts"
 import { getBgColor } from "../../utils"
 import { ACTION_ADD_BRAND } from "../../utils/constants.util"
 import { Card, Image, Section, Text } from "../Reusable"
+import styles from './home.module.css'
 
 const CategorySection = () => {
     const [categories, setCategories] = useState([])
@@ -27,7 +27,7 @@ const CategorySection = () => {
 
     return (
 
-        <Section id='grid-category' classes="grid grid-maxcols-4">
+        <Section classes={`grid grid-maxcols-4 ${styles.gridCategory}`}>
 
             {
                 categories.map(category => <Link key={category._id} to='/products'>

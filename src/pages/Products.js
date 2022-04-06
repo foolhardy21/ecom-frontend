@@ -4,8 +4,8 @@ import { Button, Icon, Text, Alert, Main } from '../components/Reusable'
 import { ProductsHeader, ProductsFilter, ProductsSection } from '../components/Products'
 import { useProducts, useTheme } from '../contexts'
 import { getBgColor, getTextColor } from '../utils'
-import '../components/Products/products.css'
 import { ACTION_INIT_PRODUCTS, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from '../utils/constants.util'
+import styles from '../components/Products/products.module.css'
 
 const Products = () => {
     const [filterVisibility, setFilterVisibility] = useState(false)
@@ -41,7 +41,7 @@ const Products = () => {
                 }
 
 
-                <Button id="btn-filters" onClick={() => setFilterVisibility(!filterVisibility)} classes="btn-solid bg-secondary flx flx-center pd-xs pos-sticky t-0">
+                <Button onClick={() => setFilterVisibility(!filterVisibility)} classes={`${styles.btnFilters} btn-solid bg-secondary flx flx-center pd-xs pos-sticky t-0`}>
 
                     <Icon classes='icon-secondary'>
                         filter_alt
@@ -49,7 +49,7 @@ const Products = () => {
 
                 </Button>
 
-                <Main id="main-prdlist" classes={`${getBgColor(theme)} flx flx-column flx-min-center`}>
+                <Main classes={`${getBgColor(theme)} ${styles.mainPrdlist} flx flx-column flx-min-center`}>
 
                     {
                         productsState.alert.type === ALERT_TYPE_ERROR

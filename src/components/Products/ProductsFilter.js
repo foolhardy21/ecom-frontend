@@ -3,6 +3,7 @@ import { Button, Label, Text } from "../Reusable"
 import { useProducts, useTheme, useFilters } from "../../contexts"
 import { getTextColor, getBgColor, isInputIncluded, isSortInputIncluded } from "../../utils"
 import { ACTION_FILTER_PRODUCTS, ALERT_TYPE_ERROR } from "../../utils/constants.util"
+import styles from './products.module.css'
 
 const ProductsFilter = () => {
     const { productsDispatch, getProducts, showProductsAlert, getCategories } = useProducts()
@@ -44,7 +45,7 @@ const ProductsFilter = () => {
 
     return (
 
-        <aside className={`aside-filters ${getTextColor(theme)} ${getBgColor(theme)} pos-sticky t-0 z-5 pd-s`}>
+        <aside className={`${styles.asideFilters} ${getTextColor(theme)} ${getBgColor(theme)} pos-sticky t-0 z-5 pd-s`}>
 
             <div className='flx flx-maj-end'>
 
