@@ -47,7 +47,7 @@ export const products = [
   {
     _id: uuid(),
     name: 'zoom freak 3',
-    company: 'nike',
+    company: 'adidas',
     size: [9, 10, 11],
     price: 11995,
     offerPrice: 10000,
@@ -78,7 +78,7 @@ export const products = [
   {
     _id: uuid(),
     name: 'air max 97 se',
-    company: 'nike',
+    company: 'new balance',
     size: [9, 10, 11],
     price: 9996,
     img: {
@@ -93,7 +93,161 @@ export const products = [
   {
     _id: uuid(),
     name: 'fontaka waffle',
+    company: 'puma',
+    size: [9, 10],
+    price: 6778,
+    offerPrice: 5000,
+    img: {
+      srcSet: productsImgArr[3].srcSet,
+      alt: productsImgArr[3].alt,
+      sizes: productsImgArr[0].sizes
+    },
+    rating: 4,
+    gender: 'female',
+    stock: 25
+  },
+  {
+    _id: uuid(),
+    name: 'air max 90 se',
     company: 'nike',
+    size: [9, 10],
+    price: 12345,
+    img: {
+      srcSet: productsImgArr[4].srcSet,
+      alt: productsImgArr[4].alt,
+      sizes: productsImgArr[0].sizes
+    },
+    rating: 5,
+    gender: 'female',
+    stock: 20
+  },
+  {
+    _id: uuid(),
+    name: 'zoom freak 3',
+    company: 'adidas',
+    size: [9, 10, 11],
+    price: 11995,
+    offerPrice: 10000,
+    img: {
+      srcSet: productsImgArr[0].srcSet,
+      alt: productsImgArr[0].alt,
+      sizes: productsImgArr[0].sizes
+    },
+    rating: 4,
+    gender: 'male',
+    stock: 3
+  },
+  {
+    _id: uuid(),
+    name: 'air jordan 36',
+    company: 'nike',
+    size: [9, 10, 11],
+    price: 14995,
+    img: {
+      srcSet: productsImgArr[1].srcSet,
+      alt: productsImgArr[1].alt,
+      sizes: productsImgArr[0].sizes
+    },
+    rating: 5,
+    gender: 'male',
+    stock: 30
+  },
+  {
+    _id: uuid(),
+    name: 'air max 97 se',
+    company: 'new balance',
+    size: [9, 10, 11],
+    price: 9996,
+    img: {
+      srcSet: productsImgArr[2].srcSet,
+      alt: productsImgArr[2].alt,
+      sizes: productsImgArr[0].sizes
+    },
+    rating: 3,
+    gender: 'male',
+    stock: 18
+  },
+  {
+    _id: uuid(),
+    name: 'fontaka waffle',
+    company: 'puma',
+    size: [9, 10],
+    price: 6778,
+    offerPrice: 5000,
+    img: {
+      srcSet: productsImgArr[3].srcSet,
+      alt: productsImgArr[3].alt,
+      sizes: productsImgArr[0].sizes
+    },
+    rating: 4,
+    gender: 'female',
+    stock: 25
+  },
+  {
+    _id: uuid(),
+    name: 'air max 90 se',
+    company: 'nike',
+    size: [9, 10],
+    price: 12345,
+    img: {
+      srcSet: productsImgArr[4].srcSet,
+      alt: productsImgArr[4].alt,
+      sizes: productsImgArr[0].sizes
+    },
+    rating: 5,
+    gender: 'female',
+    stock: 20
+  },
+  {
+    _id: uuid(),
+    name: 'zoom freak 3',
+    company: 'adidas',
+    size: [9, 10, 11],
+    price: 11995,
+    offerPrice: 10000,
+    img: {
+      srcSet: productsImgArr[0].srcSet,
+      alt: productsImgArr[0].alt,
+      sizes: productsImgArr[0].sizes
+    },
+    rating: 4,
+    gender: 'male',
+    stock: 3
+  },
+  {
+    _id: uuid(),
+    name: 'air jordan 36',
+    company: 'nike',
+    size: [9, 10, 11],
+    price: 14995,
+    img: {
+      srcSet: productsImgArr[1].srcSet,
+      alt: productsImgArr[1].alt,
+      sizes: productsImgArr[0].sizes
+    },
+    rating: 5,
+    gender: 'male',
+    stock: 30
+  },
+  {
+    _id: uuid(),
+    name: 'air max 97 se',
+    company: 'new balance',
+    size: [9, 10, 11],
+    price: 9996,
+    img: {
+      srcSet: productsImgArr[2].srcSet,
+      alt: productsImgArr[2].alt,
+      sizes: productsImgArr[0].sizes
+    },
+    rating: 3,
+    gender: 'male',
+    stock: 18
+  },
+  {
+    _id: uuid(),
+    name: 'fontaka waffle',
+    company: 'puma',
     size: [9, 10],
     price: 6778,
     offerPrice: 5000,
