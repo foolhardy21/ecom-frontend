@@ -2,7 +2,8 @@ import { Signup, Login, Products, Wishlist, Cart, Home, NotFound, Profile } from
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MockMan from "mockman-js";
 import { LoginProvider, SignupProvider, useAuth } from 'contexts';
-import { ROUTE_CART, ROUTE_HOME, ROUTE_LOGIN, ROUTE_PRODUCTS, ROUTE_PROFILE, ROUTE_SIGNUP, ROUTE_WISHLIST } from 'utils/constants.util';
+import { ROUTE_CART, ROUTE_CHECKOUT, ROUTE_HOME, ROUTE_LOGIN, ROUTE_PRODUCTS, ROUTE_PROFILE, ROUTE_SIGNUP, ROUTE_WISHLIST } from 'utils/constants.util';
+import Checkout from 'pages/Checkout';
 
 function App() {
   const { RequireAuth } = useAuth()
@@ -43,9 +44,15 @@ function App() {
         } />
 
         <Route path={ROUTE_PROFILE} element={
-          // <RequireAuth>
-          <Profile />
-          // </RequireAuth>
+          <RequireAuth>
+            <Profile />
+          </RequireAuth>
+        } />
+
+        <Route path={ROUTE_CHECKOUT} element={
+          <RequireAuth>
+            <Checkout />
+          </RequireAuth>
         } />
 
         <Route path='/mock' element={<MockMan />} />
