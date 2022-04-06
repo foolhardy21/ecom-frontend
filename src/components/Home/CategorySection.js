@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { useTheme, useFilters, useProducts } from "../../contexts"
-import { getBgColor } from "../../utils"
-import { ACTION_ADD_BRAND } from "../../utils/constants.util"
-import { Card, Image, Section, Text } from "../Reusable"
+import { useTheme, useFilters, useProducts } from "contexts"
+import { getBgColor } from "utils"
+import { ACTION_ADD_BRAND } from "utils/constants.util"
+import { Card, Image, Section, Text } from "components/Reusable"
 import styles from './home.module.css'
 
 const CategorySection = () => {

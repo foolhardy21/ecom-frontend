@@ -1,5 +1,5 @@
-import { useCart } from "../../contexts/cart.context"
-import { Section } from "../Reusable"
+import { useCart } from "contexts"
+import { Section } from "components/Reusable"
 import { CartItmCard, CartReceiptCard } from "./"
 
 const CartSection = () => {

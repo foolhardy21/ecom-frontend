@@ -61,3 +61,10 @@ export const INPUT_ERROR_DISPLAY_TIME = 3000
 
 export const ALERT_TYPE_ERROR = 'error'
 export const ALERT_TYPE_SUCCESS = 'success'
+
+export const ROUTE_HOME = '/'
+export const ROUTE_PRODUCTS = '/products'
+export const ROUTE_CART = '/cart'
+export const ROUTE_WISHLIST = '/wishlist'
+export const ROUTE_LOGIN = '/login'
+export const ROUTE_SIGNUP = '/signup'

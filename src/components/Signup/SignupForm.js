@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom"
-import { Form, Input, Label, Button, Text } from "../Reusable"
-import { getSolidBtnTextColor, getSolidBtnBgColor } from "../../utils"
-import { useSignup, useTheme, useAuth } from '../../contexts'
-import { ACTION_INIT_FORM, ACTION_TOGGLE_PASSWORD_TYPE, ACTION_UPDATE_CONFIRMED_PASSWORD, ACTION_UPDATE_EMAIL, ACTION_UPDATE_FIRSTNAME, ACTION_UPDATE_LASTNAME, ACTION_UPDATE_PASSWORD, ALERT_DISPLAY_TIME, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "../../utils/constants.util"
+import { Form, Input, Label, Button, Text } from "components/Reusable"
+import { useSignup, useTheme, useAuth } from 'contexts'
+import { getSolidBtnTextColor, getSolidBtnBgColor } from "utils"
+import { ACTION_INIT_FORM, ACTION_TOGGLE_PASSWORD_TYPE, ACTION_UPDATE_CONFIRMED_PASSWORD, ACTION_UPDATE_EMAIL, ACTION_UPDATE_FIRSTNAME, ACTION_UPDATE_LASTNAME, ACTION_UPDATE_PASSWORD, ALERT_DISPLAY_TIME, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "utils/constants.util"
 
 const SignupForm = () => {
     const navigate = useNavigate()

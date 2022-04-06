@@ -1,6 +1,6 @@
-import { useCart, useTheme } from "../../contexts"
-import { Button, Card, Main, Text } from "../Reusable"
-import { getTotalDiscount, getTotalPrice, getFinalPrice, getSolidBtnBgColor, getSolidBtnTextColor } from "../../utils"
+import { useCart, useTheme } from "contexts"
+import { Button, Card, Main, Text } from "components/Reusable"
+import { getTotalDiscount, getTotalPrice, getFinalPrice, getSolidBtnBgColor, getSolidBtnTextColor } from "utils"
 
 const CartReceiptCard = () => {
     const { cartState } = useCart()

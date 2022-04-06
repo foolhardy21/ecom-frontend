@@ -1,8 +1,8 @@
 import axios from "axios";
 import { createContext, useContext, useReducer, useEffect } from "react";
-import { useAuth } from "./auth.context";
-import { cartReducer } from '../reducers'
-import { ACTION_INIT_CART, ACTION_REMOVE_ALERT, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING, ALERT_DISPLAY_TIME, API_CART } from "../utils/constants.util";
+import { useAuth } from "./";
+import { cartReducer } from 'reducers'
+import { ACTION_INIT_CART, ACTION_REMOVE_ALERT, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING, ALERT_DISPLAY_TIME, API_CART } from "utils/constants.util";
 
 const CartContext = createContext()
 

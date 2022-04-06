@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
-import { Card, Icon, Image, Text, Button } from "../Reusable"
-import { useCart, useProducts, useTheme, useWishlist } from '../../contexts'
-import { getSolidBtnBgColor, getSolidBtnTextColor, getTextColor } from "../../utils"
-import { ACTION_ADD_TO_CART, ACTION_ADD_TO_WISHLIST, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "../../utils/constants.util"
+import { Card, Icon, Image, Text, Button } from "components/Reusable"
+import { useCart, useProducts, useTheme, useWishlist } from 'contexts'
+import { getSolidBtnBgColor, getSolidBtnTextColor, getTextColor } from "utils"
+import { ACTION_ADD_TO_CART, ACTION_ADD_TO_WISHLIST, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "utils/constants.util"
 
 const ProductCard = ({ prd }) => {
     const { _id,
@@ -25,7 +25,7 @@ const ProductCard = ({ prd }) => {
 
     async function handleAddToCart() {
         const addItemResponse = await addProductToCart(prd)
-        if (addItemResponse === 404 || addItemResponse === 500) {
+        if (addItemResponse === 404 || addItemResponse === 409 || addItemResponse === 500) {
             showProductsAlert('could not add to cart', ALERT_TYPE_ERROR)
         } else if (addItemResponse) {
             showProductsAlert('added to cart', ALERT_TYPE_SUCCESS)

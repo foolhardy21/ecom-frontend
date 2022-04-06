@@ -1,9 +1,9 @@
-import { useCart, useWishlist, useTheme, useAuth } from "../../contexts"
-import { getBadgeBgColor, getBadgeTextColor, getBgColor, getIconColor, getTextColor, getTotalCartItems } from "../../utils"
-import { Header, NavBar, Icon, Text, Button } from "../Reusable"
-import { Link } from 'react-router-dom'
 import { useState } from "react"
-import { THEME_LIGHT } from "../../utils/constants.util"
+import { Link } from 'react-router-dom'
+import { Header, NavBar, Icon, Text, Button } from "components/Reusable"
+import { useCart, useWishlist, useTheme, useAuth } from "contexts"
+import { getBadgeBgColor, getBadgeTextColor, getBgColor, getIconColor, getTextColor, getTotalCartItems } from "utils"
+import { THEME_LIGHT } from "utils/constants.util"
 
 const CardHeader = () => {
     const [isSmallNavVisible, setIsSmallNavVisible] = useState(false)

@@ -1,8 +1,8 @@
-import { LoginHeader, LoginCard } from '../components/Login'
-import { Main, Alert } from '../components/Reusable'
-import { useLogin, useTheme } from "../contexts"
-import { getBgColor } from "../utils"
-import { ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from '../utils/constants.util'
+import { LoginHeader, LoginCard } from 'components/Login'
+import { Main, Alert } from 'components/Reusable'
+import { useLogin, useTheme } from "contexts"
+import { getBgColor } from "utils"
+import { ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from 'utils/constants.util'
 
 const Login = () => {
     const { theme } = useTheme()

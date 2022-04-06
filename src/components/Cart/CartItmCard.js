@@ -1,7 +1,7 @@
-import { useCart, useTheme, useWishlist } from "../../contexts"
-import { getBorderColor, getTextColor } from "../../utils"
-import { ACTION_ADD_TO_WISHLIST, ACTION_DECREMENT_CART_PRODUCT, ACTION_INCREMENT_CART_PRODUCT, ACTION_REMOVE_FROM_CART, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "../../utils/constants.util"
-import { Button, Card, Image, Text } from "../Reusable"
+import { Button, Card, Image, Text } from "components/Reusable"
+import { useCart, useTheme, useWishlist } from "contexts"
+import { getBorderColor, getTextColor } from "utils"
+import { ACTION_ADD_TO_WISHLIST, ACTION_DECREMENT_CART_PRODUCT, ACTION_INCREMENT_CART_PRODUCT, ACTION_REMOVE_FROM_CART, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "utils/constants.util"
 
 const CartItmCard = ({ item }) => {
     const { _id,

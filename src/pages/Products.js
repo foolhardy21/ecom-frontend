@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import BarLoader from 'react-spinners/BarLoader'
-import { Button, Icon, Text, Alert, Main } from '../components/Reusable'
-import { ProductsHeader, ProductsFilter, ProductsSection } from '../components/Products'
-import { useProducts, useTheme } from '../contexts'
-import { getBgColor, getTextColor } from '../utils'
-import { ACTION_INIT_PRODUCTS, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from '../utils/constants.util'
-import styles from '../components/Products/products.module.css'
+import { Button, Icon, Text, Alert, Main } from 'components/Reusable'
+import { ProductsHeader, ProductsFilter, ProductsSection } from 'components/Products'
+import { useProducts, useTheme } from 'contexts'
+import { getBgColor, getTextColor } from 'utils'
+import { ACTION_INIT_PRODUCTS, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from 'utils/constants.util'
+import styles from 'components/Products/products.module.css'
 
 const Products = () => {
     const [filterVisibility, setFilterVisibility] = useState(false)

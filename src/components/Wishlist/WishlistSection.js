@@ -1,6 +1,6 @@
-import { WishlistCard } from "./index";
-import { useWishlist } from '../../contexts'
-import { Section } from "../Reusable";
+import { WishlistCard } from "./";
+import { useWishlist } from 'contexts'
+import { Section } from "components/Reusable";
 import styles from './wishlist.module.css'
 
 const WishlistSection = () => {

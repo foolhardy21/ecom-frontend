@@ -1,9 +1,9 @@
-import { useTheme, useWishlist, useCart, useAuth } from "../../contexts";
-import { getBadgeBgColor, getBadgeTextColor, getTextColor, getBgColor, getIconColor, getTotalCartItems } from "../../utils";
-import { Header, NavBar, Text, Icon, Button } from "../Reusable/index";
-import { Link } from 'react-router-dom'
 import { useState } from "react";
-import { THEME_LIGHT } from "../../utils/constants.util";
+import { Link } from 'react-router-dom'
+import { Header, NavBar, Text, Icon, Button } from "components/Reusable";
+import { useTheme, useWishlist, useCart, useAuth } from "contexts";
+import { getBadgeBgColor, getBadgeTextColor, getTextColor, getBgColor, getIconColor, getTotalCartItems } from "utils";
+import { THEME_LIGHT } from "utils/constants.util";
 
 const WishlistHeader = () => {
     const [isSmallNavVisible, setIsSmallNavVisible] = useState(false)

@@ -5,8 +5,7 @@ export { isEmailInvalid, isNameInvalid, isPasswordInvalid, arePasswordAndConfirm
 export { isInputIncluded, isSortInputIncluded } from './filter.util'
 
 export {
-    filterProductsByBrand, filterProductsByGender, filterProductsByPrice, filterProductsByRating,
-    filterProductsBySize
+    filterProductsByBrand, filterProductsByGender, filterProductsByPrice, filterProductsByRating, filterProductsBySize, sortProductsByAscendingPrice, sortProductsByDescendingPrice
 } from './products.util'
 
 export { getTotalCartItems, getFinalPrice, getTotalDiscount, getTotalPrice } from './cart.util'

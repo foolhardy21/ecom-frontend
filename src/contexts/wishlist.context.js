@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { useEffect, createContext, useReducer, useContext } from 'react'
-import { useAuth } from './auth.context'
-import { wishlistReducer } from '../reducers'
-import { ACTION_INIT_WISHLIST, ACTION_REMOVE_ALERT, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING, ALERT_DISPLAY_TIME, API_WISHLIST } from '../utils/constants.util'
+import { useAuth } from './'
+import { wishlistReducer } from 'reducers'
+import { ACTION_INIT_WISHLIST, ACTION_REMOVE_ALERT, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING, ALERT_DISPLAY_TIME, API_WISHLIST } from 'utils/constants.util'
 
 const WishlistContext = createContext()
 

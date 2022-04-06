@@ -1,9 +1,9 @@
-import { HomeHeader, CategorySection } from "../components/Home"
-import { Image, Text } from "../components/Reusable"
-import { heroImg } from "../assets.data"
-import { useTheme } from "../contexts"
-import { getBgColor } from "../utils"
-import styles from '../components/Home/home.module.css'
+import { HomeHeader, CategorySection } from "components/Home"
+import { Image, Text } from "components/Reusable"
+import { heroImg } from "assets.data"
+import { useTheme } from "contexts"
+import { getBgColor } from "utils"
+import styles from 'components/Home/home.module.css'
 
 const Home = () => {
     const { theme } = useTheme()

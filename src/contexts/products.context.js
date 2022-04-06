@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { createContext, useContext, useReducer } from "react";
-import { productsReducer } from '../reducers';
-import { ACTION_REMOVE_ALERT, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING, ALERT_DISPLAY_TIME, API_CATEGORIES, API_PRODUCTS } from '../utils/constants.util';
+import { productsReducer } from 'reducers';
+import { ACTION_REMOVE_ALERT, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING, ALERT_DISPLAY_TIME, API_CATEGORIES, API_PRODUCTS } from 'utils/constants.util';
 
 const ProductsContext = createContext()
 

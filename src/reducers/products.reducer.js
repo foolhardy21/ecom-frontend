@@ -1,5 +1,5 @@
-import { ACTION_FILTER_PRODUCTS, ACTION_INIT_PRODUCTS, ACTION_REMOVE_ALERT, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING } from '../utils/constants.util'
-import { filterProductsByBrand, filterProductsByGender, filterProductsByPrice, filterProductsByRating, filterProductsBySize, sortProductsByAscendingPrice, sortProductsByDescendingPrice } from '../utils/products.util'
+import { ACTION_FILTER_PRODUCTS, ACTION_INIT_PRODUCTS, ACTION_REMOVE_ALERT, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING } from 'utils/constants.util'
+import { filterProductsByBrand, filterProductsByGender, filterProductsByPrice, filterProductsByRating, filterProductsBySize, sortProductsByAscendingPrice, sortProductsByDescendingPrice } from 'utils'
 
 export function productsReducer(state, action) {
 

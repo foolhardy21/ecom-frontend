@@ -1,8 +1,8 @@
-import { SignupHeader, SignupCard } from '../components/Signup'
-import { Main, Alert } from '../components/Reusable'
-import { getBgColor } from '../utils'
-import { useSignup, useTheme } from '../contexts'
-import { ALERT_TYPE_SUCCESS } from '../utils/constants.util'
+import { SignupHeader, SignupCard } from 'components/Signup'
+import { Main, Alert } from 'components/Reusable'
+import { getBgColor } from 'utils'
+import { ALERT_TYPE_SUCCESS } from 'utils/constants.util'
+import { useSignup, useTheme } from 'contexts'
 
 const Signup = () => {
     const { theme } = useTheme()

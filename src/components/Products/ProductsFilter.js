@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { Button, Label, Text } from "../Reusable"
-import { useProducts, useTheme, useFilters } from "../../contexts"
-import { getTextColor, getBgColor, isInputIncluded, isSortInputIncluded } from "../../utils"
-import { ACTION_FILTER_PRODUCTS, ALERT_TYPE_ERROR } from "../../utils/constants.util"
+import { Button, Label, Text } from "components/Reusable"
+import { useProducts, useTheme, useFilters } from "contexts"
+import { getTextColor, getBgColor, isInputIncluded, isSortInputIncluded } from "utils"
+import { ACTION_FILTER_PRODUCTS, ALERT_TYPE_ERROR } from "utils/constants.util"
 import styles from './products.module.css'
 
 const ProductsFilter = () => {

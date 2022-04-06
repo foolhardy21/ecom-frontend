@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Header, Text, NavBar, Icon, Button } from '../Reusable'
-import { getTextColor, getBgColor, getIconColor } from '../../utils'
-import { useTheme } from '../../contexts'
 import { Link } from 'react-router-dom'
-import { THEME_LIGHT } from '../../utils/constants.util'
+import { Header, Text, NavBar, Icon, Button } from 'components/Reusable'
+import { useTheme } from 'contexts'
+import { getTextColor, getBgColor, getIconColor } from 'utils'
+import { THEME_LIGHT } from 'utils/constants.util'
 
 const SignupHeader = () => {
     const { theme, toggleTheme } = useTheme()

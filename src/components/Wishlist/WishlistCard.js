@@ -1,7 +1,7 @@
-import { Text, Button, Card, Image } from "../Reusable";
-import { useCart, useTheme, useWishlist } from "../../contexts";
-import { getSolidBtnBgColor, getSolidBtnTextColor } from "../../utils";
-import { ACTION_ADD_TO_CART, ACTION_REMOVE_FROM_WISHLIST, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "../../utils/constants.util";
+import { Text, Button, Card, Image } from "components/Reusable";
+import { useCart, useTheme, useWishlist } from "contexts";
+import { getSolidBtnBgColor, getSolidBtnTextColor } from "utils";
+import { ACTION_ADD_TO_CART, ACTION_REMOVE_FROM_WISHLIST, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "utils/constants.util";
 
 const WishlistCard = ({ item }) => {
     const {
