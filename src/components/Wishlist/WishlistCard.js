@@ -1,7 +1,7 @@
 import { Text, Button, Card, Image } from "../Reusable";
 import { useCart, useTheme, useWishlist } from "../../contexts";
 import { getSolidBtnBgColor, getSolidBtnTextColor } from "../../utils";
-import { ACTION_ADD_TO_CART, ACTION_REMOVE_FROM_WISHLIST, ALERT_TYPE_ERROR } from "../../utils/constants.util";
+import { ACTION_ADD_TO_CART, ACTION_REMOVE_FROM_WISHLIST, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "../../utils/constants.util";
 
 const WishlistCard = ({ item }) => {
     const {
@@ -30,26 +30,22 @@ const WishlistCard = ({ item }) => {
         if (removeFromWishlistResponse === 404 || removeFromWishlistResponse === 500) {
             showWishlistAlert('could not remove from wishlist', ALERT_TYPE_ERROR)
         } else {
+            showWishlistAlert('removed from the wishlist', ALERT_TYPE_SUCCESS)
             wishlistDispatch({ type: ACTION_REMOVE_FROM_WISHLIST, payload: _id })
         }
     }
 
     async function handleMoveToCart() {
-        const removeFromWishlistResponse = await removeProductFromWishlist(_id)
-        if (removeFromWishlistResponse === 404 || removeFromWishlistResponse === 500) {
-            showWishlistAlert('could not remove from wishlist', ALERT_TYPE_ERROR)
-        } else {
-            wishlistDispatch({ type: ACTION_REMOVE_FROM_WISHLIST, payload: _id })
-            if (!isProductInCart(_id)) {
-                const addToCartReponse = await addProductToCart(item)
-                if (addToCartReponse === 404 || addToCartReponse === 500) {
-                    showWishlistAlert('could not add to cart', ALERT_TYPE_ERROR)
-                } else if (addToCartReponse) {
-                    cartDispatch({ type: ACTION_ADD_TO_CART, payload: addToCartReponse[addToCartReponse.length - 1] })
-                }
-            } else {
-                showWishlistAlert('product is already in cart', ALERT_TYPE_ERROR)
+        handleRemoveFromWishlist()
+        if (!isProductInCart(_id)) {
+            const addToCartReponse = await addProductToCart(item)
+            if (addToCartReponse === 404 || addToCartReponse === 500) {
+                showWishlistAlert('could not add to cart', ALERT_TYPE_ERROR)
+            } else if (addToCartReponse) {
+                cartDispatch({ type: ACTION_ADD_TO_CART, payload: addToCartReponse[addToCartReponse.length - 1] })
             }
+        } else {
+            showWishlistAlert('product is already in cart', ALERT_TYPE_ERROR)
         }
     }
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { useAuth } from "./auth.context";
 import { cartReducer } from '../reducers'
-import { ACTION_DECREMENT_CART_PRODUCT, ACTION_INCREMENT_CART_PRODUCT, ACTION_INIT_CART, ACTION_REMOVE_ALERT, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING, ALERT_DISPLAY_TIME, API_CART } from "../utils/constants.util";
+import { ACTION_INIT_CART, ACTION_REMOVE_ALERT, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING, ALERT_DISPLAY_TIME, API_CART } from "../utils/constants.util";
 
 const CartContext = createContext()
 
@@ -55,8 +55,8 @@ export const CartProvider = ({ children }) => {
     @params {Number} qty - current quantity of the product 
     @params {string} _id - _id of the product to be updated
     */
-    async function decreaseProductQuantity(qty, _id) {
-        if (qty > 0) {
+    async function decreaseProductQuantity(_id) {
+        try {
             await axios.post(`${API_CART}/${_id}`, {
                 action: {
                     type: 'decrement'
@@ -66,7 +66,8 @@ export const CartProvider = ({ children }) => {
                     authorization: getUserToken()
                 }
             })
-            cartDispatch({ type: ACTION_DECREMENT_CART_PRODUCT, payload: _id })
+        } catch (e) {
+            return e.response.status
         }
     }
 
@@ -75,16 +76,19 @@ export const CartProvider = ({ children }) => {
     @params {string} _id - _id of the product to be updated
     */
     async function increaseProductQuantity(_id) {
-        await axios.post(`${API_CART}/${_id}`, {
-            action: {
-                type: 'increment'
-            }
-        }, {
-            headers: {
-                authorization: getUserToken()
-            }
-        })
-        cartDispatch({ type: ACTION_INCREMENT_CART_PRODUCT, payload: _id })
+        try {
+            await axios.post(`${API_CART}/${_id}`, {
+                action: {
+                    type: 'increment'
+                }
+            }, {
+                headers: {
+                    authorization: getUserToken()
+                }
+            })
+        } catch (e) {
+            return e.response.status
+        }
     }
 
     /* 

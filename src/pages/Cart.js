@@ -4,7 +4,7 @@ import { Main, Text, Alert } from "../components/Reusable"
 import { CartHeader, CartSection } from "../components/Cart"
 import { useCart, useTheme } from "../contexts"
 import { getBgColor } from "../utils"
-import { ACTION_INIT_CART, ALERT_TYPE_ERROR } from "../utils/constants.util"
+import { ACTION_INIT_CART, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "../utils/constants.util"
 
 const Cart = () => {
     const { theme } = useTheme()
@@ -39,7 +39,11 @@ const Cart = () => {
                 </Text>
 
                 {
-                    cartState.alert.type === ALERT_TYPE_ERROR && <Alert classes='bg-err'>{cartState.alert.message}</Alert>
+                    cartState.alert.type === ALERT_TYPE_ERROR
+                        ? <Alert classes='bg-err mg-btm-s'>{cartState.alert.message}</Alert>
+                        : cartState.alert.type === ALERT_TYPE_SUCCESS
+                            ? <Alert classes='bg-success mg-btm-s'>{cartState.alert.message}</Alert>
+                            : ''
                 }
 
                 {
