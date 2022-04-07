@@ -4,7 +4,7 @@ import { WishlistHeader, WishlistSection } from 'components/Wishlist'
 import { Main, Text, Alert } from 'components/Reusable'
 import { useTheme, useWishlist } from 'contexts'
 import { getBgColor } from 'utils'
-import { ACTION_INIT_WISHLIST, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from 'utils/constants.util'
+import { ACTION_INIT_WISHLIST, ALERT_TYPE_ERROR } from 'utils/constants.util'
 import useTitle from 'hooks/useTitle'
 
 const Wishlist = () => {
