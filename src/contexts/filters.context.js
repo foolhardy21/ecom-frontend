@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer } from "react";
 import { filterReducer } from 'reducers'
 import { ACTION_ADD_BRAND, ACTION_ADD_GENDER, ACTION_ADD_RATING, ACTION_ADD_SIZE, ACTION_REMOVE_BRAND, ACTION_REMOVE_GENDER, ACTION_REMOVE_RATING, ACTION_REMOVE_SIZE, ACTION_RESET_FILTER, ACTION_UPDATE_PRICE, ACTION_UPDATE_SORTORDER } from "utils/constants.util";
 
-const FilterContext = createContext()
+const FilterContext = createContext({})
 
 export const FilterProvider = ({ children }) => {
     const [filterState, filterDispatch] = useReducer(filterReducer, {

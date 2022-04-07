@@ -1,6 +1,8 @@
-const { createContext, useReducer, useContext, useState } = require("react");
+import { createContext, useReducer, useContext, useState } from "react";
+import { addressReducer } from "reducers";
+import { ACTION_REMOVE_ALERT, ACTION_SET_ALERT, ALERT_DISPLAY_TIME } from "utils/constants.util";
 
-const AddressContext = createContext()
+const AddressContext = createContext({})
 
 export const AddressProvider = ({ children }) => {
     const [addressState, addressDispatch] = useReducer(addressReducer, {
@@ -23,18 +25,14 @@ export const AddressProvider = ({ children }) => {
     })
     const [addressToBeUpdated, setAddressToBeUpdated] = useState('')
 
-    function addressReducer(state, { type, payload }) {
-
-        switch (type) {
-
-            case 'ADD_ADDRESS': return { ...state, addresses: state.addresses.concat(payload) }
-
-            case 'UPDATE_ADDRESS': return { ...state, addresses: state.addresses.map(address => address._id === payload._id ? ({ _id: address._id, ...payload.address }) : address) }
-
-            case 'REMOVE_ADDRESS': return { ...state, addresses: state.addresses.filter(address => address._id !== payload) }
-
-            default: return state
-        }
+    function showAddressAlert(message, type) {
+        addressDispatch({
+            type: ACTION_SET_ALERT, payload: {
+                message,
+                type
+            }
+        })
+        setTimeout(() => addressDispatch({ type: ACTION_REMOVE_ALERT }), ALERT_DISPLAY_TIME)
     }
 
     return (
@@ -46,6 +44,7 @@ export const AddressProvider = ({ children }) => {
                 setAddressForm,
                 addressToBeUpdated,
                 setAddressToBeUpdated,
+                showAddressAlert
             }}
         >
             {children}

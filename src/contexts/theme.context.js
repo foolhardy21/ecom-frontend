@@ -2,7 +2,7 @@ import { THEME_DARK, THEME_LIGHT } from "utils/constants.util";
 
 const { createContext, useContext, useState } = require("react");
 
-const ThemeContext = createContext()
+const ThemeContext = createContext(THEME_LIGHT)
 
 export const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState(THEME_LIGHT)

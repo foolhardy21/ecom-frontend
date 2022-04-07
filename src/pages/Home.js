@@ -12,6 +12,7 @@ const Home = () => {
 
     return (
         <div className={getBgColor(theme)}>
+
             <HomeHeader />
 
             <Image srcSet={heroImg.srcSet} sizes={heroImg.sizes} alt={heroImg.alt}
@@ -22,6 +23,7 @@ const Home = () => {
             </Text>
 
             <CategorySection />
+
         </div>
     )
 }

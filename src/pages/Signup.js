@@ -1,7 +1,6 @@
 import { SignupHeader, SignupCard } from 'components/Signup'
 import { Main, Alert } from 'components/Reusable'
 import { getBgColor } from 'utils'
-import { ALERT_TYPE_SUCCESS } from 'utils/constants.util'
 import { useSignup, useTheme } from 'contexts'
 import useTitle from 'hooks/useTitle'
 
@@ -22,10 +21,7 @@ const Signup = () => {
 
             <div className='flx flx-center'>
                 {
-                    signupAlert.type === ALERT_TYPE_SUCCESS
-                        ? <Alert classes='bg-success'>{signupAlert.message}</Alert>
-                        : signupAlert.type === ALERT_TYPE_SUCCESS ? <Alert classes='bg-err'>{signupAlert.message}</Alert>
-                            : ''
+                    signupAlert.message && <Alert type={signupAlert.type}>{signupAlert.message}</Alert>
                 }
             </div>
 

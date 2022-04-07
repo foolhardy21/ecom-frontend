@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { Card, Icon, Image, Text, Button } from "components/Reusable"
 import { useCart, useProducts, useTheme, useWishlist } from 'contexts'
-import { getSolidBtnBgColor, getSolidBtnTextColor, getTextColor } from "utils"
+import { getRatingFilterArray, getSolidBtnBgColor, getSolidBtnTextColor, getTextColor } from "utils"
 import { ACTION_ADD_TO_CART, ACTION_ADD_TO_WISHLIST, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "utils/constants.util"
 
 const ProductCard = ({ prd }) => {
@@ -22,12 +22,13 @@ const ProductCard = ({ prd }) => {
     const { showProductsAlert } = useProducts()
     const { cartDispatch, addProductToCart, isProductInCart } = useCart()
     const { wishlistDispatch, addProductToWishlist, isProductInWishlist } = useWishlist()
+    const ratingArr = getRatingFilterArray()
 
     async function handleAddToCart() {
         const addItemResponse = await addProductToCart(prd)
         if (addItemResponse === 404 || addItemResponse === 409 || addItemResponse === 500) {
             showProductsAlert('could not add to cart', ALERT_TYPE_ERROR)
-        } else if (addItemResponse) {
+        } else {
             showProductsAlert('added to cart', ALERT_TYPE_SUCCESS)
             cartDispatch({ type: ACTION_ADD_TO_CART, payload: addItemResponse[addItemResponse.length - 1] })
         }
@@ -99,25 +100,15 @@ const ProductCard = ({ prd }) => {
 
             <div className='dis-inblock'>
 
-                <Icon classes={`${rating >= 1 ? 'txt-warn' : 'txt-off-secondary'}`}>
-                    star
-                </Icon>
-
-                <Icon classes={`${rating >= 2 ? 'txt-warn' : 'txt-off-secondary'}`}>
-                    star
-                </Icon>
-
-                <Icon classes={`${rating >= 3 ? 'txt-warn' : 'txt-off-secondary'}`} >
-                    star
-                </Icon>
-
-                <Icon classes={`${rating >= 4 ? 'txt-warn' : 'txt-off-secondary'}`} >
-                    star
-                </Icon>
-
-                <Icon classes={`${rating >= 5 ? 'txt-warn' : 'txt-off-secondary'}`} >
-                    star
-                </Icon>
+                {
+                    ratingArr.map(arrayRating => rating >= arrayRating
+                        ? <Icon key={arrayRating} classes='txt-warn'>
+                            star
+                        </Icon>
+                        : <Icon key={arrayRating} classes='txt-off-secondary'>
+                            star
+                        </Icon>)
+                }
 
             </div>
 

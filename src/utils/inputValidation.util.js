@@ -32,4 +32,11 @@ export const isPasswordInvalid = inputStr => (inputStr === '' || passReg.test(in
     * @params {string} confPassStr - entered confirmed password string
     * @return {boolean} true if the strings are different and false if the strings are same 
 */
-export const arePasswordAndConfirmedPasswordDiff = (passStr, confPassStr) => (passStr !== confPassStr) 
+export const arePasswordAndConfirmedPasswordDiff = (passStr, confPassStr) => (passStr !== confPassStr)
+
+/*
+    * this is a function to check if the form submitted is empty or not 
+    * @params {Array.prototype} formValuesArr - array of input values
+    * @return {boolean} true if the form is empty otherwise false 
+*/
+export const isFormEmpty = formValuesArr => formValuesArr.some(value => value === '')

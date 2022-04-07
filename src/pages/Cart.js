@@ -4,13 +4,13 @@ import { Main, Text, Alert } from "components/Reusable"
 import { CartHeader, CartSection } from "components/Cart"
 import { useCart, useTheme } from "contexts"
 import { getBgColor } from "utils"
-import { ACTION_INIT_CART, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "utils/constants.util"
+import { ACTION_INIT_CART, ALERT_TYPE_ERROR } from "utils/constants.util"
 import useTitle from "hooks/useTitle"
 
 const Cart = () => {
     useTitle('Cart')
     const { theme } = useTheme()
-    const { cartDispatch, getCart, showCartAlert, cartState } = useCart()
+    const { cartDispatch, getCart, showCartAlert, cartState: { loading, alert } } = useCart()
 
     useEffect(() => {
         (async () => {
@@ -21,7 +21,7 @@ const Cart = () => {
                 cartDispatch({ type: ACTION_INIT_CART, payload: getCartResponse })
             }
         })()
-    }, [cartDispatch])
+    }, [])
 
     return (
 
@@ -41,15 +41,11 @@ const Cart = () => {
                 </Text>
 
                 {
-                    cartState.alert.type === ALERT_TYPE_ERROR
-                        ? <Alert classes='bg-err mg-btm-s'>{cartState.alert.message}</Alert>
-                        : cartState.alert.type === ALERT_TYPE_SUCCESS
-                            ? <Alert classes='bg-success mg-btm-s'>{cartState.alert.message}</Alert>
-                            : ''
+                    alert.message && <Alert type={alert.type} classes='mg-btm-s'>{alert.message}</Alert>
                 }
 
                 {
-                    cartState.loading
+                    loading
                         ? <BarLoader width={300} height={4} />
                         : <CartSection />
                 }

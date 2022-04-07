@@ -1,6 +1,6 @@
 import { Section } from "components/Reusable"
 import { useAddress } from "contexts"
-import AddressCard from "./AddressCard"
+import { AddressCard } from "./"
 import styles from './profile.module.css'
 
 const AddressSection = ({ checkoutPage = false }) => {

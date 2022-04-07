@@ -3,7 +3,7 @@ import { loginFormReducer } from "reducers/login.reducer";
 import { isEmailInvalid, isPasswordInvalid } from "utils";
 import { ACTION_REMOVE_EMAIL_ERROR, ACTION_REMOVE_PASSWORD_ERROR, ACTION_SET_EMAIL_ERROR, ACTION_SET_PASSWORD_ERROR, ALERT_DISPLAY_TIME, INPUT_ERROR_DISPLAY_TIME } from "utils/constants.util";
 
-const LoginContext = createContext()
+const LoginContext = createContext({})
 
 export const LoginProvider = ({ children }) => {
     const initialLoginFormValues = {

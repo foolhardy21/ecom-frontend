@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Button, Label, Text } from "components/Reusable"
 import { useProducts, useTheme, useFilters } from "contexts"
-import { getTextColor, getBgColor, isInputIncluded, isSortInputIncluded } from "utils"
+import { getTextColor, getBgColor, isInputIncluded, isSortInputIncluded, getRatingFilterArray, getSizeFilterArray } from "utils"
 import { ACTION_FILTER_PRODUCTS, ALERT_TYPE_ERROR } from "utils/constants.util"
 import styles from './products.module.css'
 
@@ -10,26 +10,19 @@ const ProductsFilter = () => {
     const { filterState, handleBrandCheck, handleGenderChecks, handlePriceChange, handlePriceSortOrderChange, handleRatingCheck, handleSizeCheck, resetFilters } = useFilters()
     const { theme } = useTheme()
     const [categories, setCategories] = useState([])
-    let sizeArr = []
-    let ratingArr = []
-
-    for (let i = 9; i <= 12; i++) {
-        sizeArr.push(i)
-    }
-    for (let i = 1; i < 6; i++) {
-        ratingArr.push(i)
-    }
+    let sizeArr = getSizeFilterArray()
+    let ratingArr = getRatingFilterArray()
 
     useEffect(() => {
         (async () => {
             const getProductsResponse = await getProducts()
             if (getProductsResponse === 500) {
                 showProductsAlert('could not get products', ALERT_TYPE_ERROR)
-            } else if (getProductsResponse) {
+            } else {
                 productsDispatch({ type: ACTION_FILTER_PRODUCTS, payload: { allProducts: getProductsResponse, filterState } })
             }
         })()
-    }, [filterState, productsDispatch])
+    }, [filterState])
 
     useEffect(() => {
         (async () => {
@@ -41,7 +34,6 @@ const ProductsFilter = () => {
             }
         })()
     }, [])
-
 
     return (
 

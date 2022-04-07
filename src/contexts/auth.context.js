@@ -3,7 +3,7 @@ import { createContext, useState, useContext } from "react"
 import { Navigate, useLocation } from "react-router-dom"
 import { API_LOGIN, API_SIGNUP } from "utils/constants.util"
 
-const AuthContext = createContext()
+const AuthContext = createContext(false)
 
 export const AuthProvider = ({ children }) => {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)

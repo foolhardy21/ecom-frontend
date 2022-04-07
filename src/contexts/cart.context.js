@@ -4,7 +4,7 @@ import { useAuth } from "./";
 import { cartReducer } from 'reducers'
 import { ACTION_INIT_CART, ACTION_REMOVE_ALERT, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING, ALERT_DISPLAY_TIME, API_CART } from "utils/constants.util";
 
-const CartContext = createContext()
+const CartContext = createContext({})
 
 export const CartProvider = ({ children }) => {
     const [cartState, cartDispatch] = useReducer(cartReducer, {
@@ -99,12 +99,11 @@ export const CartProvider = ({ children }) => {
     */
     async function removeProductFromCart(productId) {
         try {
-            const response = await axios.delete(`${API_CART}/${productId}`, {
+            await axios.delete(`${API_CART}/${productId}`, {
                 headers: {
                     authorization: getUserToken()
                 }
             })
-            return response.data.cart
         } catch (e) {
             return e.response.status
         }
@@ -137,8 +136,8 @@ export const CartProvider = ({ children }) => {
      @return {Number} e.response.status - error status code
     */
     async function getCart() {
+        cartDispatch({ type: ACTION_SET_LOADING })
         try {
-            cartDispatch({ type: ACTION_SET_LOADING })
             const response = await axios.get(API_CART, {
                 headers: {
                     authorization: getUserToken()

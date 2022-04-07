@@ -3,7 +3,7 @@ import { arePasswordAndConfirmedPasswordDiff, isEmailInvalid, isNameInvalid, isP
 import { signupFormReducer } from "reducers";
 import { ACTION_REMOVE_CONFIRMEDPASSWORD_ERROR, ACTION_REMOVE_EMAIL_ERROR, ACTION_REMOVE_FIRSTNAME_ERROR, ACTION_REMOVE_LASTNAME_ERROR, ACTION_REMOVE_PASSWORD_ERROR, ACTION_SET_CONFIRMEDPASSWORD_ERROR, ACTION_SET_EMAIL_ERROR, ACTION_SET_FIRSTNAME_ERROR, ACTION_SET_LASTNAME_ERROR, ACTION_SET_PASSWORD_ERROR, ALERT_DISPLAY_TIME, INPUT_ERROR_DISPLAY_TIME } from "utils/constants.util";
 
-const SignupContext = createContext()
+const SignupContext = createContext({})
 
 export const SignupProvider = ({ children }) => {
     const initialSignupFormValues = {

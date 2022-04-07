@@ -7,12 +7,11 @@ import { ACTION_INIT_CART } from "utils/constants.util"
 const CheckoutAddressCard = () => {
     const navigate = useNavigate()
     const { theme } = useTheme()
-    const { cartState, removeProductFromCart, cartDispatch } = useCart()
+    const { cartState: { cart }, removeProductFromCart, cartDispatch } = useCart()
     const { selectedAddress, selectedAddress: { name, building, street, city, state, country, pincode, phoneNumber }, setSelectedAddress } = useCheckout()
 
     async function handlePlaceOrder() {
-
-        for (const product of cartState.cart) {
+        for (const product of cart) {
             await removeProductFromCart(product._id)
         }
         cartDispatch({ type: ACTION_INIT_CART, payload: [] })
@@ -46,6 +45,7 @@ const CheckoutAddressCard = () => {
             </div>
 
             <Text classes={`${getTextColor(theme)} txt-md mg-btm-xs`}>{phoneNumber}</Text>
+
             {
                 Object.keys(selectedAddress).length > 0 &&
                 <Button onClick={handlePlaceOrder} classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md pd-xs`}>place order</Button>

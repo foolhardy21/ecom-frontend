@@ -1,6 +1,6 @@
 const { createContext, useContext, useState } = require("react");
 
-const CheckoutContext = createContext()
+const CheckoutContext = createContext({})
 
 export const CheckoutProvider = ({ children }) => {
     const [selectedAddress, setSelectedAddress] = useState({})

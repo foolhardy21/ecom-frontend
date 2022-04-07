@@ -3,7 +3,7 @@ import { createContext, useContext, useReducer } from "react";
 import { productsReducer } from 'reducers';
 import { ACTION_REMOVE_ALERT, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING, ALERT_DISPLAY_TIME, API_CATEGORIES, API_PRODUCTS } from 'utils/constants.util';
 
-const ProductsContext = createContext()
+const ProductsContext = createContext({})
 
 export const ProductsProvider = ({ children }) => {
     const [productsState, productsDispatch] = useReducer(productsReducer, {
@@ -27,9 +27,7 @@ export const ProductsProvider = ({ children }) => {
                 type
             }
         })
-
         setTimeout(() => productsDispatch({ type: ACTION_REMOVE_ALERT }), ALERT_DISPLAY_TIME)
-
     }
 
     /* 

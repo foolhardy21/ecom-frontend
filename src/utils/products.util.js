@@ -51,3 +51,11 @@ export const sortProductsByAscendingPrice = products => products.sort((a, b) => 
     * @return {Array.prototype} filtered array of products 
 */
 export const sortProductsByDescendingPrice = products => products.sort((a, b) => b.price - a.price)
+
+/*
+    * this function filters the products based on the search query entered by the user
+    * @params {string} query - input entered by the user for search
+    * @params {Array.prototype} products - array of all products
+    * @return {Array.prototype} filtered array of products 
+*/
+export const filterProductsBySearchQuery = (products, query) => products.filter(prd => prd.name.toLowerCase().includes(query.toLowerCase()) || prd.company.toLowerCase().includes(query.toLowerCase()))

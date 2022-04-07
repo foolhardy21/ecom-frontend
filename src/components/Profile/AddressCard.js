@@ -1,6 +1,7 @@
 import { Button, Card, Icon, Text } from "components/Reusable"
 import { useAddress, useCheckout, useTheme } from "contexts"
 import { getBorderColor, getIconColor, getTextColor } from "utils"
+import { ACTION_REMOVE_ADDRESS } from "utils/constants.util"
 
 const AddressCard = ({ address: { _id, name, building, street, city, state, country, pincode, phoneNumber }, checkoutPage = false }) => {
     const { theme } = useTheme()
@@ -8,7 +9,7 @@ const AddressCard = ({ address: { _id, name, building, street, city, state, coun
     const { setSelectedAddress } = useCheckout()
 
     function handleAddressDelete() {
-        addressDispatch({ type: 'REMOVE_ADDRESS', payload: _id })
+        addressDispatch({ type: ACTION_REMOVE_ADDRESS, payload: _id })
     }
 
     function handleEditAddress() {

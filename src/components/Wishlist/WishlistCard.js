@@ -1,6 +1,6 @@
-import { Text, Button, Card, Image } from "components/Reusable";
+import { Text, Button, Card, Image, Icon } from "components/Reusable";
 import { useCart, useTheme, useWishlist } from "contexts";
-import { getSolidBtnBgColor, getSolidBtnTextColor } from "utils";
+import { getRatingFilterArray, getSolidBtnBgColor, getSolidBtnTextColor } from "utils";
 import { ACTION_ADD_TO_CART, ACTION_REMOVE_FROM_WISHLIST, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "utils/constants.util";
 
 const WishlistCard = ({ item }) => {
@@ -17,12 +17,11 @@ const WishlistCard = ({ item }) => {
         offerPrice,
         stock,
         rating,
-        size,
-        qty,
     } = item
     const { wishlistDispatch, removeProductFromWishlist, showWishlistAlert } = useWishlist()
     const { cartDispatch, addProductToCart, isProductInCart } = useCart()
     const { theme } = useTheme()
+    const ratingArr = getRatingFilterArray()
 
 
     async function handleRemoveFromWishlist() {
@@ -70,11 +69,11 @@ const WishlistCard = ({ item }) => {
 
             <footer className='flx flx-column mg-top-xs pd-left-s pd-right-s'>
 
-                <Text classes='txt-md txt-ucase mg-btm-xs'>
+                <Text classes='txt-md txt-ucase'>
                     {company}
                 </Text>
 
-                <Text classes='txt-md txt-cap mg-btm-s'>
+                <Text classes='txt-md txt-cap mg-btm-xs'>
                     {name}
                 </Text>
 
@@ -102,6 +101,20 @@ const WishlistCard = ({ item }) => {
                 {
                     stock <= 15 && <Text classes='txt-err txt-md txt-cap'>{`only ${stock} left`}</Text>
                 }
+
+                <div className='dis-inblock mg-top-xs'>
+
+                    {
+                        ratingArr.map(arrayRating => rating >= arrayRating
+                            ? <Icon key={arrayRating} classes='txt-warn'>
+                                star
+                            </Icon>
+                            : <Icon key={arrayRating} classes='txt-off-secondary'>
+                                star
+                            </Icon>)
+                    }
+
+                </div>
 
             </footer>
 

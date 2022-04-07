@@ -3,12 +3,12 @@ import { ProductCard } from "./"
 import styles from './products.module.css'
 
 const ProductsSection = () => {
-    const { productsState } = useProducts()
+    const { productsState: { products } } = useProducts()
 
     return (
         <section className={`grid grid-maxcols-4 ${styles.gridProducts}`}>
             {
-                productsState.products.map(product => <ProductCard key={product._id} prd={product} />)
+                products?.map(product => <ProductCard key={product._id} prd={product} />)
             }
         </section>
     )

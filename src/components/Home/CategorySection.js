@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { Card, Image, Section, Text } from "components/Reusable"
 import { useTheme, useFilters, useProducts } from "contexts"
 import { getBgColor } from "utils"
 import { ACTION_ADD_BRAND } from "utils/constants.util"
-import { Card, Image, Section, Text } from "components/Reusable"
 import styles from './home.module.css'
 
 const CategorySection = () => {
@@ -28,20 +28,21 @@ const CategorySection = () => {
     return (
 
         <Section classes={`grid grid-maxcols-4 ${styles.gridCategory}`}>
-
             {
-                categories.map(category => <Link key={category._id} to='/products'>
-                    <Card onClick={() => handleCategoryClick(category.categoryName)} classes="pos-relative">
+                categories.map(({ _id, categoryName, categoryImg: { srcSet, sizes, alt } }) =>
 
-                        <Image srcSet={category.categoryImg.srcSet} sizes={category.categoryImg.sizes} alt={category.categoryImg.alt} />
+                    <Link key={_id} to='/products'>
+                        <Card onClick={() => handleCategoryClick(categoryName)} classes="pos-relative">
 
-                        <Text classes={`pos-absolute tr-1 ${getBgColor(theme)} txt-md`}>{category.categoryName}</Text>
+                            <Image srcSet={srcSet} sizes={sizes} alt={alt} />
 
-                    </Card>
-                </Link>
+                            <Text classes={`pos-absolute tr-1 ${getBgColor(theme)} txt-md`}>{categoryName}</Text>
+
+                        </Card>
+                    </Link>
+
                 )
             }
-
         </Section>
 
     )

@@ -4,7 +4,7 @@ import { Button, Card, Main, Text } from "components/Reusable"
 import { getTotalDiscount, getTotalPrice, getFinalPrice, getSolidBtnBgColor, getSolidBtnTextColor } from "utils"
 
 const CartReceiptCard = () => {
-    const { cartState } = useCart()
+    const { cartState: { cart } } = useCart()
     const { theme } = useTheme()
 
     return (
@@ -22,7 +22,7 @@ const CartReceiptCard = () => {
                     <Text classes="txt-cap txt-md mg-right-md">order total</Text>
 
                     <Text class="txt-cap txt-md">{`
-                    rs. ${getTotalPrice(cartState.cart)}
+                    rs. ${getTotalPrice(cart)}
                     `}</Text>
 
                 </div>
@@ -32,7 +32,7 @@ const CartReceiptCard = () => {
                     <Text classes="txt-cap txt-md mg-right-md">order discount</Text>
 
                     <Text classes="txt-cap txt-success txt-md">{
-                        `-rs. ${getTotalDiscount(cartState.cart)}`
+                        `-rs. ${getTotalDiscount(cart)}`
                     }</Text>
 
                 </div>
@@ -49,15 +49,15 @@ const CartReceiptCard = () => {
 
                     <Text classes="txt-cap txt-md mg-right-md">total amount</Text>
 
-                    <Text classes="txt-cap txt-md">{`rs. ${getFinalPrice(cartState.cart)}`}</Text>
+                    <Text classes="txt-cap txt-md">{`rs. ${getFinalPrice(cart)}`}</Text>
 
                 </div>
 
             </Main>
 
-            <footer className='mg-top-md flx flx-column'>
+            <footer className='mg-top-md flx flx-maj-end'>
                 {
-                    cartState.cart.length > 0 &&
+                    cart.length > 0 &&
                     <Link to='/checkout'>
                         <Button classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-ucase pd-xs`}>checkout</Button>
                     </Link>

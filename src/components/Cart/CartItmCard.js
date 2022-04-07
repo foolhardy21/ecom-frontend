@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { Button, Card, Image, Text } from "components/Reusable"
 import { useCart, useTheme, useWishlist } from "contexts"
 import { getBorderColor, getTextColor } from "utils"
@@ -15,9 +16,7 @@ const CartItmCard = ({ item, checkoutPage = false }) => {
         qty,
         size,
         price,
-        offerPrice,
-        stock,
-        rating } = item
+        offerPrice } = item
     const { cartDispatch, removeProductFromCart, increaseProductQuantity, decreaseProductQuantity, showCartAlert } = useCart()
     const { wishlistDispatch, addProductToWishlist, showWishlistAlert, isProductInWishlist } = useWishlist()
     const { theme } = useTheme()
@@ -69,6 +68,15 @@ const CartItmCard = ({ item, checkoutPage = false }) => {
             showCartAlert('quantity is already 0', ALERT_TYPE_ERROR)
         }
     }
+
+    useEffect(() => {
+        if (qty === 0) {
+            (async () => {
+                await removeProductFromCart(_id)
+                cartDispatch({ type: ACTION_REMOVE_FROM_CART, payload: _id })
+            })()
+        }
+    })
 
     return (
 

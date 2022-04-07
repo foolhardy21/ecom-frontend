@@ -21,7 +21,7 @@ const Wishlist = () => {
                 wishlistDispatch({ type: ACTION_INIT_WISHLIST, payload: getWishlistResponse })
             }
         })()
-    }, [wishlistDispatch])
+    }, [])
 
     return (
         <div
@@ -40,13 +40,8 @@ const Wishlist = () => {
                 </Text>
 
                 {
-                    wishlistState.alert.type === ALERT_TYPE_ERROR
-                        ? <Alert classes='bg-err mg-top-s mg-btm-s'>{wishlistState.alert.message}</Alert>
-                        : wishlistState.alert.type === ALERT_TYPE_SUCCESS
-                            ? <Alert classes='bg-success mg-top-s mg-btm-s'>{wishlistState.alert.message}</Alert>
-                            : ''
+                    wishlistState.alert.message && <Alert type={wishlistState.alert.type}>{wishlistState.alert.message}</Alert>
                 }
-
                 {
                     wishlistState.loading ? <BarLoader width={300} height={4} /> : <WishlistSection />
                 }

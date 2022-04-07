@@ -4,7 +4,7 @@ import { useAuth } from './'
 import { wishlistReducer } from 'reducers'
 import { ACTION_INIT_WISHLIST, ACTION_REMOVE_ALERT, ACTION_REMOVE_LOADING, ACTION_SET_ALERT, ACTION_SET_LOADING, ALERT_DISPLAY_TIME, API_WISHLIST } from 'utils/constants.util'
 
-const WishlistContext = createContext()
+const WishlistContext = createContext({})
 
 export const WishlistProvider = ({ children }) => {
     const [wishlistState, wishlistDispatch] = useReducer(wishlistReducer, {

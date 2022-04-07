@@ -2,15 +2,15 @@ import { useState } from "react"
 import { Link } from 'react-router-dom'
 import { useTheme, useCart, useWishlist, useAuth, useProducts } from "contexts"
 import { Button, Header, Icon, Input, NavBar, Text } from "components/Reusable"
-import { getIconColor, getBgColor, getTextColor, getTotalCartItems, getBadgeBgColor, getBadgeTextColor } from 'utils'
+import { getIconColor, getBgColor, getTextColor, getTotalCartItems, getBadgeBgColor, getBadgeTextColor, filterProductsBySearchQuery } from 'utils'
 import { THEME_LIGHT, ACTION_INIT_PRODUCTS } from "utils/constants.util"
 
 const ProductsHeader = () => {
     const [isSmallNavVisible, setSmallNavVisible] = useState(false)
     const [searchQuery, setSearchQuery] = useState('')
     const { theme, toggleTheme } = useTheme()
-    const { wishlistState } = useWishlist()
-    const { cartState } = useCart()
+    const { wishlistState: { wishlist } } = useWishlist()
+    const { cartState: { cart } } = useCart()
     const { getProducts, productsDispatch } = useProducts()
     const { isUserLoggedIn, logoutUser } = useAuth()
 
@@ -20,7 +20,7 @@ const ProductsHeader = () => {
 
     async function handleSearchSubmit() {
         const getProductsResponse = await getProducts()
-        const filteredProducts = getProductsResponse.filter(prd => prd.name.toLowerCase().includes(searchQuery.toLowerCase()) || prd.company.toLowerCase().includes(searchQuery.toLowerCase()))
+        const filteredProducts = filterProductsBySearchQuery(getProductsResponse, searchQuery)
         productsDispatch({ type: ACTION_INIT_PRODUCTS, payload: filteredProducts })
     }
 
@@ -56,9 +56,9 @@ const ProductsHeader = () => {
                 <div className="pos-relative mg-right-lg">
 
                     {
-                        wishlistState.wishlist.length > 0 &&
+                        wishlist.length > 0 &&
                         <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                            {wishlistState.wishlist.length}
+                            {wishlist.length}
                         </div>
                     }
 
@@ -73,9 +73,9 @@ const ProductsHeader = () => {
                 <div className="pos-relative mg-right-lg">
 
                     {
-                        cartState.cart.length > 0 &&
+                        cart.length > 0 &&
                         <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                            {getTotalCartItems(cartState.cart)}
+                            {getTotalCartItems(cart)}
                         </div>
                     }
 
@@ -143,9 +143,9 @@ const ProductsHeader = () => {
                         <div className="pos-relative mg-top-md">
 
                             {
-                                wishlistState.wishlist.length > 0 &&
+                                wishlist.length > 0 &&
                                 <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                                    {wishlistState.wishlist.length}
+                                    {wishlist.length}
                                 </div>
                             }
 
@@ -160,9 +160,9 @@ const ProductsHeader = () => {
                         <div className="pos-relative mg-top-md">
 
                             {
-                                cartState.cart.length > 0 &&
+                                cart.length > 0 &&
                                 <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                                    {getTotalCartItems(cartState.cart)}
+                                    {getTotalCartItems(cart)}
                                 </div>
                             }
 

@@ -28,7 +28,7 @@ const Checkout = () => {
 
                 <Section id="section-cart" classes='flx flx-row'>
 
-                    <Section id="section-cartitm" classes="flx flx-column mg-right-s">
+                    <Section id="section-cartitm" classes="flx flx-column flx-center mg-right-s">
 
                         {
                             cartState.cart.map(itm =>
@@ -37,13 +37,15 @@ const Checkout = () => {
 
                     </Section>
 
-                    <CheckoutAddressCard />
+                    {
+                        addresses.length > 0 && <CheckoutAddressCard />
+                    }
 
                 </Section>
 
                 {
                     addresses.length === 0
-                        ? <Text classes={`${getTextColor(theme)} txt-md txt-cap mg-top-md`}>You have not added any address, add it by clicking <Link to='/profile'>here</Link></Text>
+                        ? <Text classes={`txt-err txt-md txt-500 txt-cap mg-top-md`}>You have not added any address, add it <Link to='/profile'>here</Link></Text>
                         : <AddressSection checkoutPage={true} />
                 }
 

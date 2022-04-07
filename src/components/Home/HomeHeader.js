@@ -8,8 +8,8 @@ import { THEME_LIGHT } from 'utils/constants.util'
 const HomeHeader = () => {
     const [isSmallNavVisible, setIsSmallNavVisible] = useState(false)
     const { theme, toggleTheme } = useTheme()
-    const { wishlistState } = useWishlist()
-    const { cartState } = useCart()
+    const { wishlistState: { wishlist } } = useWishlist()
+    const { cartState: { cart } } = useCart()
     const { isUserLoggedIn, logoutUser } = useAuth()
 
     function toggleNavVisibility() {
@@ -36,9 +36,9 @@ const HomeHeader = () => {
                 <div className="pos-relative mg-right-lg">
 
                     {
-                        wishlistState.wishlist.length > 0 &&
+                        wishlist.length > 0 &&
                         <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                            {wishlistState.wishlist.length}
+                            {wishlist.length}
                         </div>
                     }
 
@@ -53,9 +53,9 @@ const HomeHeader = () => {
                 <div className="pos-relative mg-right-lg">
 
                     {
-                        cartState.cart.length > 0 &&
+                        cart.length > 0 &&
                         <div className={`badge-size-md pos-absolute bl-70 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                            {getTotalCartItems(cartState.cart)}
+                            {getTotalCartItems(cart)}
                         </div>
                     }
 
@@ -123,9 +123,9 @@ const HomeHeader = () => {
                         <div className="pos-relative mg-top-md">
 
                             {
-                                wishlistState.wishlist.length > 0 &&
+                                wishlist.length > 0 &&
                                 <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                                    {wishlistState.wishlist.length}
+                                    {wishlist.length}
                                 </div>
                             }
 
@@ -140,9 +140,9 @@ const HomeHeader = () => {
                         <div className="pos-relative mg-top-md">
 
                             {
-                                cartState.cart.length > 0 &&
+                                cart.length > 0 &&
                                 <div className={`badge-size-md pos-absolute bl-60 txt-md ${getBadgeTextColor(theme)} ${getBadgeBgColor(theme)} brd-full flx flx-center`}>
-                                    {getTotalCartItems(cartState.cart)}
+                                    {getTotalCartItems(cart)}
                                 </div>
                             }
 

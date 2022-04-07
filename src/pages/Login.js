@@ -3,7 +3,6 @@ import { Main, Alert } from 'components/Reusable'
 import { useLogin, useTheme } from "contexts"
 import useTitle from 'hooks/useTitle'
 import { getBgColor } from "utils"
-import { ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from 'utils/constants.util'
 
 const Login = () => {
     useTitle('Login')
@@ -19,10 +18,7 @@ const Login = () => {
 
             <div className='flx flx-center'>
                 {
-                    loginAlert.type === ALERT_TYPE_ERROR
-                        ? <Alert classes='bg-err'>{loginAlert.message}</Alert>
-                        : loginAlert.type === ALERT_TYPE_SUCCESS ? <Alert classes='bg-success'>{loginAlert.message}</Alert>
-                            : ''
+                    loginAlert.message && <Alert type={loginAlert.type}>{loginAlert.message}</Alert>
                 }
             </div>
 

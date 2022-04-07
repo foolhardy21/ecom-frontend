@@ -1,5 +1,5 @@
-import { useTheme } from "../../contexts"
-import { getTextColor } from "../../utils"
+import { useTheme } from "contexts"
+import { getTextColor } from "utils"
 
 const Label = ({ htmlFor, onClick, classes, children }) => {
     const { theme } = useTheme()
