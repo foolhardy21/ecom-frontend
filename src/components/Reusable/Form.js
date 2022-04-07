@@ -1,8 +1,8 @@
 
-const Form = ({ children }) => {
+const Form = ({ children, classes }) => {
 
     return (
-        <form className='flx flx-column mg-left-lg mg-right-lg'>
+        <form className={`flx flx-column mg-left-lg mg-right-lg ${classes}`}>
             {children}
         </form>
     )

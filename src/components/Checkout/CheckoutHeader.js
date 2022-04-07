@@ -1,22 +1,23 @@
-import { useState } from 'react'
+import { useState } from "react"
 import { Link } from 'react-router-dom'
-import { useWishlist, useCart, useTheme, useAuth } from 'contexts'
-import { getBadgeBgColor, getTextColor, getBgColor, getIconColor, getBadgeTextColor, getTotalCartItems } from '../../utils'
-import { Button, Header, Icon, NavBar, Text } from "components/Reusable"
-import { THEME_LIGHT } from 'utils/constants.util'
+import { Header, NavBar, Icon, Text, Button } from "components/Reusable"
+import { useCart, useWishlist, useTheme, useAuth } from "contexts"
+import { getBadgeBgColor, getBadgeTextColor, getBgColor, getIconColor, getTextColor, getTotalCartItems } from "utils"
+import { THEME_LIGHT } from "utils/constants.util"
 
-const HomeHeader = () => {
+const CheckoutHeader = () => {
     const [isSmallNavVisible, setIsSmallNavVisible] = useState(false)
     const { theme, toggleTheme } = useTheme()
-    const { wishlistState } = useWishlist()
     const { cartState } = useCart()
-    const { isUserLoggedIn, logoutUser } = useAuth()
+    const { wishlistState } = useWishlist()
+    const { logoutUser } = useAuth()
 
     function toggleNavVisibility() {
         setIsSmallNavVisible(!isSmallNavVisible)
     }
 
     return (
+
         <Header>
 
             <Link to='/'>
@@ -73,20 +74,11 @@ const HomeHeader = () => {
                     </Icon>
                 </Link>
 
-                {
-                    isUserLoggedIn
-                        ? <Link to='/'>
-                            <Button onClick={logoutUser} classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
-                                logout
-                            </Button>
-                        </Link>
-                        :
-                        <Link to='/login'>
-                            <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
-                                login
-                            </Button>
-                        </Link>
-                }
+                <Link to='/'>
+                    <Button onClick={logoutUser} classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
+                        logout
+                    </Button>
+                </Link>
 
             </NavBar>
 
@@ -160,20 +152,11 @@ const HomeHeader = () => {
                             </Icon>
                         </Link>
 
-                        {
-                            isUserLoggedIn
-                                ? <Link to='/'>
-                                    <Button onClick={logoutUser} classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
-                                        logout
-                                    </Button>
-                                </Link>
-                                :
-                                <Link to='/login'>
-                                    <Button classes={`btn-txt txt-lcase ${getTextColor(theme)} bg-primary pd-xs txt-md`}>
-                                        login
-                                    </Button>
-                                </Link>
-                        }
+                        <Link to='/'>
+                            <Button onClick={logoutUser} classes={`btn-txt txt-lcase ${getTextColor(theme)} txt-md mg-top-md`}>
+                                logout
+                            </Button>
+                        </Link>
 
                     </NavBar>
 
@@ -191,7 +174,9 @@ const HomeHeader = () => {
             </Button>
 
         </Header>
+
     )
+
 }
 
-export default HomeHeader
+export default CheckoutHeader
