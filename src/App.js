@@ -1,4 +1,4 @@
-import { Signup, Login, Products, Wishlist, Cart, Home, NotFound, Profile } from './pages'
+import { Signup, Login, Products, Wishlist, Cart, Home, NotFound, Profile, Product } from './pages'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MockMan from "mockman-js";
 import { LoginProvider, SignupProvider, useAuth } from 'contexts';
@@ -55,7 +55,9 @@ function App() {
           </RequireAuth>
         } />
 
-        <Route path='/mock' element={<MockMan />} />
+        <Route path='/products/:productId' element={<Product />} />
+
+        {/* <Route path='/mock' element={<MockMan />} /> */}
 
         <Route path='*' element={<NotFound />} />
 
