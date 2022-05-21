@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid'
 import { Button, Form, Input } from "components/Reusable"
 import { useAddress, useTheme } from "contexts"
-import { getSolidBtnBgColor, getSolidBtnTextColor, getTextColor, isFormEmpty } from "utils"
+import { getBgColor, getSolidBtnBgColor, getSolidBtnTextColor, getTextColor, isFormEmpty } from "utils"
 import { ACTION_ADD_ADDRESS, ACTION_UPDATE_ADDRESS, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from 'utils/constants.util'
 
 const AddressForm = () => {
@@ -56,11 +56,11 @@ const AddressForm = () => {
 
                 <Input type='text' placeholder="country" value={addressForm.country} onChange={(e) => setAddressForm(a => ({ ...a, country: e.target.value }))} classes={`input-s txt-md pd-xs ${getTextColor(theme)} mg-right-xs`} />
 
-                <Input type='number' placeholder="pincode" value={addressForm.pincode} onChange={(e) => setAddressForm(a => ({ ...a, pincode: Number(e.target.value) }))} classes={`input-s txt-md pd-xs ${getTextColor(theme)}`} />
+                <Input type='number' placeholder="pincode" value={addressForm.pincode} onChange={(e) => setAddressForm(a => ({ ...a, pincode: Number(e.target.value) }))} classes={`input ${getBgColor(theme)} ${getTextColor(theme)} input-s txt-md pd-xs ${getTextColor(theme)}`} />
 
             </div>
 
-            <Input type='number' placeholder="phone number" value={addressForm.phoneNumber} onChange={(e) => setAddressForm(a => ({ ...a, phoneNumber: Number(e.target.value) }))} classes={`input-s txt-md pd-xs ${getTextColor(theme)} mg-btm-xs`} />
+            <Input type='number' placeholder="phone number" value={addressForm.phoneNumber} onChange={(e) => setAddressForm(a => ({ ...a, phoneNumber: Number(e.target.value) }))} classes={`input ${getBgColor(theme)} ${getTextColor(theme)} input-s txt-md pd-xs ${getTextColor(theme)} mg-btm-xs`} />
 
             <div className='flx flx-maj-end'>
                 <Button onClick={handleAddressFormSubmit} classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-ucase pd-s`}>{

@@ -33,30 +33,25 @@ const AddressCard = ({ address: { _id, name, building, street, city, state, coun
     return (
         <Card classes='pos-relative pd-xs'>
 
-            {
-                !checkoutPage &&
-                <Button onClick={handleAddressDelete} classes='btn-txt pos-absolute tr-1'>
-                    <Icon classes={getIconColor(theme)}>
-                        delete
-                    </Icon>
-                </Button>
-            }
+            <Text classes={`${getTextColor(theme)} txt-md txt-500 txt-cap`}>name</Text>
 
-            <Text classes={`${getTextColor(theme)} txt-md mg-btm-xs`}>{name}</Text>
+            <Text classes={`${getTextColor(theme)} txt-md mg-left-xs mg-btm-s`}>{name}</Text>
 
-            <div className="flx mg-btm-xs">
+            <Text classes={`${getTextColor(theme)} txt-md txt-500 txt-cap`}>address</Text>
 
-                <Text classes={`${getTextColor(theme)} txt-md mg-right-xs`}>{building}</Text>
+            <div className="flx mg-left-xs mg-btm-xs">
 
-                <Text classes={`${getTextColor(theme)} txt-md`}>{street}</Text>
+                <Text classes={`${getTextColor(theme)} txt-md mg-right-xs`}>{building},</Text>
+
+                <Text classes={`${getTextColor(theme)} txt-md`}>{street},</Text>
 
             </div>
 
-            <div className="flx mg-btm-xs">
+            <div className="flx mg-left-xs mg-btm-s">
 
-                <Text classes={`${getTextColor(theme)} txt-md mg-right-xs`}>{city}</Text>
+                <Text classes={`${getTextColor(theme)} txt-md mg-right-xs`}>{city},</Text>
 
-                <Text classes={`${getTextColor(theme)} txt-md mg-right-xs`}>{state}</Text>
+                <Text classes={`${getTextColor(theme)} txt-md mg-right-xs`}>{state},</Text>
 
                 <Text classes={`${getTextColor(theme)} txt-md mg-right-xs`}>{country}</Text>
 
@@ -64,16 +59,33 @@ const AddressCard = ({ address: { _id, name, building, street, city, state, coun
 
             </div>
 
-            <Text classes={`${getTextColor(theme)} txt-md mg-btm-xs`}>{phoneNumber}</Text>
 
-            {
-                !checkoutPage &&
-                <Button onClick={handleEditAddress} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${getTextColor(theme)} txt-md pd-xs`}>edit</Button>
-            }
+            <Text classes={`${getTextColor(theme)} txt-md txt-500 txt-cap`}>phone no.</Text>
 
-            {
-                checkoutPage && <Button onClick={handleAddressSelect} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${getTextColor(theme)} txt-md pd-xs`}>select</Button>
-            }
+            <Text classes={`${getTextColor(theme)} txt-md mg-left-xs mg-btm-md`}>{phoneNumber}</Text>
+
+            <div className="flx flx-maj-end">
+                {
+                    checkoutPage && <Button onClick={handleAddressSelect} classes={`btn-txt ${getTextColor(theme)} txt-md pd-xs`}>select</Button>
+                }
+            </div>
+
+            <div className="flx flx-maj-stretch">
+
+                {
+                    !checkoutPage &&
+                    <Button onClick={handleEditAddress} classes={`btn-txt ${getTextColor(theme)} txt-md pd-xs`}>edit</Button>
+                }
+
+                {
+                    !checkoutPage &&
+                    <Button onClick={handleAddressDelete} classes='btn-txt'>
+                        <Icon classes={getIconColor(theme)}>
+                            delete
+                        </Icon>
+                    </Button>
+                }
+            </div>
 
         </Card>
     )

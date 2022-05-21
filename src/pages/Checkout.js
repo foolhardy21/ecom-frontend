@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { CartItmCard } from "components/Cart"
 import { CheckoutAddressCard, CheckoutHeader } from "components/Checkout"
 import { AddressSection } from "components/Profile"
-import { Main, Section, Text } from "components/Reusable"
+import { Alert, Main, Section, Text } from "components/Reusable"
 import { useAddress, useCart, useTheme } from "contexts"
 import { getBgColor, getTextColor } from "utils"
 
@@ -26,6 +26,10 @@ const Checkout = () => {
                     checkout
                 </Text>
 
+                {
+                    cartState.alert.message && <Alert type={cartState.alert.type} classes='mg-btm-s'>{cartState.alert.message}</Alert>
+                }
+
                 <Section id="section-cart" classes='flx flx-row'>
 
                     <Section id="section-cartitm" classes="flx flx-column flx-center mg-right-s">
@@ -46,7 +50,10 @@ const Checkout = () => {
                 {
                     addresses.length === 0
                         ? <Text classes={`txt-err txt-md txt-500 txt-cap mg-top-md`}>You have not added any address, add it <Link to='/profile'>here</Link></Text>
-                        : <AddressSection checkoutPage={true} />
+                        : <>
+                            <Text classes={`${getTextColor(theme)} txt-lg txt-cap mg-top-lg`}>your addresses</Text>
+                            <AddressSection checkoutPage={true} />
+                        </>
                 }
 
             </Main>
