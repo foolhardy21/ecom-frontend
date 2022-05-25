@@ -16,7 +16,8 @@ const Login = () => {
 
             <LoginHeader />
 
-            <div className='flx flx-center'>
+            <div className='pos-relative mg-xs'>
+
                 {
                     loginAlert.message && <Alert type={loginAlert.type}>{loginAlert.message}</Alert>
                 }

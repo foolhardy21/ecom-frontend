@@ -16,13 +16,16 @@ const Profile = () => {
         >
             <ProfileHeader />
 
+            <div className="pos-relative mg-xs">
+                {
+                    alert.message && <Alert type={alert.type}>{alert.message}</Alert>
+                }
+            </div>
+
             <Main classes="flx flx-column flx-center">
 
                 <Text classes={`${getTextColor(theme)} txt-lg txt-cap mg-top-md`}>your addresses</Text>
 
-                {
-                    alert.message && <Alert type={alert.type}>{alert.message}</Alert>
-                }
 
                 <AddressForm />
 

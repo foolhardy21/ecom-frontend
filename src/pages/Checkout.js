@@ -20,15 +20,18 @@ const Checkout = () => {
         >
             <CheckoutHeader />
 
+            <div className="pos-relative mg-xs">
+                {
+                    cartState.alert.message && <Alert type={cartState.alert.type} classes='mg-btm-s'>{cartState.alert.message}</Alert>
+                }
+            </div>
+
             <Main classes='flx flx-column flx-center'>
 
                 <Text classes={`${getTextColor(theme)} txt-lg txt-cap mg-top-md mg-btm-md`}>
                     checkout
                 </Text>
 
-                {
-                    cartState.alert.message && <Alert type={cartState.alert.type} classes='mg-btm-s'>{cartState.alert.message}</Alert>
-                }
 
                 <Section id="section-cart" classes='flx flx-row'>
 

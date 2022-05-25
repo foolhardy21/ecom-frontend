@@ -50,13 +50,16 @@ const Product = () => {
 
             <ProductsHeader />
 
+            <div className="pos-absolute mg-xs">
+                {
+                    alert.message && <Alert type={alert.type}>{alert.message}</Alert>
+                }
+            </div>
+
             <div className="flx flx-row">
 
                 <Main classes={`${getBgColor(theme)} ${styles.mainPrdlist} flx flx-column flx-min-center pd-lg`}>
 
-                    {
-                        alert.message && <Alert type={alert.type}>{alert.message}</Alert>
-                    }
 
                     <Section classes='flx flx-center pd-md'>
 

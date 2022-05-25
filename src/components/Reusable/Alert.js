@@ -1,9 +1,9 @@
 import { Icon, Text } from './'
 
-const Alert = ({ classes, children, type }) => {
+const Alert = ({ children, type }) => {
 
     return (
-        <div className={`flx flx-maj-start flx-min-center ${classes} alert-size-s ${type === 'error' ? 'bg-err' : 'bg-success'} pd-xs mg-top-s`}>
+        <div className={`pos-absolute tr-1 flx flx-min-center alert-size-s ${type === 'error' ? 'bg-err' : 'bg-success'} pd-xs`}>
 
             <Icon classes='icon-secondary mg-right-s'>
                 {type === 'error' ? 'error' : 'check_circle'}

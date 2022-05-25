@@ -18,9 +18,7 @@ ReactDOM.render(
               <WishlistProvider>
                 <AddressProvider>
                   <CheckoutProvider>
-
                     <App />
-
                   </CheckoutProvider>
                 </AddressProvider>
               </WishlistProvider>
