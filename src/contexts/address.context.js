@@ -24,7 +24,7 @@ export const AddressProvider = ({ children }) => {
         phoneNumber: ''
     })
     const [addressToBeUpdated, setAddressToBeUpdated] = useState('')
-
+    console.log(addressState.addresses)
     function showAddressAlert(message, type) {
         addressDispatch({
             type: ACTION_SET_ALERT, payload: {

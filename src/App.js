@@ -1,4 +1,4 @@
-import { Signup, Login, Products, Wishlist, Cart, Home, NotFound, Profile, Product, Orders, LoginAndSecurity, Addresses } from './pages'
+import { Signup, Login, Products, Wishlist, Cart, Home, NotFound, Profile, Product, Orders, LoginAndSecurity, Addresses, AddressForm } from './pages'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MockMan from "mockman-js";
 import { LoginProvider, SignupProvider, useAuth } from 'contexts';
@@ -62,6 +62,8 @@ function App() {
         <Route path='/profile/login-and-security' element={<LoginAndSecurity />} />
 
         <Route path='/profile/addresses' element={<Addresses />} />
+
+        <Route path='/profile/addresses/form' element={<AddressForm />} />
 
         <Route path='*' element={<NotFound />} />
 

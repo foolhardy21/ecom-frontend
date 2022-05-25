@@ -7,3 +7,17 @@
   place-content: center;
   gap: 1rem;
 }
+
+.cardAddAddress {
+  width: 15rem;
+  height: 15rem;
+}
+
+.cardAddAddress:hover {
+  cursor: pointer;
+}
+
+.cardAddress {
+  width: 20rem;
+  height: 15rem;
+}

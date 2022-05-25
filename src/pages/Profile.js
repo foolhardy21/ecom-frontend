@@ -4,8 +4,10 @@ import { Main, Text, Alert, Section, Button } from "components/Reusable"
 import { useAddress, useTheme } from "contexts"
 import { getBgColor, getTextColor } from "utils"
 import styles from 'components/Profile/profile.module.css'
+import useTitle from "hooks/useTitle"
 
 const Profile = () => {
+    useTitle('Profile')
     const navigate = useNavigate()
     const { theme } = useTheme()
     const { addressState: { alert } } = useAddress()
