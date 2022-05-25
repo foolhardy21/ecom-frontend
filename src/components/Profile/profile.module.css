@@ -2,3 +2,8 @@
   gap: 1rem;
   place-items: center;
 }
+
+.gridProfile {
+  place-content: center;
+  gap: 1rem;
+}

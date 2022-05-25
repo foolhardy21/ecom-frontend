@@ -1,4 +1,4 @@
-import { Signup, Login, Products, Wishlist, Cart, Home, NotFound, Profile, Product } from './pages'
+import { Signup, Login, Products, Wishlist, Cart, Home, NotFound, Profile, Product, Orders, LoginAndSecurity, Addresses } from './pages'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MockMan from "mockman-js";
 import { LoginProvider, SignupProvider, useAuth } from 'contexts';
@@ -57,12 +57,16 @@ function App() {
 
         <Route path='/products/:productId' element={<Product />} />
 
-        {/* <Route path='/mock' element={<MockMan />} /> */}
+        <Route path='/profile/orders' element={<Orders />} />
+
+        <Route path='/profile/login-and-security' element={<LoginAndSecurity />} />
+
+        <Route path='/profile/addresses' element={<Addresses />} />
 
         <Route path='*' element={<NotFound />} />
 
-      </Routes>
-    </BrowserRouter>
+      </Routes >
+    </BrowserRouter >
 
   );
 }
