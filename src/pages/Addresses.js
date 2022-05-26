@@ -1,5 +1,5 @@
 import { ProfileHeader } from "components/Profile"
-import { Button, Card, Main, Section, Text } from "components/Reusable"
+import { Alert, Button, Card, Main, Section, Text } from "components/Reusable"
 import { useAddress, useTheme } from "contexts"
 import useTitle from "hooks/useTitle"
 import { getBgColor, getBorderColor, getTextColor } from "utils"
@@ -10,7 +10,7 @@ const Addresses = () => {
     useTitle('Addresses')
     const { theme } = useTheme()
     const navigate = useNavigate()
-    const { addressState: { addresses }, setAddressToBeUpdated } = useAddress()
+    const { addressState: { addresses, alert }, setAddressToBeUpdated } = useAddress()
 
     const handleEditAddress = (id) => {
         setAddressToBeUpdated(addresses.find(address => address._id === id))
@@ -26,6 +26,12 @@ const Addresses = () => {
         >
 
             <ProfileHeader />
+
+            <div className="pos-relative mg-xs">
+                {
+                    alert.message && <Alert type={alert.type}>{alert.message}</Alert>
+                }
+            </div>
 
             <Main classes="flx flx-column flx-center">
 

@@ -1,12 +1,13 @@
 import { AddressFormSection, ProfileHeader } from "components/Profile"
-import { Main, Text } from "components/Reusable"
-import { useTheme } from "contexts"
+import { Alert, Main, Text } from "components/Reusable"
+import { useAddress, useTheme } from "contexts"
 import useTitle from "hooks/useTitle"
 import { getBgColor, getTextColor } from "utils"
 
 const AddressForm = () => {
     useTitle('Address')
     const { theme } = useTheme()
+    const { addressState: { alert } } = useAddress()
 
     return (
         <div
@@ -17,6 +18,12 @@ const AddressForm = () => {
         >
 
             <ProfileHeader />
+
+            <div className="pos-relative mg-xs">
+                {
+                    alert.message && <Alert type={alert.type}>{alert.message}</Alert>
+                }
+            </div>
 
             <Main classes="flx flx-column flx-center">
 
