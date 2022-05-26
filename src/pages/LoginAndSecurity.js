@@ -24,11 +24,11 @@ const LoginAndSecurity = () => {
             <div className="flx flx-center mg-md">
                 <Card classes={`${styles.cardAddress} flx flx-column pd-xs`}>
                     <Text classes={`txt-md txt-cap txt-500 ${getTextColor(theme)} mg-top-md`}>email</Text>
-                    <Text classes={`txt-md ${getTextColor(theme)}`}>{getUser().email}</Text>
+                    <Text classes={`txt-md ${getTextColor(theme)} mg-left-xs`}>{getUser().email}</Text>
                     <Text classes={`txt-md txt-cap txt-500 ${getTextColor(theme)} mg-top-md`}>account created at</Text>
-                    <Text classes={`txt-md ${getTextColor(theme)}`}>{`${new Date(getUser().createdAt).getDate()}-${new Date(getUser().createdAt).getMonth()}-${new Date(getUser().createdAt).getFullYear()}`}</Text>
+                    <Text classes={`txt-md ${getTextColor(theme)} mg-left-xs`}>{`${new Date(getUser().createdAt).getDate()}-${new Date(getUser().createdAt).getMonth()}-${new Date(getUser().createdAt).getFullYear()}`}</Text>
                     <Text classes={`txt-md txt-cap txt-500 ${getTextColor(theme)} mg-top-md`}>name</Text>
-                    <Text classes={`txt-md ${getTextColor(theme)}`}>{`${getUser().firstName} ${getUser().lastName}`}</Text>
+                    <Text classes={`txt-md ${getTextColor(theme)} mg-left-xs`}>{`${getUser().firstName} ${getUser().lastName}`}</Text>
                 </Card>
             </div>
 
