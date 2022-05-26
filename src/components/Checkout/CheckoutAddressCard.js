@@ -1,9 +1,11 @@
+// import Razorpay from 'razorpay'
 import { useNavigate } from "react-router-dom"
 import { Card, Text, Button } from "components/Reusable"
 import { useCart, useCheckout, useTheme } from "contexts"
-import { getTextColor, getSolidBtnBgColor, getSolidBtnTextColor } from "utils"
+import { getTextColor, getSolidBtnBgColor, getSolidBtnTextColor, getFinalPrice } from "utils"
 import { ACTION_INIT_CART, ALERT_DISPLAY_TIME, ALERT_TYPE_SUCCESS } from "utils/constants.util"
 import styles from 'components/Profile/profile.module.css'
+import axios from "axios"
 
 const CheckoutAddressCard = () => {
     const navigate = useNavigate()
@@ -11,16 +13,56 @@ const CheckoutAddressCard = () => {
     const { cartState: { cart }, removeProductFromCart, cartDispatch, showCartAlert } = useCart()
     const { selectedAddress, selectedAddress: { name, building, street, city, state, country, pincode, phoneNumber }, setSelectedAddress } = useCheckout()
 
+    function loadScript(src) {
+        return new Promise((resolve) => {
+            const script = document.createElement("script");
+            script.src = src;
+            script.onload = () => {
+                resolve(true);
+            };
+            script.onerror = () => {
+                resolve(false);
+            };
+            document.body.appendChild(script);
+        });
+    }
     async function handlePlaceOrder() {
-        for (const product of cart) {
-            await removeProductFromCart(product._id)
+        const res = await loadScript(
+            "https://checkout.razorpay.com/v1/checkout.js"
+        );
+
+        if (res) {
+            const options = {
+                key: process.env.REACT_APP_RZP_ID,
+                key_id: process.env.REACT_APP_RZP_ID,
+                key_secret: process.env.REACT_APP_RZP_SECRET,
+                amount: getFinalPrice(cart) * 100,
+                currency: "INR",
+                name: "SneakerStore",
+                description: "Thank you for shopping with us",
+                prefill: {
+                    name: name,
+                    contact: phoneNumber,
+                    email: 'sample@gmail.com'
+                },
+                notes: { address: `${street}, ${city}` },
+                theme: { color: "#000000" },
+                handler: async function (response) {
+                    console.log(response.razorpay_payment_id)
+                    for (const product of cart) {
+                        await removeProductFromCart(product._id)
+                    }
+                    showCartAlert('order placed successfully', ALERT_TYPE_SUCCESS)
+                    setTimeout(() => {
+                        cartDispatch({ type: ACTION_INIT_CART, payload: [] })
+                        setSelectedAddress({})
+                        navigate('/products')
+                    }, ALERT_DISPLAY_TIME + 500)
+                },
+            };
+            const rzp1 = new window.Razorpay(options);
+            rzp1.open();
         }
-        showCartAlert(' order placed successfully', ALERT_TYPE_SUCCESS)
-        setTimeout(() => {
-            cartDispatch({ type: ACTION_INIT_CART, payload: [] })
-            setSelectedAddress({})
-            navigate('/products')
-        }, ALERT_DISPLAY_TIME + 500)
 
     }
 
@@ -39,7 +81,7 @@ const CheckoutAddressCard = () => {
             {
                 Object.keys(selectedAddress).length > 0 &&
                 <div className="flx flx-maj-end mg-top-s">
-                    <Button onClick={handlePlaceOrder} classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md pd-xs`}>place order</Button>
+                    <Button onClick={handlePlaceOrder} classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-cap txt-md pd-xs`}>place order</Button>
                 </div>
             }
 
