@@ -1,15 +1,23 @@
 import { Link } from "react-router-dom"
 import { CartItmCard } from "components/Cart"
 import { CheckoutAddressCard, CheckoutHeader } from "components/Checkout"
-import { AddressSection } from "components/Profile"
-import { Alert, Main, Section, Text } from "components/Reusable"
-import { useAddress, useCart, useTheme } from "contexts"
-import { getBgColor, getTextColor } from "utils"
+import { Alert, Button, Card, Main, Section, Text } from "components/Reusable"
+import { useAddress, useCart, useCheckout, useTheme } from "contexts"
+import { getBgColor, getTextColor, getBorderColor } from "utils"
+import useTitle from "hooks/useTitle"
+import styles from 'components/Profile/profile.module.css'
 
 const Checkout = () => {
+    useTitle('Checkout')
     const { theme } = useTheme()
     const { cartState } = useCart()
     const { addressState: { addresses } } = useAddress()
+    const { selectedAddress, setSelectedAddress } = useCheckout()
+
+
+    function handleAddressSelect(id) {
+        setSelectedAddress(addresses.find(address => address._id === id))
+    }
 
     return (
         <div
@@ -45,17 +53,36 @@ const Checkout = () => {
                     </Section>
 
                     {
-                        addresses.length > 0 && <CheckoutAddressCard />
+                        Object.keys(selectedAddress).length > 0 && <CheckoutAddressCard />
                     }
 
                 </Section>
 
                 {
                     addresses.length === 0
-                        ? <Text classes={`txt-err txt-md txt-500 txt-cap mg-top-md`}>You have not added any address, add it <Link to='/profile'>here</Link></Text>
+                        ? <Text classes={`txt-err txt-md txt-500 txt-cap mg-top-md`}>You have not added any address, add it <Link to='/profile/addresses'>here</Link></Text>
                         : <>
-                            <Text classes={`${getTextColor(theme)} txt-lg txt-cap mg-top-lg`}>your addresses</Text>
-                            <AddressSection checkoutPage={true} />
+                            <Text classes={`${getTextColor(theme)} txt-lg txt-cap mg-top-lg mg-btm-s`}>your addresses</Text>
+                            {
+                                addresses?.map(address => <Card key={address._id} classes={`${styles.cardAddress} flx flx-column flx-maj-stretch pd-xs`}>
+
+                                    <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{address.name}</Text>
+
+                                    <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${address.building}, ${address.street}`}</Text>
+
+                                    <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${address.city}, ${address.state}, ${address.pincode}`}</Text>
+
+                                    <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${address.country}`}</Text>
+
+                                    <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${address.phoneNumber}`}</Text>
+
+                                    <div className="flx flx-maj-start flx-min-center">
+                                        <Button onClick={() => handleAddressSelect(address._id)} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${getTextColor(theme)} txt-md pd-left-xs pd-right-xs`}>set as default</Button>
+                                    </div>
+
+                                </Card>
+                                )
+                            }
                         </>
                 }
 

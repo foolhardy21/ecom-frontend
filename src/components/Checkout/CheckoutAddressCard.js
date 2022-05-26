@@ -3,6 +3,7 @@ import { Card, Text, Button } from "components/Reusable"
 import { useCart, useCheckout, useTheme } from "contexts"
 import { getTextColor, getSolidBtnBgColor, getSolidBtnTextColor } from "utils"
 import { ACTION_INIT_CART, ALERT_DISPLAY_TIME, ALERT_TYPE_SUCCESS } from "utils/constants.util"
+import styles from 'components/Profile/profile.module.css'
 
 const CheckoutAddressCard = () => {
     const navigate = useNavigate()
@@ -24,38 +25,17 @@ const CheckoutAddressCard = () => {
     }
 
     return (
-        <Card classes='pos-relative pd-xs'>
+        <Card classes={`${styles.cardAddress} flx flx-column flx-maj-stretch pd-xs`}>
 
-            <Text classes={`${getTextColor(theme)} txt-md txt-500 txt-cap`}>name</Text>
+            <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{name}</Text>
 
-            <Text classes={`${getTextColor(theme)} txt-md mg-btm-xs`}>{name}</Text>
+            <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${building}, ${street}`}</Text>
 
-            <Text classes={`${getTextColor(theme)} txt-md txt-500 txt-cap`}>address</Text>
+            <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${city}, ${state}, ${pincode}`}</Text>
 
-            <div className="flx mg-left-xs mg-btm-xs">
+            <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${country}`}</Text>
 
-                <Text classes={`${getTextColor(theme)} txt-md mg-right-xs`}>{building},</Text>
-
-                <Text classes={`${getTextColor(theme)} txt-md`}>{street},</Text>
-
-            </div>
-
-            <div className="flx mg-left-xs mg-btm-xs">
-
-                <Text classes={`${getTextColor(theme)} txt-md mg-right-xs`}>{city},</Text>
-
-                <Text classes={`${getTextColor(theme)} txt-md mg-right-xs`}>{state},</Text>
-
-                <Text classes={`${getTextColor(theme)} txt-md mg-right-xs`}>{country}</Text>
-
-                <Text classes={`${getTextColor(theme)} txt-md`}>{pincode}</Text>
-
-            </div>
-
-            <Text classes={`${getTextColor(theme)} txt-md txt-500 txt-cap`}>phone no.</Text>
-
-            <Text classes={`${getTextColor(theme)} txt-md mg-left-xs mg-btm-xs`}>{phoneNumber}</Text>
-
+            <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${phoneNumber}`}</Text>
             {
                 Object.keys(selectedAddress).length > 0 &&
                 <div className="flx flx-maj-end mg-top-s">

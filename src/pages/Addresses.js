@@ -1,20 +1,25 @@
+import { useNavigate } from "react-router-dom"
 import { ProfileHeader } from "components/Profile"
 import { Alert, Button, Card, Main, Section, Text } from "components/Reusable"
 import { useAddress, useTheme } from "contexts"
 import useTitle from "hooks/useTitle"
 import { getBgColor, getBorderColor, getTextColor } from "utils"
+import { ACTION_REMOVE_ADDRESS } from "utils/constants.util"
 import styles from 'components/Profile/profile.module.css'
-import { useNavigate } from "react-router-dom"
 
 const Addresses = () => {
     useTitle('Addresses')
     const { theme } = useTheme()
     const navigate = useNavigate()
-    const { addressState: { addresses, alert }, setAddressToBeUpdated } = useAddress()
+    const { addressState: { addresses, alert }, setAddressToBeUpdated, addressDispatch } = useAddress()
 
     const handleEditAddress = (id) => {
         setAddressToBeUpdated(addresses.find(address => address._id === id))
-        navigate('/profile/addresses/form')
+        navigate('/profile/addresses/form', { replace: true })
+    }
+
+    const handleRemoveAddress = (id) => {
+        addressDispatch({ type: ACTION_REMOVE_ADDRESS, payload: id })
     }
 
     return (
@@ -45,18 +50,25 @@ const Addresses = () => {
 
                     {
                         addresses?.map(address => <Card key={address._id} classes={`${styles.cardAddress} flx flx-column flx-maj-stretch pd-xs`}>
+
                             <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{address.name}</Text>
+
                             <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${address.building}, ${address.street}`}</Text>
+
                             <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${address.city}, ${address.state}, ${address.pincode}`}</Text>
+
                             <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${address.country}`}</Text>
+
                             <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${address.phoneNumber}`}</Text>
+
                             <div className="flx flx-maj-start flx-min-center">
+
                                 <Button onClick={() => handleEditAddress(address._id)} classes={`btn-outlined ${getTextColor(theme)} ${getBorderColor(theme)} txt-md txt-lcase pd-left-xs pd-right-xs mg-right-xs`}>edit</Button>
-                                <Button classes={`btn-outlined ${getTextColor(theme)} ${getBorderColor(theme)} txt-md txt-lcase pd-left-xs pd-right-xs mg-right-xs`}>remove</Button>
-                                {
-                                    !address.default && <Button classes={`btn-outlined ${getTextColor(theme)} ${getBorderColor(theme)} txt-md txt-lcase pd-left-xs pd-right-xs`}>set as default</Button>
-                                }
+
+                                <Button onClick={() => handleRemoveAddress(address._id)} classes={`btn-outlined ${getTextColor(theme)} ${getBorderColor(theme)} txt-md txt-lcase pd-left-xs pd-right-xs mg-right-xs`}>remove</Button>
+
                             </div>
+
                         </Card>
                         )
                     }

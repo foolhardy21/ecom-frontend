@@ -40,7 +40,7 @@ const AddressFormSection = () => {
                 pincode: '',
                 phoneNumber: ''
             })
-            setTimeout(() => navigate('/profile/addresses'), ALERT_DISPLAY_TIME + 500)
+            setTimeout(() => navigate('/profile/addresses', { replace: true }), ALERT_DISPLAY_TIME + 500)
         } else {
             showAddressAlert('form is empty', ALERT_TYPE_ERROR)
         }
@@ -105,10 +105,13 @@ const AddressFormSection = () => {
             <Input type='number' placeholder="phone number" value={addressForm.phoneNumber} onChange={(e) => setAddressForm(a => ({ ...a, phoneNumber: Number(e.target.value) }))} classes={`input ${getBgColor(theme)} ${getTextColor(theme)} input-s txt-md pd-xs ${getTextColor(theme)} mg-btm-xs`} />
 
             <div className='flx flx-maj-end'>
+
                 <Button onClick={handleAddDummyAddress} classes={`btn-outlined b-solid ${getBorderColor(theme)} txt-md txt-cap pd-xs mg-right-s`}>add dummy address</Button>
+
                 <button ref={addBtnRef} onClick={handleAddressFormSubmit} className={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-ucase pd-xs`}>{
                     Object.keys(addressToBeUpdated).length > 0 ? 'edit' : 'add'
                 }</button>
+
             </div>
 
         </Form>
