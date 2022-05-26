@@ -1,4 +1,3 @@
-// import Razorpay from 'razorpay'
 import { useNavigate } from "react-router-dom"
 import { Card, Text, Button } from "components/Reusable"
 import { useAuth, useCart, useCheckout, useTheme } from "contexts"
@@ -48,7 +47,6 @@ const CheckoutAddressCard = () => {
                 notes: { address: `${street}, ${city}` },
                 theme: { color: "#000000" },
                 handler: async function (response) {
-                    console.log(response.razorpay_payment_id)
                     for (const product of cart) {
                         await removeProductFromCart(product._id)
                     }

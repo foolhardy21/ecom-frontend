@@ -33,15 +33,11 @@ const Profile = () => {
 
                 <Section classes={`grid grid-maxcols-3 ${styles.gridProfile}`}>
 
-                    <Button onClick={() => navigate('/profile/orders')} classes={`btn-outlined ${theme === 'dark' && 'b-solid b-secondary'} pd-s txt-md txt-cap`}>
-                        orders
-                    </Button>
-
-                    <Button onClick={() => navigate('/profile/account')} classes={`btn-outlined ${theme === 'dark' && 'b-solid b-secondary'} pd-s txt-md txt-cap`}>
+                    <Button onClick={() => navigate('/profile/account')} classes={`btn-outlined ${theme === 'dark' && 'b-solid b-secondary'} ${getTextColor(theme)} pd-s txt-md txt-cap`}>
                         account
                     </Button>
 
-                    <Button onClick={() => navigate('/profile/addresses')} classes={`btn-outlined ${theme === 'dark' && 'b-solid b-secondary'} pd-s txt-md txt-cap`}>
+                    <Button onClick={() => navigate('/profile/addresses')} classes={`btn-outlined ${theme === 'dark' && 'b-solid b-secondary'} ${getTextColor(theme)} pd-s txt-md txt-cap`}>
                         adddresses
                     </Button>
 

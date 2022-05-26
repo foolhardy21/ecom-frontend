@@ -1,3 +1,4 @@
+import { addProductToOrders, getOrders } from "backend/controllers/OrderController";
 import { Server, Model, RestSerializer } from "miragejs";
 import {
   loginHandler,
@@ -38,18 +39,20 @@ export function makeServer({ environment = "development" } = {}) {
       user: Model,
       cart: Model,
       wishlist: Model,
+      orders: Model,
     },
 
     // Runs on the start of the server
     seeds(server) {
       // disballing console logs from Mirage
       server.logging = false;
+
       products.forEach((item) => {
         server.create("product", { ...item });
       });
 
       users.forEach((item) =>
-        server.create("user", { ...item, cart: [], wishlist: [] })
+        server.create("user", { ...item, cart: [], wishlist: [], orders: [] })
       );
 
       categories.forEach((item) => server.create("category", { ...item }));
@@ -85,6 +88,11 @@ export function makeServer({ environment = "development" } = {}) {
         "/user/wishlist/:productId",
         removeItemFromWishlistHandler.bind(this)
       );
+
+      // order routes (private)
+      this.get("/user/orders", getOrders.bind(this));
+      this.post("/user/orders", addProductToOrders.bind(this));
+
     },
   });
 }
