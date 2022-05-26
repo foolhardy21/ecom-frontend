@@ -1,17 +1,17 @@
 // import Razorpay from 'razorpay'
 import { useNavigate } from "react-router-dom"
 import { Card, Text, Button } from "components/Reusable"
-import { useCart, useCheckout, useTheme } from "contexts"
+import { useAuth, useCart, useCheckout, useTheme } from "contexts"
 import { getTextColor, getSolidBtnBgColor, getSolidBtnTextColor, getFinalPrice } from "utils"
 import { ACTION_INIT_CART, ALERT_DISPLAY_TIME, ALERT_TYPE_SUCCESS } from "utils/constants.util"
 import styles from 'components/Profile/profile.module.css'
-import axios from "axios"
 
 const CheckoutAddressCard = () => {
     const navigate = useNavigate()
     const { theme } = useTheme()
     const { cartState: { cart }, removeProductFromCart, cartDispatch, showCartAlert } = useCart()
     const { selectedAddress, selectedAddress: { name, building, street, city, state, country, pincode, phoneNumber }, setSelectedAddress } = useCheckout()
+    const { getUser } = useAuth()
 
     function loadScript(src) {
         return new Promise((resolve) => {
@@ -43,7 +43,7 @@ const CheckoutAddressCard = () => {
                 prefill: {
                     name: name,
                     contact: phoneNumber,
-                    email: 'sample@gmail.com'
+                    email: getUser().email
                 },
                 notes: { address: `${street}, ${city}` },
                 theme: { color: "#000000" },

@@ -37,8 +37,8 @@ const Profile = () => {
                         orders
                     </Button>
 
-                    <Button onClick={() => navigate('/profile/login-and-security')} classes={`btn-outlined ${theme === 'dark' && 'b-solid b-secondary'} pd-s txt-md txt-cap`}>
-                        login and security
+                    <Button onClick={() => navigate('/profile/account')} classes={`btn-outlined ${theme === 'dark' && 'b-solid b-secondary'} pd-s txt-md txt-cap`}>
+                        account
                     </Button>
 
                     <Button onClick={() => navigate('/profile/addresses')} classes={`btn-outlined ${theme === 'dark' && 'b-solid b-secondary'} pd-s txt-md txt-cap`}>

@@ -76,7 +76,7 @@ const Checkout = () => {
 
                                     <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${address.phoneNumber}`}</Text>
 
-                                    <div className="flx flx-maj-start flx-min-center">
+                                    <div className="flx flx-maj-end flx-min-center">
                                         <Button onClick={() => handleAddressSelect(address._id)} classes={`btn-outlined b-solid ${getBorderColor(theme)} ${getTextColor(theme)} txt-md pd-left-xs pd-right-xs`}>set as default</Button>
                                     </div>
 

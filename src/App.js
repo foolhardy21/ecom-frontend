@@ -59,7 +59,7 @@ function App() {
 
         <Route path='/profile/orders' element={<Orders />} />
 
-        <Route path='/profile/login-and-security' element={<LoginAndSecurity />} />
+        <Route path='/profile/account' element={<LoginAndSecurity />} />
 
         <Route path='/profile/addresses' element={<Addresses />} />
 
