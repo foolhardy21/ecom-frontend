@@ -1,21 +1,35 @@
 import { v4 as uuid } from 'uuid'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button, Form, Input } from "components/Reusable"
 import { useAddress, useTheme } from "contexts"
 import { getBgColor, getSolidBtnBgColor, getSolidBtnTextColor, getTextColor, isFormEmpty } from "utils"
-import { ACTION_ADD_ADDRESS, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from 'utils/constants.util'
+import { ACTION_ADD_ADDRESS, ACTION_UPDATE_ADDRESS, ALERT_DISPLAY_TIME, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from 'utils/constants.util'
 
 const AddressFormSection = () => {
+    const navigate = useNavigate()
     const { theme } = useTheme()
-    const { addressForm, setAddressForm, addressDispatch, showAddressAlert } = useAddress()
+    const { addressForm, setAddressForm, addressDispatch, addressToBeUpdated, setAddressToBeUpdated, showAddressAlert } = useAddress()
+
+    useEffect(() => {
+        if (Object.keys(addressToBeUpdated).length > 0) {
+            setAddressForm({ ...addressToBeUpdated })
+        }
+    }, [])
 
     function handleAddressFormSubmit(e) {
         e.preventDefault()
 
         if (!isFormEmpty(Object.values(addressForm))) {
-            addressDispatch({ type: ACTION_ADD_ADDRESS, payload: { ...addressForm, _id: uuid() } })
-            showAddressAlert('address added', ALERT_TYPE_SUCCESS)
+            if (Object.keys(addressToBeUpdated).length > 0) {
+                addressDispatch({ type: ACTION_UPDATE_ADDRESS, payload: { address: addressForm, _id: addressToBeUpdated._id } })
+                setAddressToBeUpdated({})
+                showAddressAlert('address updated', ALERT_TYPE_SUCCESS)
+            } else {
+                addressDispatch({ type: ACTION_ADD_ADDRESS, payload: { ...addressForm, _id: uuid() } })
+                showAddressAlert('address added', ALERT_TYPE_SUCCESS)
+            }
             setAddressForm({
-                _id: uuid(),
                 name: '',
                 building: '',
                 street: '',
@@ -25,6 +39,7 @@ const AddressFormSection = () => {
                 pincode: '',
                 phoneNumber: ''
             })
+            setTimeout(() => navigate('/profile/addresses'), ALERT_DISPLAY_TIME + 500)
         } else {
             showAddressAlert('form is empty', ALERT_TYPE_ERROR)
         }
@@ -59,7 +74,7 @@ const AddressFormSection = () => {
 
             <div className='flx flx-maj-end'>
                 <Button onClick={handleAddressFormSubmit} classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-ucase pd-s`}>{
-                    `add`
+                    Object.keys(addressToBeUpdated).length > 0 ? 'edit' : 'add'
                 }</Button>
             </div>
 

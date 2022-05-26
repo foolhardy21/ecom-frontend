@@ -23,7 +23,7 @@ export const AddressProvider = ({ children }) => {
         pincode: '',
         phoneNumber: ''
     })
-    const [addressToBeUpdated, setAddressToBeUpdated] = useState('')
+    const [addressToBeUpdated, setAddressToBeUpdated] = useState({})
     console.log(addressState.addresses)
     function showAddressAlert(message, type) {
         addressDispatch({

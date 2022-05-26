@@ -10,7 +10,12 @@ const Addresses = () => {
     useTitle('Addresses')
     const { theme } = useTheme()
     const navigate = useNavigate()
-    const { addressState: { addresses } } = useAddress()
+    const { addressState: { addresses }, setAddressToBeUpdated } = useAddress()
+
+    const handleEditAddress = (id) => {
+        setAddressToBeUpdated(addresses.find(address => address._id === id))
+        navigate('/profile/addresses/form')
+    }
 
     return (
         <div
@@ -33,14 +38,14 @@ const Addresses = () => {
                     </Card>
 
                     {
-                        addresses?.map(address => <Card key={address.name} classes={`${styles.cardAddress} flx flx-column flx-maj-stretch pd-xs`}>
+                        addresses?.map(address => <Card key={address._id} classes={`${styles.cardAddress} flx flx-column flx-maj-stretch pd-xs`}>
                             <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{address.name}</Text>
                             <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${address.building}, ${address.street}`}</Text>
                             <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${address.city}, ${address.state}, ${address.pincode}`}</Text>
                             <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${address.country}`}</Text>
                             <Text classes={`${getTextColor(theme)} txt-md txt-cap`}>{`${address.phoneNumber}`}</Text>
                             <div className="flx flx-maj-start flx-min-center">
-                                <Button classes={`btn-outlined ${getTextColor(theme)} ${getBorderColor(theme)} txt-md txt-lcase pd-left-xs pd-right-xs mg-right-xs`}>edit</Button>
+                                <Button onClick={() => handleEditAddress(address._id)} classes={`btn-outlined ${getTextColor(theme)} ${getBorderColor(theme)} txt-md txt-lcase pd-left-xs pd-right-xs mg-right-xs`}>edit</Button>
                                 <Button classes={`btn-outlined ${getTextColor(theme)} ${getBorderColor(theme)} txt-md txt-lcase pd-left-xs pd-right-xs mg-right-xs`}>remove</Button>
                                 {
                                     !address.default && <Button classes={`btn-outlined ${getTextColor(theme)} ${getBorderColor(theme)} txt-md txt-lcase pd-left-xs pd-right-xs`}>set as default</Button>
