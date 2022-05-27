@@ -3,6 +3,7 @@ import { Card, Icon, Image, Text, Button } from "components/Reusable"
 import { useCart, useProducts, useTheme, useWishlist } from 'contexts'
 import { getRatingFilterArray, getSolidBtnBgColor, getSolidBtnTextColor, getTextColor } from "utils"
 import { ACTION_ADD_TO_CART, ACTION_ADD_TO_WISHLIST, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "utils/constants.util"
+import styles from './products.module.css'
 
 const ProductCard = ({ prd }) => {
     const navigate = useNavigate()
@@ -49,7 +50,7 @@ const ProductCard = ({ prd }) => {
         <Card classes="pd-xs pos-relative">
             {
                 offerPrice &&
-                <Text classes="pos-absolute tr-1 bg-warn txt-md txt-600 txt-primary txt-ucase pd-xs">offer</Text>
+                <Text classes={`pos-absolute ${styles.badgeOffer} bg-warn txt-md txt-600 txt-primary txt-ucase pd-xs`}>offer</Text>
             }
             {
                 stock < 15 && <Text classes='txt-cap pos-absolute tl-0 bg-err txt-secondary txt-md'>{`only ${stock} left.`}</Text>

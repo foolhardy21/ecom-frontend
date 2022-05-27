@@ -18,3 +18,8 @@
 .mainPrdlist {
   width: 100vw;
 }
+
+.badgeOffer {
+  top: 0;
+  right: 0;
+}
