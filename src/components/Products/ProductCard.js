@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Card, Icon, Image, Text, Button } from "components/Reusable"
 import { useCart, useProducts, useTheme, useWishlist } from 'contexts'
 import { getRatingFilterArray, getSolidBtnBgColor, getSolidBtnTextColor, getTextColor } from "utils"
 import { ACTION_ADD_TO_CART, ACTION_ADD_TO_WISHLIST, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "utils/constants.util"
 
 const ProductCard = ({ prd }) => {
+    const navigate = useNavigate()
     const { _id,
         name,
         company,
@@ -120,17 +121,17 @@ const ProductCard = ({ prd }) => {
 
                 {
                     isProductInCart(_id)
-                        ? <Link to='/cart'>
-                            <Button classes={`btn-solid ${getSolidBtnTextColor(theme)} ${getSolidBtnBgColor(theme)} txt-md txt-cap pd-xs`} >go to cart</Button>
-                        </Link>
+                        ?
+                        <Button onClick={() => navigate('/cart')} classes={`btn-solid ${getSolidBtnTextColor(theme)} ${getSolidBtnBgColor(theme)} txt-md txt-cap pd-xs`} >go to cart</Button>
+
                         : <Button onClick={handleAddToCart} classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-cap pd-xs`} >add to cart</Button>
                 }
 
                 {
                     isProductInWishlist(_id)
-                        ? <Link to='/wishlist'>
-                            <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-cap pd-xs`} >go to wishlist</Button>
-                        </Link>
+                        ?
+                        <Button onClick={() => navigate('/wishlist')} classes={`btn-txt ${getTextColor(theme)} txt-md txt-cap pd-xs`} >go to wishlist</Button>
+
                         : <Button onClick={handleAddToWishlist} classes={`btn-txt ${getTextColor(theme)} txt-md txt-cap pd-xs`} >add to wishlist</Button>
                 }
 
