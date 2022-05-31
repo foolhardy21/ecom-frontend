@@ -32,11 +32,11 @@ export const filterProductsBySize = (products, minSize) => products.filter(prd =
 
 /*
     * this function filters the products based on the product's rating
-    * @params {Number} minRating - minimum rating value from the ratings selected
+    * @params {Array.prototype} ratingArr - minimum rating value from the ratings selected
     * @params {Array.prototype} products - array of all products
     * @return {Array.prototype} filtered array of products 
 */
-export const filterProductsByRating = (products, minRating) => products.filter(prd => prd.rating >= minRating)
+export const filterProductsByRating = (products, ratingArr) => products.filter(prd => ratingArr.some(rating => rating == prd.rating))
 
 /*
     * this function sorts the products array in the ascending order of the product's price

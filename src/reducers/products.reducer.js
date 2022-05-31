@@ -49,7 +49,7 @@ function filterProducts(filteredProducts, filterObj) {
         filteredProducts = filterProductsBySize(filteredProducts, Math.min(...filterObj.sizeChecks))
 
     if (filterObj.ratingChecks.length > 0)
-        filteredProducts = filterProductsByRating(filteredProducts, Math.min(...filterObj.ratingChecks))
+        filteredProducts = filterProductsByRating(filteredProducts, filterObj.ratingChecks)
 
     if (filterObj.priceSortOrder.length > 0) {
         if (filterObj.priceSortOrder === 'asc') {

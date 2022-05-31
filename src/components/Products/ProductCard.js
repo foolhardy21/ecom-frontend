@@ -54,11 +54,15 @@ const ProductCard = ({ prd }) => {
                 stock < 15 && <Text classes='txt-cap pos-absolute tl-0 bg-err txt-secondary txt-md'>{`only ${stock} left.`}</Text>
             }
 
-            <Image srcSet={srcSet} alt={alt} sizes={sizes} />
+            <Link to={`/products/${_id}`}>
+                <Image srcSet={srcSet} alt={alt} sizes={sizes} />
+            </Link>
 
-            <Text classes="txt-md txt-cap txt-primary">{company}</Text>
+            <Link to={`/products/${_id}`}>
+                <Text classes="txt-md txt-cap txt-primary">{company}</Text>
 
-            <Text classes="txt-md txt-cap txt-primary mg-btm-xs">{name}</Text>
+                <Text classes="txt-md txt-cap txt-primary mg-btm-xs">{name}</Text>
+            </Link>
 
             <div className="flx mg-btm-xs">
                 <Text classes='txt-md txt-primary txt-cap mg-right-s'>sizes</Text>
