@@ -19,7 +19,7 @@ const Signup = () => {
 
             <SignupHeader />
 
-            <div className='flx flx-center'>
+            <div className='pos-relative mg-xs'>
                 {
                     signupAlert.message && <Alert type={signupAlert.type}>{signupAlert.message}</Alert>
                 }

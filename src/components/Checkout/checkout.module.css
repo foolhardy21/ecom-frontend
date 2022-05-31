@@ -1,0 +1,8 @@
+.containerCartItms {
+  height: 25rem;
+  overflow-y: auto;
+}
+
+.cardReciept {
+  height: max-content;
+}

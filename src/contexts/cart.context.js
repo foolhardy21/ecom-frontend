@@ -109,9 +109,9 @@ export const CartProvider = ({ children }) => {
         }
     }
 
-    /* 
+    /**
      * this functions adds the product to the cart
-     @params {Object.prototype} product - product to be added
+     @param {Object.prototype} product - product to be added
      @return {Array.prototype} response.data.cart - updated cart
      @return {Number} e.response.status - error status code
     */
@@ -130,7 +130,7 @@ export const CartProvider = ({ children }) => {
         }
     }
 
-    /* 
+    /**
      * this functions fetches the cart
      @return {Array.prototype} response.data.cart - array of cart products
      @return {Number} e.response.status - error status code

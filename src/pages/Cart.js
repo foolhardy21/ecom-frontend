@@ -34,15 +34,17 @@ const Cart = () => {
 
             <CartHeader />
 
+            <div className="pos-relative mg-xs">
+                {
+                    alert.message && <Alert type={alert.type}>{alert.message}</Alert>
+                }
+            </div>
+
             <Main classes='flx flx-column flx-center pd-md'>
 
                 <Text classes='txt-cap txt-lg mg-btm-md flx flx-center'>
                     your cart
                 </Text>
-
-                {
-                    alert.message && <Alert type={alert.type} classes='mg-btm-s'>{alert.message}</Alert>
-                }
 
                 {
                     loading

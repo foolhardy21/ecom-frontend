@@ -33,15 +33,18 @@ const Wishlist = () => {
 
             <WishlistHeader />
 
+            <div className='pos-relative mg-xs'>
+                {
+                    wishlistState.alert.message && <Alert type={wishlistState.alert.type}>{wishlistState.alert.message}</Alert>
+                }
+            </div>
+
             <Main classes='flx flx-column flx-center pd-md'>
 
                 <Text classes='txt-lg txt-primary txt-cap mg-btm-md'>
                     your wishlist
                 </Text>
 
-                {
-                    wishlistState.alert.message && <Alert type={wishlistState.alert.type}>{wishlistState.alert.message}</Alert>
-                }
                 {
                     wishlistState.loading ? <BarLoader width={300} height={4} /> : <WishlistSection />
                 }

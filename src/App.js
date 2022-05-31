@@ -1,8 +1,7 @@
-import { Signup, Login, Products, Wishlist, Cart, Home, NotFound, Profile } from './pages'
+import { Signup, Login, Products, Wishlist, Cart, Home, NotFound, Profile, Product, LoginAndSecurity, Addresses, AddressForm } from './pages'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MockMan from "mockman-js";
 import { LoginProvider, SignupProvider, useAuth } from 'contexts';
-import { ROUTE_CART, ROUTE_CHECKOUT, ROUTE_HOME, ROUTE_LOGIN, ROUTE_PRODUCTS, ROUTE_PROFILE, ROUTE_SIGNUP, ROUTE_WISHLIST } from 'utils/constants.util';
+import { ROUTE_ACCOUNT, ROUTE_ADDRESSES, ROUTE_ADDRESS_FORM, ROUTE_CART, ROUTE_CHECKOUT, ROUTE_HOME, ROUTE_LOGIN, ROUTE_PRODUCT, ROUTE_PRODUCTS, ROUTE_PROFILE, ROUTE_SIGNUP, ROUTE_WISHLIST } from 'utils/constants.util';
 import Checkout from 'pages/Checkout';
 
 function App() {
@@ -55,12 +54,30 @@ function App() {
           </RequireAuth>
         } />
 
-        <Route path='/mock' element={<MockMan />} />
+        <Route path={ROUTE_PRODUCT} element={<Product />} />
+
+        <Route path={ROUTE_ACCOUNT} element={
+          <RequireAuth>
+            <LoginAndSecurity />
+          </RequireAuth>
+        } />
+
+        <Route path={ROUTE_ADDRESSES} element={
+          <RequireAuth>
+            <Addresses />
+          </RequireAuth>
+        } />
+
+        <Route path={ROUTE_ADDRESS_FORM} element={
+          <RequireAuth>
+            <AddressForm />
+          </RequireAuth>
+        } />
 
         <Route path='*' element={<NotFound />} />
 
-      </Routes>
-    </BrowserRouter>
+      </Routes >
+    </BrowserRouter >
 
   );
 }

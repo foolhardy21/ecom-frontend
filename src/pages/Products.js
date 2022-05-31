@@ -40,13 +40,18 @@ const Products = () => {
 
             <ProductsHeader />
 
+            <div className='pos-relative mg-xs'>
+                {
+                    productsState.alert.message && <Alert type={productsState.alert.type}>{productsState.alert.message}</Alert>
+                }
+            </div>
+
             <div className="flx flx-row">
 
                 {
                     filterVisibility &&
                     <ProductsFilter />
                 }
-
 
                 <Button onClick={() => setFilterVisibility(!filterVisibility)} classes={`${styles.btnFilters} btn-solid bg-secondary flx flx-center pd-xs pos-sticky t-0`}>
                     <Icon classes='icon-secondary'>
@@ -55,10 +60,6 @@ const Products = () => {
                 </Button>
 
                 <Main classes={`${getBgColor(theme)} ${styles.mainPrdlist} flx flx-column flx-min-center`}>
-
-                    {
-                        productsState.alert.message && <Alert type={productsState.alert.type}>{productsState.alert.message}</Alert>
-                    }
 
                     <Text classes={`txt-lg txt-cap ${getTextColor(theme)} pd-top-lg pd-btm-lg`}>sneakers</Text>
 
