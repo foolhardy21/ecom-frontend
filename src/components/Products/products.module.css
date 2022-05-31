@@ -19,6 +19,7 @@
   width: 100vw;
 }
 
-/* .card-dim:hover {
-  cursor: pointer;
-} */
+.badgeOffer {
+  top: 0;
+  right: 0;
+}

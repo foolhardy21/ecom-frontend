@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Card, Icon, Image, Text, Button } from "components/Reusable"
 import { useCart, useProducts, useTheme, useWishlist } from 'contexts'
 import { getRatingFilterArray, getSolidBtnBgColor, getSolidBtnTextColor, getTextColor } from "utils"
 import { ACTION_ADD_TO_CART, ACTION_ADD_TO_WISHLIST, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from "utils/constants.util"
+import styles from './products.module.css'
 
 const ProductCard = ({ prd }) => {
+    const navigate = useNavigate()
     const { _id,
         name,
         company,
@@ -48,7 +50,7 @@ const ProductCard = ({ prd }) => {
         <Card classes="pd-xs pos-relative">
             {
                 offerPrice &&
-                <Text classes="pos-absolute tr-1 bg-warn txt-md txt-600 txt-primary txt-ucase pd-xs">offer</Text>
+                <Text classes={`pos-absolute ${styles.badgeOffer} bg-warn txt-md txt-600 txt-primary txt-ucase pd-xs`}>offer</Text>
             }
             {
                 stock < 15 && <Text classes='txt-cap pos-absolute tl-0 bg-err txt-secondary txt-md'>{`only ${stock} left.`}</Text>
@@ -120,17 +122,17 @@ const ProductCard = ({ prd }) => {
 
                 {
                     isProductInCart(_id)
-                        ? <Link to='/cart'>
-                            <Button classes={`btn-solid ${getSolidBtnTextColor(theme)} ${getSolidBtnBgColor(theme)} txt-md txt-cap pd-xs`} >go to cart</Button>
-                        </Link>
+                        ?
+                        <Button onClick={() => navigate('/cart')} classes={`btn-solid ${getSolidBtnTextColor(theme)} ${getSolidBtnBgColor(theme)} txt-md txt-cap pd-xs`} >go to cart</Button>
+
                         : <Button onClick={handleAddToCart} classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-cap pd-xs`} >add to cart</Button>
                 }
 
                 {
                     isProductInWishlist(_id)
-                        ? <Link to='/wishlist'>
-                            <Button classes={`btn-txt ${getTextColor(theme)} txt-md txt-cap pd-xs`} >go to wishlist</Button>
-                        </Link>
+                        ?
+                        <Button onClick={() => navigate('/wishlist')} classes={`btn-txt ${getTextColor(theme)} txt-md txt-cap pd-xs`} >go to wishlist</Button>
+
                         : <Button onClick={handleAddToWishlist} classes={`btn-txt ${getTextColor(theme)} txt-md txt-cap pd-xs`} >add to wishlist</Button>
                 }
 

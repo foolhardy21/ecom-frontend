@@ -8,9 +8,9 @@ const AuthContext = createContext(false)
 export const AuthProvider = ({ children }) => {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
 
-    /*
+    /**
         * this function restricts access to private routes
-        * @params {React.Component} children - All the components wrapper inside this function
+        * @param {React.Component} children - All the components wrapper inside this function
         * @return {React.Component} - if the user is logged in then the child component is returned, otherwise app is redirected to login page 
     */
     const RequireAuth = ({ children }) => {
@@ -18,10 +18,10 @@ export const AuthProvider = ({ children }) => {
         return isUserLoggedIn ? children : <Navigate to='/login' state={{ from: location }} replace />
     }
 
-    /*
+    /**
         * this function logs in the user
-        * @params {string} email - email entered in login form
-        * @params {string} password - password entered in login form
+        * @param {string} email - email entered in login form
+        * @param {string} password - password entered in login form
         * @return {Number} response.status - the response status code is checked in component 
     */
     async function loginUser(email, password) {
@@ -30,7 +30,8 @@ export const AuthProvider = ({ children }) => {
                 email,
                 password,
             })
-            window.localStorage.setItem('userToken', response.data.encodedToken)
+            window.localStorage.setItem('ecomUserToken', response.data.encodedToken)
+            window.localStorage.setItem('ecomUser', JSON.stringify(response.data.foundUser))
             setIsUserLoggedIn(true)
             return response.status
         } catch (e) {
@@ -38,12 +39,12 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    /*
+    /**
         * this function signs up the user
-        * @params {string} email - email entered in login form
-        * @params {string} password - password entered in login form
-        * @params {string} firstName - firstName entered in login form
-        * @params {string} lastName - lastName entered in login form
+        * @param {string} email - email entered in login form
+        * @param {string} password - password entered in login form
+        * @param {string} firstName - firstName entered in login form
+        * @param {string} lastName - lastName entered in login form
         * @return {Number} response.status - the response status code is checked in component
     */
     async function signupUser(email, password, firstName, lastName) {
@@ -64,15 +65,22 @@ export const AuthProvider = ({ children }) => {
         * this function logs out the user by removing the token from local storage.
     */
     function logoutUser() {
-        window.localStorage.removeItem('userToken')
+        window.localStorage.removeItem('ecomUserToken')
+        window.localStorage.removeItem('ecomUser')
         setIsUserLoggedIn(false)
     }
 
-    /*
+    /**
         * this getter function returns the token of logged in user 
         * @return {string} - the token stored in local storage of the browser
     */
-    const getUserToken = () => window.localStorage.getItem('userToken')
+    const getUserToken = () => window.localStorage.getItem('ecomUserToken')
+
+    /**
+        * this getter function returns the logged in user 
+        * @return {string} - the JSON object stored in local storage of the browser
+    */
+    const getUser = () => JSON.parse(window.localStorage.getItem('ecomUser'))
 
     return (
         <AuthContext.Provider
@@ -82,6 +90,7 @@ export const AuthProvider = ({ children }) => {
                 signupUser,
                 logoutUser,
                 getUserToken,
+                getUser,
                 RequireAuth,
             }}
         >

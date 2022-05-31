@@ -1,20 +1,30 @@
 import { v4 as uuid } from 'uuid'
+import { useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button, Form, Input } from "components/Reusable"
 import { useAddress, useTheme } from "contexts"
-import { getBgColor, getSolidBtnBgColor, getSolidBtnTextColor, getTextColor, isFormEmpty } from "utils"
-import { ACTION_ADD_ADDRESS, ACTION_UPDATE_ADDRESS, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from 'utils/constants.util'
+import { getBgColor, getBorderColor, getSolidBtnBgColor, getSolidBtnTextColor, getTextColor, isFormEmpty } from "utils"
+import { ACTION_ADD_ADDRESS, ACTION_UPDATE_ADDRESS, ALERT_DISPLAY_TIME, ALERT_TYPE_ERROR, ALERT_TYPE_SUCCESS } from 'utils/constants.util'
 
-const AddressForm = () => {
+const AddressFormSection = () => {
+    const addBtnRef = useRef(null)
+    const navigate = useNavigate()
     const { theme } = useTheme()
     const { addressForm, setAddressForm, addressDispatch, addressToBeUpdated, setAddressToBeUpdated, showAddressAlert } = useAddress()
+
+    useEffect(() => {
+        if (Object.keys(addressToBeUpdated).length > 0) {
+            setAddressForm({ ...addressToBeUpdated })
+        }
+    }, [])
 
     function handleAddressFormSubmit(e) {
         e.preventDefault()
 
         if (!isFormEmpty(Object.values(addressForm))) {
-            if (addressToBeUpdated.length > 0) {
-                addressDispatch({ type: ACTION_UPDATE_ADDRESS, payload: { _id: addressToBeUpdated, address: { ...addressForm } } })
-                setAddressToBeUpdated('')
+            if (Object.keys(addressToBeUpdated).length > 0) {
+                addressDispatch({ type: ACTION_UPDATE_ADDRESS, payload: { address: addressForm, _id: addressToBeUpdated._id } })
+                setAddressToBeUpdated({})
                 showAddressAlert('address updated', ALERT_TYPE_SUCCESS)
             } else {
                 addressDispatch({ type: ACTION_ADD_ADDRESS, payload: { ...addressForm, _id: uuid() } })
@@ -30,10 +40,42 @@ const AddressForm = () => {
                 pincode: '',
                 phoneNumber: ''
             })
+            setTimeout(() => navigate('/profile/addresses', { replace: true }), ALERT_DISPLAY_TIME + 500)
         } else {
             showAddressAlert('form is empty', ALERT_TYPE_ERROR)
         }
     }
+
+    const handleAddDummyAddress = (e) => {
+        e.preventDefault()
+
+        setAddressForm({
+            name: 'Vinay',
+            building: 'Flat no 10, Building B',
+            street: 'Someshwar Society, Aundh',
+            city: 'Pune',
+            state: 'Maharashtra',
+            country: 'India',
+            pincode: '411041',
+            phoneNumber: '8349376262'
+        })
+    }
+
+    useEffect(() => {
+        if (addressForm.phoneNumber === '8349376262' && Object.keys(addressToBeUpdated).length === 0) {
+            addBtnRef.current.click()
+            setAddressForm({
+                name: '',
+                building: '',
+                street: '',
+                city: '',
+                state: '',
+                country: '',
+                pincode: '',
+                phoneNumber: ''
+            })
+        }
+    }, [addressForm])
 
     return (
         <Form classes='mg-top-md'>
@@ -63,13 +105,17 @@ const AddressForm = () => {
             <Input type='number' placeholder="phone number" value={addressForm.phoneNumber} onChange={(e) => setAddressForm(a => ({ ...a, phoneNumber: Number(e.target.value) }))} classes={`input ${getBgColor(theme)} ${getTextColor(theme)} input-s txt-md pd-xs ${getTextColor(theme)} mg-btm-xs`} />
 
             <div className='flx flx-maj-end'>
-                <Button onClick={handleAddressFormSubmit} classes={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-ucase pd-s`}>{
-                    addressToBeUpdated.length > 0 ? `edit` : `add`
-                }</Button>
+
+                <Button onClick={handleAddDummyAddress} classes={`btn-outlined b-solid ${getBorderColor(theme)} txt-md txt-cap pd-xs mg-right-s`}>add dummy address</Button>
+
+                <button ref={addBtnRef} onClick={handleAddressFormSubmit} className={`btn-solid ${getSolidBtnBgColor(theme)} ${getSolidBtnTextColor(theme)} txt-md txt-ucase pd-xs`}>{
+                    Object.keys(addressToBeUpdated).length > 0 ? 'edit' : 'add'
+                }</button>
+
             </div>
 
         </Form>
     )
 }
 
-export default AddressForm
+export default AddressFormSection

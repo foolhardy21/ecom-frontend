@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { useCart, useTheme } from "contexts"
 import { Button, Card, Main, Text } from "components/Reusable"
 import { getTotalDiscount, getTotalPrice, getFinalPrice, getSolidBtnBgColor, getSolidBtnTextColor } from "utils"
+import styles from 'components/Checkout/checkout.module.css'
 
 const CartReceiptCard = () => {
     const { cartState: { cart } } = useCart()
@@ -9,7 +10,7 @@ const CartReceiptCard = () => {
 
     return (
 
-        <Card classes='pd-lg'>
+        <Card classes={`${styles.cardReciept} pd-lg`}>
 
             <Main classes='flx flx-column'>
 

@@ -1,4 +1,4 @@
 .gridWishlist {
   gap: 1rem;
-  place-items: center;
+  align-items: stretch;
 }

@@ -7,6 +7,7 @@ const WishlistCard = ({ item }) => {
     const {
         _id,
         name,
+        size,
         company,
         img: {
             alt,
@@ -51,7 +52,7 @@ const WishlistCard = ({ item }) => {
 
     return (
 
-        <Card classes='flx flx-column pos-relative'>
+        <Card classes='flx flx-column flx-maj-stretch pos-relative'>
 
             <Button onClick={handleRemoveFromWishlist} classes='pos-absolute tr-1 btn-txt'>
 
@@ -76,6 +77,13 @@ const WishlistCard = ({ item }) => {
                 <Text classes='txt-md txt-cap mg-btm-xs'>
                     {name}
                 </Text>
+
+                <div className="flx mg-btm-xs">
+                    <Text classes='txt-md txt-primary txt-cap mg-right-s'>sizes</Text>
+                    {
+                        size.map(size => <Text key={size} classes='txt-md txt-primary mg-right-xs'>{size}</Text>)
+                    }
+                </div>
 
                 <div className="flx">
 

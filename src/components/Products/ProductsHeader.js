@@ -18,9 +18,10 @@ const ProductsHeader = () => {
         setSmallNavVisible(!isSmallNavVisible)
     }
 
-    async function handleSearchSubmit() {
+    async function handleSearchSubmit(e) {
+        setSearchQuery(e.target.value)
         const getProductsResponse = await getProducts()
-        const filteredProducts = filterProductsBySearchQuery(getProductsResponse, searchQuery)
+        const filteredProducts = filterProductsBySearchQuery(getProductsResponse, e.target.value)
         productsDispatch({ type: ACTION_INIT_PRODUCTS, payload: filteredProducts })
     }
 
@@ -35,13 +36,11 @@ const ProductsHeader = () => {
 
             <div id="pg-searchbar" className="flx">
 
-                <Input id="input-search" type="text" placeholder="search..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} classes={`input-s ${getTextColor(theme)} txt-md`} />
+                <Input id="input-search" type="text" placeholder="search..." value={searchQuery} onChange={(e) => handleSearchSubmit(e)} classes={`input-s ${getTextColor(theme)} txt-md`} />
 
-                <Button onClick={handleSearchSubmit} classes='btn-txt'>
-                    <Icon classes={`${getIconColor(theme)} pd-xs`}>
-                        search
-                    </Icon>
-                </Button>
+                <Icon classes={`${getIconColor(theme)} pd-xs`}>
+                    search
+                </Icon>
 
             </div>
 

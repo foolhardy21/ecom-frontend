@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid'
 import { createContext, useReducer, useContext, useState } from "react";
 import { addressReducer } from "reducers";
 import { ACTION_REMOVE_ALERT, ACTION_SET_ALERT, ALERT_DISPLAY_TIME } from "utils/constants.util";
@@ -6,7 +7,17 @@ const AddressContext = createContext({})
 
 export const AddressProvider = ({ children }) => {
     const [addressState, addressDispatch] = useReducer(addressReducer, {
-        addresses: [],
+        addresses: [{
+            _id: uuid(),
+            name: 'Vinay',
+            building: 'Flat no 10, Building B',
+            street: 'Someshwar Society, Aundh',
+            city: 'Pune',
+            state: 'Maharashtra',
+            country: 'India',
+            pincode: '411041',
+            phoneNumber: '8349376262'
+        }],
         loading: false,
         alert: {
             message: '',
@@ -23,7 +34,7 @@ export const AddressProvider = ({ children }) => {
         pincode: '',
         phoneNumber: ''
     })
-    const [addressToBeUpdated, setAddressToBeUpdated] = useState('')
+    const [addressToBeUpdated, setAddressToBeUpdated] = useState({})
 
     function showAddressAlert(message, type) {
         addressDispatch({
