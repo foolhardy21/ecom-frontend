@@ -49,11 +49,11 @@ const ProductsFilter = () => {
 
             <div className='mg-btm-lg'>
 
-                <Text classes='txt txt-cap mg-btm-xs'>least price</Text>
+                <Text classes='txt txt-cap mg-btm-xs'>price</Text>
 
-                <input id="filter-price" type='range' value={filterState.filterPrice} min='5000' max='50000' onChange={(e) => handlePriceChange(e)} />
+                <input id="filter-price" type='range' value={filterState.filterPrice} min='5000' max='20000' onChange={(e) => handlePriceChange(e)} />
 
-                <Text classes="txt-md txt-primary">{filterState.filterPrice}</Text>
+                <Text classes="txt-md txt-primary txt-cap">atleast {filterState.filterPrice}</Text>
 
             </div>
 
