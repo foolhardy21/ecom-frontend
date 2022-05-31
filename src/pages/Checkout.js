@@ -7,7 +7,6 @@ import { useAddress, useCart, useCheckout, useTheme } from "contexts"
 import { getBgColor, getTextColor, getBorderColor } from "utils"
 import useTitle from "hooks/useTitle"
 import styles from 'components/Profile/profile.module.css'
-import styles2 from 'components/Checkout/checkout.module.css'
 
 const Checkout = () => {
     useTitle('Checkout')
@@ -48,7 +47,7 @@ const Checkout = () => {
 
                 <Section id="section-cart" classes='flx flx-row'>
 
-                    <Section id="section-cartitm" classes={`${styles2.containerCartItms} flx flx-column flx-maj-stretch mg-right-s`}>
+                    <Section id="section-cartitm" classes={`flx flx-column flx-maj-stretch mg-right-s`}>
 
                         {
                             cartState.cart.map(itm =>

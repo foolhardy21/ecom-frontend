@@ -31,7 +31,6 @@ const CheckoutAddressCard = () => {
         );
 
         if (res) {
-            console.log(process.env.REACT_APP_RZP_ID, process.env.REACT_APP_RZP_SECRET)
             const options = {
                 key: process.env.REACT_APP_RZP_ID,
                 key_id: process.env.REACT_APP_RZP_ID,
